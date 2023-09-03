@@ -122,4 +122,6 @@ ___
 
 <br>
 
-![Database Schema displaying planned Django Models](docs/database-schema/planit-go-database-highlight-schema-v01.pdf)
+[A PDF for Database Schema v01 Can be viewd here](docs/database-schema/planit-go-database-highlight-schema-v01.pdf)
+
+[The database schema created using dbdiagram.io can be found here](https://dbdiagram.io/d/64f2f6f902bd1c4a5ed78564)

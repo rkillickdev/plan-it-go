@@ -121,3 +121,5 @@ ___
 ## **Database Schema**
 
 <br>
+
+![Database Schema displaying planned Django Models](docs/database-schema/planit-go-database-highlight-schema-v01.png)

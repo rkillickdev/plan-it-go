@@ -31,7 +31,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['plan-it-go.herokuapp.com',
+ALLOWED_HOSTS = ['plan-it-go-5b10d0005b0a.herokuapp.com',
                  '8000-rkillickdev-planitgo-u9uuwhusilu.ws-eu104.gitpod.io']
 
 

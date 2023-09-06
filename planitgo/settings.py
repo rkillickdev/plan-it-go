@@ -17,6 +17,8 @@ import dj_database_url
 if os.path.isfile('env.py'):
     import env
 
+development = os.environ.get('DEVELOPMENT', False)
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
@@ -29,10 +31,12 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = development
 
-ALLOWED_HOSTS = ['plan-it-go-5b10d0005b0a.herokuapp.com',
-                 '8000-rkillickdev-planitgo-u9uuwhusilu.ws-eu104.gitpod.io']
+if development:  
+    ALLOWED_HOSTS = ['8000-rkillickdev-planitgo-u9uuwhusilu.ws-eu104.gitpod.io'] 
+else:
+    ALLOWED_HOSTS = ['plan-it-go-5b10d0005b0a.herokuapp.com']
 
 
 # Application definition
@@ -84,16 +88,17 @@ WSGI_APPLICATION = 'planitgo.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
-DATABASES = {
-    'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
-}
+if development:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
+else:
+    DATABASES = {
+        'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
+    }
 
 
 # Password validation

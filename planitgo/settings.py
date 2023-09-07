@@ -71,6 +71,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    # required for allauth 0.56.0
+    'allauth.account.middleware.AccountMiddleware',
 ]
 
 ROOT_URLCONF = 'planitgo.urls'

@@ -4,6 +4,10 @@ from cloudinary.models import CloudinaryField
 
 
 class Profile(models.Model):
+    """
+    Model for creation of a Profile
+    """
+
     user = models.OneToOneField(
         User, on_delete=models.CASCADE, related_name="profile"
     )
@@ -12,8 +16,12 @@ class Profile(models.Model):
     screen_name = models.CharField(max_length=15, unique=True)
     slug = models.SlugField(max_length=150, unique=True)
     date_of_birth = models.DateField()
-    about = models.TextField()
-    profile_image = models.CloudinaryField('image', default='placeholder')
+    about = models.TextField(blank=True)
+    profile_image = CloudinaryField('image', default='placeholder')
 
     def __str__(self):
-        return self.user
+        """
+        Returns the username as a string representation for each instance
+        of the Profile model.
+        """
+        return str(self.user)

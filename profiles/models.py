@@ -12,11 +12,11 @@ class Profile(models.Model):
     user = models.OneToOneField(
         User, on_delete=models.CASCADE, related_name="profile"
     )
-    first_name = models.CharField(max_length=50)
-    surname = models.CharField(max_length=50)
-    screen_name = models.CharField(max_length=15, unique=True)
-    slug = models.SlugField(max_length=150, unique=True)
-    date_of_birth = models.DateField()
+    first_name = models.CharField(max_length=50, null=True)
+    surname = models.CharField(max_length=50, null=True)
+    screen_name = models.CharField(max_length=15, unique=True, null=True)
+    slug = models.SlugField(max_length=150, unique=True, null=True)
+    date_of_birth = models.DateField(blank=True, null=True)
     about = models.TextField(blank=True)
     profile_image = CloudinaryField('image', default='placeholder')
 

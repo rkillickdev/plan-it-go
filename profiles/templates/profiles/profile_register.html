@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<a href="{% url 'update_profile' request.user.profile.id %}">REGISTER A PROFILE HERE</a>
+
+<a href="#">START PLANNING TRIP</a>
+
+{% endblock %}

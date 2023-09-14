@@ -20,6 +20,6 @@ class ProfileCreateView(CreateView):
 class ProfileUpdateView(LoginRequiredMixin, UpdateView):
     form_class = ProfileForm
     model = Profile
-    success_url = reverse_lazy('thank_you')
+    success_url = reverse_lazy('home')
     # fields = ['first_name', 'surname', 'screen_name', 'date_of_birth',
     #           'about', 'profile_image']

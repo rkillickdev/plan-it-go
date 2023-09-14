@@ -63,7 +63,7 @@ INSTALLED_APPS = [
 
 SITE_ID = 1
 
-ACCOUNT_SIGNUP_REDIRECT_URL = '/'
+ACCOUNT_SIGNUP_REDIRECT_URL = '/profiles/thank_you'
 LOGIN_REDIRECT_URL = '/profiles/thank_you'
 LOGOUT_REDIRECT_URL = '/'
 

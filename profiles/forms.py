@@ -19,4 +19,5 @@ class ProfileForm(ModelForm):
 
     class Meta:
         model = Profile
-        fields = "__all__"
+        fields = ['first_name', 'surname', 'screen_name', 'date_of_birth',
+                  'about', 'profile_image']

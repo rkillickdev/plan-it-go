@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- META TAGS -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+
+    <!-- Favicon -->
+
+    <!-- Bootstrap v4.6 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    
+    <!-- My Stylesheet-->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <!-- Browser Tab Title-->
+    <title>Plan-it Go | {% block title%}{% endblock %}</title>
+</head>
+
+<body class="d-flex flex-column h-100 main-bg">
+    <!-- Header -->
+    {% include 'includes/nav.html' %}
+
+    <main>
+        {% block content %}
+        <!-- Content Here -->
+        {% endblock content %}
+    </main>
+
+    <!-- Footer -->
+    {% include 'includes/footer.html' %}
+
+    <!-- Javascript files -->
+
+    <!-- Bootstrap v4.6 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+
+    <!-- font awesome script-->
+    <script src="https://kit.fontawesome.com/9e2a74b83d.js" crossorigin="anonymous"></script>
+
+</body>
+
+</html>

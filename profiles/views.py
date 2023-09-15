@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import TemplateView, UpdateView
+from django.views.generic import TemplateView, UpdateView, DetailView
 from .models import Profile
 from .forms import ProfileForm
 
@@ -12,6 +12,14 @@ class ProfileRegisterView(TemplateView):
     """
 
     template_name = 'profiles/profile_register.html'
+
+
+class ProfileDetailView(DetailView):
+    """
+    View to render the user profile page.
+    """
+
+    model = Profile
 
 
 class ProfileUpdateView(LoginRequiredMixin, UpdateView):

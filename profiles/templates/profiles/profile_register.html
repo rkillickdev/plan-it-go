@@ -2,8 +2,16 @@
 
 {% block content %}
 
+{% if user.profile.first_name %}
+
+<a href="{% url 'profile_detail' request.user.profile.id %}">VIEW PROFILE HERE</a>
+
+{% else %}
+
 <a href="{% url 'update_profile' request.user.profile.id %}">REGISTER A PROFILE HERE</a>
 
 <a href="#">START PLANNING TRIP</a>
+
+{% endif %}
 
 {% endblock %}

@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>PROFILE PAGE</h1>
+
+{{ profile.first_name }}
+
+<a href="{% url 'update_profile' profile.id %}">EDIT YOUR PROFILE</a>
+
+{% endblock %}
+

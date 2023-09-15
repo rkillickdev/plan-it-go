@@ -1,6 +1,6 @@
 from django.db import models
-from .models import Profile
-from . models import Location
+from profiles.models import Profile
+from locations.models import Location
 
 
 class Trip(models.Model):

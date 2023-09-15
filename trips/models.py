@@ -14,9 +14,6 @@ class Trip(models.Model):
     location = models.ForeignKey(
         Location, on_delete=models.CASCADE, related_name="trips"
     )
-    places = models.ManyToManyField(
-        Place, related_name="trip_place", blank=True
-    )
     title = models.CharField(max_length=30, unique=True)
     slug = models.SlugField(max_length=30, unique=True)
     description = models.TextField(blank=True)
@@ -24,6 +21,9 @@ class Trip(models.Model):
     end_date = models.DateField(blank=True)
     created_on = models.DateTimeField(auto_now_add=True)
     is_complete = models.BooleanField(default=False)
+    # places = models.ManyToManyField(
+    #     Place, related_name="trip_place", blank=True
+    # )
 
     class Meta:
         ordering = ["-start_date"]

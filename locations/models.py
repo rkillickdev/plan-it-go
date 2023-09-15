@@ -1,4 +1,5 @@
 from django.db import models
+from cloudinary.models import CloudinaryField
 
 
 class Location(models.Model):
@@ -9,8 +10,8 @@ class Location(models.Model):
     city = models.CharField(max_length=50, unique=True)
     slug = models.SlugField(max_length=50, unique=True)
     summary = models.TextField()
-    latitude = models.DecimalField()
-    longtitude = models.DecimalField()
+    latitude = models.DecimalField(max_digits=10, decimal_places=8)
+    longtitude = models.DecimalField(max_digits=11, decimal_places=8)
     image = CloudinaryField('image', default='placeholder')
 
     class Meta:

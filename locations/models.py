@@ -12,7 +12,10 @@ class Location(models.Model):
     summary = models.TextField()
     latitude = models.DecimalField(max_digits=10, decimal_places=8)
     longtitude = models.DecimalField(max_digits=11, decimal_places=8)
-    image = CloudinaryField('image', default='placeholder')
+    image = CloudinaryField('image', default='placeholder',
+                            folder="/images/locations",
+                            format="webp"
+                            )
 
     class Meta:
         ordering = ["-city"]

@@ -5,6 +5,7 @@ from django.views.generic import (
     DetailView, UpdateView, DeleteView
 )
 from .models import Trip
+from .models import Profile
 from .forms import TripForm
 
 
@@ -15,6 +16,10 @@ class TripCreateView(CreateView):
     form_class = TripForm
     model = Trip
     success_url = reverse_lazy('trip_list')
+
+    def form_valid(self, form):
+        form.instance.profile = Profile.objects.get(user=self.request.user)
+        return super().form_valid(form)
 
 
 class TripListView(ListView):

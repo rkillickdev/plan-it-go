@@ -1,4 +1,6 @@
 from django.db import models
+from django.utils.text import slugify
+from django.contrib.auth.models import User
 from profiles.models import Profile
 from locations.models import Location
 from cloudinary.models import CloudinaryField
@@ -19,8 +21,8 @@ class Trip(models.Model):
     slug = models.SlugField(max_length=30, unique=True)
     description = models.TextField(blank=True)
     trip_image = CloudinaryField('image', default='placeholder')
-    start_date = models.DateField(blank=True)
-    end_date = models.DateField(blank=True)
+    start_date = models.DateField(blank=True, null=True)
+    end_date = models.DateField(blank=True, null=True)
     created_on = models.DateTimeField(auto_now_add=True)
     is_complete = models.BooleanField(default=False)
     # places = models.ManyToManyField(
@@ -35,3 +37,13 @@ class Trip(models.Model):
 
     def number_of_places(self):
         return self.places.count()
+
+    """
+     Populates the slug field with a slugified version
+     of the title field.
+     https://stackoverflow.com/questions/141487/is-there-an-easy-way-to-populate-slugfield-from-charfield
+
+    """
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.title)
+        super().save(*args, **kwargs)

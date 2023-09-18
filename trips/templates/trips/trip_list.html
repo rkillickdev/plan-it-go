@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>TRIP LIST</h1>
+<ul>
+    {% for trip in teacher_list %}
+        <li>{{ trip.title }}</li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

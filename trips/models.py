@@ -1,6 +1,7 @@
 from django.db import models
 from profiles.models import Profile
 from locations.models import Location
+from cloudinary.models import CloudinaryField
 
 
 class Trip(models.Model):
@@ -17,6 +18,7 @@ class Trip(models.Model):
     title = models.CharField(max_length=30, unique=True)
     slug = models.SlugField(max_length=30, unique=True)
     description = models.TextField(blank=True)
+    trip_image = CloudinaryField('image', default='placeholder')
     start_date = models.DateField(blank=True)
     end_date = models.DateField(blank=True)
     created_on = models.DateTimeField(auto_now_add=True)

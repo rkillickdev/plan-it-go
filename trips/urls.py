@@ -5,7 +5,7 @@ urlpatterns = [
     path(
         'create_trip',
         TripCreateView.as_view(),
-        name='create_profile'
+        name='create_trip'
     ),
     path(
         'trip_list',

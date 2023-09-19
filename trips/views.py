@@ -17,6 +17,9 @@ class TripCreateView(CreateView):
     model = Trip
     success_url = reverse_lazy('trip_list')
 
+    # Populate profile field of the model Trip with the profile linked to the
+    # logged in user.
+    # https://stackoverflow.com/questions/18246326/how-do-i-set-user-field-in-form-to-the-currently-logged-in-user
     def form_valid(self, form):
         form.instance.profile = Profile.objects.get(user=self.request.user)
         return super().form_valid(form)

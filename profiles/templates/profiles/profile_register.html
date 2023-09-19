@@ -10,7 +10,7 @@
 
 <a href="{% url 'update_profile' request.user.profile.id %}">REGISTER A PROFILE HERE</a>
 
-<a href="#">START PLANNING TRIP</a>
+<a href="{% url 'create_trip' %}">START PLANNING TRIP</a>
 
 {% endif %}
 

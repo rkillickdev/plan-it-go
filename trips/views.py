@@ -45,3 +45,10 @@ class TripListView(LoginRequiredMixin, ListView):
         return Trip.objects.filter(
             profile=self.request.user.profile
         ).order_by('-start_date')
+
+
+class TripDetailView(LoginRequiredMixin, DetailView):
+    """
+    View to render details of a specific trip
+    """
+    model = Trip

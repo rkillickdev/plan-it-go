@@ -1,5 +1,4 @@
 from django.shortcuts import render
-from django.urls import reverse
 from amadeus import Client, ResponseError
 from .forms import PlaceForm
 from .models import Place
@@ -27,7 +26,7 @@ def get_places(request):
             """
             Makes call to Amadeus API to retrieve points of interest.
             Argument passed to the API are latitude and longitude which
-            are attributes of the Location object submitted by the 
+            are attributes of the Location object submitted by the
             PlaceForm.
             """
             response = (
@@ -52,14 +51,24 @@ def get_places(request):
                     rank=place['rank'],
                     tags=place['tags'],
                 )
-                place_data.save()
-                all_places = Place.objects.all().order_by('-rank')
+
+                # Query database to see if the venue_id used in the API
+                # response already exists.
+                venue = Place.objects.filter(
+                    venue_id=place_data.venue_id
+                )
+                if venue.exists() and venue[0].rank == place_data.rank:
+                    print(f"Venue id: {place_data.venue_id} Already Exists")
+                else:
+                    place_data.save()
+                    print(f'{place_data.name} has been saved')
+
+                all_places = Place.objects.all().order_by('rank')
 
             context = {
                 'form': form,
                 'all_places': all_places,
             }
-            # print(places)
 
         except ResponseError as error:
             raise error

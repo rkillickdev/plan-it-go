@@ -60,6 +60,7 @@ INSTALLED_APPS = [
     'locations',
     'profiles',
     'trips',
+    'places',
 ]
 
 SITE_ID = 1

@@ -17,7 +17,6 @@ def get_places(request):
 
         if form.is_valid():
             requested_location = (form.cleaned_data['location'])
-            print(requested_location.summary)
 
         amadeus = Client(
             client_id=os.environ.get('AMADEUS_API_KEY'),
@@ -38,11 +37,29 @@ def get_places(request):
                 )
             )
             places = response.data
+
+            # Iterates over data retrieved from API call.
+            # Creates an instance of Place for each place in the API response.
+            # Populates Place fields with data from API response.
+            for place in places:
+                place_data = Place(
+                    location=requested_location,
+                    venue_id=place['id'],
+                    name=place['name'],
+                    latitude=place['geoCode']['latitude'],
+                    longitude=place['geoCode']['longitude'],
+                    category=place['category'],
+                    rank=place['rank'],
+                    tags=place['tags'],
+                )
+                place_data.save()
+                all_places = Place.objects.all().order_by('-rank')
+
             context = {
                 'form': form,
-                'places': places,
+                'all_places': all_places,
             }
-            print(places)
+            # print(places)
 
         except ResponseError as error:
             raise error

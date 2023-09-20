@@ -10,8 +10,8 @@
 {% crispy form %}
 
 <ul>
-    {% for place in places %}
-        <li>{{ place.name }}</li>
+    {% for place in all_places %}
+        <li>{{ place.name }} {{ place.rank }}</li>
     {% endfor %}
 </ul>
 

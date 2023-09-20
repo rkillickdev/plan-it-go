@@ -3,6 +3,7 @@ from django.utils.text import slugify
 from django.contrib.auth.models import User
 from profiles.models import Profile
 from locations.models import Location
+from places.models import Place
 from cloudinary.models import CloudinaryField
 
 
@@ -25,9 +26,9 @@ class Trip(models.Model):
     end_date = models.DateField(blank=True, null=True)
     created_on = models.DateTimeField(auto_now_add=True)
     is_complete = models.BooleanField(default=False)
-    # places = models.ManyToManyField(
-    #     Place, related_name="trip_place", blank=True
-    # )
+    places = models.ManyToManyField(
+        Place, related_name="trip_place", blank=True
+    )
 
     class Meta:
         ordering = ["-start_date"]
@@ -42,7 +43,6 @@ class Trip(models.Model):
      Populates the slug field with a slugified version
      of the title field.
      https://stackoverflow.com/questions/141487/is-there-an-easy-way-to-populate-slugfield-from-charfield
-
     """
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)

@@ -11,7 +11,7 @@ class Location(models.Model):
     slug = models.SlugField(max_length=50, unique=True)
     summary = models.TextField()
     latitude = models.DecimalField(max_digits=10, decimal_places=8)
-    longtitude = models.DecimalField(max_digits=11, decimal_places=8)
+    longitude = models.DecimalField(max_digits=11, decimal_places=8)
     image = CloudinaryField('image', default='placeholder',
                             folder="/images/locations",
                             format="webp"

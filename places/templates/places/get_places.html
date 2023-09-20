@@ -1,0 +1,19 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+
+{% load crispy_forms_tags %}
+
+<h1>GET PLACES FROM API</h1>
+
+{% crispy form %}
+
+<ul>
+    {% for place in places %}
+        <li>{{ place.name }}</li>
+    {% endfor %}
+</ul>
+
+{% endblock %}
+

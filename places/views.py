@@ -1,14 +1,39 @@
 from django.shortcuts import render
+from django.shortcuts import get_object_or_404
+from django.views.generic import ListView, DetailView
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.admin.views.decorators import staff_member_required
-from amadeus import Client, ResponseError
 from apify_client import ApifyClient
 from .forms import PlaceForm
 from .models import Place
+from .models import Location
 
 import os
 if os.path.isfile('env.py'):
     import env
+
+
+class PlaceListView(ListView):
+    """
+    View to render a list of places based on the trip location
+    """
+
+    model = Place
+    context_object_name = "place_list"
+
+    def get_queryset(self):
+        self.location = get_object_or_404(Location, slug=self.kwargs['slug'])
+        return Place.objects.filter(location=self.location).order_by(
+            'ranking_position')
+
+
+    # def get_queryset(self):
+    #     self.publisher = get_object_or_404(Publisher, name=self.kwargs['publisher'])
+    #     return Book.objects.filter(publisher=self.publisher)
+
+    # def get_queryset(self):
+    #     return Place.objects.filter(
+    #         location=self.kwargs.get('trip_location')).order_by('rating')
 
 
 @staff_member_required

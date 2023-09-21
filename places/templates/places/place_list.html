@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>LIST OF PLACES</h1>
+
+<ul>
+    {% for place in place_list %}
+        <li>{{ place.name }} Rank: {{ place.ranking_position }}</li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

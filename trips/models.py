@@ -45,5 +45,5 @@ class Trip(models.Model):
      https://stackoverflow.com/questions/141487/is-there-an-easy-way-to-populate-slugfield-from-charfield
     """
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.title)
+        self.slug = slugify(self.location)
         super().save(*args, **kwargs)

@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from django.contrib.auth.decorators import login_required, user_passes_test
+from django.contrib.admin.views.decorators import staff_member_required
 from amadeus import Client, ResponseError
 from apify_client import ApifyClient
 from .forms import PlaceForm
@@ -9,6 +11,7 @@ if os.path.isfile('env.py'):
     import env
 
 
+@staff_member_required
 def get_places(request):
     form = PlaceForm
     requested_location = {}
@@ -26,7 +29,7 @@ def get_places(request):
             # Prepare the Actor input
             run_input = {
                 "locationFullName": requested_location.city,
-                "maxItems": 1,
+                "maxItems": 20,
                 "language": "en",
                 "currency": "GBP",
                 "includeAttractions": True,
@@ -75,7 +78,7 @@ def get_places(request):
                 venue = Place.objects.filter(
                     venue_id=place_data.venue_id
                 )
-                if venue.exists() and venue[0].rank == place_data.rank:
+                if venue.exists() and venue[0].ranking_position == place_data.ranking_position:
                     print(f"Venue id: {place_data.venue_id} Already Exists")
                 else:
                     place_data.save()

@@ -92,7 +92,7 @@ def get_places(request):
         if form.is_valid():
             requested_location = (form.cleaned_data['location'])
 
-        # Initialize the ApifyClient with your API token
+        # Initialize the ApifyClient with my API token
         client = ApifyClient(os.environ.get('MY-APIFY-TOKEN'))
 
         # Prepare the Actor input
@@ -112,9 +112,12 @@ def get_places(request):
         # Run the Actor and wait for it to finish
         run = client.actor("maxcopell/tripadvisor").call(run_input=run_input)
 
-        # Fetch and print Actor results from the run's dataset (if there are any)
-        for item in client.dataset(run["defaultDatasetId"]).iterate_items():
-            print(item)
+        # Fetch Actor results from the run's dataset (if there are any)
+        # Store data as 'places'
+        places = client.dataset(run["defaultDatasetId"]).iterate_items()
+
+        for places in places:
+            print(place)
 
         #     places = response.data
 

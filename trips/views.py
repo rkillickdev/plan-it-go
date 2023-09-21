@@ -18,9 +18,13 @@ class TripCreateView(LoginRequiredMixin, CreateView):
     model = Trip
 
     # Assign slug field for the location of the trip to the success url
+    # The following stack overflow helped with understanding self.object:
+    # https://stackoverflow.com/questions/52063861/django-access-form-argument-in-createview-to-pass-to-get-success-url
     def get_success_url(self):
         return reverse_lazy(
-            'place_list', kwargs={'slug': self.object.location.slug})
+            'place_list',
+            kwargs={'slug': self.object.location.slug}
+        )
 
     """
     Populate profile field of the model Trip with the profile linked to the

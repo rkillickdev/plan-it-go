@@ -27,15 +27,6 @@ class PlaceListView(ListView):
             'ranking_position')
 
 
-    # def get_queryset(self):
-    #     self.publisher = get_object_or_404(Publisher, name=self.kwargs['publisher'])
-    #     return Book.objects.filter(publisher=self.publisher)
-
-    # def get_queryset(self):
-    #     return Place.objects.filter(
-    #         location=self.kwargs.get('trip_location')).order_by('rating')
-
-
 @staff_member_required
 def get_places(request):
     form = PlaceForm

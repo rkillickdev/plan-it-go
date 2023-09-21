@@ -16,7 +16,11 @@ class TripCreateView(LoginRequiredMixin, CreateView):
     """
     form_class = TripForm
     model = Trip
-    success_url = reverse_lazy('trip_list')
+
+    # Assign slug field for the location of the trip to the success url
+    def get_success_url(self):
+        return reverse_lazy(
+            'place_list', kwargs={'slug': self.object.location.slug})
 
     """
     Populate profile field of the model Trip with the profile linked to the

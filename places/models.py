@@ -2,6 +2,8 @@ from django.db import models
 from django.utils.text import slugify
 from locations.models import Location
 
+placeholder = " "
+
 
 class Place(models.Model):
     """
@@ -12,17 +14,26 @@ class Place(models.Model):
         Location, on_delete=models.CASCADE, related_name="places"
     )
     venue_id = models.CharField(max_length=50, unique=True)
-    name = models.CharField(max_length=50, unique=True)
-    slug = models.SlugField(max_length=50, unique=True)
+    type = models.CharField(max_length=150)
+    category = models.CharField(max_length=150)
+    sub_categories = models.JSONField(null=True)
+    name = models.CharField(max_length=50)
+    slug = models.SlugField(max_length=50)
+    location_string = models.CharField(max_length=150, null=True)
+    description = models.TextField()
+    image = models.CharField(max_length=150, default=placeholder)
+    ranking_position = models.IntegerField()
+    rating = models.IntegerField()
+    phone = models.CharField(max_length=50, null=True)
+    address = models.JSONField()
     latitude = models.DecimalField(max_digits=10, decimal_places=8)
     longitude = models.DecimalField(max_digits=11, decimal_places=8)
-    category = models.CharField(max_length=50)
-    rank = models.IntegerField()
-    tags = models.JSONField()
+    website = models.CharField(max_length=200, null=True)
+    ranking_string = models.CharField(max_length=150, null=True)
     created_on = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        ordering = ["-rank"]
+        ordering = ["-ranking_position"]
 
     def __str__(self):
         return self.name

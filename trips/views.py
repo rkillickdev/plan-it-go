@@ -15,13 +15,14 @@ from .forms import TripForm
 class TripCreateView(LoginRequiredMixin, CreateView):
     """
     View to render the profile update form.
+    Assigns slug field and primary key id to kwargs.
+    The get_success_url() method is used to redirect to 'get_detail.html'.
+    The following stack overflow helped with understanding self.object:
+    https://stackoverflow.com/questions/52063861/django-access-form-argument-in-createview-to-pass-to-get-success-url
     """
     form_class = TripForm
     model = Trip
 
-    # Assign slug field for the location of the trip to the success url
-    # The following stack overflow helped with understanding self.object:
-    # https://stackoverflow.com/questions/52063861/django-access-form-argument-in-createview-to-pass-to-get-success-url
     def get_success_url(self):
         return reverse_lazy(
             'trip_detail',
@@ -73,7 +74,10 @@ class TripDetailView(LoginRequiredMixin, View):
     accessed by the trip_detail html template.
     """
     def get(self, request, slug, pk, *args, **kwargs):
-        trip = get_object_or_404(Trip, id=pk)
+        # Queryset filtered to only contain trips belonging to logged in user
+        queryset = Trip.objects.filter(profile=request.user.profile.id)
+
+        trip = get_object_or_404(queryset, id=pk)
         places = Place.objects.filter(location=trip.location).order_by(
             'ranking_position')
 
@@ -86,4 +90,3 @@ class TripDetailView(LoginRequiredMixin, View):
             }
 
         )
-    

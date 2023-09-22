@@ -13,8 +13,8 @@ urlpatterns = [
         name='trip_list'
     ),
     path(
-        'trip_details/<int:pk>',
+        '<slug:slug>',
         TripDetailView.as_view(),
-        name='trip_details'
+        name='trip_detail'
     )
 ]

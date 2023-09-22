@@ -1,12 +1,14 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
+from django.views import View
 from django.views.generic import (
     CreateView, ListView,
     DetailView, UpdateView, DeleteView
 )
 from .models import Trip
 from .models import Profile
+from .models import Place
 from .forms import TripForm
 
 
@@ -22,8 +24,8 @@ class TripCreateView(LoginRequiredMixin, CreateView):
     # https://stackoverflow.com/questions/52063861/django-access-form-argument-in-createview-to-pass-to-get-success-url
     def get_success_url(self):
         return reverse_lazy(
-            'place_list',
-            kwargs={'slug': self.object.location.slug}
+            'trip_detail',
+            kwargs={'slug': self.object.slug}
         )
 
     """
@@ -55,8 +57,22 @@ class TripListView(LoginRequiredMixin, ListView):
         ).order_by('-start_date')
 
 
-class TripDetailView(LoginRequiredMixin, DetailView):
+class TripDetailView(LoginRequiredMixin, View):
     """
     View to render details of a specific trip
     """
-    model = Trip
+    def get(self, request, slug, *args, **kwargs):
+        trip = get_object_or_404(Trip, slug=slug)
+        places = Place.objects.filter(location=trip.location).order_by(
+            'ranking_position')
+
+        return render(
+            request,
+            'trips/trip_detail.html',
+            {
+                'trip': trip,
+                'places': places
+            }
+
+        )
+    

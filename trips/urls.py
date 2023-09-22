@@ -13,7 +13,7 @@ urlpatterns = [
         name='trip_list'
     ),
     path(
-        '<slug:slug>',
+        '<slug:slug>/<int:pk>',
         TripDetailView.as_view(),
         name='trip_detail'
     )

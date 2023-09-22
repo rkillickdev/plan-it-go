@@ -25,7 +25,10 @@ class TripCreateView(LoginRequiredMixin, CreateView):
     def get_success_url(self):
         return reverse_lazy(
             'trip_detail',
-            kwargs={'slug': self.object.slug}
+            kwargs={
+                'slug': self.object.slug,
+                'pk': self.object.id
+            }
         )
 
     """
@@ -59,10 +62,18 @@ class TripListView(LoginRequiredMixin, ListView):
 
 class TripDetailView(LoginRequiredMixin, View):
     """
-    View to render details of a specific trip
+    View to render details of a specific trip.  The get() method receives both
+    a slug and pk in the url.  The slug is included to make the url more
+    informative to the user.  The pk is used to look up the requested trip
+    object using get_object_or_404().  This object is then included in the
+    context dictionary as 'trip' so it can be accessed by the trip_detail.html
+    file.  A query is also made on the Place model to find all places that
+    have a location field that matches the trip location attribute.
+    This queryset is stored in the context dictionary as 'places'so it can be
+    accessed by the trip_detail html template.
     """
-    def get(self, request, slug, *args, **kwargs):
-        trip = get_object_or_404(Trip, slug=slug)
+    def get(self, request, slug, pk, *args, **kwargs):
+        trip = get_object_or_404(Trip, id=pk)
         places = Place.objects.filter(location=trip.location).order_by(
             'ranking_position')
 

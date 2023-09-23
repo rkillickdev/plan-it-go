@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import (
@@ -90,3 +91,18 @@ class TripDetailView(LoginRequiredMixin, View):
             }
 
         )
+
+
+class PlaceAdd(View):
+
+    def post(self, request, trip_id, place_id):
+        trip = get_object_or_404(Trip, id=trip_id)
+        place = get_object_or_404(Place, id=place_id)
+
+        if trip.places.filter(id=place.id).exists():
+            trip.places.remove(place)
+        else:
+            trip.places.add(place)
+
+        return HttpResponseRedirect(
+            reverse('trip_detail', args=[trip.slug, trip_id]))

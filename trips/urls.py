@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import TripCreateView, TripListView, TripDetailView
+from .views import TripCreateView, TripListView, TripDetailView, PlaceAdd
 
 urlpatterns = [
     path(
@@ -16,5 +16,10 @@ urlpatterns = [
         '<slug:slug>/<int:pk>',
         TripDetailView.as_view(),
         name='trip_detail'
+    ),
+    path(
+        'add_place/<int:trip_id>/<int:place_id>',
+        PlaceAdd.as_view(),
+        name='add_place'
     )
 ]

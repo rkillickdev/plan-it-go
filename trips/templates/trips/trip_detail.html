@@ -4,9 +4,21 @@
 
 <h1>TRIP DETAILS</h1>
 
-{{ trip.title }}
+<div>
+    {{ trip.title }}
+</div>
 
-{{ trip.number_of_places }}
+<div>
+    {{ trip.number_of_places }}
+</div>
+
+<div>
+    <ul>
+        {% for place in trip.places.all %}
+            <li>{{ place }}</li>
+        {% endfor %}    
+    </ul>
+</div>
 
 <ul>
     {% for place in places %}

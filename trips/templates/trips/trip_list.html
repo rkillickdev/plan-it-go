@@ -5,7 +5,7 @@
 <h1>TRIP LIST</h1>
 <ul>
     {% for trip in trip_list %}
-        <li>{{ trip.title }}</li>
+        <li><a href="{% url 'trip_detail' trip.slug trip.id%}">{{ trip.title }}</a></li>
     {% endfor %}
 </ul>
 

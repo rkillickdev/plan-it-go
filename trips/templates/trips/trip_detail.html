@@ -20,6 +20,10 @@
     </ul>
 </div>
 
+<div>
+    <a href="{% url 'trip_list' %}">View All Your Trips</a>
+</div>
+
 <ul>
     {% for place in places %}
         <li>{{ place.name }} Rank: {{ place.ranking_position }}</li>

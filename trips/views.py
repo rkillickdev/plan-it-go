@@ -43,6 +43,20 @@ class TripCreateView(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
 
+class TripUpdateView(LoginRequiredMixin, UpdateView):
+    model = Trip
+    form_class = TripForm
+
+    def get_success_url(self):
+        return reverse_lazy(
+            'trip_detail',
+            kwargs={
+                'slug': self.object.slug,
+                'pk': self.object.id
+            }
+        )
+
+
 class TripListView(LoginRequiredMixin, ListView):
     """
     View to render a list of trips linked to the profile of the logged in user
@@ -116,7 +130,7 @@ class TripRecommendationsView(LoginRequiredMixin, View):
         )
 
 
-class PlaceAdd(View):
+class PlaceAdd(LoginRequiredMixin, View):
 
     def post(self, request, trip_id, place_id):
         trip = get_object_or_404(Trip, id=trip_id)

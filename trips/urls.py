@@ -1,6 +1,7 @@
 from django.urls import path
 from .views import (
     TripCreateView,
+    TripUpdateView,
     TripListView,
     TripDetailView,
     TripRecommendationsView,
@@ -12,6 +13,11 @@ urlpatterns = [
         'create_trip',
         TripCreateView.as_view(),
         name='create_trip'
+    ),
+    path(
+        'update_trip/<slug:slug>/<int:pk>',
+        TripUpdateView.as_view(),
+        name='update_trip'
     ),
     path(
         'trip_list',

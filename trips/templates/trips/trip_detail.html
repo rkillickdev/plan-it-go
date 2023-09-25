@@ -28,5 +28,9 @@
     <a href="{% url 'trip_list' %}">View All Your Trips</a>
 </div>
 
+<div>
+    <a href="{% url 'update_trip' trip.slug trip.id %}">Update Trip Details</a>
+</div>
+
 
 {% endblock %}

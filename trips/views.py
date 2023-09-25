@@ -64,16 +64,39 @@ class TripListView(LoginRequiredMixin, ListView):
 
 class TripDetailView(LoginRequiredMixin, View):
     """
-    View to render details of a specific trip.  The get() method receives both
+    View to render details of a specific trip, including an itinerary of
+    places to visit, created by the user.  The get() method receives both
     a slug and pk in the url.  The slug is included to make the url more
     informative to the user.  The pk is used to look up the requested trip
     object using get_object_or_404().  This object is then included in the
     context dictionary as 'trip' so it can be accessed by the trip_detail.html
-    file.  A query is also made on the Place model to find all places that
+    file.
+    """
+    def get(self, request, slug, pk, *args, **kwargs):
+        # Queryset filtered to only contain trips belonging to logged in user
+        queryset = Trip.objects.filter(profile=request.user.profile.id)
+
+        trip = get_object_or_404(queryset, id=pk)
+
+        return render(
+            request,
+            'trips/trip_detail.html',
+            {
+                'trip': trip,
+            }
+
+        )
+
+
+class TripRecommendationsView(LoginRequiredMixin, View):
+    """
+    View to render recommended places to visit based on the trip location.
+    A query is made on the Place model to find all places that
     have a location field that matches the trip location attribute.
     This queryset is stored in the context dictionary as 'places'so it can be
-    accessed by the trip_detail html template.
+    accessed by the trip_recommendations.html template.
     """
+
     def get(self, request, slug, pk, *args, **kwargs):
         # Queryset filtered to only contain trips belonging to logged in user
         queryset = Trip.objects.filter(profile=request.user.profile.id)
@@ -84,7 +107,7 @@ class TripDetailView(LoginRequiredMixin, View):
 
         return render(
             request,
-            'trips/trip_detail.html',
+            'trips/trip_recommendations.html',
             {
                 'trip': trip,
                 'places': places
@@ -105,4 +128,4 @@ class PlaceAdd(View):
             trip.places.add(place)
 
         return HttpResponseRedirect(
-            reverse('trip_detail', args=[trip.slug, trip_id]))
+            reverse('trip_recommendations', args=[trip.slug, trip_id]))

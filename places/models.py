@@ -1,6 +1,8 @@
 from django.db import models
 from django.utils.text import slugify
+from django.core.validators import MaxValueValidator, MinValueValidator
 from locations.models import Location
+from profiles.models import Profile
 
 placeholder = " "
 
@@ -46,3 +48,29 @@ class Place(models.Model):
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
         super().save(*args, **kwargs)
+
+
+class Review(models.Model):
+    """
+    Model for creation of a Review.
+    """
+
+    place = models.ForeignKey(
+        Place, on_delete=models.CASCADE, related_name="reviews"
+    )
+    profile = models.ForeignKey(
+        Profile, on_delete=models.CASCADE, related_name="reviews"
+    )
+    body = models.TextField()
+    user_rating = models.IntegerField(
+        validators=[MinValueValidator(0), MaxValueValidator(5)]
+        )
+    recommended = models.BooleanField()
+    created_on = models.DateTimeField(auto_now_add=True)
+    approved = models.BooleanField(default=False)
+
+    class Meta:
+        ordering = ["created_on"]
+
+    def __str__(self):
+        return self.profile.user

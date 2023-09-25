@@ -3,6 +3,7 @@ from django.forms import ModelForm
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
 from .models import Place
+from .models import Review
 
 
 class PlaceForm(ModelForm):
@@ -19,3 +20,18 @@ class PlaceForm(ModelForm):
     class Meta:
         model = Place
         fields = ['location']
+
+
+class ReviewForm(ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_id = 'id-exampleForm'
+        self.helper.form_class = 'blueForms'
+        self.helper.form_method = 'post'
+        self.helper.add_input(Submit('submit', 'Post Review'))
+
+    class Meta:
+        model = Review
+        fields = ['body', 'user_rating', 'recommended']

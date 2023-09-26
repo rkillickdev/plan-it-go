@@ -138,7 +138,8 @@ class TripRecommendationsView(LoginRequiredMixin, View):
             {
                 'trip': trip,
                 'places': places,
-                'reviews': reviews
+                'reviews': reviews,
+                'review_form': ReviewForm()
             }
 
         )

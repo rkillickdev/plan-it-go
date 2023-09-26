@@ -2,6 +2,8 @@
 
 {% block content %}
 
+{% load crispy_forms_tags %}
+
 <h1>TRIP RECOMMENDED</h1>
 
 <div>
@@ -33,6 +35,6 @@
     {% endfor %}
 </ul>
 
-
+{% crispy review_form %}
 
 {% endblock %}

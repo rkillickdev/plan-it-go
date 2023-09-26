@@ -73,4 +73,4 @@ class Review(models.Model):
         ordering = ["created_on"]
 
     def __str__(self):
-        return self.profile.user
+        return f"Review For {self.place.name} by {self.profile.user}"

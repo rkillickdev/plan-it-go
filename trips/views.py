@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db.models import Q
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.views import View
@@ -10,7 +11,9 @@ from django.views.generic import (
 from .models import Trip
 from .models import Profile
 from .models import Place
+from places.models import Review
 from .forms import TripForm
+from places.forms import ReviewForm
 
 
 class TripCreateView(LoginRequiredMixin, CreateView):
@@ -119,12 +122,23 @@ class TripRecommendationsView(LoginRequiredMixin, View):
         places = Place.objects.filter(location=trip.location).order_by(
             'ranking_position')
 
+        # Creates a queryset of reviews for all the listed places
+        # The following stack overflow article was used to find a solution to this:
+        # https://stackoverflow.com/questions/47236667/django-combine-multiple-querysets-same-model
+        reviews = Review.objects.all()
+        q = Q()
+        for place in places:
+            q = q | Q(approved=True)
+        reviews.filter(q)
+        print(reviews)
+
         return render(
             request,
             'trips/trip_recommendations.html',
             {
                 'trip': trip,
-                'places': places
+                'places': places,
+                'reviews': reviews
             }
 
         )

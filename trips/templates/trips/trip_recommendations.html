@@ -23,6 +23,13 @@
             {% csrf_token %}
             <button type="submit" name="place_id" value="{{place.id}}" class="btn-like"><i class="fas fa-heart"></i></button>
         </form>
+            {% for review in reviews %}
+                {% if review.place.id == place.id %}
+                    <div>
+                        {{review.body}}
+                    </div>
+                {% endif %}
+            {% endfor %}
     {% endfor %}
 </ul>
 

@@ -4,6 +4,7 @@
 
 {% load crispy_forms_tags %}
 
+
 <h1>TRIP RECOMMENDED</h1>
 
 <div>
@@ -25,16 +26,27 @@
             {% csrf_token %}
             <button type="submit" name="place_id" value="{{place.id}}" class="btn-like"><i class="fas fa-heart"></i></button>
         </form>
-            {% for review in reviews %}
-                {% if review.place.id == place.id %}
-                    <div>
-                        {{review.body}}
-                    </div>
-                {% endif %}
-            {% endfor %}
+
+        <form>
+            {% crispy review_form %}
+            <input type="hidden" name="place_id" value="{{place.id}}">
+
+        </form>
+        
+
+        
+
+        {% for review in reviews %}
+            {% if review.place.id == place.id %}
+                <div>
+                    {{review.body}}
+                </div>
+            {% endif %}
+        {% endfor %}
+
     {% endfor %}
 </ul>
 
-{% crispy review_form %}
+
 
 {% endblock %}

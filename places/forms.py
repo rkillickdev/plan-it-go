@@ -30,8 +30,6 @@ class ReviewForm(ModelForm):
         self.helper.form_id = 'id-exampleForm'
         self.helper.form_class = 'blueForms'
         self.helper.form_method = 'post'
-        # self.helper.add_input(Submit('submit', 'Post Review'))
-        self.helper.add_input(Hidden('place', '{{place.id}}'))
 
         self.helper.layout = Layout(
             Fieldset(
@@ -39,9 +37,6 @@ class ReviewForm(ModelForm):
                 'body',
                 'user_rating',
                 'recommended'
-            ),
-            Field(
-                'place', type='hidden'
             ),
             Hidden('place', '{{place.id}}'),
             Submit('Submit', 'Post Review')

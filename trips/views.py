@@ -46,6 +46,9 @@ class TripCreateView(LoginRequiredMixin, CreateView):
 
 
 class TripUpdateView(LoginRequiredMixin, UpdateView):
+    """
+
+    """
     model = Trip
     form_class = TripForm
 
@@ -134,7 +137,30 @@ class RecommendedDetailView(LoginRequiredMixin, View):
 
         trip = get_object_or_404(Trip, id=trip_id)
         place = get_object_or_404(Place, id=place_id)
-        reviews = place.reviews.filter(approved=True).order_by('created_on')
+        reviews = place.reviews.all().order_by('created_on')
+
+        return render(
+            request,
+            'trips/recommended_detail.html',
+            {
+                'trip': trip,
+                'place': place,
+                'reviews': reviews,
+                'review_form': ReviewForm()
+            }
+        )
+
+    def post(self, request, slug, trip_id, place_id, *args, **kwargs):
+
+        trip = get_object_or_404(Trip, id=trip_id)
+        place = get_object_or_404(Place, id=place_id)
+        reviews = place.reviews.all().order_by('created_on')
+
+        review_form = ReviewForm(data=request.POST)
+
+        if review_form.is_valid():
+            review_form.instance.profile = request.user.profile
+            review = review_form.save()
 
         return render(
             request,

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% load crispy_forms_tags %}
+
+<div>
+    {{ place.name }}
+</div>
+
+<div>
+    {% for review in reviews %}
+
+        <div class="{% if not review.approved and review.profile == request.user.profile %} faded {% elif not.review.approved %} {% endif %}">{{review.body}}</div>
+
+    {% endfor %}
+</div>
+
+{% crispy review_form %}
+
+{% endblock %}

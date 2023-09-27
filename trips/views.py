@@ -1,6 +1,5 @@
 from django.shortcuts import render, get_object_or_404, reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.db.models import Q
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.views import View
@@ -89,11 +88,9 @@ class TripDetailView(LoginRequiredMixin, View):
     context dictionary as 'trip' so it can be accessed by the trip_detail.html
     file.
     """
-    def get(self, request, slug, pk, *args, **kwargs):
-        # Queryset filtered to only contain trips belonging to logged in user
-        queryset = Trip.objects.filter(profile=request.user.profile.id)
+    def get(self, request, slug, trip_id, *args, **kwargs):
 
-        trip = get_object_or_404(queryset, id=pk)
+        trip = get_object_or_404(Trip, id=trip_id)
 
         return render(
             request,
@@ -114,68 +111,40 @@ class TripRecommendationsView(LoginRequiredMixin, View):
     accessed by the trip_recommendations.html template.
     """
 
-    def get(self, request, slug, pk, *args, **kwargs):
-        # Queryset filtered to only contain trips belonging to logged in user
-        queryset = Trip.objects.filter(profile=request.user.profile.id)
+    def get(self, request, slug, trip_id, *args, **kwargs):
 
-        trip = get_object_or_404(queryset, id=pk)
+        trip = get_object_or_404(Trip, id=trip_id)
         places = Place.objects.filter(location=trip.location).order_by(
             'ranking_position')
-
-        # Creates a queryset of reviews for all the listed places
-        # The following stack overflow article was used to find a solution to this:
-        # https://stackoverflow.com/questions/47236667/django-combine-multiple-querysets-same-model
-        reviews = Review.objects.all()
-        q = Q()
-        for place in places:
-            q = q | Q(approved=True)
-        reviews.filter(q)
 
         return render(
             request,
             'trips/trip_recommendations.html',
             {
                 'trip': trip,
-                'places': places,
-                'reviews': reviews,
-                'review_form': ReviewForm()
+                'places': places
             }
 
         )
 
-    def post(self, request, slug, pk, *args, **kwargs):
-        # Queryset filtered to only contain trips belonging to logged in user
-        queryset = Trip.objects.filter(profile=request.user.profile.id)
 
-        trip = get_object_or_404(queryset, id=pk)
-        places = Place.objects.filter(location=trip.location).order_by(
-            'ranking_position')
+class RecommendedDetailView(LoginRequiredMixin, View):
 
-        # Creates a queryset of reviews for all the listed places
-        # The following stack overflow article was used to find a solution to this:
-        # https://stackoverflow.com/questions/47236667/django-combine-multiple-querysets-same-model
-        reviews = Review.objects.all()
-        q = Q()
-        for place in places:
-            q = q | Q(approved=True)
-        reviews.filter(q)
+    def get(self, request, slug, trip_id, place_id, *args, **kwargs):
 
-        review_form = ReviewForm(data=request.POST)
-
-        if review_form.is_valid():
-            review_form.instance.place = place
-            review_form.instance.profile = request.user.profile
+        trip = get_object_or_404(Trip, id=trip_id)
+        place = get_object_or_404(Place, id=place_id)
+        reviews = place.reviews.filter(approved=True).order_by('created_on')
 
         return render(
             request,
-            'trips/trip_recommendations.html',
+            'trips/recommended_detail.html',
             {
                 'trip': trip,
-                'places': places,
+                'place': place,
                 'reviews': reviews,
                 'review_form': ReviewForm()
             }
-
         )
 
 

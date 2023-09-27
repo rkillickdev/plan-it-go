@@ -1,7 +1,7 @@
 from django import forms
 from django.forms import ModelForm
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Submit, Layout, Hidden, Fieldset
+from crispy_forms.layout import Submit, Layout, Hidden, Fieldset, Field
 from .models import Place
 from .models import Review
 
@@ -31,7 +31,7 @@ class ReviewForm(ModelForm):
         self.helper.form_class = 'blueForms'
         self.helper.form_method = 'post'
         # self.helper.add_input(Submit('submit', 'Post Review'))
-        # self.helper.add_input(Hidden('place_id', '{{place.id}}'))
+        self.helper.add_input(Hidden('place', '{{place.id}}'))
 
         self.helper.layout = Layout(
             Fieldset(
@@ -40,10 +40,13 @@ class ReviewForm(ModelForm):
                 'user_rating',
                 'recommended'
             ),
-            # Hidden('place_id', '{{place.id}}'),
+            Field(
+                'place', type='hidden'
+            ),
+            Hidden('place', '{{place.id}}'),
             Submit('Submit', 'Post Review')
         )
 
     class Meta:
         model = Review
-        fields = ['body', 'user_rating', 'recommended']
+        fields = ['place', 'body', 'user_rating', 'recommended']

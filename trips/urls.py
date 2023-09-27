@@ -5,7 +5,7 @@ from .views import (
     TripListView,
     TripDetailView,
     TripRecommendationsView,
-    RecommendedDetailView,
+    place_detail,
     PlaceAdd,
 )
 
@@ -37,7 +37,7 @@ urlpatterns = [
     ),
     path(
         'recommendations/<slug:slug>/<int:trip_id>/place/<int:place_id>',
-        RecommendedDetailView.as_view(),
+        place_detail,
         name='place_detail'
     ),
     path(

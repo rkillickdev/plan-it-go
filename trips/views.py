@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.views import View
@@ -131,47 +132,41 @@ class TripRecommendationsView(LoginRequiredMixin, View):
         )
 
 
-class RecommendedDetailView(LoginRequiredMixin, View):
+@login_required()
+def place_detail(request, slug, trip_id, place_id, *args, **kwargs):
+    """
+    A function based view to render specific details of a recommended place
+    to the recommended_detail.html template.  The specific place is passed
+    as an object to the template as part of the context, along the with a
+    queryset of all reviews relating to the place and the review form.
+    The trip object is included so places can be added or removed from the
+    trip itinerary.
+    """
 
-    def get(self, request, slug, trip_id, place_id, *args, **kwargs):
+    trip = get_object_or_404(Trip, id=trip_id)
+    place = get_object_or_404(Place, id=place_id)
+    reviews = place.reviews.all().order_by('created_on')
 
-        trip = get_object_or_404(Trip, id=trip_id)
-        place = get_object_or_404(Place, id=place_id)
-        reviews = place.reviews.all().order_by('created_on')
-
-        return render(
-            request,
-            'trips/recommended_detail.html',
-            {
-                'trip': trip,
-                'place': place,
-                'reviews': reviews,
-                'review_form': ReviewForm()
-            }
-        )
-
-    def post(self, request, slug, trip_id, place_id, *args, **kwargs):
-
-        trip = get_object_or_404(Trip, id=trip_id)
-        place = get_object_or_404(Place, id=place_id)
-        reviews = place.reviews.all().order_by('created_on')
-
+    if request.method == "POST":
         review_form = ReviewForm(data=request.POST)
-
         if review_form.is_valid():
             review_form.instance.profile = request.user.profile
             review = review_form.save()
+        else:
+            review_form = ReviewForm()
+    else:
+        review_form = ReviewForm()
 
-        return render(
-            request,
-            'trips/recommended_detail.html',
-            {
-                'trip': trip,
-                'place': place,
-                'reviews': reviews,
-                'review_form': ReviewForm()
-            }
-        )
+    return render(
+        request,
+        'trips/recommended_detail.html',
+        {
+            'trip': trip,
+            'place': place,
+            'reviews': reviews,
+            'review_form': ReviewForm()
+        }
+    )
 
 
 class PlaceAdd(LoginRequiredMixin, View):

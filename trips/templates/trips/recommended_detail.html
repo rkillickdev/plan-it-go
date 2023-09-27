@@ -18,4 +18,8 @@
 
 {% crispy review_form %}
 
+<div>
+    <a href="{% url 'trip_recommendations' trip.slug trip.id %}">Back to your trip</a>
+</div>
+
 {% endblock %}

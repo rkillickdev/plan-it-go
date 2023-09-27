@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.views import View
@@ -151,9 +152,16 @@ def place_detail(request, slug, trip_id, place_id, *args, **kwargs):
         review_form = ReviewForm(data=request.POST)
         if review_form.is_valid():
             review_form.instance.profile = request.user.profile
-            review = review_form.save()
+            review = review_form.save(commit=False)
+            review.place = place
+            review.save()
+            messages.add_message(request, messages.SUCCESS, 'Review Complete!')
+
         else:
             review_form = ReviewForm()
+            messages.add_message(
+                request, messages.ERROR, 'There was an error!'
+            )
     else:
         review_form = ReviewForm()
 
@@ -166,6 +174,32 @@ def place_detail(request, slug, trip_id, place_id, *args, **kwargs):
             'reviews': reviews,
             'review_form': ReviewForm()
         }
+    )
+
+
+def review_edit(request, trip_id, place_id, review_id, *args, **kwargs):
+
+    if request.method == "POST":
+        trip = get_object_or_404(Trip, id=trip_id)
+        place = get_object_or_404(Place, id=place_id)
+        review = get_object_or_404(Review, id=review_id)
+
+        review_form = ReviewForm(data=request.POST, instance=review)
+        if review_form.is_valid() and review.profile.id == request.user.profile.id:
+            review = review_form.save(commit=False)
+            review.place = place
+            review.approved = False
+            review.save()
+            messages.add_message(
+                request, messages.SUCCESS, 'Comment Updated!'
+            )
+        else:
+            messages.add_message(
+                request, messages.ERROR, 'Error updating comment!'
+            )
+
+    return HttpResponseRedirect(
+        reverse('place_detail', args=[trip.slug, trip_id, place_id])
     )
 
 

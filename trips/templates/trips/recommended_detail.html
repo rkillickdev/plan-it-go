@@ -11,7 +11,14 @@
 <div>
     {% for review in reviews %}
 
-        <div class="{% if not review.approved and review.profile == request.user.profile %} faded {% elif not.review.approved %} {% endif %}">{{review.body}}</div>
+        <div id="review{{ review.id }}" class="{% if not review.approved and review.profile == request.user.profile %} faded {% elif not.review.approved %} d-none{% endif %}">{{review.body}}</div>
+        <div id="rating_review{{ review.user_rating }}"> {{review.user_rating}}</div>
+        
+        {% if user.is_authenticated and review.profile.id == user.profile.id %}
+
+        <button class="btn btn-edit" review_id="{{ review.id }}" review_rating="{{ review.user_rating }}">Edit</button>
+
+        {% endif %}
 
     {% endfor %}
 </div>
@@ -22,4 +29,11 @@
     <a href="{% url 'trip_recommendations' trip.slug trip.id %}">Back to your trip</a>
 </div>
 
+{% load static %}
+<script src="{% static 'js/reviews.js' %}"></script>
+
 {% endblock %}
+
+{% block extras %}
+
+{% endblock extras %}

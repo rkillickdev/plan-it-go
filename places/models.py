@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils.text import slugify
 from django.core.validators import MaxValueValidator, MinValueValidator
+from cloudinary.models import CloudinaryField
 from locations.models import Location
 from profiles.models import Profile
 
@@ -74,3 +75,25 @@ class Review(models.Model):
 
     def __str__(self):
         return f"Review For {self.place.name} by {self.profile.user}"
+
+
+class Image(models.Model):
+    """
+    Model for storage of user uploaded images
+    """
+
+    profile = models.ForeignKey(
+        Profile, on_delete=models.CASCADE, related_name="images"
+    )
+    place = models.ForeignKey(
+        Place, on_delete=models.CASCADE, related_name="images"
+    )
+    path = CloudinaryField('image', default=placeholder)
+    created_on = models.DateTimeField(auto_now_add=True)
+    approved = models.BooleanField(default=False)
+
+    class Meta:
+        ordering = ["created_on"]
+
+    def __str__(self):
+        return f"Image For {self.place.name} by {self.profile.user}"

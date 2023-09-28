@@ -7,6 +7,7 @@ from .views import (
     TripRecommendationsView,
     place_detail,
     review_edit,
+    review_delete,
     PlaceAdd,
 )
 
@@ -45,6 +46,11 @@ urlpatterns = [
         '<slug:slug>/<int:trip_id>/place/<int:place_id>/edit_review/<int:review_id>',
         review_edit,
         name='edit_review'
+    ),
+    path(
+        '<slug:slug>/<int:trip_id>/place/<int:place_id>/delete_review/<int:review_id>',
+        review_delete,
+        name='delete_review'
     ),
     path(
         'add_place/<int:trip_id>/<int:place_id>',

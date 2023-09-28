@@ -177,6 +177,7 @@ def place_detail(request, slug, trip_id, place_id, *args, **kwargs):
     )
 
 
+@login_required()
 def review_edit(request, trip_id, place_id, review_id, *args, **kwargs):
 
     if request.method == "POST":
@@ -197,6 +198,24 @@ def review_edit(request, trip_id, place_id, review_id, *args, **kwargs):
             messages.add_message(
                 request, messages.ERROR, 'Error updating comment!'
             )
+
+    return HttpResponseRedirect(
+        reverse('place_detail', args=[trip.slug, trip_id, place_id])
+    )
+
+
+@login_required()
+def review_delete(request, trip_id, place_id, review_id, *args, **kwargs):
+
+    trip = get_object_or_404(Trip, id=trip_id)
+    place = get_object_or_404(Place, id=place_id)
+    review = get_object_or_404(Review, id=review_id)
+
+    if review.profile.id == request.user.profile.id:
+        review.delete()
+        messages.add_message(request, messages.SUCCESS, 'Comment deleted!')
+    else:
+        messages.add_message(request, messages.ERROR, 'You can only delete your own comments!')
 
     return HttpResponseRedirect(
         reverse('place_detail', args=[trip.slug, trip_id, place_id])

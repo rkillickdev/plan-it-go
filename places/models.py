@@ -88,7 +88,10 @@ class Image(models.Model):
     place = models.ForeignKey(
         Place, on_delete=models.CASCADE, related_name="images"
     )
-    path = CloudinaryField('image', default=placeholder)
+    path = CloudinaryField(
+        'image', default=placeholder, folder="/images/places",
+        format="webp"
+    )
     created_on = models.DateTimeField(auto_now_add=True)
     approved = models.BooleanField(default=False)
 

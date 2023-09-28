@@ -177,6 +177,48 @@ def place_detail(request, slug, trip_id, place_id, *args, **kwargs):
     )
 
 
+# class ImageUpload(LoginRequiredMixin, CreateView):
+
+#     form_class = ImageForm
+#     model = Image
+#     template_name = 'trips/image_form.html'
+
+#     def get_success_url(self):
+#         return reverse_lazy(
+#             'home',
+#             # kwargs={
+#             #     'slug': self.object.slug,
+#             #     'pk': self.object.id
+#             # }
+#         )
+
+
+# def image_upload(request, trip_id, place_id, *args, **kwargs):
+
+#     trip = get_object_or_404(Trip, id=trip_id)
+#     place = get_object_or_404(Place, id=place_id)
+
+#     if request.method == "POST":
+#         image_form = ImageForm(request.POST, request.FILES)
+#         if image_form.is_valid():
+#             image_form.instance.profile = request.user.profile
+#             image = image_form.save(commit=False)
+#             image.place = place
+#             image.save()
+#             messages.add_message(request, messages.SUCCESS, 'Image Upload Complete!')
+
+#         else:
+#             image_form = ImageForm()
+#             messages.add_message(
+#                 request, messages.ERROR, 'There was an error!'
+#             )
+
+#     return HttpResponseRedirect(
+#         reverse('home')
+#         # reverse('place_detail', args=[trip.slug, trip_id, place_id])
+#     )
+
+
 @login_required()
 def review_edit(request, trip_id, place_id, review_id, *args, **kwargs):
 

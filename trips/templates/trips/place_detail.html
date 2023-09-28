@@ -7,6 +7,12 @@
 <div>
     {{ place.name }}
 </div>
+<div>
+    {{ place.description }}
+</div>
+<div>
+    <img src="{{ place.image }}" alt="{{ place.name }}">
+</div>
 
 <div>
     {% for review in reviews %}

@@ -15,7 +15,7 @@
 <div>
     <ul>
         {% for place in trip.places.all %}
-            <li>{{ place }}</li>
+            <li><a href="{% url 'place_detail' trip.slug trip.id place.id %}">{{ place }}</a></li>
         {% endfor %}    
     </ul>
 </div>

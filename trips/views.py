@@ -167,7 +167,7 @@ def place_detail(request, slug, trip_id, place_id, *args, **kwargs):
 
     return render(
         request,
-        'trips/recommended_detail.html',
+        'trips/place_detail.html',
         {
             'trip': trip,
             'place': place,

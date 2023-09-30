@@ -8,6 +8,7 @@ from .views import (
     place_detail,
     review_edit,
     review_delete,
+    ImageGalleryView,
     PlaceAdd,
 )
 
@@ -51,6 +52,11 @@ urlpatterns = [
         '<slug:slug>/<int:trip_id>/place/<int:place_id>/delete_review/<int:review_id>',
         review_delete,
         name='delete_review'
+    ),
+    path(
+        '<slug:slug>/<int:trip_id>/place/<int:place_id>/gallery',
+        ImageGalleryView.as_view(),
+        name='image_gallery'
     ),
     path(
         'add_place/<int:trip_id>/<int:place_id>',

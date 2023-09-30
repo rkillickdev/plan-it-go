@@ -11,5 +11,5 @@ urlpatterns = [
         '<slug:slug>',
         PlaceListView.as_view(),
         name='place_list'
-    )
+    ),
 ]

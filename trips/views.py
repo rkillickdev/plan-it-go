@@ -9,12 +9,10 @@ from django.views.generic import (
     CreateView, ListView,
     DetailView, UpdateView, DeleteView
 )
-from .models import Trip
-from .models import Profile
-from .models import Place
-from places.models import Review
+from .models import Trip, Profile, Place
+from places.models import Review, Image
 from .forms import TripForm
-from places.forms import ReviewForm
+from places.forms import ReviewForm, ImageForm
 
 
 class TripCreateView(LoginRequiredMixin, CreateView):
@@ -177,20 +175,40 @@ def place_detail(request, slug, trip_id, place_id, *args, **kwargs):
     )
 
 
-# class ImageUpload(LoginRequiredMixin, CreateView):
+class ImageGalleryView(LoginRequiredMixin, CreateView):
+    """
+    Referenced this article to find out about modifying context data
+    in a class based view:
+    https://magbanum.com/blog/let-cloudinary-handle-image-uploads-in-your-django-application
+    """
 
-#     form_class = ImageForm
-#     model = Image
-#     template_name = 'trips/image_form.html'
+    form_class = ImageForm
+    model = Image
+    template_name = 'places/place_gallery.html'
 
-#     def get_success_url(self):
-#         return reverse_lazy(
-#             'home',
-#             # kwargs={
-#             #     'slug': self.object.slug,
-#             #     'pk': self.object.id
-#             # }
-#         )
+    # def get_initial(self):
+    #     slug = self.kwargs['slug']
+    #     return {
+    #         'slug': self.kwargs['slug'],
+    #         'trip_id': self.kwargs['trip_id'],
+    #         'place_id': self.kwargs['place_id']
+    #     }
+
+    def get_context_data(self, **kwargs):
+        context = super(ImageGalleryView, self).get_context_data(**kwargs)
+        context['images'] = Image.objects.all().order_by('created_on')
+        context['place'] = get_object_or_404(Place, id=self.kwargs['place_id'])
+        return context
+
+    def get_success_url(self):
+        return reverse_lazy(
+            'image_gallery',
+            kwargs={
+                'slug': self.kwargs['slug'],
+                'trip_id': self.kwargs['trip_id'],
+                'place_id': self.kwargs['place_id']
+            }
+        )
 
 
 # def image_upload(request, trip_id, place_id, *args, **kwargs):

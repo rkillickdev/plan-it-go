@@ -11,6 +11,13 @@
 <div>
     {% for image in images %}
         <img src="{{ image.path.url }}">
+
+        {% if user.is_authenticated and image.profile.id == user.profile.id %}
+
+        <button class="btn btn-delete" image_id="{{ image.id }}" data-toggle="modal" data-target="#exampleModal">Delete</button>
+
+        {% endif %}
+
     {% endfor %}
 </div>
 
@@ -18,4 +25,11 @@
 
 {% crispy form %}
 
+{% include 'includes/modal_confirm.html' %}
+
 {% endblock %}
+
+{% block extras %}
+{% load static %}
+<script src="{% static 'js/images.js' %}"></script>
+{% endblock extras %}

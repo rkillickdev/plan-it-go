@@ -274,6 +274,23 @@ def review_delete(request, trip_id, place_id, review_id, *args, **kwargs):
     )
 
 
+@login_required()
+def image_delete(request, trip_id, place_id, image_id, *args, **kwargs):
+    trip = get_object_or_404(Trip, id=trip_id)
+    place = get_object_or_404(Place, id=place_id)
+    image = get_object_or_404(Image, id=image_id)
+
+    if image.profile.id == request.user.profile.id:
+        image.delete()
+        messages.add_message(request, messages.SUCCESS, 'Image deleted!')
+    else:
+        messages.add_message(request, messages.ERROR, 'You can only delete your own images!')
+
+    return HttpResponseRedirect(
+        reverse('image_gallery', args=[trip.slug, trip_id, place_id])
+    )
+
+
 class PlaceAdd(LoginRequiredMixin, View):
 
     def post(self, request, trip_id, place_id):

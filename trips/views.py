@@ -177,22 +177,40 @@ def place_detail(request, slug, trip_id, place_id, *args, **kwargs):
 
 class ImageGalleryView(LoginRequiredMixin, CreateView):
     """
-    Referenced this article to find out about modifying context data
-    in a class based view:
-    https://magbanum.com/blog/let-cloudinary-handle-image-uploads-in-your-django-application
+    View where a logged in user can upload an image to the gallery page.
+    Once successfully uploaded, the user is redirected back to the same page
+    where the newly uploaded image is displayed along side all other images
+    for the specified place.
+    The URL parameters passed into the view are accessed from the kwargs.
+    A queryset of images and the specific places object is made avaialble 
+    as part of the context when rendering  the template, by defining the 
+    get_context_data() method.
     """
 
     form_class = ImageForm
     model = Image
     template_name = 'places/place_gallery.html'
 
-    # def get_initial(self):
-    #     slug = self.kwargs['slug']
-    #     return {
-    #         'slug': self.kwargs['slug'],
-    #         'trip_id': self.kwargs['trip_id'],
-    #         'place_id': self.kwargs['place_id']
-    #     }
+    # Referenced this article to find out about accessing url kwargs:
+    # https://stackoverflow.com/questions/72599545/get-url-kwargs-in-class-based-views
+
+    def setup(self, request, *args, **kwargs):
+        self.place_id = kwargs['place_id']
+        return super().setup(request, *args, **kwargs)
+
+    # Referenced this article to automatically populate filed forms:
+    # https://stackoverflow.com/questions/18246326/how-do-i-set-user-field-in-form-to-the-currently-logged-in-user
+
+    def form_valid(self, form):
+        image = form.save(commit=False)
+        image.profile = Profile.objects.get(user=self.request.user)
+        image.place = get_object_or_404(Place, id=self.place_id)
+        image.save()
+        return HttpResponseRedirect(self.get_success_url())
+
+    # Referenced this article to find out about modifying context data
+    # in a class based view:
+    # https://magbanum.com/blog/let-cloudinary-handle-image-uploads-in-your-django-application
 
     def get_context_data(self, **kwargs):
         context = super(ImageGalleryView, self).get_context_data(**kwargs)
@@ -209,32 +227,6 @@ class ImageGalleryView(LoginRequiredMixin, CreateView):
                 'place_id': self.kwargs['place_id']
             }
         )
-
-
-# def image_upload(request, trip_id, place_id, *args, **kwargs):
-
-#     trip = get_object_or_404(Trip, id=trip_id)
-#     place = get_object_or_404(Place, id=place_id)
-
-#     if request.method == "POST":
-#         image_form = ImageForm(request.POST, request.FILES)
-#         if image_form.is_valid():
-#             image_form.instance.profile = request.user.profile
-#             image = image_form.save(commit=False)
-#             image.place = place
-#             image.save()
-#             messages.add_message(request, messages.SUCCESS, 'Image Upload Complete!')
-
-#         else:
-#             image_form = ImageForm()
-#             messages.add_message(
-#                 request, messages.ERROR, 'There was an error!'
-#             )
-
-#     return HttpResponseRedirect(
-#         reverse('home')
-#         # reverse('place_detail', args=[trip.slug, trip_id, place_id])
-#     )
 
 
 @login_required()

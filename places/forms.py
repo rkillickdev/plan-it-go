@@ -59,8 +59,6 @@ class ImageForm(ModelForm):
         self.helper.layout = Layout(
             Fieldset(
                 'upload an image',
-                'profile',
-                'place',
                 'path'
             ),
             Submit('Submit', 'Upload Image', css_id='imageUploadButton')
@@ -68,4 +66,4 @@ class ImageForm(ModelForm):
 
     class Meta:
         model = Image
-        fields = ['profile', 'place', 'path']
+        fields = ['path']

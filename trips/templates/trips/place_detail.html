@@ -40,7 +40,7 @@
       <div class="nav nav-tabs" id="nav-tab" role="tablist">
         <button class="nav-link active" id="nav-details-tab" data-bs-toggle="tab" data-bs-target="#nav-details" type="button" role="tab" aria-controls="nav-details" aria-selected="true">Details</button>
         <button class="nav-link" id="nav-reviews-tab" data-bs-toggle="tab" data-bs-target="#nav-reviews" type="button" role="tab" aria-controls="nav-reviews" aria-selected="false">Reviews</button>
-        <button class="nav-link" id="nav-gallery-tab" data-bs-toggle="tab" data-bs-target="#nav-galleryt" type="button" role="tab" aria-controls="nav-gallery" aria-selected="false">Gallery</button>
+        <button class="nav-link" id="nav-gallery-tab" data-bs-toggle="tab" data-bs-target="#nav-gallery" type="button" role="tab" aria-controls="nav-gallery" aria-selected="false">Gallery</button>
       </div>
     </nav>
     <!-- Place Info Tab Content -->
@@ -105,12 +105,14 @@
       </div>
       <!-- Place Gallery Tab Content -->
       <div class="tab-pane fade" id="nav-gallery" role="tabpanel" aria-labelledby="nav-gallery-tab">
-        <div class="row mb-4">
+        <div class="row">
+          {% for image in images %}
           <div class="col-md-4">
             <div class="image-container">
-              <img src="" alt="" class="image-fluid">
+              <img src="{{ image.path.url }}" alt="" class="img-fluid">
             </div>
           </div>
+          {% endfor %}
         </div>
       </div>
     </div>

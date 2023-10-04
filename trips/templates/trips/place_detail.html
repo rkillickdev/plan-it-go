@@ -4,22 +4,97 @@
 
 {% load crispy_forms_tags %}
 
+<!-- Place Summary Section -->
+<section class="place-summary">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="image-container">
+          <img src="{{ place.image }}" alt="{{ place.name }}" class="img-fluid">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="text-container p4 d-flex flex-column justify-content-center h-100 mb-5">
+          <p class="lead">
+            {{ place.description }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Place Info Section-->
+<section class="place-info">
+  <div class="container">
+    <!-- Place Info Tabs -->
+    <nav>
+      <div class="nav nav-tabs" id="nav-tab" role="tablist">
+        <button class="nav-link active" id="nav-details-tab" data-bs-toggle="tab" data-bs-target="#nav-details" type="button" role="tab" aria-controls="nav-details" aria-selected="true">Details</button>
+        <button class="nav-link" id="nav-reviews-tab" data-bs-toggle="tab" data-bs-target="#nav-reviews" type="button" role="tab" aria-controls="nav-reviews" aria-selected="false">Reviews</button>
+        <button class="nav-link" id="nav-gallery-tab" data-bs-toggle="tab" data-bs-target="#nav-galleryt" type="button" role="tab" aria-controls="nav-gallery" aria-selected="false">Gallery</button>
+      </div>
+    </nav>
+    <!-- Place Info Tab Content -->
+    <div class="tab-content" id="nav-tabContent">
+      <!-- Place Details Tab Content-->
+      <div class="tab-pane fade show active" id="nav-details" role="tabpanel" aria-labelledby="nav-details-tab">...</div>
+      <!-- Place Reviews Tab Content -->
+      <div class="tab-pane fade" id="nav-reviews" role="tabpanel" aria-labelledby="nav-reviews-tab">
+        <section class="reviews">
+          <div class="container">
+            <div class="row">
+              <div class="col-12">
+                <!-- Review Carousel -->
+                <div id="reviewCarousel" class="carousel slide" data-bs-ride="carousel">
+                  <div class="carousel-inner">
+                    {% for review in reviews %}
+                    <div class="carousel-item {% if forloop.first %} active {% endif %}">
+                      <div class="d-flex flex-column justify-content-center align-items-center text-center">
+                        <img src="" alt="" class="rounded-circle">
+                        <p class="w-50 my-4 fst-italic fs-4 mb-4">
+                          {{review.body}}    
+                        </p>
+                      </div>
+                    </div>
+                    {% endfor %}
+                  </div>
+                  <!-- Carousel Buttons -->
+                  <button class="carousel-control-prev" type="button" data-bs-target="#reviewCarousel" data-bs-slide="prev">
+                    <i class="fas fa-arrow-circle-left fa-3x text-secondary"></i>
+                  </button>
+                  <button class="carousel-control-next" type="button" data-bs-target="#reviewCarousel" data-bs-slide="next">
+                    <i class="fas fa-arrow-circle-right fa-3x text-secondary"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+      <!-- Place Gallery Tab Content -->
+      <div class="tab-pane fade" id="nav-gallery" role="tabpanel" aria-labelledby="nav-gallery-tab">...</div>
+    </div>
+  </div>
+</section>
+
+
+
 <div>
     {{ place.name }}
-</div>
-<div>
-    {{ place.description }}
-</div>
-<div>
-    <img src="{{ place.image }}" alt="{{ place.name }}">
 </div>
 
 <div>
   <a href="{% url 'image_gallery' trip.slug trip.id place.id %}">View All Images</a>
 </div>
 
+
+
+
+
+
 <div>
-    {% for review in reviews %}
+    
 
         <div id="review{{ review.id }}" class="{% if not review.approved and review.profile == request.user.profile %} faded {% elif not.review.approved %} d-none{% endif %}">{{review.body}}</div>
         <div id="rating_review{{ review.user_rating }}"> {{review.user_rating}}</div>
@@ -31,7 +106,7 @@
 
         {% endif %}
 
-    {% endfor %}
+    
 </div>
 
 {% crispy review_form %}

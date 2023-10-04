@@ -4,6 +4,27 @@
 
 {% load crispy_forms_tags %}
 
+<!-- Trip Summary Section -->
+<section class="trip-summary">
+  <div class="container">
+    <div class="row">
+      <div class="col-4">
+        <h1>{{ trip.title }}</h1>
+      </div>
+      <div class="col-4">
+        <div>
+          {{ trip.number_of_places }}
+        </div>
+      </div>
+      <div class="col-4">
+        <button>
+          <a href="{% url 'trip_detail' trip.slug trip.id %}">View Your Trip</a>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- Place Summary Section -->
 <section class="place-summary">
   <div class="container">
@@ -20,10 +41,10 @@
             {% csrf_token %}
             {% if added %}
               <button type="submit" name="place_id" value="{{place.id}}" class="btn-like"><i class="fa-solid fa-minus"></i></button>
-              <span>Add To Your Trip</span>
+              <span>Remove From Your Trip</span>
             {% else %}
             <button type="submit" name="place_id" value="{{place.id}}" class="btn-like"><i class="fa-solid fa-plus"></i></button>
-            <span>Remove From Your Trip</span>
+            <span>Add To Your Trip</span>
             {% endif %}
         </form>
         </div>

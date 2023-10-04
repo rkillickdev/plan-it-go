@@ -100,9 +100,74 @@ class TripDetailView(LoginRequiredMixin, View):
             'trips/trip_detail.html',
             {
                 'trip': trip,
+                'review_form': ReviewForm()
             }
 
         )
+
+    def post(self, request, slug, trip_id, place_id, *args, **kwargs):
+
+        trip = get_object_or_404(Trip, id=trip_id)
+        place = get_object_or_404(Place, id=place_id)
+
+        review_form = ReviewForm(data=request.POST)
+
+        if review_form.is_valid():
+            review_form.instance.profile = request.user.profile
+            review = review_form.save(commit=False)
+            review.place = place
+            review.save()
+            messages.add_message(request, messages.SUCCESS, 'Review Complete!')
+
+        else:
+            review_form = ReviewForm()
+            messages.add_message(
+                request, messages.ERROR, 'There was an error!'
+            )
+
+        return render(
+                request,
+                'trips/trip_detail.html',
+                {
+                    'trip': trip,
+                    'review_form': ReviewForm()
+                }
+
+            )
+
+
+
+# @login_required()
+# def trip_detail(request, slug, trip_id, *args, **kwargs):
+
+#     trip = get_object_or_404(Trip, id=trip_id)
+
+#     if request.method == "POST":
+#         review_form = ReviewForm(data=request.POST)
+#         if review_form.is_valid():
+#             review_form.instance.profile = request.user.profile
+#             review = review_form.save(commit=False)
+#             # review.place = place
+#             review.save()
+#             messages.add_message(request, messages.SUCCESS, 'Review Complete!')
+
+#         else:
+#             review_form = ReviewForm()
+#             messages.add_message(
+#                 request, messages.ERROR, 'There was an error!'
+#             )
+#     else:
+#         review_form = ReviewForm()
+
+#     return render(
+#             request,
+#             'trips/trip_detail.html',
+#             {
+#                 'trip': trip,
+#                 'review_form': ReviewForm()
+#             }
+
+#         )
 
 
 class TripRecommendationsView(LoginRequiredMixin, View):

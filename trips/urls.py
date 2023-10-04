@@ -3,6 +3,7 @@ from .views import (
     TripCreateView,
     TripUpdateView,
     TripListView,
+    # trip_detail,
     TripDetailView,
     TripRecommendationsView,
     place_detail,

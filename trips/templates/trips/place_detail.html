@@ -14,8 +14,18 @@
         </div>
       </div>
       <div class="col-md-6">
-        <div class="text-container p-4 d-flex flex-column justify-content-center h-100 mb-5">
+        <div class="text-container p-4 d-flex flex-column justify-content-between h-100 mb-5">
           <h1>{{ place.name }}</h1>
+          <form class="d-inline" action="{% url 'add_place' trip.id place.id %}" method="POST">
+            {% csrf_token %}
+            {% if added %}
+              <button type="submit" name="place_id" value="{{place.id}}" class="btn-like"><i class="fa-solid fa-minus"></i></button>
+              <span>Add To Your Trip</span>
+            {% else %}
+            <button type="submit" name="place_id" value="{{place.id}}" class="btn-like"><i class="fa-solid fa-plus"></i></button>
+            <span>Remove From Your Trip</span>
+            {% endif %}
+        </form>
         </div>
       </div>
     </div>

@@ -145,6 +145,10 @@ def place_detail(request, slug, trip_id, place_id, *args, **kwargs):
     trip = get_object_or_404(Trip, id=trip_id)
     place = get_object_or_404(Place, id=place_id)
     reviews = place.reviews.all().order_by('created_on')
+    added = False
+
+    if trip.places.filter(id=place.id).exists():
+        added = True
 
     if request.method == "POST":
         review_form = ReviewForm(data=request.POST)
@@ -169,6 +173,7 @@ def place_detail(request, slug, trip_id, place_id, *args, **kwargs):
         {
             'trip': trip,
             'place': place,
+            'added': added,
             'reviews': reviews,
             'review_form': ReviewForm()
         }
@@ -303,4 +308,4 @@ class PlaceAdd(LoginRequiredMixin, View):
             trip.places.add(place)
 
         return HttpResponseRedirect(
-            reverse('trip_recommendations', args=[trip.slug, trip_id]))
+            reverse('place_detail', args=[trip.slug, trip_id, place_id]))

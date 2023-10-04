@@ -145,6 +145,7 @@ def place_detail(request, slug, trip_id, place_id, *args, **kwargs):
     trip = get_object_or_404(Trip, id=trip_id)
     place = get_object_or_404(Place, id=place_id)
     reviews = place.reviews.all().order_by('created_on')
+    images = place.images.all().order_by('created_on')
     added = False
 
     if trip.places.filter(id=place.id).exists():
@@ -175,6 +176,7 @@ def place_detail(request, slug, trip_id, place_id, *args, **kwargs):
             'place': place,
             'added': added,
             'reviews': reviews,
+            'images': images,
             'review_form': ReviewForm()
         }
     )

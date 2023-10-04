@@ -17,7 +17,7 @@
         </div>
       </div>
       <div class="col-4">
-        <button>
+        <button class="btn btn-primary">
           <a href="{% url 'trip_detail' trip.slug trip.id %}">View Your Trip</a>
         </button>
       </div>
@@ -46,7 +46,10 @@
             <button type="submit" name="place_id" value="{{place.id}}" class="btn-like"><i class="fa-solid fa-plus"></i></button>
             <span>Add To Your Trip</span>
             {% endif %}
-        </form>
+          </form>
+          <button class="btn btn-primary">
+            <a href="{% url 'trip_recommendations' trip.slug trip.id %}">View More Recommendations</a>
+          </button>
         </div>
       </div>
     </div>

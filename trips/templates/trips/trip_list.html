@@ -1,12 +1,51 @@
 {% extends "base.html" %}
 
 {% block content %}
+{% load static %}
 
-<h1>TRIP LIST</h1>
-<ul>
-    {% for trip in trip_list %}
-        <li><a href="{% url 'trip_detail' trip.slug trip.id%}">{{ trip.title }}</a></li>
-    {% endfor %}
-</ul>
+<section id="trips">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="text-container p-4 d-flex flex-column justify-content-center h-100 mb-5 text-center">
+                    <div>
+                        <a href="{% url 'create_trip' %}"><i class="fa-solid fa-plus"></i></a>
+                    </div>
+                    {% if trip_list.count == 0 %}
+                    <h1>
+                        Start Planning A Trip...
+                    </h1>
+                    {% else %}
+                    <h1>
+                        Where to Next??...
+                    </h1>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% if trip_list.count > 0 %}
+        <div class="row">
+            {% for trip in trip_list %}
+                <div class="col-md-4">
+                    <div class="card border-0">
+                        <a href="{% url 'trip_detail' trip.slug trip.id%}">
+                            {% if 'placeholder' in trip.trip_image.url %}
+                            <img src="{% static 'images/placeholders/trip-placeholder-globe-in-hand.webp' %}" alt="" class="card-img-top">
+                            {% else %}
+                            <img src="{{trip.trip_image}}" alt="">
+                            {% endif %}
+                            <div class="card-body">
+                                <h5 class="card-title">{{ trip.title }}</h5>
+                            </div>
+                        </a> 
+                    </div>
+                </div>
+            {% endfor %}    
+        </div>
+        {% else %}
+            <p>LOOKING FOR INSPIRATION?</p>
+        {% endif %}
+    </div>
+</section>
 
 {% endblock %}

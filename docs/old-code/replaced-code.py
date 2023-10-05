@@ -74,6 +74,33 @@
 
 #         )
 
+# TRIP RECOMMENDATION FUNCTIONALITY ROLED INTO TRIP DETAIL VIEW
+
+# class TripRecommendationsView(LoginRequiredMixin, View):
+#     """
+#     View to render recommended places to visit based on the trip location.
+#     A query is made on the Place model to find all places that
+#     have a location field that matches the trip location attribute.
+#     This queryset is stored in the context dictionary as 'places'so it can be
+#     accessed by the trip_recommendations.html template.
+#     """
+
+#     def get(self, request, slug, trip_id, *args, **kwargs):
+
+#         trip = get_object_or_404(Trip, id=trip_id)
+#         places = Place.objects.filter(location=trip.location).order_by(
+#             'ranking_position')
+
+#         return render(
+#             request,
+#             'trips/trip_recommendations.html',
+#             {
+#                 'trip': trip,
+#                 'places': places
+#             }
+
+#         )
+
 
 # EXPERIMENTING WITH WAYS TO RENDER REVIEW PAGE
 

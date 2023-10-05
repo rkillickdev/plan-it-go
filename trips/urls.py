@@ -5,7 +5,6 @@ from .views import (
     TripListView,
     TripDetailView,
     CreateReview,
-    TripRecommendationsView,
     place_detail,
     review_edit,
     review_delete,
@@ -40,11 +39,6 @@ urlpatterns = [
         '<slug:slug>/<int:trip_id>/review/<int:place_id>/',
         CreateReview.as_view(),
         name='review'
-    ),
-    path(
-        'recommendations/<slug:slug>/<int:trip_id>',
-        TripRecommendationsView.as_view(),
-        name='trip_recommendations'
     ),
     path(
         '<slug:slug>/<int:trip_id>/place/<int:place_id>/',

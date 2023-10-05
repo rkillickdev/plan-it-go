@@ -30,7 +30,7 @@
             {% endif %}
           </form>
           <button class="btn btn-primary">
-            <a href="{% url 'trip_recommendations' trip.slug trip.id %}">View More Recommendations</a>
+            <a href="{% url 'trip_detail' trip.slug trip.id %}">View More Recommendations</a>
           </button>
         </div>
       </div>
@@ -135,7 +135,7 @@
 
 
 <div>
-    <a href="{% url 'trip_recommendations' trip.slug trip.id %}">Back to your trip</a>
+    <a href="{% url 'trip_detail' trip.slug trip.id %}">Back to your trip</a>
 </div>
 
 <!-- Modal -->

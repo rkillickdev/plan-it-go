@@ -90,17 +90,26 @@ class TripDetailView(LoginRequiredMixin, View):
     object using get_object_or_404().  This object is then included in the
     context dictionary as 'trip' so it can be accessed by the trip_detail.html
     file.
+    Also included in the context dictionary is 'places'.  This is a filtered
+    queryset of all places relating to the location of the trip, that have
+    NOT already been added to the 'places' many to many field of the trip.
+    These places are then displayed as recommendations in the trip_detail.html 
+    template.
     """
     def get(self, request, slug, trip_id, *args, **kwargs):
 
         trip = get_object_or_404(Trip, id=trip_id)
+        places = Place.objects.filter(location=trip.location).exclude(
+            id__in=trip.places.values_list('id', flat=True)).order_by(
+                'ranking_position'
+            )
 
         return render(
             request,
             'trips/trip_detail.html',
             {
                 'trip': trip,
-                'review_form': ReviewForm()
+                'places': places,
             }
 
         )
@@ -174,32 +183,6 @@ def review_delete(request, trip_id, place_id, review_id, *args, **kwargs):
     return HttpResponseRedirect(
         reverse('review', args=[trip.slug, trip_id, place_id])
     )
-
-
-class TripRecommendationsView(LoginRequiredMixin, View):
-    """
-    View to render recommended places to visit based on the trip location.
-    A query is made on the Place model to find all places that
-    have a location field that matches the trip location attribute.
-    This queryset is stored in the context dictionary as 'places'so it can be
-    accessed by the trip_recommendations.html template.
-    """
-
-    def get(self, request, slug, trip_id, *args, **kwargs):
-
-        trip = get_object_or_404(Trip, id=trip_id)
-        places = Place.objects.filter(location=trip.location).order_by(
-            'ranking_position')
-
-        return render(
-            request,
-            'trips/trip_recommendations.html',
-            {
-                'trip': trip,
-                'places': places
-            }
-
-        )
 
 
 @login_required()

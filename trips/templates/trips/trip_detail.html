@@ -51,17 +51,47 @@
     </div>
 </section>
 
-<div>
-    <ul>
-        {% for place in trip.places.all %}
-            <li><a href="{% url 'place_detail' trip.slug trip.id place.id %}">{{ place }}</a></li>
-        {% endfor %}    
-    </ul>
-</div>
+<section class="recommendations">
+    <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <!-- Recommendations Carousel -->
+            <div id="recommendationsCarousel" class="carousel slide" data-bs-ride="carousel">
+              <div class="carousel-inner">
+                {% for place in places %}
+                    <div class="carousel-item {% if forloop.first %} active {% endif %}">
+                        <div class="card">
+                            <div class="card-header">
+                                <a href="{% url 'place_detail' trip.slug trip.id place.id %}">{{ place.name }}</a>
+                            </div>
+                            <img src="{{ place.image }}" alt="{{ place.name }}">
+                            <div class="card-footer d-flex">
+                                <a href="#" class="btn btn-primary">
+        
+                                </a>        
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+              </div>
+              <!-- Carousel Buttons -->
+              <button class="carousel-control-prev" type="button" data-bs-target="#recommendationsCarousel" data-bs-slide="prev">
+                <i class="fas fa-arrow-circle-left fa-3x text-secondary"></i>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target="#recommendationsCarousel" data-bs-slide="next">
+                <i class="fas fa-arrow-circle-right fa-3x text-secondary"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+</section>
 
-<div>
-    <a href="{% url 'trip_recommendations' trip.slug trip.id %}">View Place Recommendations</a>
-</div>
+<ul>
+    {% for place in places %}
+            <li><a href="{% url 'place_detail' trip.slug trip.id place.id %}">{{ place.name }}</a></li>
+    {% endfor %}
+</ul>
 
 <div>
     <a href="{% url 'trip_list' %}">View All Your Trips</a>

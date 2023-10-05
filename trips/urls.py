@@ -12,6 +12,7 @@ from .views import (
     ImageUploadView,
     image_delete,
     PlaceToggle,
+    PlaceRemove
 )
 
 urlpatterns = [
@@ -74,5 +75,10 @@ urlpatterns = [
         'toggle_place/<int:trip_id>/<int:place_id>',
         PlaceToggle.as_view(),
         name='toggle_place'
+    ),
+    path(
+        'remove_place/<int:trip_id>/<int:place_id>',
+        PlaceRemove.as_view(),
+        name='remove_place'
     )
 ]

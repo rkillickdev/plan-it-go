@@ -339,3 +339,16 @@ class PlaceToggle(LoginRequiredMixin, View):
 
         return HttpResponseRedirect(
             reverse('place_detail', args=[trip.slug, trip_id, place_id]))
+
+
+class PlaceRemove(LoginRequiredMixin, View):
+
+    def post(self, request, trip_id, place_id):
+
+        trip = get_object_or_404(Trip, id=trip_id)
+        place = get_object_or_404(Place, id=place_id)
+
+        trip.places.remove(place)
+
+        return HttpResponseRedirect(
+            reverse('trip_detail', args=[trip.slug, trip_id]))

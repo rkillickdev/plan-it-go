@@ -39,7 +39,9 @@
     </div>
 </div>
 
-{% load static %}
-<script src="{% static 'js/reviews.js' %}"></script>
-
 {% endblock %}
+
+{% block extras %}
+    {% load static %}
+    <script src="{% static 'js/reviews.js' %}"></script>
+{% endblock extras %}

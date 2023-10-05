@@ -1,9 +1,9 @@
 var deleteButtons = document.getElementsByClassName("btn-delete");
-var deleteConfirm = document.getElementById("deleteConfirm");
+var ImageDeleteConfirm = document.getElementById("image-delete-confirm");
 
 for (let button of deleteButtons) {
     button.addEventListener("click", (e) => {
         let imageId = e.target.getAttribute("image_id");
-        deleteConfirm.href = `delete_image/${imageId}`;
+        ImageDeleteConfirm.href = `delete_image/${imageId}`;
     });
 }

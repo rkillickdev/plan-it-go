@@ -106,8 +106,8 @@ class TripDetailView(LoginRequiredMixin, View):
         )
 
 
-class Review(LoginRequiredMixin, View):
-    """ 
+class CreateReview(LoginRequiredMixin, View):
+    """
     """
 
     def get(self, request, slug, trip_id, place_id, *args, **kwargs):
@@ -253,7 +253,7 @@ def place_detail(request, slug, trip_id, place_id, *args, **kwargs):
     )
 
 
-class ImageGalleryView(LoginRequiredMixin, CreateView):
+class ImageUploadView(LoginRequiredMixin, CreateView):
     """
     View where a logged in user can upload an image to the gallery page.
     Once successfully uploaded, the user is redirected back to the same page
@@ -267,13 +267,14 @@ class ImageGalleryView(LoginRequiredMixin, CreateView):
 
     form_class = ImageForm
     model = Image
-    template_name = 'places/place_gallery.html'
+    template_name = 'trips/add_image.html'
 
     # Referenced this article to find out about accessing url kwargs:
     # https://stackoverflow.com/questions/72599545/get-url-kwargs-in-class-based-views
 
     def setup(self, request, *args, **kwargs):
         self.place_id = kwargs['place_id']
+        self.trip_id = kwargs['trip_id']
         return super().setup(request, *args, **kwargs)
 
     # Referenced this article to automatically populate filed forms:
@@ -291,14 +292,15 @@ class ImageGalleryView(LoginRequiredMixin, CreateView):
     # https://magbanum.com/blog/let-cloudinary-handle-image-uploads-in-your-django-application
 
     def get_context_data(self, **kwargs):
-        context = super(ImageGalleryView, self).get_context_data(**kwargs)
+        context = super(ImageUploadView, self).get_context_data(**kwargs)
         context['images'] = Image.objects.all().order_by('created_on')
         context['place'] = get_object_or_404(Place, id=self.kwargs['place_id'])
+        context['trip'] = get_object_or_404(Trip, id=self.kwargs['trip_id'])
         return context
 
     def get_success_url(self):
         return reverse_lazy(
-            'image_gallery',
+            'add_image',
             kwargs={
                 'slug': self.kwargs['slug'],
                 'trip_id': self.kwargs['trip_id'],
@@ -320,7 +322,7 @@ def image_delete(request, trip_id, place_id, image_id, *args, **kwargs):
         messages.add_message(request, messages.ERROR, 'You can only delete your own images!')
 
     return HttpResponseRedirect(
-        reverse('image_gallery', args=[trip.slug, trip_id, place_id])
+        reverse('add_image', args=[trip.slug, trip_id, place_id])
     )
 
 

@@ -29,10 +29,14 @@
                             <a href="{% url 'review' trip.slug trip.id place.id %}" class="btn btn-primary">Review</a>
                         </li>
                         <li class="list-group-item">
-                            <a href="" class="btn btn-primary">Upload Image</a>
+                            <a href="{% url 'add_image' trip.slug trip.id place.id %}" class="btn btn-primary">Upload Image</a>
                         </li>
                         <li class="list-group-item">
-                            Remove
+                            <form class="d-inline" action="{% url 'add_place' trip.id place.id %}" method="POST">
+                                {% csrf_token %}
+                                <button type="submit" name="place_id" value="{{place.id}}" class="btn btn-primary"><i class="fa-solid fa-minus"></i></button>
+                                <span>Remove From Your Trip</span>
+                            </form>
                         </li>
                       </ul>
                     <div class="card-footer d-flex">

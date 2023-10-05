@@ -3,14 +3,13 @@ from .views import (
     TripCreateView,
     TripUpdateView,
     TripListView,
-    # trip_detail,
     TripDetailView,
-    Review,
+    CreateReview,
     TripRecommendationsView,
     place_detail,
     review_edit,
     review_delete,
-    ImageGalleryView,
+    ImageUploadView,
     image_delete,
     PlaceAdd,
 )
@@ -38,7 +37,7 @@ urlpatterns = [
     ),
     path(
         '<slug:slug>/<int:trip_id>/review/<int:place_id>/',
-        Review.as_view(),
+        CreateReview.as_view(),
         name='review'
     ),
     path(
@@ -62,12 +61,12 @@ urlpatterns = [
         name='delete_review'
     ),
     path(
-        '<slug:slug>/<int:trip_id>/place/<int:place_id>/gallery',
-        ImageGalleryView.as_view(),
-        name='image_gallery'
+        '<slug:slug>/<int:trip_id>/images/<int:place_id>/',
+        ImageUploadView.as_view(),
+        name='add_image'
     ),
     path(
-        '<slug:slug>/<int:trip_id>/place/<int:place_id>/delete_image/<int:image_id>',
+        '<slug:slug>/<int:trip_id>/images/<int:place_id>/delete_image/<int:image_id>',
         image_delete,
         name='delete_image'
     ),

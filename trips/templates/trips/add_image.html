@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- Trip Summary -->
+{% include 'includes/trip_header.html' %}
+
+<div>
+   Upload an image for {{ place.name }}
+</div>
+
+{% load crispy_forms_tags %}
+
+{% crispy form %}
+
+<div>
+    {% for image in images %}
+        <img src="{{ image.path.url }}">
+
+        {% if user.is_authenticated and image.profile.id == user.profile.id %}
+
+        <button class="btn btn-delete" image_id="{{ image.id }}" data-bs-toggle="modal" data-bs-target="#modal-image-delete">Delete</button>
+
+        {% endif %}
+
+    {% endfor %}
+</div>
+
+
+<!-- {% include 'includes/modal_confirm.html' %} -->
+
+<!-- Delete Image Modal -->
+
+<div id="modal-image-delete" class="modal fade">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content p-5">
+            <button class="btn btn-light" data-bs-dismiss="modal">Close</button>
+            <a id="image-delete-confirm" href="#" class="btn btn-danger">Delete</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block extras %}
+
+{% load static %}
+
+<script src="{% static 'js/images.js' %}"></script>
+
+{% endblock extras %}

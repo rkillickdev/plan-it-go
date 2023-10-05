@@ -5,6 +5,7 @@ from .views import (
     TripListView,
     # trip_detail,
     TripDetailView,
+    Review,
     TripRecommendationsView,
     place_detail,
     review_edit,
@@ -36,6 +37,11 @@ urlpatterns = [
         name='trip_detail'
     ),
     path(
+        '<slug:slug>/<int:trip_id>/review/<int:place_id>/',
+        Review.as_view(),
+        name='review'
+    ),
+    path(
         'recommendations/<slug:slug>/<int:trip_id>',
         TripRecommendationsView.as_view(),
         name='trip_recommendations'
@@ -46,12 +52,12 @@ urlpatterns = [
         name='place_detail'
     ),
     path(
-        '<slug:slug>/<int:trip_id>/place/<int:place_id>/edit_review/<int:review_id>',
+        '<slug:slug>/<int:trip_id>/review/<int:place_id>/edit_review/<int:review_id>',
         review_edit,
         name='edit_review'
     ),
     path(
-        '<slug:slug>/<int:trip_id>/place/<int:place_id>/delete_review/<int:review_id>',
+        '<slug:slug>/<int:trip_id>/review/<int:place_id>/delete_review/<int:review_id>',
         review_delete,
         name='delete_review'
     ),

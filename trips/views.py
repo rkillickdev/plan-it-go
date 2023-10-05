@@ -105,69 +105,75 @@ class TripDetailView(LoginRequiredMixin, View):
 
         )
 
-    def post(self, request, slug, trip_id, place_id, *args, **kwargs):
 
+class Review(LoginRequiredMixin, View):
+    """ 
+    """
+
+    def get(self, request, slug, trip_id, place_id, *args, **kwargs):
         trip = get_object_or_404(Trip, id=trip_id)
         place = get_object_or_404(Place, id=place_id)
-
-        review_form = ReviewForm(data=request.POST)
-
-        if review_form.is_valid():
-            review_form.instance.profile = request.user.profile
-            review = review_form.save(commit=False)
-            review.place = place
-            review.save()
-            messages.add_message(request, messages.SUCCESS, 'Review Complete!')
-
-        else:
-            review_form = ReviewForm()
-            messages.add_message(
-                request, messages.ERROR, 'There was an error!'
-            )
+        reviews = place.reviews.all().order_by('created_on')
 
         return render(
                 request,
-                'trips/trip_detail.html',
+                'trips/review.html',
                 {
                     'trip': trip,
+                    'place': place,
+                    'reviews': reviews,
                     'review_form': ReviewForm()
                 }
 
             )
 
 
+@login_required()
+def review_edit(request, trip_id, place_id, review_id, *args, **kwargs):
+    """
+    """
+    if request.method == "POST":
+        trip = get_object_or_404(Trip, id=trip_id)
+        place = get_object_or_404(Place, id=place_id)
+        review = get_object_or_404(Review, id=review_id)
 
-# @login_required()
-# def trip_detail(request, slug, trip_id, *args, **kwargs):
+        review_form = ReviewForm(data=request.POST, instance=review)
+        if review_form.is_valid() and review.profile.id == request.user.profile.id:
+            review = review_form.save(commit=False)
+            review.place = place
+            review.approved = False
+            review.save()
+            messages.add_message(
+                request, messages.SUCCESS, 'Comment Updated!'
+            )
+        else:
+            messages.add_message(
+                request, messages.ERROR, 'Error updating comment!'
+            )
 
-#     trip = get_object_or_404(Trip, id=trip_id)
+    return HttpResponseRedirect(
+        reverse('review', args=[trip.slug, trip_id, place_id])
+    )
 
-#     if request.method == "POST":
-#         review_form = ReviewForm(data=request.POST)
-#         if review_form.is_valid():
-#             review_form.instance.profile = request.user.profile
-#             review = review_form.save(commit=False)
-#             # review.place = place
-#             review.save()
-#             messages.add_message(request, messages.SUCCESS, 'Review Complete!')
 
-#         else:
-#             review_form = ReviewForm()
-#             messages.add_message(
-#                 request, messages.ERROR, 'There was an error!'
-#             )
-#     else:
-#         review_form = ReviewForm()
+@login_required()
+def review_delete(request, trip_id, place_id, review_id, *args, **kwargs):
+    """
+    """
 
-#     return render(
-#             request,
-#             'trips/trip_detail.html',
-#             {
-#                 'trip': trip,
-#                 'review_form': ReviewForm()
-#             }
+    trip = get_object_or_404(Trip, id=trip_id)
+    place = get_object_or_404(Place, id=place_id)
+    review = get_object_or_404(Review, id=review_id)
 
-#         )
+    if review.profile.id == request.user.profile.id:
+        review.delete()
+        messages.add_message(request, messages.SUCCESS, 'Comment deleted!')
+    else:
+        messages.add_message(request, messages.ERROR, 'You can only delete your own comments!')
+
+    return HttpResponseRedirect(
+        reverse('review', args=[trip.slug, trip_id, place_id])
+    )
 
 
 class TripRecommendationsView(LoginRequiredMixin, View):
@@ -299,51 +305,6 @@ class ImageGalleryView(LoginRequiredMixin, CreateView):
                 'place_id': self.kwargs['place_id']
             }
         )
-
-
-@login_required()
-def review_edit(request, trip_id, place_id, review_id, *args, **kwargs):
-
-    if request.method == "POST":
-        trip = get_object_or_404(Trip, id=trip_id)
-        place = get_object_or_404(Place, id=place_id)
-        review = get_object_or_404(Review, id=review_id)
-
-        review_form = ReviewForm(data=request.POST, instance=review)
-        if review_form.is_valid() and review.profile.id == request.user.profile.id:
-            review = review_form.save(commit=False)
-            review.place = place
-            review.approved = False
-            review.save()
-            messages.add_message(
-                request, messages.SUCCESS, 'Comment Updated!'
-            )
-        else:
-            messages.add_message(
-                request, messages.ERROR, 'Error updating comment!'
-            )
-
-    return HttpResponseRedirect(
-        reverse('place_detail', args=[trip.slug, trip_id, place_id])
-    )
-
-
-@login_required()
-def review_delete(request, trip_id, place_id, review_id, *args, **kwargs):
-
-    trip = get_object_or_404(Trip, id=trip_id)
-    place = get_object_or_404(Place, id=place_id)
-    review = get_object_or_404(Review, id=review_id)
-
-    if review.profile.id == request.user.profile.id:
-        review.delete()
-        messages.add_message(request, messages.SUCCESS, 'Comment deleted!')
-    else:
-        messages.add_message(request, messages.ERROR, 'You can only delete your own comments!')
-
-    return HttpResponseRedirect(
-        reverse('place_detail', args=[trip.slug, trip_id, place_id])
-    )
 
 
 @login_required()

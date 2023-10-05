@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- Trip Summary -->
+{% include 'includes/trip_header.html' %}
+
+{% load crispy_forms_tags %}
+
+
+{% crispy review_form %}
+
+<div>
+    {% for review in reviews %}
+   
+        <div id="review{{ review.id }}" class="{% if not review.approved and review.profile == request.user.profile %} faded {% elif not.review.approved %} d-none{% endif %}">{{review.body}}</div>
+        <div id="rating_review{{ review.user_rating }}"> {{review.user_rating}}</div>
+        
+        {% if user.is_authenticated and review.profile.id == user.profile.id %}
+
+        <button class="btn btn-edit" review_id="{{ review.id }}" review_rating="{{ review.user_rating }}">Edit</button>
+        <button class="btn btn-delete" review_id="{{ review.id }}" data-bs-toggle="modal" data-bs-target="#modal-review-delete" >Delete</button>
+        
+        {% endif %}
+
+    {% endfor %}
+
+
+</div>
+
+<!-- Delete Review Modal -->
+
+<div id="modal-review-delete" class="modal fade">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content p-5">
+            <button class="btn btn-light" data-bs-dismiss="modal">Close</button>
+            <a id="deleteConfirm" href="#" class="btn btn-danger">Delete</a>
+        </div>
+    </div>
+</div>
+
+{% load static %}
+<script src="{% static 'js/reviews.js' %}"></script>
+
+{% endblock %}

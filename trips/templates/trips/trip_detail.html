@@ -32,7 +32,7 @@
                             <a href="{% url 'add_image' trip.slug trip.id place.id %}" class="btn btn-primary">Upload Image</a>
                         </li>
                         <li class="list-group-item">
-                            <form class="d-inline" action="{% url 'add_place' trip.id place.id %}" method="POST">
+                            <form class="d-inline" action="{% url 'toggle_place' trip.id place.id %}" method="POST">
                                 {% csrf_token %}
                                 <button type="submit" name="place_id" value="{{place.id}}" class="btn btn-primary"><i class="fa-solid fa-minus"></i></button>
                                 <span>Remove From Your Trip</span>

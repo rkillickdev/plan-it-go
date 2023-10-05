@@ -326,7 +326,7 @@ def image_delete(request, trip_id, place_id, image_id, *args, **kwargs):
     )
 
 
-class PlaceAdd(LoginRequiredMixin, View):
+class PlaceToggle(LoginRequiredMixin, View):
 
     def post(self, request, trip_id, place_id):
         trip = get_object_or_404(Trip, id=trip_id)

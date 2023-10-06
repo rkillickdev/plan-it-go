@@ -149,26 +149,63 @@ class PlaceDetail(LoginRequiredMixin, View):
         )
 
 
-class CreateReview(LoginRequiredMixin, View):
-    """
-    """
+@login_required()
+def review_create(request, slug, trip_id, place_id, *args, **kwargs):
 
-    def get(self, request, slug, trip_id, place_id, *args, **kwargs):
-        trip = get_object_or_404(Trip, id=trip_id)
-        place = get_object_or_404(Place, id=place_id)
-        reviews = place.reviews.all().order_by('created_on')
+    trip = get_object_or_404(Trip, id=trip_id)
+    place = get_object_or_404(Place, id=place_id)
+    reviews = place.reviews.all().order_by('created_on')
 
-        return render(
-                request,
-                'trips/review.html',
-                {
-                    'trip': trip,
-                    'place': place,
-                    'reviews': reviews,
-                    'review_form': ReviewForm()
-                }
+    if request.method == "POST":
+        review_form = ReviewForm(data=request.POST)
+        if review_form.is_valid():
+            review_form.instance.profile = request.user.profile
+            review = review_form.save(commit=False)
+            review.place = place
+            review.save()
+            messages.add_message(request, messages.SUCCESS, 'Review Complete!')
 
+        else:
+            review_form = ReviewForm()
+            messages.add_message(
+                request, messages.ERROR, 'There was an error!'
             )
+    else:
+        review_form = ReviewForm()
+
+    return render(
+            request,
+            'trips/review.html',
+            {
+                'trip': trip,
+                'place': place,
+                'reviews': reviews,
+                'review_form': ReviewForm()
+            }
+
+        )
+
+
+# class CreateReview(LoginRequiredMixin, View):
+#     """
+#     """
+
+#     def get(self, request, slug, trip_id, place_id, *args, **kwargs):
+#         trip = get_object_or_404(Trip, id=trip_id)
+#         place = get_object_or_404(Place, id=place_id)
+#         reviews = place.reviews.all().order_by('created_on')
+
+#         return render(
+#                 request,
+#                 'trips/review.html',
+#                 {
+#                     'trip': trip,
+#                     'place': place,
+#                     'reviews': reviews,
+#                     'review_form': ReviewForm()
+#                 }
+
+#             )
 
 
 @login_required()

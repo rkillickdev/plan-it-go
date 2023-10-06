@@ -63,7 +63,7 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-md-6">
+          <div id="map" class="col-md-6">
             MAP
           </div>
           <div class="col-md-6">
@@ -162,5 +162,9 @@
 {% endblock %}
 
 {% block extras %}
+
+{% load static %}
+
+<script src="{% static 'js/maps.js' %}"></script>
 
 {% endblock extras %}

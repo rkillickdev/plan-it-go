@@ -1,3 +1,4 @@
+import os
 from django.shortcuts import render, get_object_or_404, reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
@@ -136,6 +137,8 @@ class PlaceDetail(LoginRequiredMixin, View):
         if trip.places.filter(id=place.id).exists():
             added = True
 
+        g_maps_api_key = os.environ.get('GOOGLE_MAPS_API_KEY')
+
         return render(
             request,
             'trips/place_detail.html',
@@ -145,6 +148,8 @@ class PlaceDetail(LoginRequiredMixin, View):
                 'added': added,
                 'reviews': reviews,
                 'images': images,
+                'g_maps_api_key': g_maps_api_key
+
             }
         )
 

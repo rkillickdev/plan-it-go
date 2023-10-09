@@ -13,9 +13,15 @@
       <div class="col-md-5 d-flex flex-column justify-content-center text-center">
         <h1>{{ trip.title }}</h1>
         <div>
+          {% if request.resolver_match.url_name == 'trip_detail' %}
+            <button class="btn btn-primary">
+              <a href="{% url 'trip_list' %}">Back To  Trips</a>
+            </button>
+          {% else %}
           <button class="btn btn-primary">
             <a href="{% url 'trip_detail' trip.slug trip.id %}">View Your Trip</a>
           </button>
+          {% endif %}
         </div>
       </div>
     </div>

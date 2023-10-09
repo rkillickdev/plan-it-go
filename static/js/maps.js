@@ -15,19 +15,25 @@ const longitude = JSON.parse(document.getElementById('longitude').textContent);
 let num_lat = parseFloat(latitude)
 let num_long = parseFloat(longitude)
 
-console.log(latitude)
-console.log(longitude)
-console.log(num_lat)
-console.log(num_long)
-
+// Initialize and add the map
 let map;
 
 async function initMap() {
+  const position = { lat: num_lat, lng: num_long };
   const { Map } = await google.maps.importLibrary("maps");
+  const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
 
   map = new Map(document.getElementById("map"), {
-    center: { lat: num_lat, lng: num_long },
-    zoom: 18,
+    zoom: 16,
+    center: position,
+    mapId: "DEMO_MAP_ID",
+  });
+
+  // The marker, positioned at Uluru
+  const marker = new AdvancedMarkerElement({
+    map: map,
+    position: position,
+    title: "Uluru",
   });
 }
 

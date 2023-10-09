@@ -1,3 +1,9 @@
+.trip-bg-image {
+    background: url("/static/images/locations/nyc-skyline-1500-100-01.webp");
+    height: 100%;
+}
+
+
 .faded {
     color: rgb(172, 175, 175);
 }

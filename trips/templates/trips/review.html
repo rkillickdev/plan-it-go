@@ -8,26 +8,33 @@
 {% load crispy_forms_tags %}
 
 
-{% crispy review_form %}
+
 
 <section id="reviews" class="reviews mb-4">
     <div class="container">
         <div class="row">
-            {% for review in reviews %}
-            <div class="col-md-4">
-                <div class="card text-center">
-                    <div class="card-header"></div>
-                    <div class="card-body">
-                        <p id="review{{ review.id }}" class=" card-text {% if not review.approved and review.profile == request.user.profile %} faded {% elif not.review.approved %} d-none{% endif %}">{{review.body}}</p>
-                        {% if user.is_authenticated and review.profile.id == user.profile.id %}
-                        <button class="btn btn-edit" review_id="{{ review.id }}" review_rating="{{ review.user_rating }}">Edit</button>
-                        <button class="btn btn-delete" review_id="{{ review.id }}" data-bs-toggle="modal" data-bs-target="#modal-review-delete" >Delete</button> 
-                        {% endif %}   
-                    </div>
-                    <div class="card-footer"></div>
-                </div>
+            <div class="col-lg-5 card mt-4">
+                {% crispy review_form %}
             </div>
-            {% endfor %}
+            <div class="col-lg-7 mt-4">
+                {% for review in reviews %}
+                    <div class="card mb-4 text-center">
+                        <div class="card-header"></div>
+                        <div class="card-body">
+                            <p id="review{{ review.id }}" class=" card-text {% if not review.approved and review.profile == request.user.profile %} faded {% elif not.review.approved %} d-none{% endif %}">{{review.body}}</p>
+                            {% if user.is_authenticated and review.profile.id == user.profile.id %}
+                            <button class="btn btn-edit" review_id="{{ review.id }}" review_rating="{{ review.user_rating }}">Edit</button>
+                            <button class="btn btn-delete" review_id="{{ review.id }}" data-bs-toggle="modal" data-bs-target="#modal-review-delete" >Delete</button> 
+                            {% endif %}   
+                        </div>
+                        <div class="card-footer d-flex flex-column flex-md-row justify-content-between">
+                            <div>{{ review.created_on }}</div>
+                            <div>{{ review.profile.screen_name}}</div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            
         </div>
     </div>
 </section>

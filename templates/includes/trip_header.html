@@ -2,7 +2,49 @@
 
 {% load static %}
 <!-- Trip Summary Section -->
+
 <section class="trip-summary">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 d-flex justify-content-between">
+        <div class="d-flex">
+          {% if not request.resolver_match.url_name == 'trip_detail' %}
+            <a class="align-self-center" href="{% url 'trip_detail' trip.slug trip.id %}">
+              <i class="fa-solid fa-backward fa-xl"></i>
+            </a>    
+          {% endif %}
+          <h1 class="ms-2 align-self-center">{{ trip.title }}</h1>
+        </div>
+        <div>
+          <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#trip-details" aria-expanded="false" aria-controls="trip-details">
+            <i class="fa-solid fa-arrow-down fa-xl"></i>
+          </button>
+        </div>  
+      </div>
+    </div>
+    <div class="row collapse" id="trip-details">
+      <div class="image-container mb-5 px-4">
+        <img src="{% static 'images/locations/nyc-skyline-1500-100-01.webp' %}" alt="" class="img-fluid">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- <p>
+  <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+    Link with href
+  </a>
+  <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+    Button with data-bs-target
+  </button>
+</p>
+<div class="collapse" id="collapseExample">
+  <div class="card card-body">
+    Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
+  </div>
+</div> -->
+
+<!-- <section class="trip-summary">
   <div class="container">
     <div class="row flex-wrap-reverse">
       <div class="col-md-7">
@@ -26,5 +68,8 @@
       </div>
     </div>
   </div>
-</section>
+</section> -->
+
+
+
 

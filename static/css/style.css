@@ -23,6 +23,10 @@ https://stackoverflow.com/questions/37287153/how-to-get-images-in-bootstraps-car
     }    
 }
 
+#map {
+    height: 600px;
+}
+
 
 .faded {
     color: rgb(172, 175, 175);

@@ -112,12 +112,15 @@ class TripDetailView(LoginRequiredMixin, View):
         page = request.GET.get('page')
         places = p.get_page(page)
 
+        g_maps_api_key = os.environ.get('GOOGLE_MAPS_API_KEY')
+
         return render(
             request,
             'trips/trip_detail.html',
             {
                 'trip': trip,
                 'places': places,
+                'g_maps_api_key': g_maps_api_key
             }
 
         )

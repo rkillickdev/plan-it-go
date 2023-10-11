@@ -10,10 +10,10 @@
 <section class="trip-planner">
     <div class="container">
         <div class="row my-3">
-            <div class="col-md-7">
-                <div id="map-cluster"></div>
+            <div class="col-lg-7">
+                <div id="map"></div>
             </div>
-            <div class="col-md-5 d-flex flex-column">
+            <div class="col-lg-5 d-flex flex-column">
                 <h2 class="text-center">Your Planner</h2>
                 <div class="accordion accordion-flush" id="planner-accordion">
                     {% for place in trip.places.all %}
@@ -79,14 +79,13 @@
                 </div>  
             </div>
         </div>
-        <nav aria-label="Page navigation">
+        <nav aria-label=" recommendations page navigation">
             <ul class="pagination justify-content-center">
                 {% if places.has_previous %}
-                <li><a href="?page={{ places.previous_page_number }}" class="page-link">&laquo; PREV </a></li>
+                <li class="page-item"><a href="?page={{ places.previous_page_number }}" class="page-link">&laquo; PREV </a></li>
                 {% endif %}
                 {% if places.has_next %}
-                <li><a href="?page={{ places.next_page_number }}" class="page-link"> NEXT &raquo;</a></li>
-        
+                <li class="page-item"><a href="?page={{ places.next_page_number }}" class="page-link"> NEXT &raquo;</a></li>
                 {% endif %}
             </ul>
         </nav>
@@ -103,3 +102,15 @@
 
 
 {% endblock %}
+
+{% block extras %}
+
+
+{{ trip.location.latitude|json_script:"latitude"}}
+{{ trip.location.longitude|json_script:"longitude"}}
+{{ g_maps_api_key|json_script:"maps-api-key" }}
+
+{% load static %}
+<script src="{% static 'js/maps.js' %}"></script>
+
+{% endblock extras %}

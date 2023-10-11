@@ -11,7 +11,9 @@
                     <div>
                         <a href="{% url 'create_trip' %}"><i class="fa-solid fa-plus"></i></a>
                     </div>
-                    {% if trip_list.count == 0 %}
+                    {% if trip_list.count == 0 and not request.user.profile.screen_name %}
+                        <a href="{% url 'update_profile' request.user.profile.id %}">Make A Profile</a>
+                    {% elif trip_list.count == 0 %}
                     <h1>
                         Start Planning A Trip...
                     </h1>

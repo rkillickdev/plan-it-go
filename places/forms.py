@@ -42,17 +42,7 @@ class ReviewForm(ModelForm):
                 Submit('Submit', 'Post Review', css_id='submitButton'),
                 css_class="my-4"
             )
-            
-
             )
-
-        # self.helper.layout = Layout(
-        #     Fieldset(
-        #         'Leave A Review for {{place.name}}',
-        #         Field('body', placeholder='Tell us about your visit...')
-        #     ),
-        #     Submit('Submit', 'Post Review', css_id='submitButton')
-        # )
 
     class Meta:
         model = Review

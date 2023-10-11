@@ -102,11 +102,9 @@ class TripDetailView(LoginRequiredMixin, View):
     def get(self, request, slug, trip_id, *args, **kwargs):
 
         trip = get_object_or_404(Trip, id=trip_id)
-        # places = Place.objects.filter(location=trip.location).exclude(
-        #     id__in=trip.places.values_list('id', flat=True)).order_by(
-        #         'ranking_position'
-        #     )
 
+        # Used the following tutorial to help with pagination for function based views:
+        # https://www.youtube.com/watch?v=N-PB-HMFmdo&list=PLCC34OHNcOtqW9BJmgQPPzUpJ8hl49AGy&index=18
         p = Paginator(Place.objects.filter(location=trip.location).exclude(
             id__in=trip.places.values_list('id', flat=True)).order_by(
                 'ranking_position'

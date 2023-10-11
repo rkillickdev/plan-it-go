@@ -3,6 +3,7 @@ from django.shortcuts import render, get_object_or_404, reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.core.paginator import Paginator
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.views import View
@@ -101,10 +102,17 @@ class TripDetailView(LoginRequiredMixin, View):
     def get(self, request, slug, trip_id, *args, **kwargs):
 
         trip = get_object_or_404(Trip, id=trip_id)
-        places = Place.objects.filter(location=trip.location).exclude(
+        # places = Place.objects.filter(location=trip.location).exclude(
+        #     id__in=trip.places.values_list('id', flat=True)).order_by(
+        #         'ranking_position'
+        #     )
+
+        p = Paginator(Place.objects.filter(location=trip.location).exclude(
             id__in=trip.places.values_list('id', flat=True)).order_by(
                 'ranking_position'
-            )
+            ), 3)
+        page = request.GET.get('page')
+        places = p.get_page(page)
 
         return render(
             request,

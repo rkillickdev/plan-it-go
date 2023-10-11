@@ -1,6 +1,26 @@
-.trip-bg-image {
+/* .trip-bg-image {
     background: url("/static/images/locations/nyc-skyline-1500-100-01.webp");
     height: 100%;
+} */
+
+/*Used the following article to learn about making all images in a card the same height:
+
+https://stackoverflow.com/questions/37287153/how-to-get-images-in-bootstraps-card-to-be-the-same-height-width
+
+*/
+
+.card-img-top {
+    width: 100%;
+    height: 20vw;
+    object-fit: cover;
+}
+
+/* Media queries for mobile devices from 767px and down increases height to value 50% of viewport width*/
+
+@media only screen and (max-width: 767px) {
+    .card-img-top {
+        height: 50vw;
+    }    
 }
 
 

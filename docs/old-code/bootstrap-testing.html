@@ -44,3 +44,50 @@
         </div>   
     </div>
 </section>
+
+<!-- Carousel code originally used to display recommended places -->
+
+<section class="recommendations">
+    <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <!-- Recommendations Carousel -->
+            <div id="recommendationsCarousel" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="row">
+                        <!-- <div class="carousel-item {% if forloop.first %} active {% endif %}"> -->
+                        {% for place in places %}
+                            <div class="col-sm-3">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <a href="{% url 'place_detail' trip.slug trip.id place.id %}">{{ place.name }}</a>
+                                    </div>
+                                    <img class="img-fluid" src="{{ place.image }}" alt="{{ place.name }}">
+                                    <div class="card-footer d-flex">
+                                        <a href="#" class="btn btn-primary">
+                                        </a>        
+                                    </div>
+                                </div>
+                            </div>
+                    {% if forloop.counter|divisibleby:4 and not forloop.last %}
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="row">
+                    {% endif %}
+                        {% endfor %}
+                        </div> 
+                    </div>
+                <!-- Carousel Buttons -->
+                <button class="carousel-control-prev" type="button" data-bs-target="#recommendationsCarousel" data-bs-slide="prev">
+                <i class="fas fa-arrow-circle-left fa-3x text-secondary"></i>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#recommendationsCarousel" data-bs-slide="next">
+                <i class="fas fa-arrow-circle-right fa-3x text-secondary"></i>
+                </button>
+            </div>
+          </div>
+        </div>
+      </div>
+</section>

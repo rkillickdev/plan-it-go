@@ -102,6 +102,13 @@ class TripDetailView(LoginRequiredMixin, View):
     def get(self, request, slug, trip_id, *args, **kwargs):
 
         trip = get_object_or_404(Trip, id=trip_id)
+        geo_data = list(Place.objects.filter(id__in=trip.places.values_list(
+            'id', flat=True)).values('latitude', 'longitude'))
+        
+        for g in geo_data:
+            for k, v in g.items():
+                print(k)
+                print(v)
 
         # Used the following tutorial to help with pagination for function based views:
         # https://www.youtube.com/watch?v=N-PB-HMFmdo&list=PLCC34OHNcOtqW9BJmgQPPzUpJ8hl49AGy&index=18
@@ -120,7 +127,8 @@ class TripDetailView(LoginRequiredMixin, View):
             {
                 'trip': trip,
                 'places': places,
-                'g_maps_api_key': g_maps_api_key
+                'g_maps_api_key': g_maps_api_key,
+                'geo_data': geo_data
             }
 
         )

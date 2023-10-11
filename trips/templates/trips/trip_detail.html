@@ -100,6 +100,13 @@
     <a href="{% url 'update_trip' trip.slug trip.id %}">Update Trip Details</a>
 </div>
 
+{% for g in geo_data %}
+    <div>
+        {{ g.latitude}}
+        {{ g.longitude}}
+    </div>
+    
+{% endfor %}
 
 {% endblock %}
 
@@ -108,9 +115,10 @@
 
 {{ trip.location.latitude|json_script:"latitude"}}
 {{ trip.location.longitude|json_script:"longitude"}}
+{{ geo_data|json_script:"geo_data"}}
 {{ g_maps_api_key|json_script:"maps-api-key" }}
 
 {% load static %}
-<script src="{% static 'js/maps.js' %}"></script>
+<script src="{% static 'js/map-cluster.js' %}"></script>
 
 {% endblock extras %}

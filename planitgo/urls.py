@@ -24,4 +24,5 @@ urlpatterns = [
     path('profiles/', include('profiles.urls'), name='profile_urls'),
     path('trips/', include('trips.urls'), name='trip_urls'),
     path('places/', include('places.urls'), name='place_urls'),
+    path('ratings/', include('star_ratings.urls', namespace='ratings')),
 ]

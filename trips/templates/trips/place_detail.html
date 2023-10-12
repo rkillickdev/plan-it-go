@@ -2,7 +2,11 @@
 
 {% block content %}
 
+{% load ratings %}
+
 {% load crispy_forms_tags %}
+
+{% ratings place %}
 
 <!-- Trip Summary -->
 {% include 'includes/trip_header.html' %}

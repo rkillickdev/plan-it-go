@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'cloudinary',
     'django_summernote',
     'crispy_forms',
+    'star_ratings',
     'home',
     'locations',
     'profiles',

@@ -15,6 +15,12 @@ https://stackoverflow.com/questions/37287153/how-to-get-images-in-bootstraps-car
     object-fit: cover;
 }
 
+.header {
+    background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5)), url("/static/images/hero/map-pins-hero-1500x1000-compress.webp") left center no-repeat;
+    background-size: cover;
+    height: 600px;
+}
+
 /* Media queries for mobile devices from 767px and down increases height to value 50% of viewport width*/
 
 @media only screen and (max-width: 767px) {

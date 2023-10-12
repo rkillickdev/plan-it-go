@@ -1,1 +1,29 @@
 @import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Montserrat:wght@300;500;700&family=Source+Sans+Pro:wght@400;700&display=fallback');
+
+/* Global */
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    color: var(--bs-dark);
+    background-color: var(--bs-light);
+    // background-color: var(--bs-light);
+}
+
+/* Navbar */
+
+.navbar {
+    background-color: var(--bs-light);
+}
+
+/* Header */
+
+.header {
+    background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5)), url("/static/images/hero/map-pins-hero-1500x1000-compress.webp") left center no-repeat;
+    background-size: cover;
+    height: 600px;
+}

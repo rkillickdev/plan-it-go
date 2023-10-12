@@ -2,8 +2,14 @@
 $font-family-sans-serif: 'Source Sans Pro', sans-serif;
 
 // Colors
-$primary: #38ABA8;
-$secondary: #DFC2B9;
-$light: #F3F7F6;
+$primary: #307D8C;
+$secondary: #E5D343;
+// $secondary: #eaaf9f;
+$dark: #307D8C;
+$light: #E3F1F1;
+
+/* Navbar */
+ 
+$navbar-light-color: $primary;
 
 @import'../../node_modules/bootstrap/scss/bootstrap.scss';

@@ -7,21 +7,36 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <div class="text-container p-4 d-flex flex-column justify-content-center h-100 mb-5 text-center">
-                    <div>
-                        <a href="{% url 'create_trip' %}"><i class="fa-solid fa-plus"></i></a>
-                    </div>
+                <div class="text-container p-4 d-flex flex-column justify-content-center h-100 my-5 text-center">
                     {% if trip_list.count == 0 and not request.user.profile.screen_name %}
                         <a href="{% url 'update_profile' request.user.profile.id %}">Make A Profile</a>
                     {% elif trip_list.count == 0 %}
                     <h1>
-                        Start Planning A Trip...
+                        Plan Your First Trip...
                     </h1>
+                    <div>
+                        <a href="{% url 'create_trip' %}"><i class="fa-solid fa-plus fa-xl"></i></a>
+                    </div>
                     {% else %}
                     <h1>
                         Where to Next??...
                     </h1>
                     {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-7">
+                <div class="image-container px-4">
+                    <img src="{% static 'images/yellow-van-1500x1000-compress.webp'%}" alt="" class="img-fluid">
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="text-container d-flex flex-column justify-content-center h-100 mb-5 px-4">
+                    <h3 class="display-6 text-center">Need Inspiration?</h3>
+                    <i class="fa-solid fa-passport fa-xl p-4 text-center"></i>
+                    <p>Be inspired by the trips that have already been mapped out on PlanIt Go. All it takes is a spark, so let your imagination run free...</p>
+                    <a href="#browse" class="btn btn-primary">Browse Trips</a>
                 </div>
             </div>
         </div>
@@ -45,7 +60,7 @@
             {% endfor %}    
         </div>
         {% else %}
-            <p>LOOKING FOR INSPIRATION?</p>
+            
         {% endif %}
     </div>
 </section>

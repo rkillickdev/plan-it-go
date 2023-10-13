@@ -23,6 +23,10 @@ $spacers: (
   8: $spacer * 12,
 ) !default;
 
+/* Borders */
+
+$border-color: $primary;
+
 // Buttons
 $button-padding-x: 20px;
 $button-padding-y: 10px;
@@ -37,12 +41,22 @@ $btn-padding-y-lg: $button-padding-y;
 /* Navbar */
 $navbar-light-color: $dark;
 
+/* Links */
+
+$link-color: $dark;
+
+/* Nav Tabs */
+
+$nav-tabs-link-active-color: $dark;
+$nav-tabs-link-hover-border-color: $primary;
+
 /* Accordion */
 $accordion-body-padding-y: 0;
 $accordion-body-padding-x: 0;
-$accordion-color: $light;
 $accordion-bg: $primary;
+$accordion-button-active-bg: $primary;
 $accordion-icon-color: $light;
+$accordion-icon-active-color: $light;
 $accordion-button-active-color: $dark;
 $accordion-button-focus-border-color: none;
 $accordion-button-focus-box-shadow: none;

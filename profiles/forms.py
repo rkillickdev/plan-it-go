@@ -59,7 +59,7 @@ class ProfileForm(ModelForm):
                 Submit('Submit', 'Create Profile', css_id='submitButton'),
                 css_class="my-4"
             )
-            )
+        )
 
     class Meta:
         model = Profile

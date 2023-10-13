@@ -115,14 +115,17 @@
         <div class="row mt-4">
           {% for image in images %}
           <div class="col-md-4">
-            <div class="image-container">
+            <div class="image-container mb-4">
               <a data-bs-toggle="modal" data-bs-target="#modal1">
                 <img src="{{ image.path.url }}" alt="" class="img-fluid img-size-consistent image-solo">    
               </a>
             </div>
           </div>
-          {% endfor %}
+          {% if forloop.counter|divisibleby:3 %}
         </div>
+        <div class="row">
+          {% endif %}
+          {% endfor %}
       </div>
     </div>
   </div>

@@ -15,14 +15,17 @@
 .header {
   background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5)), url("/static/images/hero/map-pins-hero-1500x1000-compress.webp") left center no-repeat;
   background-size: cover;
+  background-position: center;
   height: 600px;
 }
 
 /* Trip Header */
 .trip-bg-image {
-  background: url("/static/images/placeholders/trip-placeholder-globe-in-hand.webp") left center no-repeat;
+  background: url("/static/images/placeholders/trip-placeholder-globe-in-hand.webp") left center;
   opacity: 0.5;
   background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
   height: 600px;
 }
 
@@ -50,7 +53,7 @@
 
 /* Media queries for mobile devices from 767px and down increases height to value 50% of viewport width*/
 @media only screen and (max-width: 767px) {
-  .card-img-top {
+  .img-size-consistent {
     height: 50vw;
   }
 }

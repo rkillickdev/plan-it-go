@@ -5,8 +5,6 @@ from cloudinary.models import CloudinaryField
 from locations.models import Location
 from profiles.models import Profile
 
-placeholder = " "
-
 
 class Place(models.Model):
     """
@@ -24,7 +22,7 @@ class Place(models.Model):
     slug = models.SlugField(max_length=50)
     location_string = models.CharField(max_length=150, null=True)
     description = models.TextField(null=True)
-    image = models.CharField(max_length=150, default=placeholder)
+    image = models.CharField(max_length=150, default='placeholder')
     ranking_position = models.IntegerField(null=True)
     rating = models.IntegerField(null=True)
     phone = models.CharField(max_length=50, null=True)
@@ -89,7 +87,7 @@ class Image(models.Model):
         Place, on_delete=models.CASCADE, related_name="images"
     )
     path = CloudinaryField(
-        'image', default=placeholder, folder="/images/places",
+        'image', default='placeholder', folder="/images/places",
         format="webp"
     )
     created_on = models.DateTimeField(auto_now_add=True)

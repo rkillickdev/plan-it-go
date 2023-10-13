@@ -2,14 +2,21 @@
 
 {% block content %}
 
+{% load static%}
 {% load crispy_forms_tags %}
 
-<section id="register-profile">
+<section id="enter-profile-details" class="mt-6">
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-12 w-75">
-                {% crispy form %}
-                <!-- <button type="submit">{% if request.user.profile.screen_name %} Update Profile {% else %} Create Profile {% endif %}</button> -->
+        <div class="row">
+            <div class="col-lg-7">
+                <div class="image-container">
+                    <img src="{% static 'images/profiles/globe-profile-face-1000x1500-compress.webp'%}" alt="" class="img-fluid">
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div class="form-container">
+                    {% crispy form %}
+                </div>
             </div>
         </div>
     </div>

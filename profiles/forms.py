@@ -49,15 +49,15 @@ class ProfileForm(ModelForm):
                 HTML("""
                 <h2>Make A Profile</h2>
                 """), css_class="py-2"),
-            Field('first_name', placeholder='First Name'),
-            Field('surname', placeholder='Surname'),
-            Field('screen_name', placeholder='Give yourself a screen name...'),
-            Field('date_of_birth', placeholder='When were you born?'),
-            Field('about', placeholder='Tell us about you...'),
-            Field('profile_image'),
+            Field('first_name', css_class="mb-4", placeholder='First Name'),
+            Field('surname', css_class="mb-4", placeholder='Surname'),
+            Field('screen_name', css_class="mb-4", placeholder='Give yourself a screen name...'),
+            Field('date_of_birth', css_class="mb-4", placeholder='When were you born?'),
+            Field('about', css_class="mb-4", placeholder='Tell us about you...'),
+            Field('profile_image', css_class="mb-4"),
             Div(
                 Submit('Submit', 'Create Profile', css_id='submitButton'),
-                css_class="my-4"
+                css_class="mb-4"
             )
         )
 

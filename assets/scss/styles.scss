@@ -28,3 +28,25 @@ body {
     background-size: cover;
     height: 600px;
 }
+
+/* Card Images */
+
+.img-size-consistent {
+    width: 100%;
+    height: 20vw;
+    object-fit: cover;
+}
+
+/* Maps */
+
+#map {
+    height: 600px;
+}
+
+/* Media queries for mobile devices from 767px and down increases height to value 50% of viewport width*/
+
+@media only screen and (max-width: 767px) {
+    .card-img-top {
+        height: 50vw;
+    }    
+}

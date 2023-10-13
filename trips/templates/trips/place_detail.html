@@ -2,17 +2,11 @@
 
 {% block content %}
 
-{% load ratings %}
-
-{% load crispy_forms_tags %}
-
-{% ratings place %}
-
 <!-- Trip Summary -->
 {% include 'includes/trip_header.html' %}
 
 <!-- Place Summary Section -->
-<section class="place-summary">
+<section class="place-summary mb-5">
   <div class="container">
     <div class="row">
       <div class="col-md-6">
@@ -21,23 +15,28 @@
         </div>
       </div>
       <div class="col-md-6">
-        <div class="text-container p-4 d-flex flex-column justify-content-between h-100 mb-5">
-          <h1>{{ place.name }}</h1>
+        <div class="text-container p-2 d-flex flex-column justify-content-between h-100 text-center">
+          <h2>{{ place.name }}</h2>
           <form class="d-inline" action="{% url 'toggle_place' trip.id place.id %}" method="POST">
             {% csrf_token %}
             {% if added %}
-              <button type="submit" name="place_id" value="{{place.id}}" class="btn-like"><i class="fa-solid fa-minus"></i></button>
-              <span>Remove From Your Trip</span>
+              <div class="vstack gap-3">
+                <button type="submit" name="place_id" value="{{place.id}}" class="btn-trip-add"><i class="fa-solid fa-circle-minus fa-4x"></i></i></button>
+                <p>Remove From Your Trip</p>
+              </div>
             {% else %}
-            <button type="submit" name="place_id" value="{{place.id}}" class="btn-like"><i class="fa-solid fa-plus"></i></button>
+            <button type="submit" name="place_id" value="{{place.id}}" class="btn-trip-add"><i class="fa-solid fa-plus"></i></button>
             <span>Add To Your Trip</span>
             {% endif %}
           </form>
-          <button class="btn btn-primary">
-            <a href="{% url 'trip_detail' trip.slug trip.id %}">View More Recommendations</a>
-          </button>
+          <div class="justify-content-center">
+            <a href="{% url 'trip_detail' trip.slug trip.id %}" class="btn btn-primary text-light button-link">More Recommendations</a>
+          </div>
         </div>
       </div>
+    </div>
+    <div class="row">
+
     </div>
   </div>
 </section>

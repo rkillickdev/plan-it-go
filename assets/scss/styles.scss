@@ -8,16 +8,9 @@
     margin: 0;
 }
 
-body {
-    color: var(--bs-dark);
-    background-color: var(--bs-light);
-    // background-color: var(--bs-light);
-}
-
 /* Navbar */
 
 .navbar {
-    background-color: var(--bs-light);
     box-shadow: 0 2px 4px 0 rgb(0 0 0 / 10%);
 }
 
@@ -27,6 +20,24 @@ body {
     background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5)), url("/static/images/hero/map-pins-hero-1500x1000-compress.webp") left center no-repeat;
     background-size: cover;
     height: 600px;
+}
+
+/* Trip Header */
+
+.trip-bg-image{
+    background: url('/static/images/placeholders/trip-placeholder-globe-in-hand.webp') left center no-repeat;
+    background-size: cover;
+    height: 600px;
+}
+
+.btn-trip-add{
+    color: var(--bs-dark);
+    border: none;
+    background: transparent;
+}
+
+.button-link{
+    width: fit-content;
 }
 
 /* Card Images */

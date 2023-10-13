@@ -2,10 +2,12 @@
 $font-family-sans-serif: 'Source Sans Pro', sans-serif;
 
 // Colors
-$primary: #307D8C;
+$primary: #E2C3B6;
 $secondary: #E5D343;
 $dark: #307D8C;
 $light: #fff;
+$body-color: #307D8C;
+$body-bg: $light; 
 
 // Spacers
 $spacer: 1rem !default;
@@ -21,8 +23,28 @@ $spacers: (
   8: $spacer * 12,
 ) !default;
 
+// Buttons
+$button-padding-x: 20px;
+$button-padding-y: 10px;
+
+$btn-padding-x: $button-padding-x;
+$btn-padding-x-sm: $button-padding-x;
+$btn-padding-x-lg: $button-padding-x;
+$btn-padding-y: $button-padding-y;
+$btn-padding-y-sm: $button-padding-y;
+$btn-padding-y-lg: $button-padding-y;
+
 /* Navbar */
- 
-$navbar-light-color: $primary;
+$navbar-light-color: $dark;
+
+/* Accordion */
+$accordion-body-padding-y: 0;
+$accordion-body-padding-x: 0;
+$accordion-color: $light;
+$accordion-bg: $primary;
+$accordion-icon-color: $light;
+$accordion-button-active-color: $dark;
+$accordion-button-focus-border-color: none;
+$accordion-button-focus-box-shadow: none;
 
 @import'../../node_modules/bootstrap/scss/bootstrap.scss';

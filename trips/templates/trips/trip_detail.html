@@ -35,10 +35,9 @@
                                             </div>
                                         </div>
                                         <div class="d-flex flex-column justify-content-between px-4 gap-2 mt-2 mb-4">
-                                            <form class="align-self-center" action="{% url 'remove_place' trip.id place.id %}" method="POST">
-                                                {% csrf_token %}
-                                                <button type="submit" name="place_id" value="{{place.id}}" class="btn btn-primary btn-icon"><i class="fa-solid fa-circle-xmark fa-4x"></i></button>
-                                            </form>
+                                            <a class="delete-planner-item" trip_id="{{ trip.id }}" place_id="{{ place.id }}" place_name="{{ place.name }}" data-bs-toggle="modal" data-bs-target="#modal-item-delete-confirm">
+                                                <i class="fa-solid fa-circle-xmark fa-4x"></i>
+                                            </a>
                                             <div class="d-flex justify-content-between">
                                                 <a href="{% url 'review' trip.slug trip.id place.id %}" class="btn btn-dark">Review</a>
                                                 <a href="{% url 'add_image' trip.slug trip.id place.id %}" class="btn btn-dark">Upload Image</a>         
@@ -101,6 +100,24 @@
     
 {% endfor %}
 
+<!-- Planner Item Delete Confirm Modal -->
+<div id="modal-item-delete-confirm" class="modal fade">
+    <div class="modal-dialog modal-lg mt-7">
+      <div class="modal-content bg-primary p-5">
+        <div class="row">
+          <div class="col-12 d-flex flex-column justify-content-between">
+            <p>Are you sure you want to delete <span id="item-place"></span> from your trip?</p>
+            <form id="item-delete-form" class="align-self-center" action="" method="POST">
+                {% csrf_token %}
+                <button id="item-delete-confirm" type="submit" name="place_id" value="" class="btn btn-primary btn-icon"><i class="fa-solid fa-circle-xmark fa-4x"></i></button>
+            </form>
+            <button class="btn btn-light" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 {% endblock %}
 
 {% block extras %}
@@ -113,5 +130,6 @@
 
 {% load static %}
 <!-- <script src="{% static 'js/map-cluster.js' %}"></script> -->
+<script src="{% static 'js/delete-confirm-modals.js' %}"></script>
 
 {% endblock extras %}

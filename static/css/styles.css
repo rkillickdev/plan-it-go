@@ -56,6 +56,12 @@ a {
   opacity: 0.2;
 }
 
+.accordion-flush .accordion-collapse {
+  border-color: var(--bs-primary);
+  border-width: var(--bs-border-width);
+  border-style: solid;
+}
+
 /* Maps */
 #map {
   height: 600px;

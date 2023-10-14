@@ -92,12 +92,17 @@
           <div class="carousel-inner">
             {% for review in reviews %}
               <div class="carousel-item {% if forloop.first %} active {% endif %}">
-                <div class="d-flex flex-column justify-content-center align-items-center text-center">
-                  <img src="{% static 'images/placeholders/globe-profile-face-compress-square.webp'%}" alt="" class="rounded-circle" width="120">
-                  <p class="w-50 my-4 fst-italic fs-4 mb-4">
-                    {{review.body}}    
-                  </p>
-                </div>
+                <a data-bs-toggle="modal" data-bs-target="#modal-review-solo">
+                  <div class="review-solo d-flex flex-column justify-content-center align-items-center text-center" review_id="{{ review.id }}">
+                    <img src="{% static 'images/placeholders/globe-profile-face-compress-square.webp'%}" alt="" class="rounded-circle" width="120">
+                    <p id="review-title{{review.id}}" class="w-50 my-4 fst-italic fs-4 mb-4">
+                      {{ review.title }}    
+                    </p>
+                    <p id="review-body{{review.id}}" class="d-none">
+                      {{ review.body }}
+                    </p>
+                  </div>
+                </a>
               </div>
             {% endfor %}
           </div>
@@ -116,7 +121,7 @@
           {% for image in images %}
           <div class="col-md-4">
             <div class="image-container mb-4">
-              <a data-bs-toggle="modal" data-bs-target="#modal1">
+              <a data-bs-toggle="modal" data-bs-target="#modal-image-solo">
                 <img src="{{ image.path.url }}" alt="" class="img-fluid img-size-consistent image-solo">    
               </a>
             </div>
@@ -131,14 +136,34 @@
   </div>
 </section>
 
-<!-- Image Modal -->
-<div id="modal1" class="modal fade">
+<!-- Image Solo Modal -->
+<div id="modal-image-solo" class="modal fade">
   <div class="modal-dialog modal-lg mt-7">
-    <div class="modal-content bg-secondary p-5">
+    <div class="modal-content bg-primary p-5">
       <div class="row">
         <div class="col-12 d-flex flex-column justify-content-between">
           <img id="solo-modal-image" src="" alt="" class="img-fluid">
           <button class="btn btn-light" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Review Solo Modal -->
+<div id="modal-review-solo" class="modal fade">
+  <div class="modal-dialog modal-lg mt-7">
+    <div class="modal-content bg-primary p-5">
+      <div class="row">
+        <div class="col-12 d-flex flex-column justify-content-between">
+          <div class="card align-items-center">
+            <img id="solo-review-profile" src="" class="rounded-circle" width="120" alt="User Profile Image">
+            <div class="card-body">
+              <h5 id="solo-review-title" class="card-title text-center"></h5>
+              <p id="solo-review-body" class="card-text"></p>
+              <button class="btn btn-light text-center" data-bs-dismiss="modal">Close</button>  
+            </div>
+          </div>
         </div>
       </div>
     </div>

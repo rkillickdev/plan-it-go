@@ -23,11 +23,11 @@
             {% csrf_token %}
             {% if added %}
               <div class="vstack gap-3">
-                <button type="submit" name="place_id" value="{{place.id}}" class="btn-trip-add"><i class="fa-solid fa-circle-minus fa-4x"></i></i></button>
+                <button type="submit" name="place_id" value="{{place.id}}" class="btn-icon"><i class="fa-solid fa-circle-minus fa-4x"></i></i></button>
                 <p>Remove From Your Trip</p>
               </div>
             {% else %}
-            <button type="submit" name="place_id" value="{{place.id}}" class="btn-trip-add"><i class="fa-solid fa-plus"></i></button>
+            <button type="submit" name="place_id" value="{{place.id}}" class="btn-icon"><i class="fa-solid fa-plus"></i></button>
             <span>Add To Your Trip</span>
             {% endif %}
           </form>
@@ -161,7 +161,7 @@
             <div class="card-body">
               <h5 id="solo-review-title" class="card-title text-center"></h5>
               <p id="solo-review-body" class="card-text"></p>
-              <button class="btn btn-light text-center" data-bs-dismiss="modal">Close</button>  
+              <button class="btn btn-light" data-bs-dismiss="modal">Close</button>  
             </div>
           </div>
         </div>
@@ -178,7 +178,7 @@
 {{ place.latitude|json_script:"latitude"}}
 {{ place.longitude|json_script:"longitude"}}
 {{ g_maps_api_key|json_script:"maps-api-key" }}
-<script src="{% static 'js/maps.js' %}"></script>
+<!-- <script src="{% static 'js/maps.js' %}"></script> -->
 <script src="{% static 'js/image-modal.js' %}"></script>
 
 {% endblock extras %}

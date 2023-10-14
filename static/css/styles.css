@@ -6,6 +6,11 @@
   margin: 0;
 }
 
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
 /* Navbar */
 .navbar {
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
@@ -29,7 +34,7 @@
   height: 600px;
 }
 
-.btn-trip-add {
+.btn-icon {
   color: var(--bs-dark);
   border: none;
   background: transparent;
@@ -44,6 +49,11 @@
   width: 100%;
   height: 20vw;
   object-fit: cover;
+}
+
+/* Planner */
+.planner-opaque {
+  opacity: 0.2;
 }
 
 /* Maps */

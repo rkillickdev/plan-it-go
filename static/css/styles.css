@@ -52,8 +52,9 @@ a {
 }
 
 /* Planner */
-.planner-opaque {
-  opacity: 0.2;
+.opaque-image {
+  opacity: 0.5;
+  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5));
 }
 
 .accordion-flush .accordion-collapse {

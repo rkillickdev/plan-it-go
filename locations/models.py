@@ -22,3 +22,12 @@ class Location(models.Model):
 
     def __str__(self):
         return self.city
+
+    def save(self, *args, **kwargs):
+        """
+        Populates the slug field with a slugified version
+        of the city field.
+        https://stackoverflow.com/questions/141487/is-there-an-easy-way-to-populate-slugfield-from-charfield
+        """
+        self.slug = slugify(self.city)
+        super().save(*args, **kwargs)

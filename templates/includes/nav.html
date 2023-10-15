@@ -30,9 +30,9 @@
         {% if user.is_authenticated %}
           {% if request.user.is_staff %}
             <li class="nav-item">
-              <a href="#" class="nav-link
+              <a href="{% url 'destinations' %}" class="nav-link
                 {% if request.resolver_match.url_name == 'add_location' %} active {% endif %} fw-semibold" 
-                >Locations</a>
+                >Destinations</a>
             </li>
             <li class="nav-item">
               <a href="#" class="nav-link

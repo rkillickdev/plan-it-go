@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+{% load crispy_forms_tags %}
+
+{% if request.user.is_staff %}
+
+<section id="enter-destination-details" class="mt-6">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7">
+                <div class="image-container">
+                    <img src="{% static 'images/map-brazil-hearts-1000x1500-compress.webp'%}" alt="" class="img-fluid d-none d-lg-block">
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div class="form-container">
+                    {% crispy form %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endif %}
+
+<section id="destination-list">
+    <div class="container">
+        <div class="row">
+            {% for destination in destinations %}
+                <div class="col-md-4">
+                    <div class="card text-center h-100">
+                        <img class="card-img-top img-fluid img-size-consistent opaque-image" src="{{ destination.image.url }}" alt="{{ destination.name }}">
+                        <div class="card-img-overlay">
+                            <div class="d-flex flex-column justify-content-center align-items-center h-100">
+                                <h3 class="text-light">{{ destination.city}}</h3> 
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <p>View Trips</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor%}    
+        </div>
+    </div>
+</section>
+
+
+
+
+{% endblock %}
+
+{% block extras %}
+
+{% endblock extras %}

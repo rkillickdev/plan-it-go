@@ -8,14 +8,6 @@ from .forms import LocationForm
 
 class DestinationList(LoginRequiredMixin, CreateView):
     """
-    View where a logged in user can upload an image to the gallery page.
-    Once successfully uploaded, the user is redirected back to the same page
-    where the newly uploaded image is displayed along side all other images
-    for the specified place.
-    The URL parameters passed into the view are accessed from the kwargs.
-    A queryset of images and the specific places object is made avaialble 
-    as part of the context when rendering  the template, by defining the 
-    get_context_data() method.
     """
 
     form_class = LocationForm
@@ -32,4 +24,4 @@ class DestinationList(LoginRequiredMixin, CreateView):
         return context
 
     def get_success_url(self):
-        return reverse_lazy('add_image')
+        return reverse_lazy('locations')

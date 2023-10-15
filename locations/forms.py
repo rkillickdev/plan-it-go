@@ -7,6 +7,8 @@ from .models import Location
 
 
 class LocationForm(ModelForm):
+    latitude = forms.DecimalField(widget=forms.TextInput())
+    longitude = forms.DecimalField(widget=forms.TextInput())
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -33,4 +35,6 @@ class LocationForm(ModelForm):
 
     class Meta:
         model = Location
+
         fields = ['city', 'summary', 'latitude', 'longitude', 'image']
+

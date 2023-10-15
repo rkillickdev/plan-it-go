@@ -28,25 +28,33 @@
           >Home</a>
         </li>
         {% if user.is_authenticated %}
-        <li class="nav-item">
-          {% if request.user.profile.screen_name %}
-          <a href="{% url 'profile_detail' request.user.profile.id %}" class="nav-link
-          {% if request.resolver_match.url_name == 'profile_detail' %} active {% endif %} fw-semibold"  
-          >Profile</a>
+          {% if request.user.is_staff %}
+            <li class="nav-item">
+              <a href="#" class="nav-link
+                {% if request.resolver_match.url_name == 'add_location' %} active {% endif %} fw-semibold" 
+                >Admin</a>
+            </li>
           {% else %}
-          <a href="{% url 'trip_list' %}" class="nav-link fw-semibold">Profile</a>
+            <li class="nav-item">
+              {% if request.user.profile.screen_name %}
+              <a href="{% url 'profile_detail' request.user.profile.id %}" class="nav-link
+              {% if request.resolver_match.url_name == 'profile_detail' %} active {% endif %} fw-semibold"  
+              >Profile</a>
+              {% else %}
+              <a href="{% url 'trip_list' %}" class="nav-link fw-semibold">Profile</a>
+              {% endif %}
+            </li>
+            <li class="nav-item">
+              <a href="{% url 'trip_list' %}" class="nav-link
+                {% if request.resolver_match.url_name == 'trip_list' %} active {% endif %} fw-semibold" 
+                >My Trips</a>
+            </li>
           {% endif %}
-        </li>
-        <li class="nav-item">
-          <a href="{% url 'trip_list' %}" class="nav-link
-            {% if request.resolver_match.url_name == 'trip_list' %} active {% endif %} fw-semibold" 
-            >My Trips</a>
-        </li>
-        <li class="nav-item">
-          <a href="{% url 'account_logout' %}" class="nav-link
-          {% if request.resolver_match.url_name == 'account_logout' %} active {% endif %} fw-semibold" 
-          >Logout</a>
-        </li>
+          <li class="nav-item">
+            <a href="{% url 'account_logout' %}" class="nav-link
+            {% if request.resolver_match.url_name == 'account_logout' %} active {% endif %} fw-semibold" 
+            >Logout</a>
+          </li>
         {% else %}
         <li class="nav-item">
           <a href="#trips" class="nav-link fw-semibold">Trips</a>

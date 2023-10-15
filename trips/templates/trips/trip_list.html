@@ -19,25 +19,33 @@
         <div class="row">
             <div class="col-md-7">
                 <div class="image-container px-4">
-                    <img src="{% static 'images/map-planner-camera-compress.webp'%}" alt="" class="img-fluid">
+                    {% if request.user.is_staff %}
+                        <img src="{% static 'images/map-laptop-admin-1500x1000-compress.webp'%}" alt="" class="img-fluid">
+                    {% else %}
+                        <img src="{% static 'images/map-planner-camera-compress.webp'%}" alt="" class="img-fluid">
+                    {% endif %}
                 </div>
             </div>
             <div class="col-md-5">
                 <div class="text-container p-4 d-flex flex-column justify-content-center h-100 text-center">
-                    {% if trip_list.count == 0 and not request.user.profile.screen_name %}
-                        <h1>Welcome to PlanIt Go</h1>
-                        <h3>A world of adventures await you...</h3>
-                        <p>Congratulations for signing up. You're almost ready to start planning your adventures. We'd love to know a bit more about you and your travels. Click below to add some personal touches to your profile</p>
-                        <a href="{% url 'update_profile' request.user.profile.id %}" class="btn btn-primary">Create Profile</a>
-                    {% else  %}
-                        {% if trip_list.count == 0 %}
-                            <h1>Plan Your First Trip</h1>
-                        {% else %}
-                            <h1>Where to this time?</h1>
+                    {% if request.user.is_staff %}
+                        <h1>Work to do? </h1>
+                    {% else %}
+                        {% if trip_list.count == 0 and not request.user.profile.screen_name %}
+                            <h1>Welcome to PlanIt Go</h1>
+                            <h3>A world of adventures await you...</h3>
+                            <p>Congratulations for signing up. You're almost ready to start planning your adventures. We'd love to know a bit more about you and your travels. Click below to add some personal touches to your profile</p>
+                            <a href="{% url 'update_profile' request.user.profile.id %}" class="btn btn-primary">Create Profile</a>
+                        {% else  %}
+                            {% if trip_list.count == 0 %}
+                                <h1>Plan Your First Trip</h1>
+                            {% else %}
+                                <h1>Where to this time?</h1>
+                            {% endif %}
+                            <div>
+                                <a href="{% url 'create_trip' %}"><i class="fa-solid fa-plus fa-xl"></i></a>
+                            </div>
                         {% endif %}
-                    <div>
-                        <a href="{% url 'create_trip' %}"><i class="fa-solid fa-plus fa-xl"></i></a>
-                    </div>
                     {% endif %}
                 </div>
             </div>

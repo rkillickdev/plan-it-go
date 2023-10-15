@@ -27,8 +27,10 @@
                 <p>Remove From Your Trip</p>
               </div>
             {% else %}
-            <button type="submit" name="place_id" value="{{place.id}}" class="btn-icon"><i class="fa-solid fa-plus"></i></button>
-            <span>Add To Your Trip</span>
+              <div class="vstack gap-3">
+                <button type="submit" name="place_id" value="{{place.id}}" class="btn-icon"><i class="fa-solid fa-circle-plus fa-4x"></i></button>
+                <p>Add To Your Trip</p>
+              </div>
             {% endif %}
           </form>
           <div class="justify-content-center">
@@ -150,25 +152,9 @@
   </div>
 </div>
 
-<!-- Review Solo Modal -->
-<div id="modal-review-solo" class="modal fade">
-  <div class="modal-dialog modal-lg mt-7">
-    <div class="modal-content bg-primary p-5">
-      <div class="row">
-        <div class="col-12 d-flex flex-column justify-content-between">
-          <div class="card align-items-center">
-            <img id="solo-review-profile" src="" class="rounded-circle" width="120" alt="User Profile Image">
-            <div class="card-body">
-              <h5 id="solo-review-title" class="card-title text-center"></h5>
-              <p id="solo-review-body" class="card-text"></p>
-              <button class="btn btn-light" data-bs-dismiss="modal">Close</button>  
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+<!-- MODALS -->
+
+{% include 'includes/solo_review_modal.html' %}
 
 {% endblock %}
 
@@ -179,6 +165,6 @@
 {{ place.longitude|json_script:"longitude"}}
 {{ g_maps_api_key|json_script:"maps-api-key" }}
 <!-- <script src="{% static 'js/maps.js' %}"></script> -->
-<script src="{% static 'js/image-modal.js' %}"></script>
+<script src="{% static 'js/solo-display-modals.js' %}"></script>
 
 {% endblock extras %}

@@ -156,6 +156,42 @@
 #         )
 
 
+"""
+BELOW ARE 2 WAYS TO DELETE LOCATION.  DECIDED AGAINST THIS OPTION AS THE KNOCK
+ON WOULD BE THAT ALL ASSOCIATED PLACES AND TRIPS WOULD ALSO BE DELETED!
+"""
+
+# @login_required()
+# def delete_destination(request, location_id, *args, **kwargs):
+#     location = get_object_or_404(Location, id=location_id)
+
+#     location.delete()
+
+#     if image.profile.id == request.user.profile.id:
+#         location.delete()
+#         messages.add_message(request, messages.SUCCESS, 'Image deleted!')
+#     else:
+#         messages.add_message(request, messages.ERROR, 'You can only delete your own images!')
+
+#     return HttpResponseRedirect(
+#         reverse('locations')
+#     )
+
+
+# class DeleteDestination(LoginRequiredMixin, DeleteView):
+
+#     form_class = LocationForm
+#     model = Location
+#     template_name = 'locations/destinations.html'
+
+#     def get_context_data(self, **kwargs):
+#         context = super(DeleteDestination, self).get_context_data(**kwargs)
+#         context['destinations'] = Location.objects.all().order_by('city')
+#         return context
+
+#     def get_success_url(self):
+#         return reverse_lazy('locations')
+
 # EXPERIMENTING WITH WAYS TO RENDER REVIEW PAGE
 
 

@@ -6,7 +6,7 @@
 
 {% load crispy_forms_tags %}
 
-{% if request.user.is_staff %}
+{% if user.is_authenticated and request.user.is_staff %}
 
 <section id="enter-destination-details" class="mt-6 mb-4">
     <div class="container">
@@ -42,10 +42,11 @@
                             <div id="destination-city{{destination.id}}" class="card-body">
                                 {{destination.city}}
                             </div>
+                            {% if user.is_authenticated and request.user.is_staff %}
                             <div class="d-flex justify-content-between">
-                                <a href="{% url 'update_destination' destination.id destination.slug %}" class="btn btn-primary">Update</a>
-                                <a href="" class="btn btn-primary">Delete</a> 
+                                <a href="{% url 'update_destination' destination.id destination.slug %}" class="btn btn-primary">Update</a> 
                             </div>
+                            {% endif %}
                         </div>
                     </a>
                 </div>

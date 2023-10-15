@@ -52,7 +52,6 @@ for(let city of destinationCities) {
         destinationImage.src = destinationImagePath
         tripIdeasLink.href = `trip_inspiration/${destinationId}/${destinationSlug}`
 
-        deleteConfirm.href = `delete_review/${reviewId}`;
 
 
     })

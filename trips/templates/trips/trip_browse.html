@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% for trip in destination_trips %}
+
+<section class="mt-7">
+    <div>{{ trip }}</div>
+</section>
+
+{% endfor %}
+
+{% endblock %}
+
+{% block extras %}
+
+{% endblock extras %}

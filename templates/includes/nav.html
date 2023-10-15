@@ -32,7 +32,12 @@
             <li class="nav-item">
               <a href="#" class="nav-link
                 {% if request.resolver_match.url_name == 'add_location' %} active {% endif %} fw-semibold" 
-                >Admin</a>
+                >Locations</a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link
+                {% if request.resolver_match.url_name == 'scrape_places' %} active {% endif %} fw-semibold" 
+                >Places</a>
             </li>
           {% else %}
             <li class="nav-item">

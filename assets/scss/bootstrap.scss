@@ -6,7 +6,7 @@ $primary: #E2C3B6;
 $secondary: #E5D343;
 $dark: #307D8C;
 $light: #fff;
-$body-color: #307D8C;
+$body-color: $dark;
 $body-bg: $light; 
 
 // Spacers
@@ -40,6 +40,7 @@ $btn-padding-y-lg: $button-padding-y;
 
 /* Navbar */
 $navbar-light-color: $dark;
+$navbar-light-active-color: $dark;
 
 /* Links */
 

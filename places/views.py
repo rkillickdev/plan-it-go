@@ -28,6 +28,16 @@ class PlaceListView(ListView):
             'ranking_position')
 
 
+class PlaceBrowseDetail(DetailView):
+    """
+    View to used to render details of a place for staff and users
+    that have not signed in.
+    """
+
+    model = Place
+    template_name = 'places/browse_detail.html'
+
+
 @staff_member_required
 def get_places(request):
     form = PlaceForm

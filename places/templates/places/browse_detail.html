@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- Place Summary Section -->
+<section class="place-summary mt-7 mb-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="image-container p-4">
+            <img src="{{ place.image }}" alt="{{ place.name }}" class="img-fluid">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<!-- Place Info Template Included -->
+{% include 'includes/single_place_info.html' %}
+
+{% endblock %}
+
+{% block extras %}
+
+{% load static %}
+
+{{ place.latitude|json_script:"latitude"}}
+{{ place.longitude|json_script:"longitude"}}
+{{ g_maps_api_key|json_script:"maps-api-key" }}
+<!-- <script src="{% static 'js/maps.js' %}"></script> -->
+<script src="{% static 'js/solo-display-modals.js' %}"></script>
+
+{% endblock extras %}

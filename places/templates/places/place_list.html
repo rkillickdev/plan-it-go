@@ -6,7 +6,7 @@
 
 <ul>
     {% for place in place_list %}
-        <li>{{ place.name }} Rank: {{ place.ranking_position }}</li>
+        <li><a href="{% url 'place_browse_detail' place.slug place.id %}">{{ place.name }}</a></li>
     {% endfor %}
 </ul>
 

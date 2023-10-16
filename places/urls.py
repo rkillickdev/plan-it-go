@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import get_places, PlaceListView
+from .views import get_places, PlaceListView, PlaceBrowseDetail
 
 urlpatterns = [
     path(
@@ -12,4 +12,10 @@ urlpatterns = [
         PlaceListView.as_view(),
         name='place_list'
     ),
+    path(
+        '<slug:slug>/<int:pk>',
+        PlaceBrowseDetail.as_view(),
+        name='place_browse_detail'
+    )
+
 ]

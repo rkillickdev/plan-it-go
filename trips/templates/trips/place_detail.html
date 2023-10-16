@@ -4,7 +4,7 @@
 
 {% block content %}
 
-<!-- Trip Summary -->
+<!-- Trip Header Template Included -->
 {% include 'includes/trip_header.html' %}
 
 <!-- Place Summary Section -->
@@ -39,128 +39,16 @@
         </div>
       </div>
     </div>
-    <div class="row">
-
-    </div>
   </div>
 </section>
 
-<!-- Place Info Section-->
-<section class="place-info">
-  <div class="container">
-    <!-- Place Info Tabs -->
-    <nav>
-      <div class="nav nav-tabs" id="nav-tab" role="tablist">
-        <button class="nav-link active" id="nav-details-tab" data-bs-toggle="tab" data-bs-target="#nav-details" type="button" role="tab" aria-controls="nav-details" aria-selected="true">Details</button>
-        <button class="nav-link" id="nav-reviews-tab" data-bs-toggle="tab" data-bs-target="#nav-reviews" type="button" role="tab" aria-controls="nav-reviews" aria-selected="false">Reviews</button>
-        <button class="nav-link" id="nav-gallery-tab" data-bs-toggle="tab" data-bs-target="#nav-gallery" type="button" role="tab" aria-controls="nav-gallery" aria-selected="false">Gallery</button>
-      </div>
-    </nav>
-    <!-- Place Info Tab Content -->
-    <div class="tab-content" id="nav-tabContent">
-      <!-- Place Details Tab Content-->
-      <div class="tab-pane fade show active" id="nav-details" role="tabpanel" aria-labelledby="nav-details-tab">
-        <div class="row">
-          <div class="col-12">
-            <div class="text-container p-4 mb-2">
-              <p class="lead">
-                {{ place.description }}
-              </p>
-            </div>  
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-8">
-            <div class="map-container p-4">
-              <div id="map"></div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="text-container p-4 d-flex flex-column justify-content-center h-100 mb-5">
-              <h2 class="fw-bold"> Location</h2>
-              {% for key, value in place.address.items %}
-                {% if not value == "" %}
-                  <p> {{ value }} </p> 
-                {% endif %}
-              {% endfor %}
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- Place Reviews Tab Content -->
-      <div class="tab-pane fade py-4" id="nav-reviews" role="tabpanel" aria-labelledby="nav-reviews-tab">
-        <!-- Review Carousel -->
-        <div id="reviewCarousel" class="carousel slide" data-bs-ride="carousel">
-          <div class="carousel-inner">
-            {% for review in reviews %}
-              <div class="carousel-item {% if forloop.first %} active {% endif %}">
-                <a data-bs-toggle="modal" data-bs-target="#modal-review-solo">
-                  <div class="review-solo d-flex flex-column justify-content-center align-items-center text-center" review_id="{{ review.id }}">
-                    <img src="{% static 'images/placeholders/globe-profile-face-compress-square.webp'%}" alt="" class="rounded-circle" width="120">
-                    <p id="review-title{{review.id}}" class="w-50 my-4 fst-italic fs-4 mb-4">
-                      {{ review.title }}    
-                    </p>
-                    <p id="review-body{{review.id}}" class="d-none">
-                      {{ review.body }}
-                    </p>
-                  </div>
-                </a>
-              </div>
-            {% endfor %}
-          </div>
-          <!-- Carousel Buttons -->
-          <button class="carousel-control-prev" type="button" data-bs-target="#reviewCarousel" data-bs-slide="prev">
-            <i class="fas fa-arrow-circle-left fa-3x text-dark"></i>
-          </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#reviewCarousel" data-bs-slide="next">
-            <i class="fas fa-arrow-circle-right fa-3x text-dark"></i>
-          </button>
-        </div>
-      </div>
-      <!-- Place Gallery Tab Content -->
-      <div class="tab-pane fade" id="nav-gallery" role="tabpanel" aria-labelledby="nav-gallery-tab">
-        <div class="row mt-4">
-          {% for image in images %}
-          <div class="col-md-4">
-            <div class="image-container mb-4">
-              <a data-bs-toggle="modal" data-bs-target="#modal-image-solo">
-                <img src="{{ image.path.url }}" alt="" class="img-fluid img-size-consistent image-solo">    
-              </a>
-            </div>
-          </div>
-          {% if forloop.counter|divisibleby:3 %}
-        </div>
-        <div class="row">
-          {% endif %}
-          {% endfor %}
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Image Solo Modal -->
-<div id="modal-image-solo" class="modal fade">
-  <div class="modal-dialog modal-lg mt-7">
-    <div class="modal-content bg-primary p-5">
-      <div class="row">
-        <div class="col-12 d-flex flex-column justify-content-between">
-          <img id="solo-modal-image" src="" alt="" class="img-fluid">
-          <button class="btn btn-light" data-bs-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- MODALS -->
-
-{% include 'includes/solo_review_modal.html' %}
+<!-- Place Info Template Included -->
+{% include 'includes/single_place_info.html' %}
 
 {% endblock %}
 
 {% block extras %}
 
-{% load static %}
 {{ place.latitude|json_script:"latitude"}}
 {{ place.longitude|json_script:"longitude"}}
 {{ g_maps_api_key|json_script:"maps-api-key" }}

@@ -10,7 +10,7 @@
 {% crispy form %}
 
 <ul>
-    {% for place in all_places %}
+    {% for place in retrieved_places %}
         <li>{{ place.name }} {{ place.rank }}</li>
     {% endfor %}
 </ul>

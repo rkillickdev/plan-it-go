@@ -49,78 +49,94 @@ def get_places(request):
         if form.is_valid():
             requested_location = (form.cleaned_data['location'])
 
-        try:
+        # TRY REINSTATING THIS TRY EXCEPT STATEMENT
+        # try:
 
-            # Initialize the ApifyClient with my API token
-            client = ApifyClient(os.environ.get('MY-APIFY-TOKEN'))
+        # Initialize the ApifyClient with my API token
+        client = ApifyClient(os.environ.get('MY-APIFY-TOKEN'))
 
-            # Prepare the Actor input
-            run_input = {
-                "locationFullName": requested_location.city,
-                "maxItems": 20,
-                "language": "en",
-                "currency": "GBP",
-                "includeAttractions": True,
-                "includeHotels": False,
-                "includePriceOffers": False,
-                "includeRestaurants": True,
-                "includeTags": False,
-                "includeVacationRentals": False,
-            }
+        # Prepare the Actor input
+        run_input = {
+            "locationFullName": requested_location.city,
+            "maxItems": 5,
+            "language": "en",
+            "currency": "GBP",
+            "includeAttractions": True,
+            "includeHotels": False,
+            "includePriceOffers": False,
+            "includeRestaurants": True,
+            "includeTags": False,
+            "includeVacationRentals": False,
+        }
 
-            # Run the Actor and wait for it to finish
-            run = client.actor("maxcopell/tripadvisor").call(
-                run_input=run_input
+        # Run the Actor and wait for it to finish
+        run = client.actor("maxcopell/tripadvisor").call(
+            run_input=run_input
+        )
+
+        # Fetch Actor results from the run's dataset (if there are any)
+        # Store data as 'places'
+        places = client.dataset(run["defaultDatasetId"]).iterate_items()
+
+        # Iterates over data retrieved from API call.
+        # Creates an instance of Place for each place in the API response.
+        # Populates Place fields with data from API response.
+        for place in places:
+            if not place['description'] or not place['image'] or not place['name'] or not place['address'] or not place['latitude'] or not place['longitude']:
+                print("skipped this one")
+                continue
+            print(place)
+            place_data = Place(
+                location=requested_location,
+                venue_id=place['id'],
+                type=place['type'],
+                category=place['category'],
+                sub_categories=place['subcategories'],
+                name=place['name'],
+                location_string=place['locationString'],
+                description=place['description'],
+                image=place['image'],
+                ranking_position=place['rankingPosition'],
+                rating=place['rating'],
+                phone=place['phone'],
+                address=place['addressObj'],
+                latitude=place['latitude'],
+                longitude=place['longitude'],
+                website=place['website'],
+                ranking_string=place['rankingString'],
             )
 
-            # Fetch Actor results from the run's dataset (if there are any)
-            # Store data as 'places'
-            places = client.dataset(run["defaultDatasetId"]).iterate_items()
+            # Query database to see if the venue_id used in the API
+            # response already exists.
+            venue = Place.objects.filter(
+                venue_id=place_data.venue_id
+            )
 
-            # Iterates over data retrieved from API call.
-            # Creates an instance of Place for each place in the API response.
-            # Populates Place fields with data from API response.
-            for place in places:
-                place_data = Place(
-                    location=requested_location,
-                    venue_id=place['id'],
-                    type=place['type'],
-                    category=place['category'],
-                    sub_categories=place['subcategories'],
-                    name=place['name'],
-                    location_string=place['locationString'],
-                    description=place['description'],
-                    image=place['image'],
-                    ranking_position=place['rankingPosition'],
-                    rating=place['rating'],
-                    phone=place['phone'],
-                    address=place['addressObj'],
-                    latitude=place['latitude'],
-                    longitude=place['longitude'],
-                    website=place['website'],
-                    ranking_string=place['rankingString'],
-                )
+            if venue.exists():
+                if venue[0] == place_data:
+                    #  and venue[0].ranking_position == place_data.ranking_position:
+                    print(f"Venue id: {place_data.venue_id} already exists and is Identical!")
+                    continue
 
-                # Query database to see if the venue_id used in the API
-                # response already exists.
-                venue = Place.objects.filter(
-                    venue_id=place_data.venue_id
-                )
-                if venue.exists() and venue[0].ranking_position == place_data.ranking_position:
-                    print(f"Venue id: {place_data.venue_id} Already Exists")
-                else:
-                    place_data.save()
-                    print(f'{place_data.name} has been saved')
+            elif place_data.description == "":
+                print(f"Venue id: {place_data.venue_id} description field was blank") 
+                continue
 
-                all_places = Place.objects.all().order_by('ranking_position')
+            else:
+                place_data.save()
+                print(f'{place_data.name} has been saved')
 
-            context = {
-                'form': form,
-                'all_places': all_places,
-            }
+        retrieved_places = Place.objects.filter(location=requested_location.id).order_by('ranking_position')
 
-        except ResponseError as error:
-            raise error
+        context = {
+            'form': form,
+            'retrieved_places': retrieved_places,
+        }
+
+        # TRY REINSTATING THIS TRY EXCEPT STATEMENT
+
+        # except ResponseError as error:
+        #     raise error
 
         return render(request, 'places/get_places.html', context)
 

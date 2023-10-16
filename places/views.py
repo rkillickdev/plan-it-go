@@ -22,7 +22,8 @@ class PlaceListView(ListView):
     context_object_name = "place_list"
 
     def get_queryset(self):
-        self.location = get_object_or_404(Location, slug=self.kwargs['slug'])
+        self.location = get_object_or_404(
+            Location, id=self.kwargs['location_id'])
         return Place.objects.filter(location=self.location).order_by(
             'ranking_position')
 

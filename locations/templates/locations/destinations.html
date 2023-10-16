@@ -44,7 +44,12 @@
                             </div>
                             {% if user.is_authenticated and request.user.is_staff %}
                             <div class="d-flex justify-content-between">
-                                <a href="{% url 'update_destination' destination.id destination.slug %}" class="btn btn-primary">Update</a> 
+                                <a href="{% url 'update_destination' destination.id destination.slug %}" class="btn btn-primary">Update</a>
+                                {% if destination.places.count > 0 %}
+                                    <a href="{% url 'place_list' destination.id destination.slug %}" class="btn btn-primary">View Places</a>     
+                                {% else %}
+                                    <a href="{% url 'get_places' %}" class="btn btn-primary">Get Places</a>
+                                {% endif %}
                             </div>
                             {% endif %}
                         </div>

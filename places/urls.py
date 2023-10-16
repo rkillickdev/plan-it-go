@@ -8,7 +8,7 @@ urlpatterns = [
         name='get_places'
     ),
     path(
-        '<slug:slug>',
+        '<int:location_id>/<slug:slug>',
         PlaceListView.as_view(),
         name='place_list'
     ),

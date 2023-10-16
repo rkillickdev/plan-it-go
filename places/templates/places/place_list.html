@@ -2,12 +2,53 @@
 
 {% block content %}
 
-<h1>LIST OF PLACES</h1>
+<!-- Recommendations Paginated -->
+<section id="place-list" class="mt-7">
+    <div class="container">
+        <div class="row mb-3">
+            <div class="col-12 text-center">
+                <h2>Place List</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="row gy-3">
+                    {% for place in places %}
+                    <div class="col-md-4">
+                        <div class="card text-center border-0 h-100">
+                            <img class="card-img-top img-fluid img-size-consistent" src="{{ place.image }}" alt="{{ place.name }}">
+                            <div class="card-body">
+                                <h3>{{ place.name }}</h3>
+                            </div>
+                            <a class="stretched-link" href="{% url 'place_browse_detail' place.slug place.id %}"></a>
+                        </div>
+                    </div>
+                    {% if forloop.counter|divisibleby:3 %}
+                </div>
+                <div class="row">
+                    {% endif %}
+                    {% endfor %}     
+                </div>
+            </div>
+        </div>
+        {% if is_paginated %}
+        <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-center">
+                {% if page_obj.has_previous %}
+                <li><a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; PREV </a></li>
+                {% endif %}
+                {% if page_obj.has_next %}
+                <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT &raquo;</a></li>
 
-<ul>
-    {% for place in place_list %}
-        <li><a href="{% url 'place_browse_detail' place.slug place.id %}">{{ place.name }}</a></li>
-    {% endfor %}
-</ul>
+                {% endif %}
+            </ul>
+        </nav>
+        {% endif %}     
+    </div>
+</section>
 
 {% endblock %}
+
+{% block extras %}
+
+{% endblock extras %}

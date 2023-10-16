@@ -19,7 +19,8 @@ class PlaceListView(ListView):
     """
 
     model = Place
-    context_object_name = "place_list"
+    context_object_name = "places"
+    paginate_by = 6
 
     def get_queryset(self):
         self.location = get_object_or_404(

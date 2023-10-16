@@ -2,9 +2,8 @@
 
 {% block content %}
 
-<!-- Trip Summary -->
+<!-- Load Trip Header Template -->
 {% include 'includes/trip_header.html' %}
-
 
 <!-- Trip Planner -->
 <section class="trip-planner">
@@ -80,7 +79,7 @@
                 <h2>Recommendations For Your Trip</h2>
             </div>
         </div>
-        <div class="row mb-3">
+        <div class="row">
             <div class="col-12">
                 <div class="row gy-3">
                     {% for place in places %}
@@ -93,11 +92,16 @@
                             <a class="stretched-link" href="{% url 'place_detail' trip.slug trip.id place.id %}"></a>
                         </div>
                     </div>
+                    {% if forloop.counter|divisibleby:3 %}
+                </div>
+                <div class="row">
+                    {% endif %}
                     {% endfor %}     
-                </div>  
+                </div>
             </div>
         </div>
-        <nav aria-label=" recommendations page navigation">
+        <!-- Pagination Controls -->
+        <nav aria-label=" place list page navigation">
             <ul class="pagination justify-content-center">
                 {% if places.has_previous %}
                 <li class="page-item"><a href="?page={{ places.previous_page_number }}" class="page-link">&laquo; PREV </a></li>

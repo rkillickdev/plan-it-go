@@ -4,13 +4,18 @@
 <section class="place-info">
     <div class="container">
       <!-- Place Info Tabs -->
-      <nav>
-        <div class="nav nav-tabs" id="nav-tab" role="tablist">
-          <button class="nav-link active" id="nav-details-tab" data-bs-toggle="tab" data-bs-target="#nav-details" type="button" role="tab" aria-controls="nav-details" aria-selected="true">Details</button>
-          <button class="nav-link" id="nav-reviews-tab" data-bs-toggle="tab" data-bs-target="#nav-reviews" type="button" role="tab" aria-controls="nav-reviews" aria-selected="false">Reviews</button>
-          <button class="nav-link" id="nav-gallery-tab" data-bs-toggle="tab" data-bs-target="#nav-gallery" type="button" role="tab" aria-controls="nav-gallery" aria-selected="false">Gallery</button>
-        </div>
-      </nav>
+        <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <button class="nav-link active" id="nav-details-tab" data-bs-toggle="tab" data-bs-target="#nav-details" type="button" role="tab" aria-controls="nav-details" aria-selected="true">Details</button>
+            <button class="nav-link {% if place.reviews.count == 0 %} d-none {% endif %}" 
+            id="nav-reviews-tab" data-bs-toggle="tab" data-bs-target="#nav-reviews" 
+            type="button" role="tab" aria-controls="nav-reviews" aria-selected="false"
+            >Reviews
+            </button>
+            <button class="nav-link {% if place.images.count == 0 %} d-none {% endif %}" 
+            id="nav-gallery-tab" data-bs-toggle="tab" data-bs-target="#nav-gallery" type="button" role="tab" aria-controls="nav-gallery" aria-selected="false">Gallery</button>
+            </div>
+        </nav>
       <!-- Place Info Tab Content -->
       <div class="tab-content" id="nav-tabContent">
         <!-- Place Details Tab Content-->

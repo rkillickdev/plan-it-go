@@ -32,63 +32,14 @@
         <div class="row">
             {% for destination in destinations %}
                 <div class="col-md-4">
-                    <a data-bs-toggle="modal" data-bs-target="#modal-destination-info">
-                        <div class="destination-city-mini card border-0 text-center h-100">
-                            <img class="card-img-top img-fluid img-size-consistent" 
-                            src="{{ destination.image.url }}" alt="{{ destination.name }}"
-                            destination_id="{{ destination.id }}" destination_slug="{{ destination.slug }}"
-                            destination_summary="{{ destination.summary}}"
-                            >
-                            <div id="destination-city{{destination.id}}" class="card-body">
-                                {{destination.city}}
-                            </div>
-                            {% if user.is_authenticated and request.user.is_staff %}
-                            <div class="d-flex justify-content-between">
-                                <a href="{% url 'update_destination' destination.id destination.slug %}" class="btn btn-primary">Update</a>
-                                {% if destination.places.count > 0 %}
-                                    <a href="{% url 'place_list' destination.id destination.slug %}" class="btn btn-primary">View Places</a>     
-                                {% else %}
-                                    <a href="{% url 'get_places' %}" class="btn btn-primary">Get Places</a>
-                                {% endif %}
-                            </div>
-                            {% endif %}
-                        </div>
-                    </a>
+                    {% include 'includes/destination_cards.html' %}
                 </div>
             {% endfor%}    
         </div>
     </div>
 </section>
 
-<!-- Destination Info Modal -->
-
-<div id="modal-destination-info" class="modal fade">
-    <div class="modal-dialog modal-lg mt-7">
-        <div class="modal-content bg-primary p-5">
-            <div class="row">
-                <div class="col-12">
-                    <div class="destination-container d-flex flex-column justify-content-between h-100">
-                        <div class="d-flex justify-content-between">
-                            <h1 id="destination-city"></h1>
-                            <a id="trip-ideas" href="" class="btn btn-primary">Trip Ideas</a>      
-                        </div>
-                        
-                        <img id="destination-image" src="" alt="" class="img-fluid">
-                        <p id="destination-summary"></p>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12">
-                    <button class="btn btn-light" data-bs-dismiss="modal">Close</button> 
-                </div>    
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
+{% include 'includes/destination_modal.html' %}
 
 {% endblock %}
 

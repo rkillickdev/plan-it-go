@@ -37,9 +37,10 @@ to display all the retrievd places.
         # return render(request, 'places/get_places.html', context)
 
 
-
-# # This was the code I wrote initially when I planned to not have a separate detail
-# # page for each recommendation.  In the end I decided against this.
+"""
+This was the code I wrote initially when I planned to not have a separate detail
+page for each recommendation.  In the end I decided against this.
+"""
 
 # class TripRecommendationsView(LoginRequiredMixin, View):
 #     """

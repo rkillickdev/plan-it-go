@@ -15,7 +15,7 @@ class Place(models.Model):
         Location, on_delete=models.CASCADE, related_name="places"
     )
     venue_id = models.CharField(max_length=50, unique=True)
-    type = models.CharField(max_length=150)
+    type = models.CharField(max_length=150, null=True)
     category = models.CharField(max_length=150)
     sub_categories = models.JSONField(null=True)
     name = models.CharField(max_length=50)

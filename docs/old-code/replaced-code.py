@@ -1,3 +1,43 @@
+""" Handy code for checking if any values in a dictionary are empty"""
+
+# if not any(place.values()):
+
+
+
+"""
+Old Code for Apify API.  If venue already exists, check whether it is
+identical to the new version.  I many implement this functionality at a later date.
+"""
+
+# if venue.exists():
+#                 if venue[0] == place_data:
+#                     print(f"Venue id: {place_data.venue_id} already exists and is Identical!")
+#                     continue
+
+#             elif place_data.description == "":
+#                 print(f"Venue id: {place_data.venue_id} description field was blank") 
+#                 continue
+
+#             else:
+#                 place_data.save()
+#                 print(f'{place_data.name} has been saved')
+
+
+"""
+Old return statement for get_places function if "POST".  It rendered the smae page including
+form with a list of retrieved places.  I decide it would be better to redirect to the place_list page
+to display all the retrievd places.
+"""
+
+# context = {
+        #     'form': form,
+        #     'retrieved_places': retrieved_places,
+        # }
+
+        # return render(request, 'places/get_places.html', context)
+
+
+
 # # This was the code I wrote initially when I planned to not have a separate detail
 # # page for each recommendation.  In the end I decided against this.
 

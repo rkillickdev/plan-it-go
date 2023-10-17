@@ -1,5 +1,7 @@
-from django.shortcuts import render
-from django.shortcuts import get_object_or_404
+import numpy as np
+
+from django.shortcuts import render, get_object_or_404, reverse
+from django.http import HttpResponseRedirect
 from django.views.generic import ListView, DetailView
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.admin.views.decorators import staff_member_required
@@ -26,7 +28,7 @@ class PlaceListView(ListView):
         self.location = get_object_or_404(
             Location, id=self.kwargs['location_id'])
         return Place.objects.filter(location=self.location).order_by(
-            'ranking_position')
+            'rating')
 
 
 class PlaceBrowseDetail(DetailView):
@@ -41,6 +43,16 @@ class PlaceBrowseDetail(DetailView):
 
 @staff_member_required
 def get_places(request):
+    """
+    Makes a call to the Apify Trip Advisor Scraper API.  The location
+    submitted by the form is passed to the API and recommended places
+    based on this location are returned.  This response data is then
+    iterated over to filter out any places that are missing necessary
+    fields.
+    A check is then run using the venue_id to see if the place already
+    exists in the database.  If the place does not exist, it is saved
+    as a new instance of Place in the database.
+    """
     form = PlaceForm
     requested_location = {}
     if request.method == 'POST':
@@ -48,6 +60,7 @@ def get_places(request):
 
         if form.is_valid():
             requested_location = (form.cleaned_data['location'])
+            print(requested_location)
 
         # TRY REINSTATING THIS TRY EXCEPT STATEMENT
         # try:
@@ -58,7 +71,7 @@ def get_places(request):
         # Prepare the Actor input
         run_input = {
             "locationFullName": requested_location.city,
-            "maxItems": 5,
+            "maxItems": 25,
             "language": "en",
             "currency": "GBP",
             "includeAttractions": True,
@@ -79,13 +92,28 @@ def get_places(request):
         places = client.dataset(run["defaultDatasetId"]).iterate_items()
 
         # Iterates over data retrieved from API call.
-        # Creates an instance of Place for each place in the API response.
-        # Populates Place fields with data from API response.
+        # Checks if values for certain keys exist.
+        # Returns to top of loop if any of these values are blank.
         for place in places:
-            if not place['description'] or not place['image'] or not place['name'] or not place['address'] or not place['latitude'] or not place['longitude']:
-                print("skipped this one")
+            required_fields = {
+                "category": place['category'],
+                "name": place['name'],
+                "description": place['description'],
+                "image": place['image'],
+                "rating": place['rating'],
+                "address": place['addressObj'],
+                "latitude": place['latitude'],
+                "longitude": place['longitude']
+            }
+
+            if not all(required_fields.values()):
+                print(f"skipped {required_fields['name']}")
                 continue
-            print(place)
+
+            print(f"{required_fields['name']} passed check")
+
+            # Creates an instance of Place for each place in the API response.
+            # Populates Place fields with data from API response.
             place_data = Place(
                 location=requested_location,
                 venue_id=place['id'],
@@ -107,38 +135,35 @@ def get_places(request):
             )
 
             # Query database to see if the venue_id used in the API
-            # response already exists.
+            # response already exists. Return to top of loop if it does.
             venue = Place.objects.filter(
                 venue_id=place_data.venue_id
             )
 
-            if venue.exists():
-                if venue[0] == place_data:
-                    #  and venue[0].ranking_position == place_data.ranking_position:
-                    print(f"Venue id: {place_data.venue_id} already exists and is Identical!")
-                    continue
+            # Calculate number of words in description field using numpy
+            word_count = np.char.count(place_data.description, ' ') + 1
 
-            elif place_data.description == "":
-                print(f"Venue id: {place_data.venue_id} description field was blank") 
+            # Checks if venue already exists of description word count < 50.
+            if venue.exists() or word_count < 40:
+                print(f"Ven: {place_data.venue_id} already exists")
                 continue
-
             else:
+                # Save to database
                 place_data.save()
                 print(f'{place_data.name} has been saved')
 
-        retrieved_places = Place.objects.filter(location=requested_location.id).order_by('ranking_position')
-
-        context = {
-            'form': form,
-            'retrieved_places': retrieved_places,
-        }
+        # retrieved_places = Place.objects.filter(
+        #     location=requested_location.id).order_by('ranking_position')
 
         # TRY REINSTATING THIS TRY EXCEPT STATEMENT
 
         # except ResponseError as error:
         #     raise error
 
-        return render(request, 'places/get_places.html', context)
+        return HttpResponseRedirect(
+            reverse('place_list', args=[
+                requested_location.id, requested_location.slug])
+        )
 
     else:
         return render(

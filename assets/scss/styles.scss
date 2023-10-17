@@ -57,6 +57,11 @@ a {
     object-fit: cover;
 }
 
+.image-clickable:hover{
+    cursor: pointer;
+    opacity: 0.5;
+}
+
 /* Planner */
 
 .opaque-image{

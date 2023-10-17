@@ -26,9 +26,9 @@ class LocationForm(ModelForm):
             Field('summary', css_class="mb-2", placeholder='Destination synopsis...'),
             Field('latitude', css_class="mb-2", placeholder='Destination latitude'),
             Field('longitude', css_class="mb-2", placeholder='Destination longitude'),
-            Field('image', css_class="mb-2", placeholder='Upload an image...'),
+            Field('image', css_class="mb-2 bg-primary", placeholder='Upload an image...'),
             Div(
-                Submit('Submit', 'Create', css_id='submitButton'),
+                Submit('Submit', 'Create', css_id="submitButton", css_class="btn btn-dark"),
                 css_class="mb-2 text-center"
             )
         )

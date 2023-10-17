@@ -1,27 +1,28 @@
-<a data-bs-toggle="modal" data-bs-target="#modal-destination-info">
-    <div class="destination-city-mini card border-0 bg-secondary text-center h-100">
+
+<div class="destination-city-mini card border-0 bg-secondary text-center h-100">
+    <a data-bs-toggle="modal" data-bs-target="#modal-destination-info" class="image-clickable">
         <img class="card-img-top img-fluid img-size-consistent" 
         src="{{ destination.image.url }}" alt="{{ destination.name }}"
         destination_id="{{ destination.id }}" destination_slug="{{ destination.slug }}"
         destination_summary="{{ destination.summary}}"
         >
-        <div id="destination-city{{destination.id}}" class="card-body">
-            <h3>{{destination.city}}</h3>
-        </div>
-</a>
-        {% if user.is_authenticated and request.user.is_staff %}
-        <div class=" {% if request.resolver_match.url_name == 'locations' %} d-flex justify-content-between px-4 pb-4 {% else %} d-none {% endif %}">
-            <a href="{% url 'update_destination' destination.id destination.slug %}" class="btn btn-dark">
-                <div class="d-flex justify-content-between">
-                    <i class="pe-2 fa-solid fa-pencil"></i>
-                    <h5 class="ps-2">Edit</h5>
-                </div>
-            </a>
-            {% if destination.places.count > 0 %}
-                <a href="{% url 'place_list' destination.id destination.slug %}" class="btn btn-dark">View Places</a>     
-            {% else %}
-                <a href="{% url 'get_places' %}" class="btn btn-primary">Get Places</a>
-            {% endif %}
-        </div>
+    </a>
+    <div id="destination-city{{destination.id}}" class="card-body">
+        <h3>{{destination.city}}</h3>
+    </div>
+    {% if user.is_authenticated and request.user.is_staff %}
+    <div class=" {% if request.resolver_match.url_name == 'locations' %} d-flex justify-content-between px-4 pb-4 {% else %} d-none {% endif %}">
+        <a href="{% url 'update_destination' destination.id destination.slug %}" class="btn btn-dark">
+            <div class="d-flex justify-content-between">
+                <i class="pe-2 fa-solid fa-pencil"></i>
+                <h5 class="ps-2">Edit</h5>
+            </div>
+        </a>
+        {% if destination.places.count > 0 %}
+            <a href="{% url 'place_list' destination.id destination.slug %}" class="btn btn-dark">View Places</a>     
+        {% else %}
+            <a href="{% url 'get_places' %}" class="btn btn-primary">Get Places</a>
         {% endif %}
     </div>
+    {% endif %}
+</div>

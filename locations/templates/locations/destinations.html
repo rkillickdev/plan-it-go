@@ -11,13 +11,13 @@
 <section id="enter-destination-details" class="mt-6 mb-4">
     <div class="container">
         <div class="row">
-            <div class="col-lg-7 d-flex flex-column justify-content-center">
+            <div class="col-lg-7 mt-2">
                 <div class="image-container">
                     <img src="{% static 'images/pineapple-beach-globe-1500x1000-compress.webp'%}" alt="" class="img-fluid d-none d-lg-block">
                 </div>
             </div>
             <div class="col-lg-5">
-                <div class="form-container">
+                <div class="form-container card p-4">
                     {% crispy form %}
                 </div>
             </div>
@@ -29,13 +29,17 @@
 
 <section id="destination-list">
     <div class="container">
-        <div class="row">
+        <div class="row mb-4">
             {% for destination in destinations %}
                 <div class="col-md-4">
                     {% include 'includes/destination_cards.html' %}
                 </div>
-            {% endfor%}    
+                {% if forloop.counter|divisibleby:3 %}
         </div>
+        <div class="row">
+                {% endif %}
+            {% endfor%} 
+        </div>   
     </div>
 </section>
 

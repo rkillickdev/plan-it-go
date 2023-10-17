@@ -30,6 +30,7 @@
                 <div class="text-container p-4 d-flex flex-column justify-content-center h-100 text-center">
                     {% if request.user.is_staff %}
                         <h1>Work to do? </h1>
+                        <a href="{% url 'locations'%}" class="btn btn-primary">Add a Destination</a>
                     {% else %}
                         {% if trip_list.count == 0 and not request.user.profile.screen_name %}
                             <h1>Welcome to PlanIt Go</h1>

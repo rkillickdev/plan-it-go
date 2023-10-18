@@ -1,3 +1,11 @@
+"""  
+This line using Cloudinary to serve static file was removed in favour of using 
+whitenoise as per CI Django Blog Webinar.  It goes underneath STATIC URL in
+settings.py file.
+"""
+
+# STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
+
 """ Handy code for checking if any values in a dictionary are empty"""
 
 # if not any(place.values()):

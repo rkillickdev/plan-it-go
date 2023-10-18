@@ -78,7 +78,9 @@ class Review(models.Model):
 
 class Image(models.Model):
     """
-    Model for storage of user uploaded images
+    Model for storage of user uploaded images.
+    Referenced the following article for CloudinaryField transformations:
+    https://cloudinary.com/documentation/django_image_manipulation#apply_common_image_transformations
     """
 
     profile = models.ForeignKey(
@@ -88,8 +90,17 @@ class Image(models.Model):
         Place, on_delete=models.CASCADE, related_name="images"
     )
     path = CloudinaryField(
-        'image', default='placeholder', folder="/images/places",
-        format="webp"
+        'image',
+        default='placeholder',
+        transformation={
+            'gravity': "auto",
+            'crop': "fill",
+            'fetch_format': "auto",
+            'dpr': "auto",
+            'responsive': True,
+            'width': "auto"
+        },
+        folder="/images/places",
     )
     created_on = models.DateTimeField(auto_now_add=True)
     approved = models.BooleanField(default=False)

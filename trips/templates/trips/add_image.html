@@ -13,17 +13,21 @@
 
 {% crispy form %}
 
-<div>
-    {% for image in images %}
-        <img src="{{ image.path.url }}">
+<div class="container">
+    <div class="row">
+        {% for image in images %}
+            <div class="col-md-4 mb-4">
+                <div class="destination-city-mini card border-0 bg-secondary text-center h-100">
+                    <img class="card-img-top img-fluid img-size-consistent" src="{{ image.path.url }}"> 
+                </div>
+            {% if user.is_authenticated and image.profile.id == user.profile.id %}
 
-        {% if user.is_authenticated and image.profile.id == user.profile.id %}
-
-        <button class="btn btn-delete" image_id="{{ image.id }}" data-bs-toggle="modal" data-bs-target="#modal-image-delete">Delete</button>
-
-        {% endif %}
-
-    {% endfor %}
+                <button class="btn btn-delete" image_id="{{ image.id }}" data-bs-toggle="modal" data-bs-target="#modal-image-delete">Delete</button>
+            {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+    
 </div>
 
 

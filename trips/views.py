@@ -378,8 +378,14 @@ class PlaceToggle(LoginRequiredMixin, View):
 
         if trip.places.filter(id=place.id).exists():
             trip.places.remove(place)
+            messages.add_message(
+                request, messages.SUCCESS, 'Removed From Your Trip'
+            )
         else:
             trip.places.add(place)
+            messages.add_message(
+                request, messages.SUCCESS, 'Added To Your Trip'
+            )
 
         return HttpResponseRedirect(
             reverse('place_detail', args=[trip.slug, trip_id, place_id]))

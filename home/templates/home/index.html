@@ -10,13 +10,8 @@
         <div class="text-container p-4 d-flex flex-column justify-content-center h-100 mb-5">
           <h1 class="xl-text mt-5">
             Make
-            <span class="text-secondary fw-bold replace-me"
-              >Plans</span
-            >
+            <span class="text-secondary fw-bold replace-me">Plans,Time,Memories</span>
           </h1>
-          <p class="lead">
-            Where will you go next??
-          </p>
           <a href="#" class="btn btn-primary text-white">Start Planning</a>
         </div>    
       </div>
@@ -89,5 +84,8 @@
 {% block extras %}
 
 {% load static %}
-    <script src="{% static 'js/solo-display-modals.js' %}"></script>
+  <!-- <script>src="{% static 'js/replaceme.min.js' %}"</script> -->
+  <script src="{% static 'js/hero-text-replace.js' %}"></script>
+  <script src="{% static 'js/solo-display-modals.js' %}"></script>
+
 {% endblock extras %}

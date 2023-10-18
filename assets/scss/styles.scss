@@ -22,10 +22,14 @@ a {
 /* Header */
 
 .header {
-    background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5)), url("/static/images/hero/map-pins-hero-1500x1000-compress.webp") left center no-repeat;
+    background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0)), url("/static/images/hero/map-pins-hero-1500x1000-compress.webp") left center no-repeat;
     background-size: cover;
     background-position:center;
     height: 600px;
+}
+
+.replace-me {
+    color: #E5D343;
 }
 
 /* Trip Header */

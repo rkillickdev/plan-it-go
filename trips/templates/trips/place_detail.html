@@ -11,30 +11,35 @@
 <section class="place-summary mb-5">
   <div class="container">
     <div class="row">
-      <div class="col-md-6">
-        <div class="image-container p-4">
+      <div class="col-md-6 d-flex flex-column justify-content-center">
+        <div class="image-container">
           <img src="{{ place.image }}" alt="{{ place.name }}" class="img-fluid">
         </div>
       </div>
       <div class="col-md-6">
-        <div class="text-container p-4 d-flex flex-column justify-content-between h-100 text-center">
-          <h2>{{ place.name }}</h2>
-          <form class="d-inline" action="{% url 'toggle_place' trip.id place.id %}" method="POST">
-            {% csrf_token %}
-            {% if added %}
-              <div class="vstack gap-3">
-                <button type="submit" name="place_id" value="{{place.id}}" class="btn-icon"><i class="fa-solid fa-circle-minus fa-4x"></i></i></button>
-                <p>Remove From Your Trip</p>
-              </div>
-            {% else %}
-              <div class="vstack gap-3">
-                <button type="submit" name="place_id" value="{{place.id}}" class="btn-icon"><i class="fa-solid fa-circle-plus fa-4x"></i></button>
-                <p>Add To Your Trip</p>
-              </div>
-            {% endif %}
-          </form>
-          <div class="justify-content-center">
-            <a href="{% url 'trip_detail' trip.slug trip.id %}" class="btn btn-primary text-light button-link">More Recommendations</a>
+        <div class="card h-100">
+          <div class="card-header text-center display-6">
+            <span place_rating="{{ place.rating }}" id="stars"></span>
+          </div>
+          <div class="text-container p-4 d-flex flex-column justify-content-between h-100 text-center">
+            <h2 class="card-title">{{ place.name }}</h2>
+            <form class="d-inline" action="{% url 'toggle_place' trip.id place.id %}" method="POST">
+              {% csrf_token %}
+              {% if added %}
+                <div class="vstack gap-3">
+                  <button type="submit" name="place_id" value="{{place.id}}" class="btn-icon"><i class="fa-solid fa-circle-minus fa-4x"></i></i></button>
+                  <p>Remove From Your Trip</p>
+                </div>
+              {% else %}
+                <div class="vstack gap-3">
+                  <button type="submit" name="place_id" value="{{place.id}}" class="btn-icon"><i class="fa-solid fa-circle-plus fa-4x"></i></button>
+                  <p>Add To Your Trip</p>
+                </div>
+              {% endif %}
+            </form>
+            <div class="justify-content-center">
+              <a href="{% url 'trip_detail' trip.slug trip.id %}" class="btn btn-primary text-light button-link">More Recommendations</a>
+            </div>
           </div>
         </div>
       </div>
@@ -54,5 +59,6 @@
 {{ g_maps_api_key|json_script:"maps-api-key" }}
 <!-- <script src="{% static 'js/maps.js' %}"></script> -->
 <script src="{% static 'js/solo-display-modals.js' %}"></script>
+<script src="{% static 'js/star-rating.js' %}"></script>
 
 {% endblock extras %}

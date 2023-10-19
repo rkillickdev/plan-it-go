@@ -56,20 +56,18 @@
                 <div class="row">
                     {% for trip in trip_list %}
                         <div class="col-md-4">
-                            <div class="card border-0 bg-secondary text-center h-100">
-                                {% if 'placeholder' in trip.trip_image.url %}
-                                <img src="{% static 'images/placeholders/trip-placeholder-globe-in-hand.webp' %}" 
-                                alt="" 
-                                class="card-img-top img-fluid img-size-consistent">
-                                {% else %}
-                                <img src="{{trip.trip_image}}" alt="">
-                                {% endif %}
-                                <div class="card-body display-6">
-                                    <a href="{% url 'trip_detail' trip.slug trip.id%}" class="card-title stretched-link">
-                                        {{ trip.title }}
-                                    </a>
+                            <a href="{% url 'trip_detail' trip.slug trip.id%}" class="card-title image-clickable">
+                                <div class="card border-0 bg-secondary text-center h-100">
+                                    {% if 'placeholder' in trip.trip_image.url %}
+                                    <img src="{% static 'images/placeholders/trip-placeholder-globe-in-hand.webp' %}" 
+                                    alt="" 
+                                    class="card-img-top img-fluid img-size-consistent">
+                                    {% else %}
+                                    <img src="{{trip.trip_image}}" alt="">
+                                    {% endif %}
+                                    <div class="card-body display-6">{{ trip.title }}</div>
                                 </div>
-                            </div>  
+                            </a>
                         </div>
                         {% if forloop.counter|divisibleby:3 %}
                 </div>

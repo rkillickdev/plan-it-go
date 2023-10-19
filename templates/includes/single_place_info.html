@@ -5,15 +5,20 @@
     <div class="container">
       <!-- Place Info Tabs -->
         <nav>
-            <div class="nav nav-tabs" id="nav-tab" role="tablist">
-            <button class="nav-link active" id="nav-details-tab" data-bs-toggle="tab" data-bs-target="#nav-details" type="button" role="tab" aria-controls="nav-details" aria-selected="true">Details</button>
-            <button class="nav-link {% if place.reviews.count == 0 %} d-none {% endif %}" 
-            id="nav-reviews-tab" data-bs-toggle="tab" data-bs-target="#nav-reviews" 
-            type="button" role="tab" aria-controls="nav-reviews" aria-selected="false"
-            >Reviews
-            </button>
-            <button class="nav-link {% if place.images.count == 0 %} d-none {% endif %}" 
-            id="nav-gallery-tab" data-bs-toggle="tab" data-bs-target="#nav-gallery" type="button" role="tab" aria-controls="nav-gallery" aria-selected="false">Gallery</button>
+            <div class="nav nav-tabs h5" id="nav-tab" role="tablist">
+              <button class="nav-link active" id="nav-details-tab" 
+              data-bs-toggle="tab" data-bs-target="#nav-details" type="button" role="tab" 
+              aria-controls="nav-details" aria-selected="true">Details
+              </button>
+              <button class="nav-link {% if place.reviews.count == 0 %} d-none {% endif %}" 
+              id="nav-reviews-tab" data-bs-toggle="tab" data-bs-target="#nav-reviews" 
+              type="button" role="tab" aria-controls="nav-reviews" aria-selected="false"
+              >Reviews
+              </button>
+              <button class="nav-link {% if place.images.count == 0 %} d-none {% endif %}" 
+              id="nav-gallery-tab" data-bs-toggle="tab" data-bs-target="#nav-gallery" 
+              type="button" role="tab" aria-controls="nav-gallery" aria-selected="false">Gallery
+              </button>
             </div>
         </nav>
       <!-- Place Info Tab Content -->
@@ -30,19 +35,32 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-md-8">
+            <div class="col-lg-7">
               <div class="map-container p-4">
                 <div id="map"></div>
               </div>
             </div>
-            <div class="col-md-4">
-              <div class="text-container p-4 d-flex flex-column justify-content-center h-100 mb-5">
-                <h2 class="fw-bold"> Location</h2>
-                {% for key, value in place.address.items %}
-                  {% if not value == "" %}
-                    <p> {{ value }} </p> 
-                  {% endif %}
-                {% endfor %}
+            <div class="col-lg-5">
+              <div class="text-container p-4 d-flex flex-column justify-content-center h-100 mb-5 text-center">
+                <div class="card border-0 bg-secondary">
+                  <div class="card-header border bg-light">
+                    <h2><span><i class="fa-solid fa-map-pin"></i>&nbsp&nbsp</span>Address</h2>
+                  </div>
+                  <div class="card-body place-address">
+                    <ul>
+                      {% for key, value in place.address.items %}
+                        {% if not value == "" %}
+                          <li class="pb-2">{{ value }}</li> 
+                        {% endif %}
+                      {% endfor %} 
+                    </ul>
+                  </div>
+                  <div class="card-footer border bg-light">
+                    <a href="{{ place.website }}" target="_blank" rel="noopener" aria-label="Visit the website for {{ place.name }} (opens in a new tab)">
+                      <span><i class="fa-solid fa-wifi"></i>&nbsp&nbsp</span>{{ place.website }}
+                    </a>
+                  </div>
+                </div> 
               </div>
             </div>
           </div>

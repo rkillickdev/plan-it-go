@@ -4,21 +4,18 @@
 
 {% block content %}
 
-<!-- Trip Header Template Included -->
-{% include 'includes/trip_header.html' %}
-
 <!-- Place Summary Section -->
-<section class="place-summary mb-5">
+<section class="place-summary mt-6 mb-5">
   <div class="container">
-    <div class="row">
+    <div class="row flex-wrap-reverse my-4">
       <div class="col-md-6 d-flex flex-column justify-content-center">
         <div class="image-container">
-          <img src="{{ place.image }}" alt="{{ place.name }}" class="img-fluid">
+          <img src="{{ place.image }}" alt="{{ place.name }}" class="img-fluid img-portrait-limit">
         </div>
       </div>
       <div class="col-md-6">
-        <div class="card h-100">
-          <div class="card-header text-center display-6">
+        <div class="card border-0 h-100 bg-secondary">
+          <div class="card-header bg-light border text-center display-6">
             <span place_rating="{{ place.rating }}" id="stars"></span>
           </div>
           <div class="text-container p-4 d-flex flex-column justify-content-between h-100 text-center">
@@ -38,7 +35,9 @@
               {% endif %}
             </form>
             <div class="justify-content-center">
-              <a href="{% url 'trip_detail' trip.slug trip.id %}" class="btn btn-primary text-light button-link">More Recommendations</a>
+              <a href="{% url 'trip_detail' trip.slug trip.id %}" 
+              class="btn btn-primary text-light button-link">
+              <span><i class="fa-solid fa-backward"></i>&nbsp&nbsp</span>More Recommendations</a>
             </div>
             
             {% if messages %}
@@ -65,7 +64,7 @@
 {{ place.latitude|json_script:"latitude"}}
 {{ place.longitude|json_script:"longitude"}}
 {{ g_maps_api_key|json_script:"maps-api-key" }}
-<!-- <script src="{% static 'js/maps.js' %}"></script> -->
+<script src="{% static 'js/maps.js' %}"></script>
 <script src="{% static 'js/solo-display-modals.js' %}"></script>
 <script src="{% static 'js/star-rating.js' %}"></script>
 

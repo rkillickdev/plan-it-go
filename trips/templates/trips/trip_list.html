@@ -1,18 +1,8 @@
 {% extends "base.html" %}
 
 {% block content %}
-{% load static %}
 
-<!-- <section id="user-status" class="mt-6 mb-4">
-    <div class="container">
-        <div class="row">
-            <div class="text-container d-flex flex-column">
-                
-            
-            </div>
-        </div>
-    </div>
-</section> -->
+{% load static %}
 
 <section id="trip-actions" class="mt-6 mb-4">
     <div class="container">
@@ -27,7 +17,7 @@
                 </div>
             </div>
             <div class="col-md-5">
-                <div class="text-container p-4 d-flex flex-column justify-content-center h-100 text-center">
+                <div class="text-container p-4 d-flex flex-column justify-content-center h-100 text-center gap-3">
                     {% if request.user.is_staff %}
                         <h1>Work to do? </h1>
                         <a href="{% url 'locations'%}" class="btn btn-primary">Add a Destination</a>
@@ -39,12 +29,13 @@
                             <a href="{% url 'update_profile' request.user.profile.id %}" class="btn btn-primary">Create Profile</a>
                         {% else  %}
                             {% if trip_list.count == 0 %}
-                                <h1>Plan Your First Trip</h1>
+                                <h2>Plan Your First Trip</h2>
                             {% else %}
-                                <h1>Where to this time?</h1>
+                                <h2 class="display-6">Where to this time?</h2>
                             {% endif %}
-                            <div>
-                                <a href="{% url 'create_trip' %}"><i class="fa-solid fa-plus fa-xl"></i></a>
+                            <div class="d-flex flex-column gap-3">
+                                <a href="{% url 'create_trip' %}"><i class="fa-solid fa-circle-plus fa-4x"></i></a>
+                                <p>Create A Trip</p>
                             </div>
                         {% endif %}
                     {% endif %}
@@ -60,22 +51,31 @@
         <div class="container">
             {% if trip_list.count > 0 %}
                 <div class="row">
+                    <h3>Upcoming Trips</h3>
+                </div>
+                <div class="row">
                     {% for trip in trip_list %}
                         <div class="col-md-4">
-                            <div class="card border-0 px-4">
-                                <a href="{% url 'trip_detail' trip.slug trip.id%}">
-                                    {% if 'placeholder' in trip.trip_image.url %}
-                                    <img src="{% static 'images/placeholders/trip-placeholder-globe-in-hand.webp' %}" alt="" class="card-img-top">
-                                    {% else %}
-                                    <img src="{{trip.trip_image}}" alt="">
-                                    {% endif %}
-                                    <div class="card-body">
-                                        <h5 class="card-title">{{ trip.title }}</h5>
-                                    </div>
-                                </a> 
-                            </div>
+                            <div class="card border-0 bg-secondary text-center h-100">
+                                {% if 'placeholder' in trip.trip_image.url %}
+                                <img src="{% static 'images/placeholders/trip-placeholder-globe-in-hand.webp' %}" 
+                                alt="" 
+                                class="card-img-top img-fluid img-size-consistent">
+                                {% else %}
+                                <img src="{{trip.trip_image}}" alt="">
+                                {% endif %}
+                                <div class="card-body display-6">
+                                    <a href="{% url 'trip_detail' trip.slug trip.id%}" class="card-title stretched-link">
+                                        {{ trip.title }}
+                                    </a>
+                                </div>
+                            </div>  
                         </div>
-                    {% endfor %}    
+                        {% if forloop.counter|divisibleby:3 %}
+                </div>
+                <div class="row">
+                        {% endif %}
+                    {% endfor %}  
                 </div>
             {% else %}
                 <div class="row">

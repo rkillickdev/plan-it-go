@@ -2,6 +2,8 @@
 
 {% block content %}
 
+{% load static %}
+
 {% load crispy_forms_tags %}
 
 <section id="image-upload" class="mt-6 mb-4">
@@ -9,7 +11,7 @@
         <div class="row mb-4">
             <div class="col-12">
                 <div class="card border-0 bg-secondary medium-w-75">
-                    <h2 class="text-center p-2"><span><i class="fa-solid fa-camera"></i>&nbsp&nbsp</span>Add an image for {{ place.name }}</h2>
+                    <h2 class="text-center p-2 m-0"><span><i class="fa-solid fa-camera"></i>&nbsp&nbsp</span>Add an image for {{ place.name }}</h2>
                 </div>
             </div>
         </div>
@@ -23,26 +25,48 @@
 
 <section id="image-gallery">
     <div class="container">
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="card border-0 bg-secondary medium-w-75">
+                    <h2 class="text-center p-2 m-0"><span><i class="fa-solid fa-image"></i>&nbsp&nbsp</span>Your Image Gallery</h2>
+                </div>   
+            </div>
+        </div>
         {% for place in trip.places.all %}
             {% if place.images.count > 0 %}
-                <div class="row">
-                    <div class="col-12">
-                        <h2>{{ place.name }}</h2>
+                <div class="row mb-4">
+                    <div class="col-12 d-flex justify-content-between">
+                        <h3 class="m-0">{{ place.name }}</h3>
+                        <div class="card border-0 bg-secondary text-center title-container p-2">
+                            <a href="{% url 'add_image' trip.slug trip.id place.id %}"
+                            class="h3 m-0"
+                            >
+                            <span><i class="fa-solid fa-circle-plus"></i>&nbsp&nbsp</span>Add Images
+                            </a>
+                        </div>    
                     </div>
                 </div>
-                <div class="row">
+                <div class="row mb-4">
                     {% for image in place.images.all%}
-                        <div class="col-md-4 mb-4">
+                        <div class="col-md-2">
                             <div class="card border-0 bg-secondary text-center h-100">
-                                <img src="{{ image.path.url }}" alt="{{ image.place.name }}" class="card-img-top img-fluid img-size-consistent">
-                            </div>
-                            {% if user.is_authenticated and image.profile.id == user.profile.id %}
-                                <button class="btn btn-delete" image_id="{{ image.id }}" data-bs-toggle="modal" data-bs-target="#modal-image-delete">Delete</button>
-                            {% endif %}    
+                                <a data-bs-toggle="modal" data-bs-target="#modal-image-solo">
+                                    {% if 'placeholder' in image.path.url %}
+                                        <img src="{% static 'images/world-map-plane-1500x1000-compress.webp' %}" alt="{{ image.place.name }}" class="card-img-top img-fluid image-solo">
+                                    {% else %}
+                                        <img src="{{ image.path.url }}" alt="{{ image.place.name }}" class="card-img-top img-fluid image-solo">
+                                    {% endif %}      
+                                </a>
+                                {% if user.is_authenticated and image.profile.id == user.profile.id %}
+                                    <div class="card-body py-2">
+                                        <button class="btn btn-delete" image_id="{{ image.id }}" data-bs-toggle="modal" data-bs-target="#modal-image-delete"><i class="fa-solid fa-circle-xmark fa-2x"></i></button>
+                                    </div>
+                                {% endif %}
+                            </div>    
                         </div>
-                        {% if forloop.counter|divisibleby:3 %}
+                        {% if forloop.counter|divisibleby:6 %}
                 </div>
-                <div class="row">
+                <div class="row mb-4">
                         {% endif %}
                     {% endfor %}
                 </div>
@@ -51,18 +75,24 @@
     </div>
 </section>
 
-<!-- {% include 'includes/modal_confirm.html' %} -->
-
 <!-- Delete Image Modal -->
 
 <div id="modal-image-delete" class="modal fade">
     <div class="modal-dialog modal-lg">
         <div class="modal-content p-5">
-            <button class="btn btn-light" data-bs-dismiss="modal">Close</button>
-            <a id="image-delete-confirm" href="#" class="btn btn-danger">Delete</a>
+            <div class="modal-body">
+                Are you sure you want to delete this?
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                <a id="image-delete-confirm" href="#" class="btn btn-danger">Delete</a>
+            </div>
         </div>
     </div>
 </div>
+
+<!-- Image Solo Modal Included -->
+{% include 'includes/image_solo_modal.html' %}
 
 {% endblock %}
 
@@ -71,5 +101,6 @@
 {% load static %}
 
 <script src="{% static 'js/delete-confirm-modals.js' %}"></script>
+<script src="{% static 'js/solo-display-modals.js' %}"></script>
 
 {% endblock extras %}

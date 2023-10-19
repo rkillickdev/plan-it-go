@@ -55,17 +55,17 @@ class ImageForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
-        self.helper.form_id = 'imageForm'
-        self.helper.form_show_labels = False
+        self.helper.form_id = 'imageForm' 
+        self.fields['path'].label = 'Select An Image'
         self.helper.form_method = "POST"
 
         self.helper.layout = Layout(
-            Fieldset(
-                '',
-                'path'
-            ),
-            Submit('Submit', 'Upload', css_id='imageUploadButton')
-        )
+            Field('path'),
+            Div(
+                Submit('Submit', 'Upload', css_id='imageUploadButton'),
+                css_class='text-center'
+                )
+            )
 
     class Meta:
         model = Image

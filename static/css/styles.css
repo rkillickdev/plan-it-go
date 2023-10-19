@@ -15,8 +15,9 @@ ul {
   list-style-type: none;
 }
 
-.place-address ul {
-  padding: 0;
+/* Utilities */
+.title-container h2 a {
+  margin: 0;
 }
 
 /* Navbar */
@@ -93,6 +94,11 @@ ul {
 /* Maps */
 #map {
   height: 600px;
+}
+
+/* Adresses */
+.place-address ul {
+  padding: 0;
 }
 
 /* Media query for medium devices and above.  Reduces width of planner to 75% and centers using margin auto */

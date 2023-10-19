@@ -60,12 +60,13 @@ class Review(models.Model):
     profile = models.ForeignKey(
         Profile, on_delete=models.CASCADE, related_name="reviews"
     )
-    title = models.CharField(max_length=50, default='Loved It')
-    body = models.TextField()
+    title = models.CharField(max_length=50)
+    body = models.TextField(blank=True)
     user_rating = models.IntegerField(
+        null=True,
         validators=[MinValueValidator(0), MaxValueValidator(5)]
         )
-    recommended = models.BooleanField()
+    recommended = models.BooleanField(default=False, null=True)
     created_on = models.DateTimeField(auto_now_add=True)
     approved = models.BooleanField(default=False)
 
@@ -92,14 +93,25 @@ class Image(models.Model):
     path = CloudinaryField(
         'image',
         default='placeholder',
+        # eager=[{'width': "50", 'height': "50", 'crop': "crop"}],
         transformation={
-            'gravity': "auto",
+            'width': "600",
+            'height': "600",
             'crop': "fill",
+            'gravity': "auto",
             'fetch_format': "auto",
+            'quality': "auto",
             'dpr': "auto",
             'responsive': True,
-            'width': "auto"
         },
+        # transformation={
+        #     'gravity': "auto",
+        #     'crop': "fill",
+        #     'fetch_format': "auto",
+        #     'dpr': "auto",
+        #     'responsive': True,
+        #     'width': "auto"
+        # },
         folder="/images/places",
         format="webp"
     )

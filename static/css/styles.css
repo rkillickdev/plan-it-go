@@ -72,12 +72,23 @@ a {
   border-style: solid;
 }
 
+.accordion-body {
+  background-color: var(--bs-secondary);
+}
+
 /* Maps */
 #map {
   height: 600px;
 }
 
-/* Media queries for mobile devices from 767px and down increases height to value 50% of viewport width*/
+/* Media query for medium devices and above.  Reduces width of planner to 75% and centers using margin auto */
+@media only screen and (min-width: 768px) {
+  .medium-w-75 {
+    width: 75%;
+    margin: auto;
+  }
+}
+/* Media query for mobile devices from 767px and down increases height to value 50% of viewport width */
 @media only screen and (max-width: 767px) {
   .img-size-consistent {
     height: 50vw;

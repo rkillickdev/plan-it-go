@@ -1,90 +1,95 @@
 {% extends "base.html" %}
 
+{% load static %}
+
 {% block content %}
 
 <!-- Load Trip Header Template -->
 {% include 'includes/trip_header.html' %}
 
 <!-- Trip Planner -->
+{% if trip.places.count > 0 %}
 <section class="trip-planner">
     <div class="container">
-        <div class="row my-3">
-            <div class="col-lg-7">
-                <div id="map"></div>
-            </div>
-            <div class="col-lg-5 d-flex flex-column">
-                <h2 class="text-center">Your Planner</h2>
-                <div class="accordion accordion-flush" id="planner-accordion">
-                    {% for place in trip.places.all %}
-                        <div class="accordion-item">
-                            <h2 class="accordion-header" id="flush-heading-{{ forloop.counter }}">
-                                <button class="accordion-button collapsed text-light" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse-{{ forloop.counter }}" aria-expanded="{% if forloop.first %} true {% else %} false {% endif %}" aria-controls="flush-collapse-{{ forloop.counter }}">
-                                    {{ place.name }}
-                                </button>
-                            </h2>
-                            <div id="flush-collapse-{{ forloop.counter }}" class="accordion-collapse collapse" aria-labelledby="flush-heading-{{ forloop.counter }}" data-bs-parent="#planner-accordion">
-                                <div class="accordion-body bg-light">
-                                    <div class="d-flex flex-column">
-                                        <div class="card border-0">
-                                            <img class="opaque-image img-fluid" src="{{ place.image }}" alt="{{ place.name }}">
-                                            <div class="card-img-overlay">
-                                                <div class="d-flex flex-column justify-content-center align-items-center h-100">
-                                                    <a class="stretched-link display-5" href="{% url 'place_detail' trip.slug trip.id place.id %}">View Details</a>  
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="d-flex flex-column justify-content-between px-4 gap-4 my-4">
-                                            <div class="card border-0 align-items-center">
-                                                <i class="fa-solid fa-circle-xmark fa-4x"></i>
-                                                <div class="card-body">
-                                                    <a class="delete-planner-item stretched-link align-self-center" trip_id="{{ trip.id }}" place_id="{{ place.id }}" 
-                                                    place_name="{{ place.name }}" data-bs-toggle="modal" data-bs-target="#modal-item-delete-confirm">
-                                                    Remove From Planner  
-                                                    </a>     
-                                                </div>
-                                            </div>
-                                            <div class="d-flex justify-content-between">
-                                                <div class="card border-0">
-                                                    <i class="fa-solid fa-pen-to-square fa-2x align-self-center"></i>
-                                                    <div class="card-body">
-                                                        <a href="{% url 'review' trip.slug trip.id place.id %}" class="stretched-link">Leave A Review</a>
+        <div class="row mb-4">
+            <div class="col-md-12 medium-w-75">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="text-center"><span><i class="fa-solid fa-note-sticky"></i>&nbsp&nbsp</span>Trip Itinerary</h2>
+                    </div>
+                    <div class="accordion accordion-flush" id="planner-accordion">
+                        {% for place in trip.places.all %}
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="flush-heading-{{ forloop.counter }}">
+                                    <button class="accordion-button collapsed text-light" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse-{{ forloop.counter }}" aria-expanded="{% if forloop.first %} true {% else %} false {% endif %}" aria-controls="flush-collapse-{{ forloop.counter }}">
+                                        {{ place.name }}
+                                    </button>
+                                </h2>
+                                <div id="flush-collapse-{{ forloop.counter }}" class="accordion-collapse collapse" aria-labelledby="flush-heading-{{ forloop.counter }}" data-bs-parent="#planner-accordion">
+                                    <div class="accordion-body">
+                                        <div class="d-flex flex-column">
+                                            <div class="card border-0">
+                                                <img class="opaque-image img-fluid" src="{{ place.image }}" alt="{{ place.name }}">
+                                                <div class="card-img-overlay">
+                                                    <div class="d-flex flex-column justify-content-center align-items-center h-100">
+                                                        <a class="stretched-link display-5" href="{% url 'place_detail' trip.slug trip.id place.id %}">View Details</a>  
                                                     </div>
                                                 </div>
-                                                <div class="card border-0">
-                                                    <i class="fa-solid fa-camera fa-2x align-self-center"></i>
+                                            </div>
+                                            <div class="d-flex flex-column justify-content-between px-4 gap-4 my-4 bg-secondary">
+                                                <div class="card border-0 align-items-center bg-secondary">
+                                                    <i class="fa-solid fa-circle-xmark fa-4x"></i>
                                                     <div class="card-body">
-                                                        <a class="stretched-link" href="{% url 'add_image' trip.slug trip.id place.id %}">Upload Image</a> 
+                                                        <a class="delete-planner-item stretched-link align-self-center" trip_id="{{ trip.id }}" place_id="{{ place.id }}" 
+                                                        place_name="{{ place.name }}" data-bs-toggle="modal" data-bs-target="#modal-item-delete-confirm">
+                                                        Remove From Planner  
+                                                        </a>     
                                                     </div>
                                                 </div>
-                                                
-                                                        
+                                                <div class="d-flex justify-content-between">
+                                                    <div class="card border-0 bg-secondary">
+                                                        <i class="fa-solid fa-pen-to-square fa-2x align-self-center"></i>
+                                                        <div class="card-body">
+                                                            <a href="{% url 'review' trip.slug trip.id place.id %}" class="stretched-link">Leave A Review</a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card border-0 bg-secondary">
+                                                        <i class="fa-solid fa-camera fa-2x align-self-center"></i>
+                                                        <div class="card-body">
+                                                            <a class="stretched-link" href="{% url 'add_image' trip.slug trip.id place.id %}">Upload Image</a> 
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    {% endfor %}
+                        {% endfor %}
+                    </div>
                 </div>
             </div>
         </div>   
     </div>
 </section>
+{% endif %}
 
 <!-- Recommendations Paginated -->
 <section class="recommendations">
     <div class="container">
-        <div class="row mb-3">
-            <div class="col-12 text-center">
-                <h2>Recommendations For Your Trip</h2>
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="card border-0 bg-secondary medium-w-75">
+                    <h2 class="text-center p-2"><span><i class="fa-solid fa-heart"></i>&nbsp&nbsp</span>Recommended Places</h2>
+                </div>
             </div>
         </div>
-        <div class="row">
+        <div class="row mb-4">
             <div class="col-12">
                 <div class="row gy-3">
                     {% for place in places %}
                     <div class="col-md-4">
-                        <div class="card text-center border-0 h-100">
+                        <div class="card border-0 bg-secondary text-center h-100 image-clickable">
                             <img class="card-img-top img-fluid img-size-consistent" src="{{ place.image }}" alt="{{ place.name }}">
                             <div class="card-body">
                                 <h3>{{ place.name }}</h3>
@@ -151,7 +156,7 @@
 {{ g_maps_api_key|json_script:"maps-api-key" }}
 
 {% load static %}
-<!-- <script src="{% static 'js/map-cluster.js' %}"></script> -->
+<script src="{% static 'js/map-cluster.js' %}"></script>
 <script src="{% static 'js/delete-confirm-modals.js' %}"></script>
 
 {% endblock extras %}

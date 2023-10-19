@@ -1,3 +1,5 @@
+{% load static %}
+
 <!-- Trip Header -->
 <section class="trip-summary mt-6 mb-4">
   <div class="container">
@@ -12,7 +14,26 @@
             </h2>
             <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
               <div class="accordion-body">
-                <div class="trip-bg-image">
+                <div class="row">
+                  <div class="col-md-7 pe-0">
+                    <div class="map-container p-4">
+                      <div id="map"></div>
+                    </div>
+                  </div>
+                  <div class="col-md-5 ps-0">
+                    <div class="card border-0 bg-secondary text-center m-4">
+                      {% if 'placeholder' in trip.trip_image.url %}
+                        {% if 'placeholder' in trip.location.image.url %}
+                          <img src="{% static 'images/map-pins-sunlight-1500x1000-compress.webp' %}" alt="" class="card-img-top img-fluid img-size-consistent">
+                        {% else %} 
+                          <img src="{{ trip.location.image.url }}" alt="" class="card-img-top img-fluid img-size-consistent">
+                        {% endif %}
+                      {% endif %}
+                      <div class="card-body">
+                        <p class="card-text">{{ trip.description }}</p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

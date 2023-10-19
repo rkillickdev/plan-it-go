@@ -21,7 +21,22 @@ class Trip(models.Model):
     title = models.CharField(max_length=30, unique=True)
     slug = models.SlugField(max_length=30, unique=True)
     description = models.TextField(blank=True)
-    trip_image = CloudinaryField('image', default='placeholder')
+    trip_image = CloudinaryField(
+        'image',
+        default='placeholder',
+        transformation={
+            'width': "1500",
+            'height': "1000",
+            'crop': "fill",
+            'gravity': "auto",
+            'fetch_format': "auto",
+            'quality': "auto",
+            'dpr': "auto",
+            'responsive': True,
+        },
+        folder="/images/trips",
+        format="webp"
+    )
     start_date = models.DateField(blank=True, null=True)
     end_date = models.DateField(blank=True, null=True)
     created_on = models.DateTimeField(auto_now_add=True)

@@ -101,6 +101,7 @@ class Image(models.Model):
             'width': "auto"
         },
         folder="/images/places",
+        format="webp"
     )
     created_on = models.DateTimeField(auto_now_add=True)
     approved = models.BooleanField(default=False)

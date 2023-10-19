@@ -18,7 +18,21 @@ class Profile(models.Model):
     slug = models.SlugField(max_length=150, unique=True, null=True)
     date_of_birth = models.DateField(blank=True, null=True)
     about = models.TextField(blank=True)
-    profile_image = CloudinaryField('image', default='placeholder')
+    profile_image = CloudinaryField(
+        'image',
+        default='placeholder',
+        transformation={
+            'aspect_ratio': "4:4",
+            'gravity': "face",
+            'height': "600",
+            'zoom': "0.75",
+            'crop': "thumb",
+            'fetch_format': "auto",
+            'quality': "auto",
+            'dpr': "auto",
+            'responsive': True,
+        },
+        )
 
     def __str__(self):
         """

@@ -41,7 +41,7 @@
               {% if request.resolver_match.url_name == 'profile_detail' %} active {% endif %} fw-semibold"  
               >Profile</a>
               {% else %}
-              <a href="{% url 'trip_list' %}" class="nav-link fw-semibold">Profile</a>
+              <a href="{% url 'profile_detail' request.user.profile.id %}" class="nav-link fw-semibold">Profile</a>
               {% endif %}
             </li>
             <li class="nav-item">

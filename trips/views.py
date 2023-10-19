@@ -337,7 +337,7 @@ class ImageUploadView(LoginRequiredMixin, CreateView):
 
     def get_context_data(self, **kwargs):
         context = super(ImageUploadView, self).get_context_data(**kwargs)
-        context['images'] = Image.objects.all().order_by('created_on')
+        context['images'] = Image.objects.filter(profile=self.request.user.profile.id).order_by('created_on')
         context['place'] = get_object_or_404(Place, id=self.kwargs['place_id'])
         context['trip'] = get_object_or_404(Trip, id=self.kwargs['trip_id'])
         return context

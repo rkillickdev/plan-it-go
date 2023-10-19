@@ -2,34 +2,54 @@
 
 {% block content %}
 
-<!-- Trip Summary -->
-{% include 'includes/trip_header.html' %}
-
-<div>
-   Upload an image for {{ place.name }}
-</div>
-
 {% load crispy_forms_tags %}
 
-{% crispy form %}
-
-<div class="container">
-    <div class="row">
-        {% for image in images %}
-            <div class="col-md-4 mb-4">
-                <div class="destination-city-mini card border-0 bg-secondary text-center h-100">
-                    <img class="card-img-top img-fluid img-size-consistent" src="{{ image.path.url }}"> 
+<section id="image-upload" class="mt-6 mb-4">
+    <div class="container">
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="card border-0 bg-secondary medium-w-75">
+                    <h2 class="text-center p-2"><span><i class="fa-solid fa-camera"></i>&nbsp&nbsp</span>Add an image for {{ place.name }}</h2>
                 </div>
-            {% if user.is_authenticated and image.profile.id == user.profile.id %}
-
-                <button class="btn btn-delete" image_id="{{ image.id }}" data-bs-toggle="modal" data-bs-target="#modal-image-delete">Delete</button>
-            {% endif %}
             </div>
+        </div>
+        <div class="row mb-4">
+            <div class="image-upload-form medium-w-75">
+                {% crispy form %}
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="image-gallery">
+    <div class="container">
+        {% for place in trip.places.all %}
+            {% if place.images.count > 0 %}
+                <div class="row">
+                    <div class="col-12">
+                        <h2>{{ place.name }}</h2>
+                    </div>
+                </div>
+                <div class="row">
+                    {% for image in place.images.all%}
+                        <div class="col-md-4 mb-4">
+                            <div class="card border-0 bg-secondary text-center h-100">
+                                <img src="{{ image.path.url }}" alt="{{ image.place.name }}" class="card-img-top img-fluid img-size-consistent">
+                            </div>
+                            {% if user.is_authenticated and image.profile.id == user.profile.id %}
+                                <button class="btn btn-delete" image_id="{{ image.id }}" data-bs-toggle="modal" data-bs-target="#modal-image-delete">Delete</button>
+                            {% endif %}    
+                        </div>
+                        {% if forloop.counter|divisibleby:3 %}
+                </div>
+                <div class="row">
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            {% endif %}
         {% endfor %}
     </div>
-    
-</div>
-
+</section>
 
 <!-- {% include 'includes/modal_confirm.html' %} -->
 

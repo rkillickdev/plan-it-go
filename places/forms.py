@@ -56,15 +56,15 @@ class ImageForm(ModelForm):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.form_id = 'imageForm'
-        self.helper.form_class = 'blueForms'
-        self.helper.form_method = "post"
+        self.helper.form_show_labels = False
+        self.helper.form_method = "POST"
 
         self.helper.layout = Layout(
             Fieldset(
-                'upload an image',
+                '',
                 'path'
             ),
-            Submit('Submit', 'Upload Image', css_id='imageUploadButton')
+            Submit('Submit', 'Upload', css_id='imageUploadButton')
         )
 
     class Meta:

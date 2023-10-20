@@ -47,12 +47,11 @@ class ProfileForm(ModelForm):
         self.helper.layout = Layout(
             Div(
                 HTML("""
-                <h2>Make A Profile</h2>
+                <h2>Your Details</h2>
                 """), css_class="py-2"),
             Field('first_name', css_class="mb-4", placeholder='First Name'),
             Field('surname', css_class="mb-4", placeholder='Surname'),
             Field('screen_name', css_class="mb-4", placeholder='Give yourself a screen name...'),
-            Field('date_of_birth', css_class="mb-4", placeholder='When were you born?'),
             Field('about', css_class="mb-4", placeholder='Tell us about you...'),
             Field('profile_image', css_class="mb-4"),
             Div(
@@ -63,5 +62,5 @@ class ProfileForm(ModelForm):
 
     class Meta:
         model = Profile
-        fields = ['first_name', 'surname', 'screen_name', 'date_of_birth',
+        fields = ['first_name', 'surname', 'screen_name',
                   'about', 'profile_image']

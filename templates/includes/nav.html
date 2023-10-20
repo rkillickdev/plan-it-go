@@ -37,7 +37,7 @@
           {% else %}
             <li class="nav-item">
               {% if request.user.profile.screen_name %}
-              <a href="{% url 'profile_detail' request.user.profile.id %}" class="nav-link
+              <a href="{% url 'update_profile' request.user.profile.id %}" class="nav-link
               {% if request.resolver_match.url_name == 'profile_detail' %} active {% endif %} fw-semibold"  
               >Profile</a>
               {% else %}

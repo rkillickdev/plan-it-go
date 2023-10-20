@@ -21,6 +21,14 @@ class Profile(models.Model):
     profile_image = CloudinaryField(
         'image',
         default='placeholder',
+        eager=[
+            {
+                'width': "100",
+                'height': "100",
+                'gravity': "face",
+                'crop': "thumb"
+            }
+        ],
         transformation={
             'aspect_ratio': "4:4",
             'gravity': "face",
@@ -32,7 +40,9 @@ class Profile(models.Model):
             'dpr': "auto",
             'responsive': True,
         },
-        )
+        folder="/images/profiles",
+        format="webp"
+    )
 
     def __str__(self):
         """

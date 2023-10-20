@@ -1,19 +1,32 @@
 
 {% extends "base.html" %}
 
+{% load static %}
+
 {% block content %}
 
 {% load crispy_forms_tags %}
 
-<h1>GET PLACES FROM API</h1>
-
-{% crispy form %}
-
-<ul>
-    {% for place in retrieved_places %}
-        <a href="{% url 'place_browse_detail' place.slug place.id %}"><li>{{ place.name }}</li></a>
-    {% endfor %}
-</ul>
+<section id="get-places" class="mt-6">
+    <div class="container">
+        <div class="row">
+            <h2>Get Places</h2>
+        </div>
+        <div class="row">
+            <div class="col-md-7">
+                <div class="img-container">
+                    <img src="{% static 'images/magnifying-glass-map-1500x1000-compress.webp'%}" alt="" class="img-fluid">
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="form-container text-center">
+                    {% crispy form %}
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</section>
 
 {% endblock %}
 

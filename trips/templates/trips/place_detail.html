@@ -39,14 +39,6 @@
               class="btn btn-primary text-light button-link">
               <span><i class="fa-solid fa-backward"></i>&nbsp&nbsp</span>More Recommendations</a>
             </div>
-            
-            {% if messages %}
-              {% for message in messages %}
-                <div class="alert {% if message.tags %} alert-{{ message.tags }} {% endif %}" role="alert">
-                  {{ message }}
-                </div>
-              {% endfor %}
-            {% endif %}
           </div>
         </div>
       </div>

@@ -1,24 +1,25 @@
-# import numpy as np
-import json
+
+"""
+TEST USING JSON DATA TO POPULATE DATATBASE
+"""
+
+# # import numpy as np
+# import json
 
 
-# read file
-with open('data/los-angeles.json', 'r') as myfile:
-    data = myfile.read()
+# # read file
+# with open('data/los-angeles.json', 'r') as myfile:
+#     data = myfile.read()
 
-# parse file
-python_data = json.loads(data)
-
-
-# python_data = json.loads(test.json)
-
-# print(python_data[0])
-for place in python_data:
-    print(place["name"])
+# # parse file
+# python_data = json.loads(data)
 
 
+# # python_data = json.loads(test.json)
 
-
+# # print(python_data[0])
+# for place in python_data:
+#     print(place["name"])
 
 """
 OLD TESTING FOR EMPTY FIELDS IN API RESPONSE

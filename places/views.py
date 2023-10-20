@@ -1,6 +1,7 @@
 import numpy as np
 import json
 
+from django.contrib import messages
 from django.shortcuts import render, get_object_or_404, reverse
 from django.http import HttpResponseRedirect
 from django.views.generic import ListView, DetailView
@@ -63,78 +64,79 @@ def get_places(request):
             requested_location = (form.cleaned_data['location'])
 
         # TRY REINSTATING THIS TRY EXCEPT STATEMENT
-        # try:
+        try:
+            # read file
+            with open('static/data/los-angeles.json', 'r') as myfile:
+                data = myfile.read()
 
-        # read file
-        with open('static/data/los-angeles.json', 'r') as myfile:
-            data = myfile.read()
+            # parse file
+            python_data = json.loads(data)
 
-        # parse file
-        python_data = json.loads(data)
+            # Iterates over data retrieved from API call.
+            # Checks if values for certain keys exist.
+            # Returns to top of loop if any of these values are blank.
+            for place in python_data:
+                required_fields = {
+                    "category": place['category'],
+                    "name": place['name'],
+                    "description": place['description'],
+                    "image": place['image'],
+                    "rating": place['rating'],
+                    "address": place['addressObj'],
+                    "latitude": place['latitude'],
+                    "longitude": place['longitude']
+                }
 
-        # Iterates over data retrieved from API call.
-        # Checks if values for certain keys exist.
-        # Returns to top of loop if any of these values are blank.
-        for place in python_data:
-            required_fields = {
-                "category": place['category'],
-                "name": place['name'],
-                "description": place['description'],
-                "image": place['image'],
-                "rating": place['rating'],
-                "address": place['addressObj'],
-                "latitude": place['latitude'],
-                "longitude": place['longitude']
-            }
+                if not all(required_fields.values()):
+                    continue
 
-            if not all(required_fields.values()):
-                continue
+                # Creates an instance of Place for each place in the API response.
+                # Populates Place fields with data from API response.
+                place_data = Place(
+                    location=requested_location,
+                    venue_id=place['id'],
+                    type=place['type'],
+                    category=place['category'],
+                    sub_categories=place['subcategories'],
+                    name=place['name'],
+                    location_string=place['locationString'],
+                    description=place['description'],
+                    image=place['image'],
+                    ranking_position=place['rankingPosition'],
+                    rating=place['rating'],
+                    phone=place['phone'],
+                    address=place['addressObj'],
+                    latitude=place['latitude'],
+                    longitude=place['longitude'],
+                    website=place['website'],
+                    ranking_string=place['rankingString'],
+                )
 
-            # Creates an instance of Place for each place in the API response.
-            # Populates Place fields with data from API response.
-            place_data = Place(
-                location=requested_location,
-                venue_id=place['id'],
-                type=place['type'],
-                category=place['category'],
-                sub_categories=place['subcategories'],
-                name=place['name'],
-                location_string=place['locationString'],
-                description=place['description'],
-                image=place['image'],
-                ranking_position=place['rankingPosition'],
-                rating=place['rating'],
-                phone=place['phone'],
-                address=place['addressObj'],
-                latitude=place['latitude'],
-                longitude=place['longitude'],
-                website=place['website'],
-                ranking_string=place['rankingString'],
+                # Query database to see if the venue_id used in the API
+                # response already exists. Return to top of loop if it does.
+                venue = Place.objects.filter(
+                    venue_id=place_data.venue_id
+                )
+
+                # Calculate number of words in description field using numpy
+                word_count = np.char.count(place_data.description, ' ') + 1
+
+                # Checks if venue already exists of description word count < 50.
+                if venue.exists() or word_count < 30:
+                    continue
+                else:
+                    # Save to database
+                    place_data.save()
+
+            # retrieved_places = Place.objects.filter(
+            #     location=requested_location.id).order_by('ranking_position')
+
+            # TRY REINSTATING THIS TRY EXCEPT STATEMENT
+
+        except Exception as error:
+            messages.add_message(
+                request, messages.ERROR, 'We were not able to retrieve this data!'
             )
-
-            # Query database to see if the venue_id used in the API
-            # response already exists. Return to top of loop if it does.
-            venue = Place.objects.filter(
-                venue_id=place_data.venue_id
-            )
-
-            # Calculate number of words in description field using numpy
-            word_count = np.char.count(place_data.description, ' ') + 1
-
-            # Checks if venue already exists of description word count < 50.
-            if venue.exists() or word_count < 30:
-                continue
-            else:
-                # Save to database
-                place_data.save()
-
-        # retrieved_places = Place.objects.filter(
-        #     location=requested_location.id).order_by('ranking_position')
-
-        # TRY REINSTATING THIS TRY EXCEPT STATEMENT
-
-        # except ResponseError as error:
-        #     raise error
 
         return HttpResponseRedirect(
             reverse('place_list', args=[

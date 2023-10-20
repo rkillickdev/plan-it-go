@@ -27,6 +27,10 @@
     <!-- Navbar -->
     {% include 'includes/nav.html' %}
 
+
+    <!-- Include Messages Template -->
+    {% include 'includes/messages.html' %}
+
     <main>
         {% block content %}
         <!-- Content Here -->
@@ -48,6 +52,11 @@
 
     <!-- Google Maps Marker Clusterer-->
     <script src="https://unpkg.com/@googlemaps/markerclusterer/dist/index.min.js"></script>
+
+    <!-- Runs JS script to initiliase and show toasts if messages from Django are avaialble -->
+    {% if messages %}
+        <script src="{% static 'js/toasts.js' %}"></script>
+    {% endif %}
 
     {% block extras %}
 

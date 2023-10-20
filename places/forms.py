@@ -37,7 +37,6 @@ class ReviewForm(ModelForm):
                 HTML("""
                 <h2>Leave A Review for {{place.name}}</h2>
                 """), css_class="py-2"),
-            Field('title', placeholder='Give us a brief summary...'),
             Field('body', placeholder='Tell us more about your visit...'),
             Div(
                 Submit('Submit', 'Post Review', css_id='submitButton'),
@@ -47,7 +46,7 @@ class ReviewForm(ModelForm):
 
     class Meta:
         model = Review
-        fields = ['title', 'body']
+        fields = ['body']
 
 
 class ImageForm(ModelForm):

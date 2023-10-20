@@ -60,8 +60,7 @@ class Review(models.Model):
     profile = models.ForeignKey(
         Profile, on_delete=models.CASCADE, related_name="reviews"
     )
-    title = models.CharField(max_length=50)
-    body = models.TextField(blank=True)
+    body = models.TextField()
     user_rating = models.IntegerField(
         null=True,
         validators=[MinValueValidator(0), MaxValueValidator(5)]

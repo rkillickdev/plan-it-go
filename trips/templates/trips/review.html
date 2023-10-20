@@ -8,7 +8,7 @@
 
 <section id="reviews" class="reviews mt-6 mb-4">
     <div class="container">
-        <div class="row">
+        <div class="row mb-4">
             <div class="col-lg-7">
                 <div class="image-container">
                     <img src="{% static 'images/map-photo-memories-1500x1000-compress.webp'%}" alt="" class="img-fluid d-none d-lg-block">
@@ -18,82 +18,41 @@
                 {% crispy review_form %}
             </div>
         </div>
-        <div class="row">
+        <div class="row mb-4">
             <div class="col-lg-4">
                 {% for review in reviews %}
-                <a data-bs-toggle="modal" data-bs-target="#modal-user-review" class="btn btn-primary">
-                    Read More...
+                <a data-bs-toggle="modal" data-bs-target="#modal-user-review">
                     <div class="user-review card mb-4 text-center" review_id="{{ review.id }}">
-                        <div class="card-header"></div>
-                        <div class="card-body">
-                            <p id="review-body{{ review.id }}" class=" card-text {% if not review.approved and review.profile == request.user.profile %} faded {% elif not.review.approved %} d-none{% endif %}">{{review.body}}</p>
-                            {% if user.is_authenticated and review.profile.id == user.profile.id %}
-                            <button class="btn btn-edit" review_id="{{ review.id }}" review_rating="{{ review.user_rating }}">Edit</button>
-                            <button class="btn btn-delete" review_id="{{ review.id }}" data-bs-toggle="modal" data-bs-target="#modal-review-delete" >Delete</button> 
-                            {% endif %}   
+                        <div class="card-header">
+                            <div class="d-flex justify-content-between">
+                                <div class="image-container">
+                                    {% if 'placeholder' in review.profile.profile_image.url %}
+                                        <img src="{% static 'images/placeholders/globe-profile-face-compress-square.webp' %}" alt="picture of {{ profile.screen_name }}" class="img-fluid rounded-circle" width="120px"> 
+                                    {% else %}
+                                        <img src="{{ review.profile.profile_image.url }}" alt="picture of {{ profile.screen_name }}" class="img-fluid rounded-circle" width="120px"> 
+                                    {% endif %}
+                                </div>
+                                <p>{{ review.profile.screen_name}}</p>    
+                            </div>
                         </div>
-                        <div class="card-footer d-flex flex-column flex-md-row justify-content-between">
-                            <div>{{ review.created_on }}</div>
-                            <div>{{ review.profile.screen_name}}</div>
+                        <div class="card-body">
+                            <p class="lead"><span><i class="fa-solid fa-magnifying-glass"></i>&nbsp&nbsp</span> Read Review</p>
+                            <p id="review-body{{ review.id }}" class=" card-title d-none {% if not review.approved and review.profile == request.user.profile %} faded {% elif not.review.approved %} d-none{% endif %}">{{review.body}}</p>
+                        </div>
+                        <div class="card-footer">
+                            <div>{{ review.place.name }}</div>
                         </div>
                     </div>
                 </a>
+                {% if user.is_authenticated and review.profile.id == user.profile.id %}
+                <button class="btn btn-edit" review_id="{{ review.id }}">Edit</button>
+                <button class="btn btn-delete" review_id="{{ review.id }}" data-bs-toggle="modal" data-bs-target="#modal-review-delete" >Delete</button> 
+                {% endif %}
                 {% endfor %}
             </div>
         </div>
     </div>
 </section>
-
-<div class="card">
-    <img src="" alt="" class="card-img-top img-fluid opaque-image">
-    <div class="card-img-overlay">
-        <h3>{{ review.place.name }}</h3>
-    </div>
-    <div class="card-body">
-        <div class="d-flex flex-column justify-content-between px-4 gap-4 my-4">
-            <a data-bs-toggle="modal" data-bs-target="#modal-user-review" class="btn btn-primary">
-
-            </a>
-        </div>
-    </div>
-</div>
-
-<!-- TEMPLATE FROM TRIP DETAIL PAGE -->
-<!-- <div class="card border-0">
-    <img class="opaque-image img-fluid" src="{{ place.image }}" alt="{{ place.name }}">
-    <div class="card-img-overlay">
-        <div class="d-flex flex-column justify-content-center align-items-center h-100">
-            <a class="stretched-link display-5" href="{% url 'place_detail' trip.slug trip.id place.id %}">View Details</a>  
-        </div>
-    </div>
-</div>
-<div class="d-flex flex-column justify-content-between px-4 gap-4 my-4">
-    <div class="card border-0 align-items-center">
-        <i class="fa-solid fa-circle-xmark fa-4x"></i>
-        <div class="card-body">
-            <a class="delete-planner-item stretched-link align-self-center" trip_id="{{ trip.id }}" place_id="{{ place.id }}" 
-            place_name="{{ place.name }}" data-bs-toggle="modal" data-bs-target="#modal-item-delete-confirm">
-            Remove From Planner  
-            </a>     
-        </div>
-    </div>
-    <div class="d-flex justify-content-between">
-        <div class="card border-0">
-            <i class="fa-solid fa-pen-to-square fa-2x align-self-center"></i>
-            <div class="card-body">
-                <a href="{% url 'review' trip.slug trip.id place.id %}" class="stretched-link">Leave A Review</a>
-            </div>
-        </div>
-        <div class="card border-0">
-            <i class="fa-solid fa-camera fa-2x align-self-center"></i>
-            <div class="card-body">
-                <a class="stretched-link" href="{% url 'add_image' trip.slug trip.id place.id %}">Upload Image</a> 
-            </div>
-        </div>         
-    </div>
-</div> -->
-
-
 
 <!-- MODALS -->
 

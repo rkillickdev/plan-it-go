@@ -144,7 +144,7 @@ def get_places(request):
             word_count = np.char.count(place_data.description, ' ') + 1
 
             # Checks if venue already exists of description word count < 50.
-            if venue.exists() or word_count < 40:
+            if venue.exists() or word_count < 30:
                 print(f"Ven: {place_data.venue_id} already exists")
                 continue
             else:

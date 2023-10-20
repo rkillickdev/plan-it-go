@@ -31,13 +31,14 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = development
+
+DEBUG = True
+# DEBUG = development
 
 if development:  
     ALLOWED_HOSTS = ['8000-rkillickdev-planitgo-u9uuwhusilu.ws-eu105.gitpod.io'] 
 else:
     ALLOWED_HOSTS = ['plan-it-go-5b10d0005b0a.herokuapp.com']
-
 
 # Application definition
 

@@ -66,7 +66,7 @@ def get_places(request):
         # try:
 
         # read file
-        with open('data/los-angeles.json', 'r') as myfile:
+        with open('/static/data/los-angeles.json', 'r') as myfile:
             data = myfile.read()
 
         # parse file

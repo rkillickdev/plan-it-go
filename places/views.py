@@ -60,7 +60,6 @@ def get_places(request):
 
         if form.is_valid():
             requested_location = (form.cleaned_data['location'])
-            print(requested_location)
 
         # TRY REINSTATING THIS TRY EXCEPT STATEMENT
         # try:
@@ -71,7 +70,7 @@ def get_places(request):
         # Prepare the Actor input
         run_input = {
             "locationFullName": requested_location.city,
-            "maxItems": 25,
+            "maxItems": 40,
             "language": "en",
             "currency": "GBP",
             "includeAttractions": True,
@@ -107,10 +106,7 @@ def get_places(request):
             }
 
             if not all(required_fields.values()):
-                print(f"skipped {required_fields['name']}")
                 continue
-
-            print(f"{required_fields['name']} passed check")
 
             # Creates an instance of Place for each place in the API response.
             # Populates Place fields with data from API response.
@@ -145,12 +141,10 @@ def get_places(request):
 
             # Checks if venue already exists of description word count < 50.
             if venue.exists() or word_count < 30:
-                print(f"Ven: {place_data.venue_id} already exists")
                 continue
             else:
                 # Save to database
                 place_data.save()
-                print(f'{place_data.name} has been saved')
 
         # retrieved_places = Place.objects.filter(
         #     location=requested_location.id).order_by('ranking_position')

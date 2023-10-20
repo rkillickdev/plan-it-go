@@ -56,6 +56,11 @@ class ProfileForm(ModelForm):
             Field('profile_image', css_class="mb-4"),
             Div(
                 Submit('Submit', 'Create Profile', css_id='submitButton'),
+                HTML("""
+                    <div class="spinner-border" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                    </div>
+                """),
                 css_class="mb-4"
             )
         )

@@ -166,8 +166,8 @@ class PlaceDetail(LoginRequiredMixin, View):
 
         trip = get_object_or_404(Trip, id=trip_id)
         place = get_object_or_404(Place, id=place_id)
-        reviews = place.reviews.all().order_by('created_on')
-        images = place.images.all().order_by('created_on')
+        reviews = place.reviews.filter(approved=True).order_by('created_on')
+        images = place.images.filter(approved=True).order_by('created_on')
         added = False
 
         if trip.places.filter(id=place.id).exists():

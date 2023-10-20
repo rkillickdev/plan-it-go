@@ -92,6 +92,20 @@
       </div>
 </section>
 
+<!-- CODE ORIGINALLY USED TO DISPLAY REVIEWS ON PLACE DETAIL PAGE-->
+
+<a data-bs-toggle="modal" data-bs-target="#modal-review-solo">
+  <div class="review-solo d-flex flex-column justify-content-center align-items-center text-center" review_id="{{ review.id }}">
+    <img src="{% static 'images/placeholders/globe-profile-face-compress-square.webp'%}" alt="" class="rounded-circle" width="120">
+    <p id="review-title{{review.id}}" class="w-50 my-4 fst-italic fs-4 mb-4">
+      {{ review.title }}    
+    </p>
+    <p id="review-body{{review.id}}" class="d-none">
+      {{ review.body }}
+    </p>
+  </div>
+</a>
+
 <!-- OLD DELETE REVIEW MODAL -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">

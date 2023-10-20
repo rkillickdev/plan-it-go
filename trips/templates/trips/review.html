@@ -54,26 +54,7 @@
     </div>
 </section>
 
-<!-- MODALS -->
-
-<div id="modal-user-review" class="modal fade">
-    <div class="modal-dialog modal-lg mt-7">
-      <div class="modal-content bg-primary p-5">
-        <div class="row">
-            <div class="col-4">
-                <!-- <img id="solo-review-profile" src="" class="rounded-circle" width="120" alt="User Profile Image"> -->
-            </div>
-            <div class="col-8">
-                <h5 id="user-review-title" class="card-title text-center"></h5>
-            </div>
-            <div class="col-12">
-                <p id="user-review-body"></p>
-            </div>
-            <button class="btn btn-light" data-bs-dismiss="modal">Close</button> 
-        </div>
-      </div>
-    </div>
-  </div>
+{% include 'includes/review_solo_modal.html' %}
 
 <!-- Delete Review Modal -->
 

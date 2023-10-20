@@ -62,7 +62,7 @@ class Review(models.Model):
     )
     body = models.TextField()
     user_rating = models.IntegerField(
-        null=True,
+        null=True, blank=True,
         validators=[MinValueValidator(0), MaxValueValidator(5)]
         )
     recommended = models.BooleanField(default=False, null=True)

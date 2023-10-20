@@ -10,12 +10,12 @@
               data-bs-toggle="tab" data-bs-target="#nav-details" type="button" role="tab" 
               aria-controls="nav-details" aria-selected="true">Details
               </button>
-              <button class="nav-link {% if place.reviews.count == 0 %} d-none {% endif %}" 
+              <button class="nav-link {% if review.approved in place.reviews.all %} d-none {% endif %}" 
               id="nav-reviews-tab" data-bs-toggle="tab" data-bs-target="#nav-reviews" 
               type="button" role="tab" aria-controls="nav-reviews" aria-selected="false"
               >Reviews
               </button>
-              <button class="nav-link {% if place.images.count == 0 %} d-none {% endif %}" 
+              <button class="nav-link {% if image.approved in place.images.all %} d-none {% endif %}" 
               id="nav-gallery-tab" data-bs-toggle="tab" data-bs-target="#nav-gallery" 
               type="button" role="tab" aria-controls="nav-gallery" aria-selected="false">Gallery
               </button>
@@ -72,17 +72,31 @@
             <div class="carousel-inner">
               {% for review in reviews %}
                 <div class="carousel-item {% if forloop.first %} active {% endif %}">
-                  <a data-bs-toggle="modal" data-bs-target="#modal-review-solo">
-                    <div class="review-solo d-flex flex-column justify-content-center align-items-center text-center" review_id="{{ review.id }}">
-                      <img src="{% static 'images/placeholders/globe-profile-face-compress-square.webp'%}" alt="" class="rounded-circle" width="120">
-                      <p id="review-title{{review.id}}" class="w-50 my-4 fst-italic fs-4 mb-4">
-                        {{ review.title }}    
-                      </p>
-                      <p id="review-body{{review.id}}" class="d-none">
-                        {{ review.body }}
-                      </p>
-                    </div>
-                  </a>
+                  <div class="review-container w-50 m-auto">
+                    <a data-bs-toggle="modal" data-bs-target="#modal-user-review">
+                      <div class="user-review card mb-4 text-center" review_id="{{ review.id }}">
+                        <div class="card-header">
+                            <div class="d-flex justify-content-between">
+                                <div class="image-container">
+                                    {% if 'placeholder' in review.profile.profile_image.url %}
+                                        <img src="{% static 'images/placeholders/globe-profile-face-compress-square.webp' %}" alt="picture of {{ profile.screen_name }}" class="img-fluid rounded-circle" width="120px"> 
+                                    {% else %}
+                                        <img src="{{ review.profile.profile_image.url }}" alt="picture of {{ profile.screen_name }}" class="img-fluid rounded-circle" width="120px"> 
+                                    {% endif %}
+                                </div>
+                                <p>{{ review.profile.screen_name}}</p>    
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <p class="lead"><span><i class="fa-solid fa-magnifying-glass"></i>&nbsp&nbsp</span> Read Review</p>
+                            <p id="review-body{{ review.id }}" class=" card-title d-none {% if not review.approved and review.profile == request.user.profile %} faded {% elif not.review.approved %} d-none{% endif %}">{{review.body}}</p>
+                        </div>
+                        <div class="card-footer">
+                            <div>{{ review.place.name }}</div>
+                        </div>
+                      </div>
+                    </a>  
+                  </div>
                 </div>
               {% endfor %}
             </div>
@@ -115,28 +129,9 @@
       </div>
     </div>
   </section>
-  
-  <!-- MODALS -->
-  
-  <!-- Review Solo Modal -->
-  <div id="modal-review-solo" class="modal fade">
-    <div class="modal-dialog modal-lg mt-7">
-      <div class="modal-content bg-primary p-5">
-        <div class="row">
-          <div class="col-12 d-flex flex-column justify-content-between">
-            <div class="card align-items-center">
-              <img id="solo-review-profile" src="" class="rounded-circle" width="120" alt="User Profile Image">
-              <div class="card-body">
-                <h5 id="solo-review-title" class="card-title text-center"></h5>
-                <p id="solo-review-body" class="card-text"></p>
-                <button class="btn btn-light" data-bs-dismiss="modal">Close</button>  
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+
+<!-- Review Solo Modal Included -->
+{% include 'includes/review_solo_modal.html' %}
   
 <!-- Image Solo Modal Included -->
 {% include 'includes/image_solo_modal.html' %}

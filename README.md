@@ -14,6 +14,8 @@
     * [Skeleton Plane](#skeleton-plane)
         * [Wireframes](#wireframes)
         * [Database Schema](#database-schema)
+    * [Structure Plane](#structure-plane)
+        *[Features](#features)
 
 # **User Experience (UX)**
 
@@ -144,3 +146,87 @@ ___
 [A PDF for Database Schema v01 Can be viewd here](docs/database-schema/planit-go-database-highlight-schema-v01.pdf)
 
 [The database schema created using dbdiagram.io can be found here](https://dbdiagram.io/d/64f2f6f902bd1c4a5ed78564)
+
+
+## **STRUCTURE PLANE**
+___
+
+## **Features**
+
+### **Navbar**
+
+The navbar is common to all pages.  The HTML structure for this feature lives in the nav.html files with the following file path:
+
+`
+templates/includes/nav.html
+
+`
+This file is then included in the base.html file, which is subsequently included in every html template.  This ensures that any changes to the navbar html code need only be made once.
+
+To the left of the navbar is a clean, minimal brand logo that is deigned to instantly comumunicate the core aims of the site.  By using a globe as a substitute for the letter 'O' in 'GO', site users are subconciously aware that 'planning of global travel' is at the heart of the site's objectives.  The colours used in the brand logo are consistent with the colour scheme used throughout the rest of the site.  The hover effect applied to the brand logo is consistent with the effect used for all other clickable links throughout.  Clicking on the logo takes the site user back to the home page.
+
+To the right of the navbar, page links are displayed and a hover effect applied so users know they are clickable.  Dependent on the status of the site user, links display as follows:
+
+* Home -> index.html - Visible to all users
+* Ideas -> trip_browse.html - Visible to all users
+* Profile -> profile_form.html - Visible to logged in users
+* My Trips -> trip_list.html - Visible to logged in users
+* Signup -> login.html - Visible to logged out users
+* Login -> login.html - Visible to logged out users
+* Logout -> logout.html - Visible to logged in users
+ 
+ To ensure good user experience and satisfy the site owner's goal of responsive design across a range of device sizes, the navigation menu collapses down into a hamburger menu on screen sizes below 992px.  This prevents the navbar from feeling cluttered on smaller devices and the instantly recognisable hamburger icon ensures that site navigation remains intuitive for users.
+
+### **Footer**
+
+### **Home Page**
+
+**Header Hero Image**
+
+The aim of the owner is that the purpose of the site should be immediately evident to the user when they land on the home page.  The hero image chosen to convey this message communicate both the themes of travel and planning, with the coloured pins placed in the map reminiscent of an age before the possibility of online trip planning.  A younger site user is more likely to associate these pins with the recognisable Google Maps interface, where digital pins are used to comunicate location.
+
+The colours from the hero image were the starting point for the colour scheme used consistently throughout the rest of the site.  The core goals of the site are reinforced by the title in the header, and the revolving words adds a touch of visual interest for the user.  The colours chosen for these interchanging words tie in with the three featured pins on the map hero image.
+
+A call to action is then used, to draw the user into the 'trip planning' fuctionality of the site.  The 'start planning' clickable button will direct non logged in users to the signup page.  Those that already have user credentials can easily switch to the login page to enter their details.  If a user is already logged in, they will be taken directly to their 'trip list' page where they can edit existing trips or create new ones.
+
+**Site Goals**
+
+Next three cards layout the ways in which the site can be used.  The inclusion of icons above each statement helps communicate these goals before the user has even read the text.
+
+**Destinations Carousel**
+
+The aim of this section is to allow users to browse and draw inspiration from the trips of other site users.  Clicking on each carousel card display information about the featured destination in a large modal window.  From here, they can follow a link to browse trips for this specific destination.  Throughout, the user will be gently guided and given the option to sign up and enjoy the full features and functionality of the site.
+
+### **Login/ Sign Up Pages**
+
+In the settings.py file, the following urls have been set for redirecting users after signup and login:
+
+```python
+ACCOUNT_SIGNUP_REDIRECT_URL = '/trips/trip_list'
+LOGIN_REDIRECT_URL = '/trips/trip_list'
+```
+
+### **Logged In User Functionality**
+
+Dependent on the status of the user account, one of three pages are displayed.  Conditional 'If/ Else' statements are used in the html template to achieve these different displays:
+
+**New Users**
+
+Upon successful login, a user profile is automatically created with a unique id.  The aim of the site however is to offer personalised profiles, so new users are encouraged to click the 'Create Profile' link where they can enter a unique screen name, upload a profile image and write a bio.  Only the screen name is a compulsory field in the form, as this is how they will be identified on the site moving forwards.
+
+**Returning Users**
+
+If a logged in user has already provided a screen name, but as yet have not created any trips, they are encouraged to get started and click the + button 'plan your first trip'.  There is also the option to seek some inspiration, which lets the user browse trips planned by fellow site users.
+
+If a logged in user already has one or trips created, these are listed in date order.  They can either click on each trip to view further details, or click the + button 'plan your next trip'. 
+
+
+
+
+
+
+
+
+
+
+

@@ -206,19 +206,60 @@ ACCOUNT_SIGNUP_REDIRECT_URL = '/trips/trip_list'
 LOGIN_REDIRECT_URL = '/trips/trip_list'
 ```
 
-### **Logged In User Functionality**
+### **Trip List** 
 
-Dependent on the status of the user account, one of three pages are displayed.  Conditional 'If/ Else' statements are used in the html template to achieve these different displays:
+Dependent on the status of the logged in user account, one of three pages are displayed.  Conditional 'If/ Else' statements are used in the html template to achieve these different displays:
 
-**New Users**
+* **New Users**
 
 Upon successful login, a user profile is automatically created with a unique id.  The aim of the site however is to offer personalised profiles, so new users are encouraged to click the 'Create Profile' link where they can enter a unique screen name, upload a profile image and write a bio.  Only the screen name is a compulsory field in the form, as this is how they will be identified on the site moving forwards.
 
-**Returning Users**
+* **Returning Users**
 
 If a logged in user has already provided a screen name, but as yet have not created any trips, they are encouraged to get started and click the + button 'plan your first trip'.  There is also the option to seek some inspiration, which lets the user browse trips planned by fellow site users.
 
-If a logged in user already has one or trips created, these are listed in date order.  They can either click on each trip to view further details, or click the + button 'plan your next trip'. 
+If a logged in user already has one or trips created, these are listed in date order.  They can either click on each trip to view further details, or click the + button 'plan your next trip'.
+
+### **Trip Details**
+
+**Trip Summary**
+
+**Recommendations**
+
+**Trip Planner**
+
+* View Place Details
+
+* Remove From Planner
+
+* Leave A Review
+
+* Upload Image
+
+### **Place Details**
+
+**Place Summary**
+
+**Details Tab**
+
+**Reviews Tab**
+
+**Gallery Tab**
+
+### **User Reviews**
+
+### **User Images**
+
+### **Toasts**
+
+### **Error Pages**
+
+### **Favicon and Meta Tags**
+
+### **Security & Defensive Design**
+
+### **Responsive design**
+
 
 
 

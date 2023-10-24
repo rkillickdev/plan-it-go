@@ -224,27 +224,50 @@ If a logged in user already has one or trips created, these are listed in date o
 
 **Trip Summary**
 
+The bootstrap accordion component is used to collapse and store a summary of the trip.  Clicking the arrow icon expands the accordion and reveals a map displaying the trip destination.  As places are added to the trip itinerary, markers are added to pinpoint that place on the map.  This functionality has been implemented using Google Maps [Marker Clustering](https://developers.google.com/maps/documentation/javascript/marker-clustering#cdn).
+Other information displayed in ther summary section are a trip description if one has been provided and the number of days until travel.
+
+**Trip Itinerary**
+
+An accordion component is also used to display information relating to the trip itinerary, but only appears on screen once the trip has at least one place added.  Expanding each accordion item presents the user with the followig clickable options:
+
+* View Details -> Directs user to the [Place Details Page](#place-details)
+* Remove From Itinerary -> A modal is used to confirm the user's intention to delete the place.
+* Leave A Review -> Directs user to the [User Reviews Page](#user-reviews) 
+* Upload Image -> Directs user to the [User Images Page](#user-images)
+
 **Recommendations**
 
-**Trip Planner**
-
-* View Place Details
-
-* Remove From Planner
-
-* Leave A Review
-
-* Upload Image
+Users are presented with recommended places to add to their itinerary based on the trip destination.  The results returned from the Place model are paginated with 3 places displayed in a row per page. The card for each place has a hover effect applied to indicate to the user that this is a clickable link.  Clicking on a place directs the user to the relevant [Place Details Page](#place-details).  Places that have already been added to the trip itinerary do not appear as part of this list of recommendations.
 
 ### **Place Details**
 
 **Place Summary**
 
+On naviagting to a 'place details' page, the user is presented with a summary section containing the following:
+
+* Place Image
+* Place Name
+* Place Star Rating -> visually communicated using Fontawesome icons
+* Add/ Remove From Trip -> This button allows the user to toggle between adding or removing the place
+* More Recommendations -> This button directs the user back to the [Trip Details Page](#trip-details)
+
 **Details Tab**
+
+Further information about the place can be found in the details navigation tab.  This contains:
+
+* Description
+* Address
+* Website if avaialble - this link opens in a new browser tab
+* Google Map displaying location of the place.  This functionally was implemented with the help of the following [Google's Map Documentation](https://developers.google.com/maps/documentation/javascript/adding-a-google-map).  The following [javascript file](static/js/maps.js) is loaded at the bottom of the place detail page.
 
 **Reviews Tab**
 
+The review tab is only visible to users if a review exists for the selected place.  Reviews are displayed using the Bootstrap Carousel component and appear as clickable cards with hover effect consistent with the rest of the site.  Clicking on a card opens the full review in a modal.  Only reviews that have been approved by a site administrator will be displayed.
+
 **Gallery Tab**
+
+The gallery tab is only visible to users if images relating to the selected place have been uploaded to the site. Images are displayed as thumbnails in rows of 3.  Clicking on any of the images opens a full size version in a modal.
 
 ### **User Reviews**
 

@@ -271,9 +271,17 @@ The gallery tab is only visible to users if images relating to the selected plac
 
 ### **User Reviews**
 
+From their trip itinerary, users can navigate to their 'reviews page' to leave a review for a place once they have visited.  From this page, they can also view, edit or delete any other reviews they have already left for places in their trip itinerary.  A confirmation modal is used to check the user really wants to delete a review before removing from the database.  Once a review has been submitted, this is immediately visible to the logged in user and they still have the ability to edit/ delete, but the review is not accessible to other site users until the content has been approved by a site administrator.
+
 ### **User Images**
 
+Users are presented with the option to 'upload image' for each place in their trip itinerary.  Once directed to this page, they can select an image to upload and also view a gallery of images already added.  Functionality has also been implemented to allow the user to 'add more' images to a place listed in the gallery, or delete an image.  A confirmation modal is used to check the user really wants to delete an image before removing from the database.  Once an image has been submitted it is immediately visible to the logged in user, but the image is not visible to other site users in the 'place gallery' tab until it has been approved by a site administrator.
+
 ### **Toasts**
+
+Toasts are available as a Bootstrap component, and have been used in conjunction with [Django Messages](https://docs.djangoproject.com/en/4.2/ref/contrib/messages/) to provide the user with feedback as they navigate the site. This helps to communicate when an interaction has been successful or unsuccessful, therefore always keeping the user informed and providing an enhanced user experience.  To avoid the repetition of code and to ensure that the appearance of messages is consistent across the site, the toast  html structure lives in the [messages.html](templates/includes/messages.html) file and has been included in the base.html template.
+
+If a message is detected on page load, the following [toasts javascript file](static/js/toasts.js) is loaded which initialises the toast.
 
 ### **Error Pages**
 

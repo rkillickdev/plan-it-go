@@ -289,6 +289,20 @@ If a message is detected on page load, the following [toasts javascript file](st
 
 ### **Security & Defensive Design**
 
+To secure certain Django Views and ensure they are only accessible to registered users, the ```
+@login_required()``` decorator is used for function based views. 
+The ```LoginRequiredMixin``` is used on any class based views where restrictions are required.  A site user that tries to access any of these restricted pages while not logged in, will be directed to the login page.
+
+When navigating the site, logged in users are only presented with the option to edit or delete trips, reviews or images if they own them.  However simply removing this functionality from the user interface does not alone provide adequate security.  An additional layer of defensive programming has therefore been added in certain views to prevent specific URLs being targeted and modified. This code below is an example of how the profile ID linked to an image is checked against the profile ID of the currently logged in user.  Only if they match is the delete() method allowed to run on the image instance.  Otherwise a message is displayed to the user which informs them that thet can only delete their own images.
+
+```python
+if image.profile.id == request.user.profile.id:
+        image.delete()
+        messages.add_message(request, messages.SUCCESS, 'Image deleted!')
+    else:
+        messages.add_message(request, messages.ERROR, 'You can only delete your own images!')
+```
+
 ### **Responsive design**
 
 

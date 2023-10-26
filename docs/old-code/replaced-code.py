@@ -4,6 +4,7 @@ whitenoise as per CI Django Blog Webinar.  It goes underneath STATIC URL in
 settings.py file.
 """
 
+
 # STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
 
 """ Handy code for checking if any values in a dictionary are empty"""

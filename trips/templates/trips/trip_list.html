@@ -16,18 +16,18 @@
               src="{% static 'images/map-laptop-admin-1500x1000-compress.webp'%}"
               alt="A silhouette of a world map is displayed on a laptop screen,
               which sits on a wooden desk next to a white coffee mug"
-              class="img-fluid">
+              class="img-fluid rounded">
           {% else %}
             <img src="{% static 'images/map-planner-camera-compress.webp'%}"
               alt="A desk with camera, compass, maps, flowers and a passport
               spread across" 
-              class="img-fluid">
+              class="img-fluid rounded">
           {% endif %}
         </div>
       </div>
       <div class="col-lg-5 d-flex flex-column justify-content-center mb-4">
         <div
-          class="text-container p-4 d-flex flex-column justify-content-center bg-secondary text-center gap-3">
+          class="text-container rounded p-4 d-flex flex-column justify-content-center bg-secondary text-center gap-3">
           {% if request.user.is_staff %}
             <h1>Work to do? </h1>
             <div class="d-flex flex-column gap-3">

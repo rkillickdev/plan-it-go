@@ -13,7 +13,7 @@ class TripForm(ModelForm):
         self.helper.form_id = 'trip-form'
         # self.helper.form_show_labels = False
         self.helper.form_method = 'post'
-        self.fields['location'].label = 'Where are you going?'
+        self.fields['location'].label = 'Choose a destination'
         self.fields['title'].label = False
         self.fields['description'].label = False
         self.fields['trip_image'].label = 'Add your own image'
@@ -23,17 +23,17 @@ class TripForm(ModelForm):
         self.helper.layout = Layout(
             Div(
                 HTML("""
-                <h2>Create your trip...</h2>
+                <h2>Trip Details...</h2>
                 """), css_class="py-2 text-center"),
-            Field('location', css_class="mb-4"),
+            Field('location', css_class="form-select mt-2 mb-4"),
             Field('title', css_class="mb-4", placeholder='Give your trip a name'),
             Field('description', css_class="mb-4", placeholder='Tell us about your trip...'),
-            Field('trip_image', css_class="mb-4"),
-            Field('start_date', css_class="mb-4"),
-            Field('end_date', css_class="mb-4"),
+            Field('trip_image', css_class=" form-select mt-2 mb-4"),
+            Field('start_date', css_class="mt-2 mb-4"),
+            Field('end_date', css_class="mt-2 mb-4"),
             Div(
-                Submit('Submit', 'Create Trip', css_id='submitButton'),
-                css_class="mb-4"
+                Submit('Submit', 'Create', css_id='submitButton', css_class='btn btn-dark'),
+                css_class="mb-4 text-center"
             )
         )
 

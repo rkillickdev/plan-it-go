@@ -29,7 +29,14 @@ $border-color: $primary;
 $card-border-color: $border-color;
 
 /* Forms */
+
+/* Inputs */
 $input-bg: $secondary;
+$input-border-color: none;
+
+/* Selects */
+$form-select-indicator-color: $dark;
+
 
 // Buttons
 $button-padding-x: 20px;

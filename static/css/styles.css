@@ -26,17 +26,27 @@ ul {
 }
 
 /* Header */
-.header {
-  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0)), url("/static/images/hero/map-pins-hero-1500x1000-compress.webp") left center no-repeat;
+.hero-image {
+  background: linear-gradient(to left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.6)), url("/static/images/hero/map-pins-hero-1500x1000-compress.webp") left center no-repeat;
   background-size: cover;
   background-position: center;
   height: 600px;
 }
 
-.replace-me {
-  color: #E5D343;
+.map-pin {
+  color: #D8C100;
 }
 
+#hero-text {
+  justify-content: center;
+}
+
+/* Media query for mobile devices from 991px and down pushes text to end of the container */
+@media only screen and (max-width: 991px) {
+  #hero-text {
+    justify-content: end;
+  }
+}
 /* Trip Header */
 .trip-bg-image {
   background: url("/static/images/placeholders/trip-placeholder-globe-in-hand.webp") left center;

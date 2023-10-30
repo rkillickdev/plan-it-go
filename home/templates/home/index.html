@@ -3,30 +3,75 @@
 {% block content %}
 
 <!-- Header -->
-<header class="header position-relative mb-4">
+<header class="header position-relative mb-5">
   <div class="container">
-    <div class="row">
-      <div class="col-md-6 text-white">
-        <div class="text-container p-4 d-flex flex-column justify-content-center h-100 mb-5">
-          <h1 class="xl-text mt-5">
-            Make
-            <span class="text-secondary fw-bold replace-me">Plans,Time,Memories</span>
-          </h1>
-          <a href="#" class="btn btn-primary text-white">Start Planning</a>
-        </div>    
+    <div class="hero-image">
+      <div class="row h-100">
+        <div class="col-lg-6 text-white">
+          <div id="hero-text" class="text-container pt-6 pb-4 px-4 d-flex flex-column gap-4 h-100 align-items-center">
+            <h1 class="display-3 text-center">
+              Make<br>
+              <span class="fw-bold replace-me map-pin">Plans,Memories,It Happen</span>
+            </h1>
+            <a href="#" class="btn btn-primary text-white button-link">Get Started</a>
+          </div>    
+        </div>
       </div>
     </div>
   </div>
 </header>
 
 
-<!-- Destination Ideas -->
-
-<!-- Place Reviews Tab Content -->
-
-<section id="destination-ideas">
+<!-- Site Goals -->
+<section id="site-goals">
   <div class="container">
     <div class="row">
+      <div class="col-lg-4 mb-5">
+        <div class="card border-0 bg-secondary h-100">
+          <div class="card-body">
+            <div class="card-title text-center">
+              <i class="fa-solid fa-plane-departure fa-2x"></i>
+              <h3 class="fw-bold">Be Inspired</h3>
+            </div>
+            <p class="card-text">Discover travel inspiration by exploring the journeys and itineraries of fellow adventurers. Explore their chosen destinations and trips to ignite your wanderlust and spark your own travel ideas.</p>
+          </div>  
+        </div>
+      </div>
+      <div class="col-lg-4 mb-5">
+        <div class="card border-0 bg-secondary h-100">
+          <div class="card-body">
+            <div class="card-title text-center">
+              <i class="fa-solid fa-list-check fa-2x"></i>
+              <h3 class="fw-bold">Plan Trips</h3>
+            </div>
+            <p class="card-text">Browse recommended places from a vast and diverse selection of destinations, each with its own unique charm waiting to be discovered.  Delve into the wisdom of fellow travelers as you read reviews that provide valuable insights into the hidden gems and must-see attractions.</p>
+          </div>  
+        </div>
+      </div>
+      <div class="col-lg-4 mb-5">
+        <div class="card border-0 bg-secondary h-100">
+          <div class="card-body">
+            <div class="card-title text-center">
+              <i class="fa-solid fa-mountain-city fa-2x"></i>
+              <h3 class="fw-bold">Capture Moments</h3>
+            </div>
+            <p class="card-text">One of the best ways to keep the memories alive is by storing your trips, images, and reviews as a reminder of your travels.</p>
+          </div>  
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Destination Ideas Carousel -->
+<section id="destination-ideas">
+  <div class="container">
+    <div class="row mb-5">
+      <div class="col-12 text-center">
+        <h3 class="fw-bold display-6">Find Your Perfect Destination...</h3>
+      </div>
+    </div>
+    <div class="row mb-4">
       <div class="col-12">
         <div id="destinations-carousel" class="carousel slide" data-bs-ride="carousel">
           <div class="carousel-inner">
@@ -54,36 +99,12 @@
 
 {% include 'includes/destination_modal.html' %}
 
-
-<!-- SITE GOALS POSSIBLY TO REMOVE -->
-
-<!-- <section id="site-goals">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-4 d-flex flex-column gap-4">
-        <i class="fa-solid fa-plane-departure fa-xl"></i>
-        <h3 class="fw-bold">Be Inspired</h3>
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consectetur ab nobis, eaque recusandae ut minus? Consequuntur, ipsam vitae laboriosam officiis eum iste amet minus. Reiciendis ut magni necessitatibus repudiandae nihil.lorem Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ea ipsa consectetur neque eaque vel assumenda animi natus nulla. Consectetur nihil cum explicabo laboriosam vitae distinctio asperiores sapiente voluptatem exercitationem veniam! Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem qui dolores et error unde, recusandae numquam vitae. Quas, quidem soluta iusto minima sit repudiandae nisi maiores, nostrum dolores suscipit eaque?</p>
-      </div>
-      <div class="col-md-4 d-flex flex-column gap-4">
-        <i class="fa-solid fa-list-check fa-xl"></i>
-        <h3 class="fw-bold">Build Itineraries</h3> 
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consectetur ab nobis, eaque recusandae ut minus? Consequuntur, ipsam vitae laboriosam officiis eum iste amet minus. Reiciendis ut magni necessitatibus repudiandae nihil.lorem Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ea ipsa consectetur neque eaque vel assumenda animi natus nulla. Consectetur nihil cum explicabo laboriosam vitae distinctio asperiores sapiente voluptatem exercitationem veniam! Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem qui dolores et error unde, recusandae numquam vitae. Quas, quidem soluta iusto minima sit repudiandae nisi maiores, nostrum dolores suscipit eaque?</p>
-      </div>
-      <div class="col-md-4 d-flex flex-column gap-4">
-        <i class="fa-solid fa-mountain-city fa-xl"></i>
-        <h3 class="fw-bold">Do Your Research</h3>
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consectetur ab nobis, eaque recusandae ut minus? Consequuntur, ipsam vitae laboriosam officiis eum iste amet minus. Reiciendis ut magni necessitatibus repudiandae nihil.lorem Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ea ipsa consectetur neque eaque vel assumenda animi natus nulla. Consectetur nihil cum explicabo laboriosam vitae distinctio asperiores sapiente voluptatem exercitationem veniam! Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem qui dolores et error unde, recusandae numquam vitae. Quas, quidem soluta iusto minima sit repudiandae nisi maiores, nostrum dolores suscipit eaque?</p>
-      </div>
-    </div>
-  </div>
-</section> -->
-
 {% endblock %}
 
 {% block extras %}
 
 {% load static %}
+
   <!-- <script>src="{% static 'js/replaceme.min.js' %}"</script> -->
   <script src="{% static 'js/hero-text-replace.js' %}"></script>
   <script src="{% static 'js/solo-display-modals.js' %}"></script>

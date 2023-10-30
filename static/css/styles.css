@@ -15,6 +15,11 @@ ul {
   list-style-type: none;
 }
 
+hr {
+  color: var(--bs-primary);
+  opacity: 0.5;
+}
+
 /* Utilities */
 .title-container h2 a {
   margin: 0;

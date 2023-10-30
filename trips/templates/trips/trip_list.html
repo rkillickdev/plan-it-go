@@ -4,99 +4,128 @@
 
 {% load static %}
 
-<section id="trip-actions" class="mt-6 mb-4">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-7">
-                <div class="image-container px-4">
-                    {% if request.user.is_staff %}
-                        <img src="{% static 'images/map-laptop-admin-1500x1000-compress.webp'%}" alt="" class="img-fluid">
-                    {% else %}
-                        <img src="{% static 'images/map-planner-camera-compress.webp'%}" alt="" class="img-fluid">
-                    {% endif %}
-                </div>
-            </div>
-            <div class="col-md-5">
-                <div class="text-container p-4 d-flex flex-column justify-content-center h-100 text-center gap-3">
-                    {% if request.user.is_staff %}
-                        <h1>Work to do? </h1>
-                        <a href="{% url 'locations'%}" class="btn btn-primary">Add a Destination</a>
-                    {% else %}
-                        {% if trip_list.count == 0 and not request.user.profile.screen_name %}
-                            <h1>Welcome to PlanIt Go</h1>
-                            <h3>A world of adventures await you...</h3>
-                            <p>Congratulations for signing up. You're almost ready to start planning your adventures. We'd love to know a bit more about you and your travels. Click below to add some personal touches to your profile</p>
-                            <a href="{% url 'update_profile' request.user.profile.id %}" class="btn btn-primary">Create Profile</a>
-                        {% else  %}
-                            {% if trip_list.count == 0 %}
-                                <h2>Plan Your First Trip</h2>
-                            {% else %}
-                                <h2 class="display-6">Where to this time?</h2>
-                            {% endif %}
-                            <div class="d-flex flex-column gap-3">
-                                <a href="{% url 'create_trip' %}"><i class="fa-solid fa-circle-plus fa-4x"></i></a>
-                                <p>Create A Trip</p>
-                            </div>
-                        {% endif %}
-                    {% endif %}
-                </div>
-            </div>
+<!-- TRIP ACTIONS -->
+<!-- Display options dependent on user account status-->
+<section id="trip-actions" class="mt-7">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-7 mb-4">
+        <div class="image-container">
+          {% if request.user.is_staff %}
+            <img
+              src="{% static 'images/map-laptop-admin-1500x1000-compress.webp'%}"
+              alt="A silhouette of a world map is displayed on a laptop screen,
+              which sits on a wooden desk next to a white coffee mug"
+              class="img-fluid">
+          {% else %}
+            <img src="{% static 'images/map-planner-camera-compress.webp'%}"
+              alt="A desk with camera, compass, maps, flowers and a passport
+              spread across" 
+              class="img-fluid">
+          {% endif %}
         </div>
+      </div>
+      <div class="col-lg-5 d-flex flex-column justify-content-center mb-4">
+        <div
+          class="text-container p-4 d-flex flex-column justify-content-center bg-secondary text-center gap-3">
+          {% if request.user.is_staff %}
+            <h1>Work to do? </h1>
+            <div class="d-flex flex-column gap-3">
+              <a href="{% url 'locations'%}"><i
+                  class="fa-solid fa-circle-plus fa-4x"></i></a>
+              <p class="lead">Add A Destination</p>
+            </div>
+          {% else %}
+            {% if trip_list.count == 0 and not request.user.profile.screen_name %}
+              <h1>Welcome to PlanIt Go</h1>
+              <h3>A world of adventures await you...</h3>
+              <p>Congratulations for signing up. You're almost ready to start
+                planning your adventures. We'd love to know a bit more about you
+                and your travels. Click below to add some personal touches to your
+                profile</p>
+              <div class="d-flex flex-column gap-3">
+                <a href="{% url 'update_profile' request.user.profile.id %}"><i
+                    class="fa-solid fa-circle-plus fa-4x"></i></a>
+                <p class="lead">Create A Profile</p>
+              </div>
+            {% else  %}
+              {% if trip_list.count == 0 %}
+                <h2>Start Planning</h2>
+              {% else %}
+                <h2 class="display-5">Where to this time?</h2>
+              {% endif %}
+              <div class="d-flex flex-column gap-3">
+                <a href="{% url 'create_trip' %}"><i
+                    class="fa-solid fa-circle-plus fa-4x"></i></a>
+                <p class="lead">Create A Trip</p>
+              </div>
+            {% endif %}
+          {% endif %}
+        </div>
+      </div>
     </div>
+  </div>
 </section>
 
-<!-- Check and only display if user has created a profile-->
+<!-- TRIP LIST -->
+<!-- Only displays section if user has created a profile -->
 {% if request.user.profile.screen_name %}
-    <section id="trip-list">
-        <div class="container">
-            {% if trip_list.count > 0 %}
-                <div class="row">
-                    <h3>Upcoming Trips</h3>
-                </div>
-                <div class="row">
-                    {% for trip in trip_list %}
-                        <div class="col-md-4">
-                            <div class="card border-0 bg-secondary text-center h-100">
-                                {% if 'placeholder' in trip.trip_image.url %}
-                                <img src="{% static 'images/placeholders/trip-placeholder-globe-in-hand.webp' %}" 
-                                alt="" 
-                                class="card-img-top img-fluid img-size-consistent"
-                                >
-                                {% else %}
-                                <img src="{{trip.trip_image.url}}" 
-                                alt=""
-                                class="card-img-top img-fluid img-size-consistent"
-                                >
-                                {% endif %}
-                                <div class="card-body display-6">{{ trip.title }}</div>
-                                <a href="{% url 'trip_detail' trip.slug trip.id%}" class="card-title stretched-link"></a>
-                            </div>
-                        </div>
-                        {% if forloop.counter|divisibleby:3 %}
-                </div>
-                <div class="row">
-                        {% endif %}
-                    {% endfor %}  
-                </div>
-            {% else %}
-                <div class="row">
-                    <div class="col-md-7">
-                        <div class="text-container d-flex flex-column justify-content-center h-100 mb-5 px-4">
-                            <h3 class="display-6 text-center">Need Inspiration?</h3>
-                            <i class="fa-solid fa-passport fa-xl p-4 text-center"></i>
-                            <p>Be inspired by the trips that have already been mapped out on PlanIt Go. All it takes is a spark, so let your imagination run free...</p>
-                            <a href="#browse" class="btn btn-primary">Browse Trips</a>
-                        </div>
-                    </div>
-                    <div class="col-md-5">
-                        <div class="image-container px-4">
-                            <img src="{% static 'images/yellow-van-1500x1000-compress.webp'%}" alt="" class="img-fluid">
-                        </div>
-                    </div>
-                </div>
-            {% endif %}
+  <section id="trip-list">
+    <div class="container">
+    {% if trip_list.count > 0 %}
+      <div class="row">
+        <h3 class="display-6">Upcoming Trips</h3>
+        <hr />
+      </div>
+      <div class="row mb-4">
+      {% for trip in trip_list %}
+        <div class="col-md-4">
+          <div class="card border-0 bg-secondary text-center h-100">
+          {% if 'placeholder' in trip.trip_image.url %}
+            <img
+              src="{% static 'images/placeholders/trip-placeholder-globe-in-hand.webp' %}"
+              alt="Small globe held in the palm of a hand with mountains in the
+              background" 
+              class="card-img-top img-fluid img-size-consistent">
+          {% else %}
+            <img src="{{trip.trip_image.url}}" alt="Image of {{trip.location}}"
+              class="card-img-top img-fluid img-size-consistent">
+          {% endif %}
+            <div class="card-body">{{ trip.title }}</div>
+            <a href="{% url 'trip_detail' trip.slug trip.id%}"
+              class="card-title stretched-link"></a>
+          </div>
         </div>
-    </section>
+        {% if forloop.counter|divisibleby:3 %}
+      </div>
+      <div class="row">
+        {% endif %}
+      {% endfor %}
+      </div>
+    {% else %}
+      <div class="row">
+        <div class="col-md-7">
+          <div
+            class="text-container d-flex flex-column justify-content-center h-100 mb-5 px-4">
+            <h3 class="display-6 text-center">Need Inspiration?</h3>
+            <i class="fa-solid fa-passport fa-xl p-4 text-center"></i>
+            <p>Be inspired by the trips that have already been mapped out on
+              PlanIt Go. All it takes is a spark, so let your imagination run
+              free...</p>
+            <a href="#browse" class="btn btn-primary">Browse Trips</a>
+          </div>
+        </div>
+        <div class="col-md-5">
+          <div class="image-container px-4">
+            <img src="{% static 'images/yellow-van-1500x1000-compress.webp'%}"
+              alt="Toy yellow van with suitcases strapped to the top"
+              class="img-fluid">
+          </div>
+        </div>
+      </div>
+    {% endif %}
+    </div>
+  </section>
 {% endif %}
 
 {% endblock %}

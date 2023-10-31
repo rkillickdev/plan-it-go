@@ -1,18 +1,22 @@
 {% load static %}
 
 <!-- Trip Header -->
-<section class="trip-summary mt-6 mb-4">
+<section class="trip-summary mt-7 mb-4">
   <div class="container">
     <div class="row">
       <div class="col-12">
         <div class="accordion accordion-flush" class="trip-details-accordion">
           <div class="accordion-item">
             <h2 class="accordion-header" id="flush-headingOne">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                <h1 class="text-light">{{ trip.title }}</h1>
+              <button class="accordion-button collapsed" type="button"
+                data-bs-toggle="collapse" data-bs-target="#flush-collapseOne"
+                aria-expanded="false" aria-controls="flush-collapseOne">
+                <h2 class="text-light display-6"><span><i class="fa-solid fa-location-dot"></i>&nbsp&nbsp</span>{{ trip.title }}</h2>
               </button>
             </h2>
-            <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+            <div id="flush-collapseOne" class="accordion-collapse collapse"
+              aria-labelledby="flush-headingOne"
+              data-bs-parent="#accordionFlushExample">
               <div class="accordion-body">
                 <div class="row">
                   <div class="col-md-7 pe-0">
@@ -23,11 +27,15 @@
                   <div class="col-md-5 ps-0">
                     <div class="card border-0 bg-secondary text-center m-4">
                       {% if 'placeholder' in trip.trip_image.url %}
-                        {% if 'placeholder' in trip.location.image.url %}
-                          <img src="{% static 'images/map-pins-sunlight-1500x1000-compress.webp' %}" alt="" class="card-img-top img-fluid img-size-consistent">
-                        {% else %} 
-                          <img src="{{ trip.location.image.url }}" alt="" class="card-img-top img-fluid img-size-consistent">
-                        {% endif %}
+                      {% if 'placeholder' in trip.location.image.url %}
+                      <img
+                        src="{% static 'images/map-pins-sunlight-1500x1000-compress.webp' %}"
+                        alt=""
+                        class="card-img-top img-fluid img-size-consistent">
+                      {% else %}
+                      <img src="{{ trip.location.image.url }}" alt=""
+                        class="card-img-top img-fluid img-size-consistent">
+                      {% endif %}
                       {% endif %}
                       <div class="card-body">
                         <p class="card-text">{{ trip.description }}</p>
@@ -38,7 +46,7 @@
               </div>
             </div>
           </div>
-        </div> 
+        </div>
       </div>
     </div>
   </div>

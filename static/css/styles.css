@@ -68,6 +68,10 @@ hr {
   background: transparent;
 }
 
+.anchor-icon {
+  padding: 10px 20px;
+}
+
 .button-link {
   width: fit-content;
 }

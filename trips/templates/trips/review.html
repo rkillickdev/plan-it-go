@@ -41,15 +41,15 @@
                           <div class="col-md-5">
                             <div class="image-container p-2">
                               {% if 'placeholder' in review.profile.profile_image.url %}
-                                  <img src="{% static 'images/placeholders/globe-profile-face-compress-square.webp' %}" alt="picture of {{ profile.screen_name }}" class="img-fluid rounded-circle" width="120px"> 
+                                  <img src="{% static 'images/placeholders/globe-profile-face-compress-square.webp' %}" alt="picture of {{ profile.screen_name }}" id="review-image{{ review.id }}" class="img-fluid rounded-circle" width="120px"> 
                               {% else %}
-                                  <img src="{{ review.profile.profile_image.url }}" alt="picture of {{ profile.screen_name }}" class="img-fluid rounded-circle" width="120px"> 
+                                  <img src="{{ review.profile.profile_image.url }}" alt="picture of {{ profile.screen_name }}" id="review-image{{ review.id }}" class="img-fluid rounded-circle" width="120px"> 
                               {% endif %}
                             </div>
-                            <h4 class="review-card-text fst-italic p-2">@{{ review.profile.screen_name}}</h4> 
+                            <h4 id="review-profile-name{{ review.id }}" class="review-card-text fst-italic p-2">{{ review.profile.screen_name}}</h4> 
                           </div>
                           <div class="col-md-7 d-flex flex-column justify-content-center">
-                            <h4 class="review-card-text display-5">{{ review.place.name }}</h4>
+                            <h4 id="review-location{{ review.id }}" class="review-card-text display-5">{{ review.place.name }}</h4>
                           </div> 
                         </div>
                     </div>

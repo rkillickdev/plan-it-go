@@ -59,19 +59,29 @@ for(let city of destinationCities) {
 
 
 let userReviews = document.getElementsByClassName("user-review");
-// let userReviewProfile = document.getElementById("solo-review-profile");
-let userReviewTitle = document.getElementById("user-review-title");
-let userReviewBody = document.getElementById("user-review-body");
+
+
+let modalProfileImage = document.getElementById("modal-profile-image")
+let modalProfileName = document.getElementById("modal-profile-name");
+let modalLocation = document.getElementById("modal-location");
+let modalBody = document.getElementById("modal-body");
 
 for(let review of userReviews) {
     review.addEventListener("click", (e) => {
         let reviewId = e.currentTarget.getAttribute("review_id");
         console.log(reviewId)
         // let reviewImagePath = e.target.getAttribute("src");
-        // let reviewTitle = document.getElementById(`review-title${reviewId}`).innerText;
-        let reviewBody = document.getElementById(`review-body${reviewId}`).innerText;
+
+        let reviewImagePath = document.getElementById(`review-image${reviewId}`).getAttribute("src");
+        let reviewProfile = document.getElementById(`review-profile-name${reviewId}`).innerText;
+        let reviewLocation = document.getElementById(`review-location${reviewId}`).innerText;
+        let reviewBodyText = document.getElementById(`review-body${reviewId}`).innerText;
+        
         // SoloReviewProfile.src = reviewImagePath;
-        // SoloReviewTitle.innerText = reviewTitle;
-        userReviewBody.innerText = reviewBody;
+        modalProfileName.innerText = reviewProfile; 
+        modalLocation.innerText = reviewLocation;
+        modalBody.innerText = reviewBodyText;
+        modalProfileImage.src = reviewImagePath;
+
     })
 }

@@ -1,40 +1,54 @@
 <!-- Review Solo Modal -->
 
+{% load static %}
+
 <div id="modal-user-review" class="modal fade">
-    <div class="modal-dialog modal-lg mt-7">
-      <div class="modal-content bg-primary p-5">
-        <div class="row">
-            <div class="col-4">
-            </div>
-            <div class="col-8">
-                <h5 id="user-review-title" class="card-title text-center"></h5>
-            </div>
-            <div class="col-12">
-                <p id="user-review-body"></p>
-            </div>
-            <button class="btn btn-light" data-bs-dismiss="modal">Close</button> 
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-    <!-- Review Solo Modal
-    <div id="modal-review-solo" class="modal fade">
-        <div class="modal-dialog modal-lg mt-7">
-          <div class="modal-content bg-primary p-5">
+  <div class="modal-dialog modal-lg mt-7">
+    <div class="modal-content p-5">
+      <div class="row mb-4">
+        <div class="user-review card border-0 text-center image-clickable"
+          review_id="{{ review.id }}">
+          <div class="card-header border-0 bg-primary">
             <div class="row">
-              <div class="col-12 d-flex flex-column justify-content-between">
-                <div class="card align-items-center">
-                  <img id="solo-review-profile" src="" class="rounded-circle" width="120" alt="User Profile Image">
-                  <div class="card-body">
-                    <h5 id="solo-review-title" class="card-title text-center"></h5>
-                    <p id="solo-review-body" class="card-text"></p>
-                    <button class="btn btn-light" data-bs-dismiss="modal">Close</button>  
-                  </div>
+              <div class="col-md-5">
+                <div class="image-container p-2">
+                  {% if 'placeholder' in review.profile.profile_image.url %}
+                  <img
+                    src="{% static 'images/placeholders/globe-profile-face-compress-square.webp' %}"
+                    alt="picture of {{ profile.screen_name }}"
+                    id="modal-profile-image" class="img-fluid rounded-circle"
+                    width="120px">
+                  {% else %}
+                  <img src="{{ review.profile.profile_image.url }}"
+                    alt="picture of {{ profile.screen_name }}"
+                    id="modal-profile-image" class="img-fluid rounded-circle"
+                    width="120px">
+                  {% endif %}
                 </div>
+                <h4 id="modal-profile-name"
+                  class="review-card-text fst-italic p-2"></h4>
+              </div>
+              <div class="col-md-7 d-flex flex-column justify-content-center">
+                <h4 id="modal-location" class="review-card-text display-5">
+                  {{ review.place.name }}</h4>
               </div>
             </div>
           </div>
+          <div class="card-body bg-secondary">
+            <p id="modal-body"
+              class=" review-card-text {% if not review.approved and review.profile == request.user.profile %} faded {% elif not.review.approved %} d-none{% endif %}">
+            </p>
+          </div>
         </div>
-      </div> -->
+        
+      </div>
+      <div class="row justify-content-center">
+        <button class="btn button-link" data-bs-dismiss="modal"><i
+          class="fa-solid fa-circle-xmark fa-4x"></i></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

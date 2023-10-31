@@ -6,52 +6,69 @@
 
 {% load crispy_forms_tags %}
 
-<section id="reviews" class="reviews mt-6 mb-4">
+<section id="write-review" class="reviews mt-7 mb-4">
     <div class="container">
         <div class="row mb-4">
-            <div class="col-lg-7">
+            <div class="col-lg-7 d-flex flex-column justify-content-center gap-4">
                 <div class="image-container">
                     <img src="{% static 'images/map-photo-memories-1500x1000-compress.webp'%}" alt="" class="img-fluid d-none d-lg-block">
                 </div>
+                <a class="btn btn-dark button-link align-self-center " href="{% url 'trip_detail' trip.slug trip.id %}"><span><i class="fa-solid fa-hand-point-left"></i>&nbsp&nbsp</span>Back To Trip</a></a>
             </div>
-            <div class="col-lg-5 card mt-4">
+            <div class="col-lg-5 d-flex flex-column">
+              <div class="form-container rounded bg-primary p-4">
                 {% crispy review_form %}
-            </div>
-        </div>
-        <div class="row mb-4">
-            <div class="col-lg-4">
-                {% for review in reviews %}
-                <a data-bs-toggle="modal" data-bs-target="#modal-user-review">
-                    <div class="user-review card mb-4 text-center" review_id="{{ review.id }}">
-                        <div class="card-header">
-                            <div class="d-flex justify-content-between">
-                                <div class="image-container">
-                                    {% if 'placeholder' in review.profile.profile_image.url %}
-                                        <img src="{% static 'images/placeholders/globe-profile-face-compress-square.webp' %}" alt="picture of {{ profile.screen_name }}" class="img-fluid rounded-circle" width="120px"> 
-                                    {% else %}
-                                        <img src="{{ review.profile.profile_image.url }}" alt="picture of {{ profile.screen_name }}" class="img-fluid rounded-circle" width="120px"> 
-                                    {% endif %}
-                                </div>
-                                <p>{{ review.profile.screen_name}}</p>    
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <p class="lead"><span><i class="fa-solid fa-magnifying-glass"></i>&nbsp&nbsp</span> Read Review</p>
-                            <p id="review-body{{ review.id }}" class=" card-title d-none {% if not review.approved and review.profile == request.user.profile %} faded {% elif not.review.approved %} d-none{% endif %}">{{review.body}}</p>
-                        </div>
-                        <div class="card-footer">
-                            <div>{{ review.place.name }}</div>
-                        </div>
-                    </div>
-                </a>
-                {% if user.is_authenticated and review.profile.id == user.profile.id %}
-                <button class="btn btn-edit" review_id="{{ review.id }}">Edit</button>
-                <button class="btn btn-delete" target_id="{{ review.id }}" task="delete_review" data-bs-toggle="modal" data-bs-target="#modal-delete-confirm">Delete</button> 
-                {% endif %}
-                {% endfor %}
+              </div>
+                
             </div>
         </div>
     </div>
+</section>
+
+<section id="reviews-list">
+  <div class="container">
+    <div class="row">
+      <h3 class="display-6">Your Reviews</h3>
+      <hr />
+    </div>
+    <div class="row mb-4">
+        <div class="col-lg-4 d-flex flex-column ps-0">
+            {% for review in reviews %}
+            <a data-bs-toggle="modal" data-bs-target="#modal-user-review">
+                <div class="user-review card border-0 text-center image-clickable" review_id="{{ review.id }}">
+                    <div class="card-header border-0 bg-primary">
+                        <div class="row">
+                          <div class="col-md-5">
+                            <div class="image-container p-2">
+                              {% if 'placeholder' in review.profile.profile_image.url %}
+                                  <img src="{% static 'images/placeholders/globe-profile-face-compress-square.webp' %}" alt="picture of {{ profile.screen_name }}" class="img-fluid rounded-circle" width="120px"> 
+                              {% else %}
+                                  <img src="{{ review.profile.profile_image.url }}" alt="picture of {{ profile.screen_name }}" class="img-fluid rounded-circle" width="120px"> 
+                              {% endif %}
+                            </div>
+                            <h4 class="review-card-text fst-italic p-2">@{{ review.profile.screen_name}}</h4> 
+                          </div>
+                          <div class="col-md-7 d-flex flex-column justify-content-center">
+                            <h4 class="review-card-text display-5">{{ review.place.name }}</h4>
+                          </div> 
+                        </div>
+                    </div>
+                    <div class="card-body bg-secondary">
+                        <p class="review-card-text lead"><span><i class="fa-solid fa-magnifying-glass"></i>&nbsp&nbsp</span> Read Review</p>
+                        <p id="review-body{{ review.id }}" class=" review-card-text card-title d-none {% if not review.approved and review.profile == request.user.profile %} faded {% elif not.review.approved %} d-none{% endif %}">{{review.body}}</p>
+                    </div>
+                </div>
+            </a>
+            {% if user.is_authenticated and review.profile.id == user.profile.id %}
+            <div class="d-flex justify-content-between bg-primary rounded mt-2">
+              <button class="btn btn-edit" review_id="{{ review.id }}"><i class="fa-solid fa-pencil fa-2x"></i></button> 
+              <button class="btn btn-delete" target_id="{{ review.id }}" task="delete_review" data-bs-toggle="modal" data-bs-target="#modal-delete-confirm"><i class="fa-solid fa-trash-can fa-2x"></i></button>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+  </div>
 </section>
 
 <!-- Review Solo Modal Included -->
@@ -59,17 +76,6 @@
 
 <!-- Delete Confirm Modal Included -->
 {% include 'includes/delete_confirm_modal.html' %}
-
-<!-- Delete Review Modal -->
-
-<!-- <div id="modal-review-delete" class="modal fade">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content p-5">
-            <button class="btn btn-light" data-bs-dismiss="modal">Close</button>
-            <a id="deleteConfirm" href="#" class="btn btn-danger">Delete</a>
-        </div>
-    </div>
-</div> -->
 
 {% endblock %}
 

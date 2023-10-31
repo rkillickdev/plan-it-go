@@ -113,6 +113,11 @@ hr {
   padding: 0;
 }
 
+/* Reviews */
+.review-card-text {
+  margin: 0;
+}
+
 /* Media query for medium devices and above.  Reduces width of planner to 75% and centers using margin auto */
 @media only screen and (min-width: 768px) {
   .medium-w-75 {

@@ -46,8 +46,8 @@ class ReviewForm(ModelForm):
                 """), css_class="py-2"),
             Field('body', placeholder='Tell us more about your visit...'),
             Div(
-                Submit('Submit', 'Post Review', css_id='submitButton'),
-                css_class="my-4"
+                Submit('Submit', 'Post Review', css_id='submitButton', css_class='btn btn-dark'),
+                css_class="my-4 text-center"
             )
             )
 

@@ -75,4 +75,10 @@ $accordion-button-active-color: $dark;
 $accordion-button-focus-border-color: none;
 $accordion-button-focus-box-shadow: none;
 
+/* Pagination Controls */
+
+$pagination-color: white;
+$pagination-bg: $dark;
+$pagination-border-width: none;
+
 @import'../../node_modules/bootstrap/scss/bootstrap.scss';

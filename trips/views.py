@@ -70,13 +70,14 @@ class TripUpdateView(LoginRequiredMixin, UpdateView):
     """
     model = Trip
     form_class = TripForm
+    template_name = 'trips/create_trip.html'
 
     def get_success_url(self):
         return reverse_lazy(
             'trip_detail',
             kwargs={
                 'slug': self.object.slug,
-                'pk': self.object.id
+                'trip_id': self.object.id
             }
         )
 

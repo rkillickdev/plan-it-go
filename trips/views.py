@@ -82,6 +82,26 @@ class TripUpdateView(LoginRequiredMixin, UpdateView):
         )
 
 
+@login_required()
+def trip_delete(request, trip_id, *args, **kwargs):
+    """
+    View to delete a trip.  Defensive design implemented to check that the
+    trip belongs to the logged in user before it can be deleted.
+    Displays messages to keep user informed.
+    """
+    trip = get_object_or_404(Trip, id=trip_id)
+
+    if trip.profile.id == request.user.profile.id:
+        trip.delete()
+        messages.add_message(request, messages.SUCCESS, 'Trip deleted!')
+    else:
+        messages.add_message(request, messages.ERROR, 'You can only delete your own trips!')
+
+    return HttpResponseRedirect(
+        reverse('trip_list')
+    )
+
+
 class TripListView(LoginRequiredMixin, ListView):
     """
     View to render a list of trips linked to the profile of the logged in user

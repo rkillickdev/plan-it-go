@@ -205,3 +205,30 @@
     </div>
   </div>
 </section>
+
+
+<!-- OLD CAROUSEL REVIEW CARDS -->
+
+<a data-bs-toggle="modal" data-bs-target="#modal-user-review">
+  <div class="user-review card mb-4 text-center" review_id="{{ review.id }}">
+    <div class="card-header">
+        <div class="d-flex justify-content-between">
+            <div class="image-container">
+                {% if 'placeholder' in review.profile.profile_image.url %}
+                    <img src="{% static 'images/placeholders/globe-profile-face-compress-square.webp' %}" alt="picture of {{ profile.screen_name }}" class="img-fluid rounded-circle" width="120px"> 
+                {% else %}
+                    <img src="{{ review.profile.profile_image.url }}" alt="picture of {{ profile.screen_name }}" class="img-fluid rounded-circle" width="120px"> 
+                {% endif %}
+            </div>
+            <p>{{ review.profile.screen_name}}</p>    
+        </div>
+    </div>
+    <div class="card-body">
+        <p class="lead"><span><i class="fa-solid fa-magnifying-glass"></i>&nbsp&nbsp</span> Read Review</p>
+        <p id="review-body{{ review.id }}" class=" card-title d-none {% if not review.approved and review.profile == request.user.profile %} faded {% elif not.review.approved %} d-none{% endif %}">{{review.body}}</p>
+    </div>
+    <div class="card-footer">
+        <div>{{ review.place.name }}</div>
+    </div>
+  </div>
+</a>

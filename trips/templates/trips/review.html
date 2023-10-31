@@ -46,7 +46,7 @@
                 </a>
                 {% if user.is_authenticated and review.profile.id == user.profile.id %}
                 <button class="btn btn-edit" review_id="{{ review.id }}">Edit</button>
-                <button class="btn btn-delete" review_id="{{ review.id }}" data-bs-toggle="modal" data-bs-target="#modal-review-delete" >Delete</button> 
+                <button class="btn btn-delete" target_id="{{ review.id }}" task="delete_review" data-bs-toggle="modal" data-bs-target="#modal-delete-confirm">Delete</button> 
                 {% endif %}
                 {% endfor %}
             </div>
@@ -54,22 +54,27 @@
     </div>
 </section>
 
+<!-- Review Solo Modal Included -->
 {% include 'includes/review_solo_modal.html' %}
+
+<!-- Delete Confirm Modal Included -->
+{% include 'includes/delete_confirm_modal.html' %}
 
 <!-- Delete Review Modal -->
 
-<div id="modal-review-delete" class="modal fade">
+<!-- <div id="modal-review-delete" class="modal fade">
     <div class="modal-dialog modal-lg">
         <div class="modal-content p-5">
             <button class="btn btn-light" data-bs-dismiss="modal">Close</button>
             <a id="deleteConfirm" href="#" class="btn btn-danger">Delete</a>
         </div>
     </div>
-</div>
+</div> -->
 
 {% endblock %}
 
 {% block extras %}
+    <script src="{% static 'js/delete-confirm-modals.js' %}"></script>
     <script src="{% static 'js/reviews.js' %}"></script>
     <script src="{% static 'js/solo-display-modals.js' %}"></script>
 {% endblock extras %}

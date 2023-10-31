@@ -28,7 +28,7 @@ urlpatterns = [
         name='update_trip'
     ),
     path(
-        'delete_trip/<int:trip_id>',
+        '<slug:slug>/delete_trip/<int:trip_id>',
         trip_delete,
         name='delete_trip'
     ),

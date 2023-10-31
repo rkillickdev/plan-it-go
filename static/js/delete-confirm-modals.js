@@ -1,16 +1,20 @@
-// Delete Confirm For Images
+// Delete Confirm Modal.
+// Populates the href attribute of the delete confirm element with the 
+// correct url and associated id for the trip, image or review that
+// has been clicked on.
 
 let deleteButtons = document.getElementsByClassName("btn-delete");
-let ImageDeleteConfirm = document.getElementById("image-delete-confirm");
+let DeleteConfirm = document.getElementById("delete-confirm");
 
 for (let button of deleteButtons) {
     button.addEventListener("click", (e) => {
-        let imageId = e.currentTarget.getAttribute("image_id");
-        ImageDeleteConfirm.href = `delete_image/${imageId}`;
+        let targetId = e.currentTarget.getAttribute("target_id");
+        let task = e.currentTarget.getAttribute("task");
+        DeleteConfirm.href = `${task}/${targetId}`;
     });
 }
 
-// Delete Confirm For Trip Places
+// Remove Confirm For Trip Places
 
 let deletePlannerItems = document.getElementsByClassName("delete-planner-item");
 let itemDeleteForm = document.getElementById("item-delete-form");   // SET FORM ID AS THIS

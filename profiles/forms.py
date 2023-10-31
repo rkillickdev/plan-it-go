@@ -47,7 +47,7 @@ class ProfileForm(ModelForm):
         self.helper.layout = Layout(
             Div(
                 HTML("""
-                <h2>Your Details</h2>
+                <h2>Update Your Details</h2>
                 """), css_class="py-2"),
             Field('first_name', css_class="mb-4", placeholder='First Name'),
             Field('surname', css_class="mb-4", placeholder='Surname'),

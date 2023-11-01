@@ -45,23 +45,14 @@ class ProfileForm(ModelForm):
         self.helper.form_method = 'post'
 
         self.helper.layout = Layout(
-            Div(
-                HTML("""
-                <h2>Update Your Details</h2>
-                """), css_class="py-2"),
             Field('first_name', css_class="mb-4", placeholder='First Name'),
             Field('surname', css_class="mb-4", placeholder='Surname'),
             Field('screen_name', css_class="mb-4", placeholder='Give yourself a screen name...'),
             Field('about', css_class="mb-4", placeholder='Tell us about you...'),
             Field('profile_image', css_class="mb-4"),
             Div(
-                Submit('Submit', 'Create Profile', css_id='submitButton'),
-                HTML("""
-                    <div class="spinner-border" role="status">
-                    <span class="visually-hidden">Loading...</span>
-                    </div>
-                """),
-                css_class="mb-4"
+                Submit('Submit', 'Create Profile', css_id='submitButton', css_class='btn btn-dark'),
+                css_class="mb-4 text-center"
             )
         )
 

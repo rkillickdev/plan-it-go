@@ -8,47 +8,59 @@
 <section id="enter-profile-details" class="mt-7">
   <div class="container">
     <div class="row mb-4">
-      <div class="col-lg-6">
-        <div class="image-container p-2">
+      <div class="col-lg-6 d-flex flex-column justify-content-center">
+        <div class="image-container p-2 align align-self-center">
           {% if request.user.profile.screen_name %}
-            {% if 'placeholder' in review.profile.profile_image.url %}
-              <img
-                src="{% static 'images/placeholders/globe-profile-face-compress-square.webp' %}"
-                alt="picture of {{ profile.screen_name }}"
-                class="img-fluid rounded-circle"
-                width="250px">
-            {% else %}
-              <img src="{{ profile.profile_image.url }}"
-                alt="picture of {{ profile.screen_name }}"
-                class="img-fluid rounded-circle"
-                width="250px">
-            {% endif %}
-            <h4 id="review-profile-name{{ review.id }}"
-            class="review-card-text fst-italic p-2">
-            {{ profile.screen_name}}</h4>
-        </div>
+          {% if 'placeholder' in review.profile.profile_image.url %}
+          <img
+            src="{% static 'images/placeholders/globe-profile-face-compress-square.webp' %}"
+            alt="picture of {{ profile.screen_name }}"
+            class="img-fluid rounded-circle" width="250px">
           {% else %}
-          <div class="card border-0 bg-secondary justify-content-center">
-            <h2 class="display-5">
-              {% if profile.screen_name %}{{ profile.screen_name }}
-              {% else %} Welcome! {% endif %}</h2>
-          </div>
-        {% endif %}
-          
-        
+          <img src="{{ profile.profile_image.url }}"
+            alt="picture of {{ profile.screen_name }}"
+            class="img-fluid rounded-circle" width="250px">
+          {% endif %}
+          <h4 id="review-profile-name{{ review.id }}"
+            class="review-card-text text-center fst-italic p-2">
+            {{ profile.screen_name}}</h4>
+          {% else %}
+          <img
+            src="{% static 'images/placeholders/globe-profile-face-compress-square.webp' %}"
+            alt="picture of {{ profile.screen_name }}"
+            class="img-fluid rounded-circle" width="250px">
+          <h4 id="review-profile-name{{ review.id }}"
+            class="review-card-text text-center fst-italic p-2">
+            {{ request.user.username }}</h4>
+          {% endif %}
+        </div>
       </div>
       <div class="col-lg-6">
+        {% if request.user.profile.screen_name %}
         <div class="profile-bio card border-0 bg-secondary">
-          <p class="lead">
-            {{profile.about}}
-          </p>
+          <div class="card-body">
+            <p class="lead fst-italic">
+              {{profile.about}}
+            </p>
+          </div>
         </div>
+        {% else %}
+        <div class="image-container d-none d-lg-block">
+          <img
+            src="{% static 'images/question-mark-1500x1000-compress.webp' %}"
+            alt="White question mark on a black board" class="img-fluid">
+        </div>
+        {% endif %}
       </div>
-
+    </div>
+    <div class="row">
+      <h3 class="display-6">{% if request.user.profile.screen_name %} Update
+        Your Details {% else %} Enter Your Details {% endif %}</h3>
+      <hr />
     </div>
     <div class="row">
       <div class="col-lg-6">
-        <div class="form-container">
+        <div class="form-container rounded bg-primary p-4">
           {% crispy form %}
         </div>
       </div>
@@ -56,34 +68,5 @@
   </div>
 </section>
 
-
-
 {% endblock %}
 
-<!-- <div
-          class="col-md-5 {% if request.resolver_match.url_name == 'place_detail' %} m-auto {% endif %}">
-          <div class="image-container p-2">
-            {% if 'placeholder' in review.profile.profile_image.url %}
-            <img
-              src="{% static 'images/placeholders/globe-profile-face-compress-square.webp' %}"
-              alt="picture of {{ profile.screen_name }}"
-              id="review-image{{ review.id }}" class="img-fluid rounded-circle"
-              width="120px">
-            {% else %}
-            <img src="{{ review.profile.profile_image.url }}"
-              alt="picture of {{ profile.screen_name }}"
-              id="review-image{{ review.id }}" class="img-fluid rounded-circle"
-              width="120px">
-            {% endif %}
-          </div>
-          <h4 id="review-profile-name{{ review.id }}"
-            class="review-card-text fst-italic p-2">
-            {{ review.profile.screen_name}}</h4>
-        </div>
-
-
-        {% if 'placeholder' in profile.profile_image.url %}
-        <img src="{% static 'images/placeholders/globe-profile-face-compress-square.webp' %}" alt="picture of {{ profile.screen_name }}" class="img-fluid rounded-circle" width="120px"> 
-    {% else %}
-        <img src="{{ profile.profile_image.url }}" alt="picture of {{ profile.screen_name }}" class="img-fluid rounded-circle" width="120px"> 
-    {% endif %} -->

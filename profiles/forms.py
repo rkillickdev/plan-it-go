@@ -41,8 +41,7 @@ class CustomLoginForm(LoginForm):
     def __init__(self, *args, **kwargs):
         super(CustomLoginForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper(self)
-        self.helper.form_class = 'form-horizontal'
-        self.helper.field_class = 'my-2'
+        self.helper.field_class = 'mb-4'
         self.fields['login'].label = False
         self.fields['password'].label = False
 
@@ -56,8 +55,11 @@ class CustomLoginForm(LoginForm):
         )
         self.helper.layout.append(
             Div(
-                Submit('Submit', 'Sign In', css_id='signin-button'),
-                css_class="btn btn-dark my-4"
+                Submit('Submit', 'Sign In',
+                       css_id='signin-button',
+                       css_class="btn btn-dark"
+                       ),
+                css_class="mt-4"
             )
         )
 
@@ -70,8 +72,7 @@ class CustomSignupForm(SignupForm):
     def __init__(self, *args, **kwargs):
         super(CustomSignupForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper(self)
-        self.helper.form_class = 'form-horizontal'
-        self.helper.field_class = 'my-2'
+        self.helper.field_class = 'mb-4'
         self.helper.form_show_labels = False
 
         self.helper.layout.append(
@@ -84,8 +85,11 @@ class CustomSignupForm(SignupForm):
         )
         self.helper.layout.append(
             Div(
-                Submit('Submit', 'Sign In', css_id='signin-button'),
-                css_class="btn btn-dark my-4"
+                Submit('Submit', 'Sign In',
+                       css_id='signup-button',
+                       css_class="btn btn-dark"
+                       ),
+                css_class="mt-4"
             )
         )
 

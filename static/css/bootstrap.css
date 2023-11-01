@@ -2273,7 +2273,7 @@ progress {
   line-height: 1.5;
   color: var(--bs-body-color);
   appearance: none;
-  background-color: #f4f4f4;
+  background-color: #fff;
   background-clip: padding-box;
   border: var(--bs-border-width) solid none;
   border-radius: var(--bs-border-radius);
@@ -2292,7 +2292,7 @@ progress {
 }
 .form-control:focus {
   color: var(--bs-body-color);
-  background-color: #f4f4f4;
+  background-color: #fff;
   border-color: #f1e1db;
   outline: 0;
   box-shadow: 0 0 0 0.25rem rgba(226, 195, 182, 0.25);
@@ -2423,7 +2423,7 @@ textarea.form-control-lg {
   line-height: 1.5;
   color: var(--bs-body-color);
   appearance: none;
-  background-color: #f4f4f4;
+  background-color: #fff;
   background-image: var(--bs-form-select-bg-img), var(--bs-form-select-bg-icon, none);
   background-repeat: no-repeat;
   background-position: right 0.75rem center;
@@ -2497,7 +2497,7 @@ textarea.form-control-lg {
 }
 
 .form-check-input {
-  --bs-form-check-bg: #f4f4f4;
+  --bs-form-check-bg: #fff;
   flex-shrink: 0;
   width: 1em;
   height: 1em;
@@ -2756,7 +2756,7 @@ textarea.form-control-lg {
   z-index: -1;
   height: 1.5em;
   content: "";
-  background-color: #f4f4f4;
+  background-color: #fff;
   border-radius: var(--bs-border-radius);
 }
 .form-floating > .form-control:-webkit-autofill ~ label {
@@ -4023,7 +4023,7 @@ textarea.form-control-lg {
   --bs-navbar-padding-x: 0;
   --bs-navbar-padding-y: 0.5rem;
   --bs-navbar-color: #307D8C;
-  --bs-navbar-hover-color: rgba(var(--bs-emphasis-color-rgb), 0.8);
+  --bs-navbar-hover-color: #E2C3B6;
   --bs-navbar-disabled-color: rgba(var(--bs-emphasis-color-rgb), 0.3);
   --bs-navbar-active-color: #307D8C;
   --bs-navbar-brand-padding-y: 0.3125rem;

@@ -7,19 +7,28 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-<h1>{% trans "Sign Up" %}</h1>
 
-<p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
-
-<section id="signup">
+<section id="signup" class="mt-7">
   <div class="container">
-      <div class="row mt-7">
-          <div class="col-md-8 mt-3 offset-md-2">
-            <div class="form-container rounded bg-primary p-4">
-              {% crispy form %}
-            </div>
-          </div>
+    <div class="row mb-2">
+      <div class="action-title d-flex justify-content-between p-2">
+        <h3 class="display-6"><span><i class="fa-solid fa-user-plus"></i>&nbsp&nbsp</span>{% trans "Sign Up" %}</h3>
       </div>
+      <hr />
+    </div>
+    <div class="row">
+      <div class="col-md-8 mt-3 offset-md-2">
+        <p class="lead">{% blocktrans %}Already have an account? Then please 
+        <a href="{{ login_url }}" class="fw-bold">sign in</a>{% endblocktrans %}</p>   
+      </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8 mt-3 offset-md-2">
+          <div class="form-container rounded bg-primary p-4">
+            {% crispy form %}
+          </div>
+        </div>
+    </div>
   </div>
 </section>
 

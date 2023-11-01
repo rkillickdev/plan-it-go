@@ -13,11 +13,25 @@
 
 <section id="signup">
   <div class="container">
+      <div class="row mt-7">
+          <div class="col-md-8 mt-3 offset-md-2">
+            <div class="form-container rounded bg-primary p-4">
+              {% crispy form %}
+            </div>
+          </div>
+      </div>
+  </div>
+</section>
+
+
+<!-- ORIGINAL FORM HTML -->
+
+<!-- <section id="signup">
+  <div class="container">
       <div class="row justify-content-center">
           <div class="col-12 w-75">
             <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
               {% csrf_token %}
-              <!-- {{ form|crispy }} -->
               {{ form.as_p }}
               {% if redirect_field_value %}
               <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
@@ -27,7 +41,7 @@
           </div>
       </div>
   </div>
-</section>
+</section> -->
 
 
 

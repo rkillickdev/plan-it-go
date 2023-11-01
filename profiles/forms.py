@@ -1,38 +1,9 @@
 from django import forms
 from .models import Profile
 from django.forms import ModelForm
-from allauth.account.forms import LoginForm
+from allauth.account.forms import LoginForm, SignupForm
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit, Layout, Hidden, Fieldset, Field, Div, HTML
-
-
-class CustomLoginForm(LoginForm):
-    """
-    Used this following example to help with styling of Django allauth forms:
-    https://gist.github.com/ambivalentno/9d6828fe8b5d894a6f2d
-    """
-    def __init__(self, *args, **kwargs):
-        super(CustomLoginForm, self).__init__(*args, **kwargs)
-        self.helper = FormHelper(self)
-        self.helper.form_class = 'form-horizontal'
-        self.helper.field_class = 'my-2'
-        self.fields['login'].label = False
-        self.fields['password'].label = False
-
-        self.helper.layout.append(
-            HTML(
-                "{% if redirect_field_value %}"
-                "<input type='hidden' name='{{ redirect_field_name }}'"
-                " value='{{ redirect_field_value }}' />"
-                "{% endif %}"
-            )
-        )
-        self.helper.layout.append(
-            Div(
-                Submit('Submit', 'Sign In', css_id='signin-button'),
-                css_class="btn btn-primary my-4"
-            )
-        )
 
 
 class ProfileForm(ModelForm):
@@ -60,3 +31,88 @@ class ProfileForm(ModelForm):
         model = Profile
         fields = ['first_name', 'surname', 'screen_name',
                   'about', 'profile_image']
+
+
+class CustomLoginForm(LoginForm):
+    """
+    Used this following example to help with styling of Django allauth forms:
+    https://gist.github.com/ambivalentno/9d6828fe8b5d894a6f2d
+    """
+    def __init__(self, *args, **kwargs):
+        super(CustomLoginForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper(self)
+        self.helper.form_class = 'form-horizontal'
+        self.helper.field_class = 'my-2'
+        self.fields['login'].label = False
+        self.fields['password'].label = False
+
+        self.helper.layout.append(
+            HTML(
+                "{% if redirect_field_value %}"
+                "<input type='hidden' name='{{ redirect_field_name }}'"
+                " value='{{ redirect_field_value }}' />"
+                "{% endif %}"
+            )
+        )
+        self.helper.layout.append(
+            Div(
+                Submit('Submit', 'Sign In', css_id='signin-button'),
+                css_class="btn btn-dark my-4"
+            )
+        )
+
+
+class CustomSignupForm(SignupForm):
+    """
+    Used this following example to help with styling of Django allauth forms:
+    https://gist.github.com/ambivalentno/9d6828fe8b5d894a6f2d
+    """
+    def __init__(self, *args, **kwargs):
+        super(CustomSignupForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper(self)
+        self.helper.form_class = 'form-horizontal'
+        self.helper.field_class = 'my-2'
+        self.helper.form_show_labels = False
+
+        self.helper.layout.append(
+            HTML(
+                "{% if redirect_field_value %}"
+                "<input type='hidden' name='{{ redirect_field_name }}'"
+                " value='{{ redirect_field_value }}' />"
+                "{% endif %}"
+            )
+        )
+        self.helper.layout.append(
+            Div(
+                Submit('Submit', 'Sign In', css_id='signin-button'),
+                css_class="btn btn-dark my-4"
+            )
+        )
+
+
+# class CustomLogoutForm(LogoutForm):
+#     """
+#     Used this following example to help with styling of Django allauth forms:
+#     https://gist.github.com/ambivalentno/9d6828fe8b5d894a6f2d
+#     """
+#     def __init__(self, *args, **kwargs):
+#         super(CustomLogoutForm, self).__init__(*args, **kwargs)
+#         self.helper = FormHelper(self)
+#         self.helper.form_class = 'form-horizontal'
+#         self.helper.field_class = 'my-2'
+#         self.helper.form_show_labels = False
+
+#         self.helper.layout.append(
+#             HTML(
+#                 "{% if redirect_field_value %}"
+#                 "<input type='hidden' name='{{ redirect_field_name }}'"
+#                 " value='{{ redirect_field_value }}' />"
+#                 "{% endif %}"
+#             )
+#         )
+#         self.helper.layout.append(
+#             Div(
+#                 Submit('Submit', 'Sign In', css_id='signin-button'),
+#                 css_class="btn btn-dark my-4"
+#             )
+#         )

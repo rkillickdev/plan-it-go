@@ -67,7 +67,8 @@ INSTALLED_APPS = [
 SITE_ID = 1
 
 ACCOUNT_FORMS = {
-    "login": "profiles.forms.CustomLoginForm"
+    "login": "profiles.forms.CustomLoginForm",
+    "signup": "profiles.forms.CustomSignupForm"
 }
 
 ACCOUNT_SIGNUP_REDIRECT_URL = '/trips/trip_list'

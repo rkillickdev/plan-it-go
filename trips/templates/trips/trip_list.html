@@ -44,8 +44,8 @@
                 and your travels. Click below to add some personal touches to your
                 profile</p>
               <div class="d-flex flex-column gap-3">
-                <a href="{% url 'update_profile' request.user.profile.id %}"><i
-                    class="fa-solid fa-circle-plus fa-4x"></i></a>
+                <a href="{% url 'update_profile' request.user.profile.id %}" class="icon-link button-link m-auto"><i
+                    class="fa-solid fa-circle-plus fa-4x" role="img" aria-label="Plus Icon"></i></a>
                 <p class="lead">Create A Profile</p>
               </div>
             {% else  %}
@@ -55,8 +55,8 @@
                 <h2 class="display-5">Where to this time?</h2>
               {% endif %}
               <div class="d-flex flex-column gap-3">
-                <a href="{% url 'create_trip' %}" class="button-link m-auto"><i
-                    class="fa-solid fa-circle-plus fa-4x"></i></a>
+                <a href="{% url 'create_trip' %}" class="link-transform button-link m-auto">
+                  <i class="fa-solid fa-circle-plus fa-4x" role="img" aria-label="Plus Icon"></i></a>
                 <p class="lead">Create A Trip</p>
               </div>
             {% endif %}

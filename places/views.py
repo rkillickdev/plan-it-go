@@ -81,76 +81,79 @@ def get_places(request, destination_id, slug):
             with open(f"static/data/{location_file}", 'r') as apify_file:
                 apify_data = apify_file.read()
 
+            # Parse json file
+            python_data = json.loads(apify_data)
+
+            # Iterates over data retrieved from json file.
+            # Checks if values for certain keys exist.
+            # Returns to top of loop if any of these values are blank.
+            for place in python_data:
+                required_fields = {
+                    "category": place['category'],
+                    "name": place['name'],
+                    "description": place['description'],
+                    "image": place['image'],
+                    "rating": place['rating'],
+                    "address": place['addressObj'],
+                    "latitude": place['latitude'],
+                    "longitude": place['longitude']
+                }
+
+                if not all(required_fields.values()):
+                    continue
+
+                # Creates an instance of Place for each place in the json file.
+                # Populates Place fields with data from API response.
+                place_data = Place(
+                    location=requested_location,
+                    venue_id=place['id'],
+                    type=place['type'],
+                    category=place['category'],
+                    sub_categories=place['subcategories'],
+                    name=place['name'],
+                    location_string=place['locationString'],
+                    description=place['description'],
+                    image=place['image'],
+                    ranking_position=place['rankingPosition'],
+                    rating=place['rating'],
+                    phone=place['phone'],
+                    address=place['addressObj'],
+                    latitude=place['latitude'],
+                    longitude=place['longitude'],
+                    website=place['website'],
+                    ranking_string=place['rankingString'],
+                )
+
+                # Query database to see if the venue_id used in the API
+                # response already exists. Return to top of loop if it does.
+                venue = Place.objects.filter(
+                    venue_id=place_data.venue_id
+                )
+
+                # Calculate number of words in description field using numpy
+                word_count = np.char.count(place_data.description, ' ') + 1
+
+                # Checks if venue already exists of description word count < 30.
+                if venue.exists() or word_count < 30:
+                    continue
+                else:
+                    # Save to database
+                    place_data.save()
+
+            return HttpResponseRedirect(
+                reverse('place_list', args=[
+                    requested_location.id, requested_location.slug])
+            )
+
         except Exception as error:
-            # Alert user ff requested file cannot be found
+            # Alert user requested file cannot be found
             messages.add_message(
                 request, messages.ERROR, 'We were not able to retrieve this data!'
             )
-            break
 
-        # Parse json file
-        python_data = json.loads(apify_data)
-
-        # Iterates over data retrieved from json file.
-        # Checks if values for certain keys exist.
-        # Returns to top of loop if any of these values are blank.
-        for place in python_data:
-            required_fields = {
-                "category": place['category'],
-                "name": place['name'],
-                "description": place['description'],
-                "image": place['image'],
-                "rating": place['rating'],
-                "address": place['addressObj'],
-                "latitude": place['latitude'],
-                "longitude": place['longitude']
-            }
-
-            if not all(required_fields.values()):
-                continue
-
-            # Creates an instance of Place for each place in the json file.
-            # Populates Place fields with data from API response.
-            place_data = Place(
-                location=requested_location,
-                venue_id=place['id'],
-                type=place['type'],
-                category=place['category'],
-                sub_categories=place['subcategories'],
-                name=place['name'],
-                location_string=place['locationString'],
-                description=place['description'],
-                image=place['image'],
-                ranking_position=place['rankingPosition'],
-                rating=place['rating'],
-                phone=place['phone'],
-                address=place['addressObj'],
-                latitude=place['latitude'],
-                longitude=place['longitude'],
-                website=place['website'],
-                ranking_string=place['rankingString'],
+            return HttpResponseRedirect(
+                reverse('locations')
             )
-
-            # Query database to see if the venue_id used in the API
-            # response already exists. Return to top of loop if it does.
-            venue = Place.objects.filter(
-                venue_id=place_data.venue_id
-            )
-
-            # Calculate number of words in description field using numpy
-            word_count = np.char.count(place_data.description, ' ') + 1
-
-            # Checks if venue already exists of description word count < 30.
-            if venue.exists() or word_count < 30:
-                continue
-            else:
-                # Save to database
-                place_data.save()
-
-        return HttpResponseRedirect(
-            reverse('place_list', args=[
-                requested_location.id, requested_location.slug])
-        )
 
     else:
         destination = get_object_or_404(Location, id=destination_id)

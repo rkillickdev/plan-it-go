@@ -50,7 +50,7 @@ class PlaceBrowseDetail(DetailView):
 
 
 @staff_member_required
-def get_places(request):
+def get_places(request, destination_id, slug):
     """
     The location submitted by the form is slugified and .json appended
     to the end of the string to match the formatting of stored json files.
@@ -86,6 +86,7 @@ def get_places(request):
             messages.add_message(
                 request, messages.ERROR, 'We were not able to retrieve this data!'
             )
+            break
 
         # Parse json file
         python_data = json.loads(apify_data)
@@ -152,7 +153,10 @@ def get_places(request):
         )
 
     else:
+        destination = get_object_or_404(Location, id=destination_id)
+        print(destination)
         return render(
-            request, 'places/get_places.html',
-            context={'form': form}
+            request,
+            'places/get_places.html',
+            {'form': form, 'location': destination}
         )

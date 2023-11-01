@@ -3,7 +3,7 @@ from .views import get_places, PlaceListView, PlaceBrowseDetail
 
 urlpatterns = [
     path(
-        'get_places',
+        'get_places/<int:destination_id>/<slug:slug>',
         get_places,
         name='get_places'
     ),

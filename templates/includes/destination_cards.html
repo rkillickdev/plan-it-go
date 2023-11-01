@@ -22,12 +22,7 @@
     {% if user.is_authenticated and request.user.is_staff %}
     <div class=" {% if request.resolver_match.url_name != 'home'  %} d-flex justify-content-between px-4 pb-4 {% else %} d-none {% endif %}">
         <a href="{% url 'update_destination' destination.id destination.slug %}"><i class="ps-2 fa-solid fa-pencil fa-2x"></i></a>
-        <a href="{% url 'place_list' destination.id destination.slug %}"><i class="pe-2 fa-solid fa-magnifying-glass-location fa-2x"></i></a>
-        <!-- {% if destination.places.count > 0 %}
-            <a href="{% url 'place_list' destination.id destination.slug %}" class="btn btn-dark">View Places</a>     
-        {% else %}
-            <a href="{% url 'get_places' %}" class="btn btn-primary">Get Places</a>
-        {% endif %} -->
+        <a href="{% if destination.places.count > 0 %} {% url 'place_list' destination.id destination.slug %} {% else %} {% url 'get_places' destination.id destination.slug  %} {% endif %}"><i class="pe-2 fa-solid fa-magnifying-glass-location fa-2x"></i></a>
     </div>
     {% endif %}
 </div>

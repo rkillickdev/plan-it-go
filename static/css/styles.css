@@ -119,6 +119,7 @@ hr {
     flex-direction: column;
     text-align: center;
     margin-bottom: 1rem;
+    gap: 1rem;
   }
 }
 /* Media query for medium devices and above.  Reduces width of planner to 75% and centers using margin auto */

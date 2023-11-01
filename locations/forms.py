@@ -18,18 +18,14 @@ class LocationForm(ModelForm):
         self.helper.form_method = "POST"
 
         self.helper.layout = Layout(
-            Div(
-                HTML("""
-                <h2>Create a new Destination</h2>
-                """), css_class="py-2 text-center"),
-            Field('city', css_class="mb-2", placeholder='Enter a City Location'),
-            Field('summary', css_class="mb-2", placeholder='Destination synopsis...'),
-            Field('latitude', css_class="mb-2", placeholder='Destination latitude'),
-            Field('longitude', css_class="mb-2", placeholder='Destination longitude'),
-            Field('image', css_class="mb-2 bg-primary", placeholder='Upload an image...'),
+            Field('city', css_class="mb-4", placeholder='Enter a City Location'),
+            Field('summary', css_class="mb-4", placeholder='Destination synopsis...'),
+            Field('latitude', css_class="mb-4", placeholder='Destination latitude'),
+            Field('longitude', css_class="mb-4", placeholder='Destination longitude'),
+            Field('image', css_class="mb-4", placeholder='Upload an image...'),
             Div(
                 Submit('Submit', 'Create', css_id="submitButton", css_class="btn btn-dark"),
-                css_class="mb-2 text-center"
+                css_class="mt-4 text-center"
             )
         )
 

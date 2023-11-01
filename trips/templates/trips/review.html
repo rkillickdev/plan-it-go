@@ -8,12 +8,18 @@
 
 <section id="write-review" class="reviews mt-7 mb-4">
     <div class="container">
+      <div class="row mb-2">
+        <div class="action-title d-flex justify-content-between p-2">
+          <h3 class="display-6"><span><i class="fa-solid fa-comment-dots"></i>&nbsp&nbsp</span>Add a review for {{ place.name }}</h3>
+          <a class="btn btn-dark button-link align-self-center " href="{% url 'trip_detail' trip.slug trip.id %}"><span><i class="fa-solid fa-angles-left"></i>&nbsp&nbsp</span>Back To Trip</a></a>
+        </div>
+        <hr />
+      </div>
         <div class="row mb-4">
             <div class="col-lg-7 d-flex flex-column justify-content-center gap-4">
                 <div class="image-container">
                     <img src="{% static 'images/map-photo-memories-1500x1000-compress.webp'%}" alt="" class="img-fluid d-none d-lg-block">
                 </div>
-                <a class="btn btn-dark button-link align-self-center " href="{% url 'trip_detail' trip.slug trip.id %}"><span><i class="fa-solid fa-hand-point-left"></i>&nbsp&nbsp</span>Back To Trip</a></a>
             </div>
             <div class="col-lg-5 d-flex flex-column">
               <div class="form-container rounded bg-primary p-4">
@@ -28,7 +34,7 @@
 <section id="reviews-list">
   <div class="container">
     <div class="row">
-      <h3 class="display-6">Your Reviews</h3>
+      <h3 class="action-title display-6"><span><i class="fa-solid fa-folder-open"></i>&nbsp&nbsp</span>Your Reviews</h3>
       <hr />
     </div>
     <div class="row mb-4">

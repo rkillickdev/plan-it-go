@@ -8,58 +8,60 @@
 
 <section id="image-upload" class="mt-6 mb-4">
     <div class="container">
-        <div class="row mb-4">
-            <div class="col-12">
-                <div class="card border-0 bg-secondary medium-w-75">
-                    <h2 class="text-center p-2 m-0"><span><i class="fa-solid fa-camera"></i>&nbsp&nbsp</span>Add an image for {{ place.name }}</h2>
-                </div>
-            </div>
+        <div class="row mb-2">
+          <div class="action-title d-flex justify-content-between p-2">
+            <h3 class="display-6"><span><i class="fa-solid fa-camera"></i>&nbsp&nbsp</span>Add an image for {{ place.name }}</h3>
+            <a class="btn btn-dark button-link align-self-center " href="{% url 'trip_detail' trip.slug trip.id %}"><span><i class="fa-solid fa-angles-left"></i>&nbsp&nbsp</span>Back To Trip</a></a>
+          </div>
+          <hr />
         </div>
         <div class="row mb-4">
-            <div class="image-upload-form medium-w-75">
-                {% crispy form %}
+          <div class="col-lg-5">
+            <div class="form-container rounded bg-primary p-4">
+              {% crispy form %}
             </div>
+          </div>
+          <div class="col-lg-7">
+            <div class="image-container">
+              <img src="{% static 'images/slr-camera-1500x1000-compress.webp' %}" alt="An SLR camera on a table next to a straw hat, sunglasses and an orange juice" class="img-fluid rounded d-none d-lg-block">
+            </div>
+          </div>
         </div>
     </div>
 </section>
 
 <section id="image-gallery">
     <div class="container">
-        <div class="row mb-4">
-            <div class="col-12">
-                <div class="card border-0 bg-secondary medium-w-75">
-                    <h2 class="text-center p-2 m-0"><span><i class="fa-solid fa-image"></i>&nbsp&nbsp</span>Your Image Gallery</h2>
-                </div>   
-            </div>
+        <div class="row">
+          <h3 class="action-title display-6"><span><i class="fa-solid fa-image"></i>&nbsp&nbsp</span>Your Image Gallery</h3>
+          <hr />
         </div>
         {% for place in trip.places.all %}
             {% if place.images.count > 0 %}
                 <div class="row mb-4">
-                    <div class="col-12 d-flex justify-content-between">
+                    <div class="col-12 d-flex justify-content-between bg-secondary rounded p-2">
                         <h3 class="m-0">{{ place.name }}</h3>
-                        <div class="card border-0 bg-secondary text-center title-container p-2">
-                            <a href="{% url 'add_image' trip.slug trip.id place.id %}"
-                            class="h3 m-0"
-                            >
-                            <span><i class="fa-solid fa-circle-plus"></i>&nbsp&nbsp</span>Add Images
-                            </a>
-                        </div>    
+                        <a href="{% url 'add_image' trip.slug trip.id place.id %}"
+                        class="h3 m-0"
+                        >
+                        <span><i class="fa-solid fa-circle-plus"></i>&nbsp&nbsp</span>Add Images
+                        </a>
                     </div>
                 </div>
                 <div class="row mb-4">
                     {% for image in place.images.all%}
-                        <div class="col-md-2">
+                        <div class="col-md-3 mb-4">
                             <div class="card border-0 bg-secondary text-center h-100">
                                 <a data-bs-toggle="modal" data-bs-target="#modal-image-solo">
                                     {% if 'placeholder' in image.path.url %}
-                                        <img src="{% static 'images/world-map-plane-1500x1000-compress.webp' %}" alt="{{ image.place.name }}" class="card-img-top img-fluid image-solo">
+                                        <img src="{% static 'images/world-map-plane-1500x1000-compress.webp' %}" alt="{{ image.place.name }}" class="card-img-top img-fluid image-solo img-size-consistent image-clickable">
                                     {% else %}
-                                        <img src="{{ image.path.url }}" alt="{{ image.place.name }}" class="card-img-top img-fluid image-solo">
+                                        <img src="{{ image.path.url }}" alt="{{ image.place.name }}" class="card-img-top img-fluid image-solo img-size-consistent image-clickable">
                                     {% endif %}      
                                 </a>
                                 {% if user.is_authenticated and image.profile.id == user.profile.id %}
                                     <div class="card-body py-2">
-                                        <button class="btn btn-delete" target_id="{{ image.id }}" task="delete_image" data-bs-toggle="modal" data-bs-target="#modal-delete-confirm"><i class="fa-solid fa-circle-xmark fa-2x"></i></button>
+                                        <button class="btn btn-delete" target_id="{{ image.id }}" task="delete_image" data-bs-toggle="modal" data-bs-target="#modal-delete-confirm"><i class="fa-solid fa-trash-can fa-2x"></i></button>
                                     </div>
                                 {% endif %}
                             </div>    

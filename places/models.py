@@ -92,9 +92,8 @@ class Image(models.Model):
     path = CloudinaryField(
         'image',
         default='placeholder',
-        # eager=[{'width': "50", 'height': "50", 'crop': "crop"}],
         transformation={
-            'width': "600",
+            'width': "900",
             'height': "600",
             'crop': "fill",
             'gravity': "auto",
@@ -103,14 +102,6 @@ class Image(models.Model):
             'dpr': "auto",
             'responsive': True,
         },
-        # transformation={
-        #     'gravity': "auto",
-        #     'crop': "fill",
-        #     'fetch_format': "auto",
-        #     'dpr': "auto",
-        #     'responsive': True,
-        #     'width': "auto"
-        # },
         folder="/images/places",
         format="webp"
     )

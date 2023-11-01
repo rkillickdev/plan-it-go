@@ -22,12 +22,6 @@ hr {
     opacity: 0.5;
 }
 
-/* Utilities */
-
-.title-container h2 a {
-    margin: 0;
-}
-
 /* Navbar */
 
 .navbar {
@@ -129,6 +123,16 @@ hr {
 
 .review-card-text {
     margin: 0;
+}
+
+/* Media query for mobile devices from 991px and down switches to flex column*/
+
+@media only screen and (max-width: 991px) {
+    .action-title{
+        flex-direction: column;
+        text-align: center;
+        margin-bottom: 1rem;
+    }      
 }
 
 /* Media query for medium devices and above.  Reduces width of planner to 75% and centers using margin auto */

@@ -40,10 +40,6 @@ class ReviewForm(ModelForm):
         self.helper.form_method = "POST"
 
         self.helper.layout = Layout(
-            Div(
-                HTML("""
-                <h2>Leave A Review for {{place.name}}</h2>
-                """), css_class="py-2"),
             Field('body', placeholder='Tell us more about your visit...'),
             Div(
                 Submit('Submit', 'Post Review', css_id='submitButton', css_class='btn btn-dark'),
@@ -61,15 +57,15 @@ class ImageForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
-        self.helper.form_id = 'imageForm' 
-        self.fields['path'].label = 'Select An Image'
+        self.helper.form_id = 'imageForm'
+        self.fields['path'].label = False
         self.helper.form_method = "POST"
 
         self.helper.layout = Layout(
             Field('path'),
             Div(
-                Submit('Submit', 'Upload', css_id='imageUploadButton'),
-                css_class='text-center'
+                Submit('Submit', 'Upload', css_id='imageUploadButton', css_class='btn btn-dark'),
+                css_class='my-4 text-center'
                 )
             )
 

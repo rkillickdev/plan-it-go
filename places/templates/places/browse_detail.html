@@ -2,8 +2,10 @@
 
 {% block content %}
 
-<!-- Place Summary Section -->
-<section class="place-summary mt-7 mb-5">
+<!-- Place Summary Template Included-->
+{% include 'includes/place_summary.html' %}
+
+<!-- <section class="place-summary mt-7 mb-5">
     <div class="container">
       <div class="row">
         <div class="col-md-6">
@@ -19,7 +21,7 @@
         </div>
       </div>
     </div>
-  </section>
+  </section> -->
 
 <!-- Place Info Template Included -->
 {% include 'includes/single_place_info.html' %}
@@ -34,6 +36,8 @@
 {{ place.longitude|json_script:"longitude"}}
 {{ g_maps_api_key|json_script:"maps-api-key" }}
 <script src="{% static 'js/maps.js' %}"></script>
+<script src="{% static 'js/reviews.js' %}"></script>
 <script src="{% static 'js/solo-display-modals.js' %}"></script>
+<script src="{% static 'js/star-rating.js' %}"></script>
 
 {% endblock extras %}

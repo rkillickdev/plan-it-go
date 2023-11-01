@@ -5,11 +5,13 @@
 <!-- Recommendations Paginated -->
 <section id="place-list" class="mt-7">
     <div class="container">
-        <div class="row mb-3">
-            <div class="col-12 text-center">
-                <h2>Place List</h2>
-            </div>
+      <div class="row mb-2">
+        <div class="action-title d-flex justify-content-between p-2">
+          <h3 class="display-6">Places For {{ location.city }}</h3>
+          <a class="btn btn-dark button-link align-self-center " href="{% url 'locations' %}"><span><i class="fa-solid fa-angles-left"></i>&nbsp&nbsp</span>Back To Destinations</a>
         </div>
+        <hr />
+      </div>
         <div class="row">
             <div class="col-12">
                 <div class="row gy-3">

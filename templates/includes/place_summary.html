@@ -1,0 +1,30 @@
+<!-- Place Summary Section -->
+<section class="place-summary mt-7 mb-5">
+  <div class="container">
+    <div class="row flex-wrap-reverse my-4">
+      <div class="col-md-6 d-flex flex-column justify-content-center">
+        <div class="image-container">
+          <img src="{{ place.image }}" alt="{{ place.name }}" class="img-fluid img-portrait-limit">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card border-0 h-100 bg-secondary">
+          <div class="card-header bg-light border text-center display-6">
+            <span place_rating="{{ place.rating }}" id="stars"></span>
+          </div>
+          <div class="text-container p-4 d-flex flex-column justify-content-between h-100 text-center">
+            <h2 class="card-title">{{ place.name }}</h2>
+            {% if request.resolver_match.url_name == 'place_detail' %}
+              {% include 'includes/place_toggle.html' %}
+            {% endif %}
+            <div class="justify-content-center"> 
+              <a href="{% if request.resolver_match.url_name == 'place_detail' %} {% url 'trip_detail' trip.slug trip.id %} {% else %} {% url 'place_list' place.location.id place.location.slug %} {% endif %}" 
+              class="btn btn-dark button-link">
+              <span><i class="fa-solid fa-angles-left"></i>&nbsp&nbsp</span>{% if request.resolver_match.url_name == 'place_detail' %} More Recommendations {% else %} More Places {% endif %}</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -4,47 +4,8 @@
 
 {% block content %}
 
-<!-- Place Summary Section -->
-<section class="place-summary mt-7 mb-5">
-  <div class="container">
-    <div class="row flex-wrap-reverse my-4">
-      <div class="col-md-6 d-flex flex-column justify-content-center">
-        <div class="image-container">
-          <img src="{{ place.image }}" alt="{{ place.name }}" class="img-fluid img-portrait-limit">
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="card border-0 h-100 bg-secondary">
-          <div class="card-header bg-light border text-center display-6">
-            <span place_rating="{{ place.rating }}" id="stars"></span>
-          </div>
-          <div class="text-container p-4 d-flex flex-column justify-content-between h-100 text-center">
-            <h2 class="card-title">{{ place.name }}</h2>
-            <form class="d-inline" action="{% url 'toggle_place' trip.id place.id %}" method="POST">
-              {% csrf_token %}
-              {% if added %}
-                <div class="vstack gap-3">
-                  <button type="submit" name="place_id" value="{{place.id}}" class="btn-icon"><i class="fa-solid fa-circle-minus fa-4x"></i></i></button>
-                  <p>Remove From Your Trip</p>
-                </div>
-              {% else %}
-                <div class="vstack gap-3">
-                  <button type="submit" name="place_id" value="{{place.id}}" class="btn-icon"><i class="fa-solid fa-circle-plus fa-4x"></i></button>
-                  <p>Add To Your Trip</p>
-                </div>
-              {% endif %}
-            </form>
-            <div class="justify-content-center">
-              <a href="{% url 'trip_detail' trip.slug trip.id %}" 
-              class="btn btn-dark button-link">
-              <span><i class="fa-solid fa-angles-left"></i>&nbsp&nbsp</span>More Recommendations</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+<!-- Place Summary Template Included-->
+{% include 'includes/place_summary.html' %}
 
 <!-- Place Info Template Included -->
 {% include 'includes/single_place_info.html' %}

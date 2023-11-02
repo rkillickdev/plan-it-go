@@ -1,3 +1,28 @@
+"""
+Class based view originally used for creating a review
+"""
+
+# class CreateReview(LoginRequiredMixin, View):
+#     """
+#     """
+
+#     def get(self, request, slug, trip_id, place_id, *args, **kwargs):
+#         trip = get_object_or_404(Trip, id=trip_id)
+#         place = get_object_or_404(Place, id=place_id)
+#         reviews = place.reviews.all().order_by('created_on')
+
+#         return render(
+#                 request,
+#                 'trips/review.html',
+#                 {
+#                     'trip': trip,
+#                     'place': place,
+#                     'reviews': reviews,
+#                     'review_form': ReviewForm()
+#                 }
+
+#             )
+
 """  
 This line using Cloudinary to serve static file was removed in favour of using 
 whitenoise as per CI Django Blog Webinar.  It goes underneath STATIC URL in

@@ -58,11 +58,8 @@ class TripCreateView(LoginRequiredMixin, CreateView):
             kwargs={"slug": self.object.slug, "trip_id": self.object.id},
         )
 
-    """
-    Populate profile field of the model Trip with the profile linked to the
-    logged in user.
-    https://stackoverflow.com/questions/18246326/how-do-i-set-user-field-in-form-to-the-currently-logged-in-user
-    """
+    # Populate profile field of model Trip with profile linked tologged in user
+    # https://stackoverflow.com/questions/18246326/how-do-i-set-user-field-in-form-to-the-currently-logged-in-user
 
     def form_valid(self, form):
         form.instance.profile = Profile.objects.get(user=self.request.user)
@@ -70,7 +67,10 @@ class TripCreateView(LoginRequiredMixin, CreateView):
 
 
 class TripUpdateView(LoginRequiredMixin, UpdateView):
-    """ """
+    """
+    View to update trip info.  Redirects to trip detail
+    template once updated.
+    """
 
     model = Trip
     form_class = TripForm
@@ -105,18 +105,16 @@ def trip_delete(request, trip_id, *args, **kwargs):
 
 class TripListView(LoginRequiredMixin, ListView):
     """
-    View to render a list of trips linked to the profile of the logged in user
+    View to render a list of trips linked to the profile of the logged in user.
     """
 
     model = Trip
     context_object_name = "trip_list"
 
-    """
-    Filters queryset so only trips linked to the profile of the logged in
-    user are available to view.
-    Referenced this article when investigating how to achieve this:
-    https://stackoverflow.com/questions/59408167/list-of-current-user-objects-in-django-listview
-    """
+    # Filters queryset so only trips linked to the profile of the logged in
+    # user are available to view.
+    # Referenced this article when investigating how to achieve this:
+    # https://stackoverflow.com/questions/59408167/list-of-current-user-objects-in-django-listview
 
     def get_queryset(self):
         return Trip.objects.filter(profile=self.request.user.profile).order_by(
@@ -160,6 +158,7 @@ class TripDetailView(LoginRequiredMixin, View):
 
         # Used following tutorial for pagination for function based views:
         # https://www.youtube.com/watch?v=N-PB-HMFmdo&list=PLCC34OHNcOtqW9BJmgQPPzUpJ8hl49AGy&index=18
+
         p = Paginator(
             Place.objects.filter(location=trip.location)
             .exclude(id__in=trip.places.values_list("id", flat=True))
@@ -186,9 +185,9 @@ class TripDetailView(LoginRequiredMixin, View):
 class PlaceDetail(LoginRequiredMixin, View):
     """
     A function based view to render specific details of a recommended place
-    to the recommended_detail.html template.  The specific place is passed
+    to the place_detail.html template.  The specific place is passed
     as an object to the template as part of the context, along the with a
-    queryset of all reviews relating to the place and the review form.
+    queryset of all reviews and images relating to the place.
     The trip object is included so places can be added or removed from the
     trip itinerary.
     """
@@ -221,6 +220,9 @@ class PlaceDetail(LoginRequiredMixin, View):
 
 @login_required()
 def review_create(request, slug, trip_id, place_id, *args, **kwargs):
+    """
+    View to create a review.
+    """
     trip = get_object_or_404(Trip, id=trip_id)
     place = get_object_or_404(Place, id=place_id)
     reviews = place.reviews.all().order_by("created_on")
@@ -254,31 +256,11 @@ def review_create(request, slug, trip_id, place_id, *args, **kwargs):
     )
 
 
-# class CreateReview(LoginRequiredMixin, View):
-#     """
-#     """
-
-#     def get(self, request, slug, trip_id, place_id, *args, **kwargs):
-#         trip = get_object_or_404(Trip, id=trip_id)
-#         place = get_object_or_404(Place, id=place_id)
-#         reviews = place.reviews.all().order_by('created_on')
-
-#         return render(
-#                 request,
-#                 'trips/review.html',
-#                 {
-#                     'trip': trip,
-#                     'place': place,
-#                     'reviews': reviews,
-#                     'review_form': ReviewForm()
-#                 }
-
-#             )
-
-
 @login_required()
 def review_edit(request, trip_id, place_id, review_id, *args, **kwargs):
-    """ """
+    """
+    View to update/ edit a review.
+    """
     if request.method == "POST":
         trip = get_object_or_404(Trip, id=trip_id)
         place = get_object_or_404(Place, id=place_id)
@@ -306,7 +288,9 @@ def review_edit(request, trip_id, place_id, review_id, *args, **kwargs):
 
 @login_required()
 def review_delete(request, trip_id, place_id, review_id, *args, **kwargs):
-    """ """
+    """
+    View to delete a review.
+    """
 
     trip = get_object_or_404(Trip, id=trip_id)
     place = get_object_or_404(Place, id=place_id)
@@ -332,7 +316,7 @@ class ImageUploadView(LoginRequiredMixin, CreateView):
     where the newly uploaded image is displayed along side all other images
     for the specified place.
     The URL parameters passed into the view are accessed from the kwargs.
-    A queryset of images and the specific places object is made avaialble
+    A queryset of images and the specific places object is made available
     as part of the context when rendering  the template, by defining the
     get_context_data() method.
     """
@@ -385,6 +369,9 @@ class ImageUploadView(LoginRequiredMixin, CreateView):
 
 @login_required()
 def image_delete(request, trip_id, place_id, image_id, *args, **kwargs):
+    """
+    View to delete an image.
+    """
     trip = get_object_or_404(Trip, id=trip_id)
     place = get_object_or_404(Place, id=place_id)
     image = get_object_or_404(Image, id=image_id)
@@ -403,6 +390,11 @@ def image_delete(request, trip_id, place_id, image_id, *args, **kwargs):
 
 
 class PlaceToggle(LoginRequiredMixin, View):
+    """
+    View to toggle between adding and removing a place from
+    a trip itinerary.
+    """
+
     def post(self, request, trip_id, place_id):
         trip = get_object_or_404(Trip, id=trip_id)
         place = get_object_or_404(Place, id=place_id)
@@ -424,6 +416,10 @@ class PlaceToggle(LoginRequiredMixin, View):
 
 
 class PlaceRemove(LoginRequiredMixin, View):
+    """
+    View to remove a place from the trip itinerary.
+    """
+
     def post(self, request, trip_id, place_id):
         trip = get_object_or_404(Trip, id=trip_id)
         place = get_object_or_404(Place, id=place_id)

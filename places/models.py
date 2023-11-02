@@ -24,7 +24,7 @@ class Place(models.Model):
     description = models.TextField(null=True)
     image = models.CharField(max_length=150, default="placeholder")
     ranking_position = models.IntegerField(null=True)
-    rating = models.IntegerField(null=True)
+    rating = models.FloatField(null=True)
     phone = models.CharField(max_length=50, null=True)
     address = models.JSONField()
     latitude = models.DecimalField(max_digits=10, decimal_places=8)

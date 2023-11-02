@@ -38,10 +38,10 @@
             <li class="nav-item">
               {% if request.user.profile.screen_name %}
               <a href="{% url 'update_profile' request.user.profile.id %}" class="nav-link
-              {% if request.resolver_match.url_name == 'profile_detail' %} active {% endif %} fw-semibold"  
+              {% if request.resolver_match.url_name == 'update_profile' %} active {% endif %} fw-semibold"  
               >Profile</a>
               {% else %}
-              <a href="{% url 'profile_detail' request.user.profile.id %}" class="nav-link fw-semibold">Profile</a>
+              <a href="{% url 'update_profile' request.user.profile.id %}" class="nav-link fw-semibold">Profile</a>
               {% endif %}
             </li>
             <li class="nav-item">

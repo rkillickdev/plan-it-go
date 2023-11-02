@@ -6,22 +6,6 @@ from .models import Profile
 from .forms import ProfileForm
 
 
-class ProfileRegisterView(TemplateView):
-    """
-    View to render the profile registration page.
-    """
-
-    template_name = 'profiles/profile_register.html'
-
-
-class ProfileDetailView(DetailView):
-    """
-    View to render the user profile page.
-    """
-
-    model = Profile
-
-
 class ProfileUpdateView(LoginRequiredMixin, UpdateView):
     """
     View to render the profile update form.

@@ -22,20 +22,20 @@ class Trip(models.Model):
     slug = models.SlugField(max_length=30, unique=True)
     description = models.TextField(blank=True)
     trip_image = CloudinaryField(
-        'image',
-        default='placeholder',
+        "image",
+        default="placeholder",
         transformation={
-            'width': "1500",
-            'height': "1000",
-            'crop': "fill",
-            'gravity': "auto",
-            'fetch_format': "auto",
-            'quality': "auto",
-            'dpr': "auto",
-            'responsive': True,
+            "width": "1500",
+            "height": "1000",
+            "crop": "fill",
+            "gravity": "auto",
+            "fetch_format": "auto",
+            "quality": "auto",
+            "dpr": "auto",
+            "responsive": True,
         },
         folder="/images/trips",
-        format="webp"
+        format="webp",
     )
     start_date = models.DateField(blank=True, null=True)
     end_date = models.DateField(blank=True, null=True)
@@ -59,6 +59,7 @@ class Trip(models.Model):
      of the title field.
      https://stackoverflow.com/questions/141487/is-there-an-easy-way-to-populate-slugfield-from-charfield
     """
+
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
         super().save(*args, **kwargs)

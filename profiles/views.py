@@ -13,4 +13,4 @@ class ProfileUpdateView(LoginRequiredMixin, UpdateView):
 
     form_class = ProfileForm
     model = Profile
-    success_url = reverse_lazy('trip_list')
+    success_url = reverse_lazy("trip_list")

@@ -34,8 +34,10 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 
 DEBUG = development
 
-if development:  
-    ALLOWED_HOSTS = ['8000-rkillickdev-planitgo-u9uuwhusilu.ws-eu105.gitpod.io'] 
+if development:
+    ALLOWED_HOSTS = [
+        '8000-rkillickdev-planitgo-u9uuwhusilu.ws-eu105.gitpod.io'
+        ]
 else:
     ALLOWED_HOSTS = ['plan-it-go-5b10d0005b0a.herokuapp.com']
 
@@ -165,7 +167,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 

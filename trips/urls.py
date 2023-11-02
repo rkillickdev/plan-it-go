@@ -12,73 +12,65 @@ from .views import (
     ImageUploadView,
     image_delete,
     PlaceToggle,
-    PlaceRemove
+    PlaceRemove,
 )
 
 urlpatterns = [
+    path("create_trip", TripCreateView.as_view(), name="create_trip"),
     path(
-        'create_trip',
-        TripCreateView.as_view(),
-        name='create_trip'
-    ),
-    path(
-        'update_trip/<slug:slug>/<int:pk>',
+        "update_trip/<slug:slug>/<int:pk>",
         TripUpdateView.as_view(),
-        name='update_trip'
+        name="update_trip",
     ),
     path(
-        '<slug:slug>/delete_trip/<int:trip_id>',
+        "<slug:slug>/delete_trip/<int:trip_id>",
         trip_delete,
-        name='delete_trip'
+        name="delete_trip",
     ),
+    path("trip_list", TripListView.as_view(), name="trip_list"),
     path(
-        'trip_list',
-        TripListView.as_view(),
-        name='trip_list'
-    ),
-    path(
-        '<slug:slug>/<int:trip_id>',
+        "<slug:slug>/<int:trip_id>",
         TripDetailView.as_view(),
-        name='trip_detail'
+        name="trip_detail",
     ),
     path(
-        '<slug:slug>/<int:trip_id>/place/<int:place_id>/',
+        "<slug:slug>/<int:trip_id>/place/<int:place_id>/",
         PlaceDetail.as_view(),
-        name='place_detail'
+        name="place_detail",
     ),
     path(
-        '<slug:slug>/<int:trip_id>/review/<int:place_id>/',
+        "<slug:slug>/<int:trip_id>/review/<int:place_id>/",
         review_create,
-        name='review'
+        name="review",
     ),
     path(
-        '<slug:slug>/<int:trip_id>/review/<int:place_id>/edit_review/<int:review_id>',
+        "<slug:slug>/<int:trip_id>/review/<int:place_id>/edit_review/<int:review_id>",
         review_edit,
-        name='edit_review'
+        name="edit_review",
     ),
     path(
-        '<slug:slug>/<int:trip_id>/review/<int:place_id>/delete_review/<int:review_id>',
+        "<slug:slug>/<int:trip_id>/review/<int:place_id>/delete_review/<int:review_id>",
         review_delete,
-        name='delete_review'
+        name="delete_review",
     ),
     path(
-        '<slug:slug>/<int:trip_id>/images/<int:place_id>/',
+        "<slug:slug>/<int:trip_id>/images/<int:place_id>/",
         ImageUploadView.as_view(),
-        name='add_image'
+        name="add_image",
     ),
     path(
-        '<slug:slug>/<int:trip_id>/images/<int:place_id>/delete_image/<int:image_id>',
+        "<slug:slug>/<int:trip_id>/images/<int:place_id>/delete_image/<int:image_id>",
         image_delete,
-        name='delete_image'
+        name="delete_image",
     ),
     path(
-        'toggle_place/<int:trip_id>/<int:place_id>',
+        "toggle_place/<int:trip_id>/<int:place_id>",
         PlaceToggle.as_view(),
-        name='toggle_place'
+        name="toggle_place",
     ),
     path(
-        'remove_place/<int:trip_id>/<int:place_id>',
+        "remove_place/<int:trip_id>/<int:place_id>",
         PlaceRemove.as_view(),
-        name='remove_place'
-    )
+        name="remove_place",
+    ),
 ]

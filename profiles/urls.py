@@ -4,8 +4,8 @@ from .views import ProfileUpdateView
 
 urlpatterns = [
     path(
-        'update_profile/<int:pk>',
+        "update_profile/<int:pk>",
         ProfileUpdateView.as_view(),
-        name='update_profile'
+        name="update_profile",
     )
 ]

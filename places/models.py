@@ -22,7 +22,7 @@ class Place(models.Model):
     slug = models.SlugField(max_length=50)
     location_string = models.CharField(max_length=150, null=True)
     description = models.TextField(null=True)
-    image = models.CharField(max_length=150, default='placeholder')
+    image = models.CharField(max_length=150, default="placeholder")
     ranking_position = models.IntegerField(null=True)
     rating = models.IntegerField(null=True)
     phone = models.CharField(max_length=50, null=True)
@@ -44,6 +44,7 @@ class Place(models.Model):
      of the title field.
      https://stackoverflow.com/questions/141487/is-there-an-easy-way-to-populate-slugfield-from-charfield
     """
+
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
         super().save(*args, **kwargs)
@@ -62,9 +63,10 @@ class Review(models.Model):
     )
     body = models.TextField()
     user_rating = models.IntegerField(
-        null=True, blank=True,
-        validators=[MinValueValidator(0), MaxValueValidator(5)]
-        )
+        null=True,
+        blank=True,
+        validators=[MinValueValidator(0), MaxValueValidator(5)],
+    )
     recommended = models.BooleanField(default=False, null=True)
     created_on = models.DateTimeField(auto_now_add=True)
     approved = models.BooleanField(default=False)
@@ -90,20 +92,20 @@ class Image(models.Model):
         Place, on_delete=models.CASCADE, related_name="images"
     )
     path = CloudinaryField(
-        'image',
-        default='placeholder',
+        "image",
+        default="placeholder",
         transformation={
-            'width': "900",
-            'height': "600",
-            'crop': "fill",
-            'gravity': "auto",
-            'fetch_format': "auto",
-            'quality': "auto",
-            'dpr': "auto",
-            'responsive': True,
+            "width": "900",
+            "height": "600",
+            "crop": "fill",
+            "gravity": "auto",
+            "fetch_format": "auto",
+            "quality": "auto",
+            "dpr": "auto",
+            "responsive": True,
         },
         folder="/images/places",
-        format="webp"
+        format="webp",
     )
     created_on = models.DateTimeField(auto_now_add=True)
     approved = models.BooleanField(default=False)

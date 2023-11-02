@@ -19,29 +19,29 @@ class Profile(models.Model):
     date_of_birth = models.DateField(blank=True, null=True)
     about = models.TextField(blank=True)
     profile_image = CloudinaryField(
-        'image',
-        default='placeholder',
+        "image",
+        default="placeholder",
         eager=[
             {
-                'width': "100",
-                'height': "100",
-                'gravity': "face",
-                'crop': "thumb"
+                "width": "100",
+                "height": "100",
+                "gravity": "face",
+                "crop": "thumb",
             }
         ],
         transformation={
-            'aspect_ratio': "4:4",
-            'gravity': "face",
-            'height': "600",
-            'zoom': "0.75",
-            'crop': "thumb",
-            'fetch_format': "auto",
-            'quality': "auto",
-            'dpr': "auto",
-            'responsive': True,
+            "aspect_ratio": "4:4",
+            "gravity": "face",
+            "height": "600",
+            "zoom": "0.75",
+            "crop": "thumb",
+            "fetch_format": "auto",
+            "quality": "auto",
+            "dpr": "auto",
+            "responsive": True,
         },
         folder="/images/profiles",
-        format="webp"
+        format="webp",
     )
 
     def __str__(self):
@@ -50,6 +50,7 @@ class Profile(models.Model):
         of the Profile model.
         """
         return self.user.username
+
 
 # Create a Profile when new user signs up
 

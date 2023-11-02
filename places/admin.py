@@ -8,13 +8,11 @@ admin.site.register(Place)
 
 @admin.register(Review)
 class ReviewAdmin(admin.ModelAdmin):
-
     def approve_reviews(self, request, queryset):
         queryset.update(approved=True)
 
 
 @admin.register(Image)
 class ImageAdmin(admin.ModelAdmin):
-
     def approve_images(self, request, queryset):
         queryset.update(approved=True)

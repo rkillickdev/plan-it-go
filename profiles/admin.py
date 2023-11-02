@@ -5,6 +5,5 @@ from django_summernote.admin import SummernoteModelAdmin
 
 @admin.register(Profile)
 class ProfileAdmin(SummernoteModelAdmin):
-
-    prepopulated_fields = {'slug': ('screen_name',)}
-    summernote_fields = ('about')
+    prepopulated_fields = {"slug": ("screen_name",)}
+    summernote_fields = "about"

@@ -1,52 +1,64 @@
 {% extends "base.html" %}
-
+{% block head_title %} Places {% endblock %}
 {% block content %}
 
-<!-- Recommendations Paginated -->
-<section id="place-list" class="mt-7">
-    <div class="container">
-      <div class="row mb-2">
-        <div class="action-title d-flex justify-content-between p-2">
-          <h3 class="display-6">Places For {{ location.city }}</h3>
-          <a class="btn btn-dark button-link align-self-center " href="{% url 'locations' %}"><span><i class="fa-solid fa-angles-left"></i>&nbsp&nbsp</span>Back To Destinations</a>
-        </div>
-        <hr />
+<!-- Places for a destination paginated -->
+<section id="place-list"
+         class="mt-7">
+  <div class="container">
+    <div class="row mb-2">
+      <div class="action-title d-flex justify-content-between p-2">
+        <h3 class="display-6">Places For {{ location.city }}</h3>
+        <a class="btn btn-dark button-link align-self-center "
+           href="{% url 'locations' %}">
+          <span><i class="fa-solid fa-angles-left"></i>&nbsp&nbsp</span>Back To Destinations
+        </a>
       </div>
-        <div class="row">
-            <div class="col-12">
-                <div class="row gy-3">
-                    {% for place in places %}
-                    <div class="col-md-4">
-                        <div class="card text-center border-0 h-100">
-                            <img class="card-img-top img-fluid img-size-consistent" src="{{ place.image }}" alt="{{ place.name }}">
-                            <div class="card-body">
-                                <h3>{{ place.name }}</h3>
-                            </div>
-                            <a class="stretched-link" href="{% url 'place_browse_detail' place.slug place.id %}"></a>
-                        </div>
-                    </div>
-                    {% if forloop.counter|divisibleby:3 %}
-                </div>
-                <div class="row">
-                    {% endif %}
-                    {% endfor %}     
-                </div>
-            </div>
-        </div>
-        {% if is_paginated %}
-        <nav aria-label="Page navigation">
-            <ul class="pagination justify-content-center">
-                {% if page_obj.has_previous %}
-                <li><a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; PREV </a></li>
-                {% endif %}
-                {% if page_obj.has_next %}
-                <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT &raquo;</a></li>
-
-                {% endif %}
-            </ul>
-        </nav>
-        {% endif %}     
+      <hr />
     </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="row gy-3">
+          {% for place in places %}
+            <div class="col-md-4">
+              <div class="card text-center border-0 h-100">
+                <img class="card-img-top img-fluid img-size-consistent"
+                    src="{{ place.image }}"
+                    alt="{{ place.name }}">
+                <div class="card-body">
+                  <h3>{{ place.name }}</h3>
+                </div>
+                <a class="stretched-link"
+                  href="{% url 'place_browse_detail' place.slug place.id %}"></a>
+              </div>
+            </div>
+            {% if forloop.counter|divisibleby:3 %}
+        </div>
+        <div class="row">
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    {% if is_paginated %}
+      <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+          {% if page_obj.has_previous %}
+            <li>
+              <a href="?page={{ page_obj.previous_page_number }}"
+                class="page-link">&laquo; PREV </a>
+            </li>
+          {% endif %}
+          {% if page_obj.has_next %}
+            <li>
+              <a href="?page={{ page_obj.next_page_number }}"
+                class="page-link"> NEXT &raquo;</a>
+            </li>
+          {% endif %}
+        </ul>
+      </nav>
+    {% endif %}
+  </div>
 </section>
 
 {% endblock %}

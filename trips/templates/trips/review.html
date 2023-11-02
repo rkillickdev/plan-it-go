@@ -1,78 +1,124 @@
 {% extends "base.html" %}
-
-{% load static %}
-
+{% block head_title %} Your Reviews {% endblock %}
 {% block content %}
 
+{% load static %}
 {% load crispy_forms_tags %}
 
-<section id="write-review" class="reviews mt-7 mb-4">
-    <div class="container">
-      <div class="row mb-2">
-        <div class="action-title d-flex justify-content-between p-2">
-          <h3 class="display-6"><span><i class="fa-solid fa-comment-dots"></i>&nbsp&nbsp</span>Add a review for {{ place.name }}</h3>
-          <a class="btn btn-dark button-link align-self-center " href="{% url 'trip_detail' trip.slug trip.id %}"><span><i class="fa-solid fa-angles-left"></i>&nbsp&nbsp</span>Back To Trip</a></a>
-        </div>
-        <hr />
-      </div>
-        <div class="row mb-4">
-            <div class="col-lg-7 d-flex flex-column justify-content-center gap-4">
-                <div class="image-container">
-                    <img src="{% static 'images/map-photo-memories-1500x1000-compress.webp'%}" alt="" class="img-fluid d-none d-lg-block">
-                </div>
-            </div>
-            <div class="col-lg-5 d-flex flex-column">
-              <div class="form-container rounded bg-primary p-4">
-                {% crispy review_form %}
-              </div>
-                
-            </div>
-        </div>
-    </div>
-</section>
-
-<section id="reviews-list">
+<!-- Write/edit review -->
+<section id="write-review"
+         class="reviews mt-7 mb-4">
   <div class="container">
-    <div class="row">
-      <h3 class="action-title display-6"><span><i class="fa-solid fa-folder-open"></i>&nbsp&nbsp</span>Your Reviews</h3>
+    <div class="row mb-2">
+      <div class="action-title d-flex justify-content-between p-2">
+        <h3 class="display-6">
+          <span>
+            <i class="fa-solid fa-comment-dots"></i>&nbsp&nbsp
+          </span>Add a review for {{ place.name }}
+        </h3>
+        <a class="btn btn-dark button-link align-self-center "
+           href="{% url 'trip_detail' trip.slug trip.id %}">
+          <span>
+            <i class="fa-solid fa-angles-left"></i>&nbsp&nbsp
+          </span>Back To Trip
+        </a>
+      </div>
       <hr />
     </div>
     <div class="row mb-4">
-        <div class="col-lg-4 d-flex flex-column ps-0">
-            {% for review in reviews %}
-            <a data-bs-toggle="modal" data-bs-target="#modal-user-review">
-                <div class="user-review card border-0 text-center image-clickable" review_id="{{ review.id }}">
-                    <div class="card-header border-0 bg-primary">
-                        <div class="row">
-                          <div class="col-md-5">
-                            <div class="image-container p-2">
-                              {% if 'placeholder' in review.profile.profile_image.url %}
-                                  <img src="{% static 'images/placeholders/globe-profile-face-compress-square.webp' %}" alt="picture of {{ profile.screen_name }}" id="review-image{{ review.id }}" class="img-fluid rounded-circle" width="120px"> 
-                              {% else %}
-                                  <img src="{{ review.profile.profile_image.url }}" alt="picture of {{ profile.screen_name }}" id="review-image{{ review.id }}" class="img-fluid rounded-circle" width="120px"> 
-                              {% endif %}
-                            </div>
-                            <h4 id="review-profile-name{{ review.id }}" class="review-card-text fst-italic p-2">{{ review.profile.screen_name}}</h4> 
-                          </div>
-                          <div class="col-md-7 d-flex flex-column justify-content-center">
-                            <h4 id="review-location{{ review.id }}" class="review-card-text display-5">{{ review.place.name }}</h4>
-                          </div> 
-                        </div>
-                    </div>
-                    <div class="card-body bg-secondary">
-                        <p class="review-card-text lead"><span><i class="fa-solid fa-magnifying-glass"></i>&nbsp&nbsp</span> Read Review</p>
-                        <p id="review-body{{ review.id }}" class=" review-card-text card-title d-none {% if not review.approved and review.profile == request.user.profile %} faded {% elif not.review.approved %} d-none{% endif %}">{{review.body}}</p>
-                    </div>
-                </div>
-            </a>
-            {% if user.is_authenticated and review.profile.id == user.profile.id %}
-            <div class="d-flex justify-content-between bg-primary rounded mt-2">
-              <button class="btn btn-edit" review_id="{{ review.id }}"><i class="fa-solid fa-pencil fa-2x"></i></button> 
-              <button class="btn btn-delete" target_id="{{ review.id }}" task="delete_review" data-bs-toggle="modal" data-bs-target="#modal-delete-confirm"><i class="fa-solid fa-trash-can fa-2x"></i></button>
-            </div>
-            {% endif %}
-            {% endfor %}
+      <div class="col-lg-7 d-flex flex-column justify-content-center gap-4">
+        <div class="image-container">
+          <img src="{% static 'images/map-photo-memories-1500x1000-compress.webp'%}"
+               alt="Polaroid pictures scattered across a map"
+               class="img-fluid d-none d-lg-block">
         </div>
+      </div>
+      <!-- Review Form -->
+      <div class="col-lg-5 d-flex flex-column">
+        <div class="form-container rounded bg-primary p-4">
+          {% crispy review_form %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- List of user reviews -->
+<section id="reviews-list">
+  <div class="container">
+    <div class="row">
+      <h3 class="action-title display-6"><span><i
+             class="fa-solid fa-folder-open"></i>&nbsp&nbsp</span>Your Reviews
+      </h3>
+      <hr />
+    </div>
+    <div class="row mb-4">
+      {% for review in reviews %}
+        <div class="col-lg-4 d-flex flex-column ps-0">
+          <a data-bs-toggle="modal"
+            data-bs-target="#modal-user-review">
+            <div class="user-review card border-0 text-center image-clickable"
+                review_id="{{ review.id }}">
+              <div class="card-header border-0 bg-primary">
+                <div class="row">
+                  <div class="col-md-5">
+                    <div class="image-container p-2">
+                      {% if 'placeholder' in review.profile.profile_image.url %}
+                      <img src="{% static 'images/placeholders/globe-profile-face-compress-square.webp' %}"
+                          alt="Inflatable globe with two eyes stuck on"
+                          id="review-image{{ review.id }}"
+                          class="img-fluid rounded-circle"
+                          width="120px">
+                      {% else %}
+                      <img src="{{ review.profile.profile_image.url }}"
+                          alt="picture of {{ profile.screen_name }}"
+                          id="review-image{{ review.id }}"
+                          class="img-fluid rounded-circle"
+                          width="120px">
+                      {% endif %}
+                    </div>
+                    <h4 id="review-profile-name{{ review.id }}"
+                        class="review-card-text fst-italic p-2">
+                      {{ review.profile.screen_name}}</h4>
+                  </div>
+                  <div
+                      class="col-md-7 d-flex flex-column justify-content-center">
+                    <h4 id="review-location{{ review.id }}"
+                        class="review-card-text display-5">
+                      {{ review.place.name }}</h4>
+                  </div>
+                </div>
+              </div>
+              <div class="card-body bg-secondary">
+                <p class="review-card-text lead"><span><i
+                      class="fa-solid fa-magnifying-glass"></i>&nbsp&nbsp</span>
+                  Read Review</p>
+                <p id="review-body{{ review.id }}"
+                  class=" review-card-text card-title d-none {% if not review.approved and review.profile == request.user.profile %} faded {% elif not.review.approved %} d-none{% endif %}">
+                  {{review.body}}</p>
+              </div>
+            </div>
+          </a>
+          {% if user.is_authenticated and review.profile.id == user.profile.id %}
+          <div class="d-flex justify-content-between bg-primary rounded mt-2">
+            <button class="btn btn-edit"
+                    review_id="{{ review.id }}"><i
+                class="fa-solid fa-pencil fa-2x"></i></button>
+            <button class="btn btn-delete"
+                    target_id="{{ review.id }}"
+                    task="delete_review"
+                    data-bs-toggle="modal"
+                    data-bs-target="#modal-delete-confirm"><i
+                class="fa-solid fa-trash-can fa-2x"></i></button>
+          </div>
+          {% endif %} 
+        </div>
+        {% if forloop.counter|divisibleby:3 %}
+      </div>
+      <div class="row">
+        {% endif %}
+      {% endfor %}
+      </div>
     </div>
   </div>
 </section>
@@ -86,7 +132,9 @@
 {% endblock %}
 
 {% block extras %}
-    <script src="{% static 'js/delete-confirm-modals.js' %}"></script>
-    <script src="{% static 'js/reviews.js' %}"></script>
-    <script src="{% static 'js/solo-display-modals.js' %}"></script>
+
+<script src="{% static 'js/delete-confirm-modals.js' %}"></script>
+<script src="{% static 'js/reviews.js' %}"></script>
+<script src="{% static 'js/solo-display-modals.js' %}"></script>
+
 {% endblock extras %}

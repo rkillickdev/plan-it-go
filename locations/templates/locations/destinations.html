@@ -1,65 +1,77 @@
 {% extends "base.html" %}
-
-{% load static %}
-
+{% block head_title %} Destinations {% endblock %}
 {% block content %}
 
+{% load static %}
 {% load crispy_forms_tags %}
 
 {% if user.is_authenticated and request.user.is_staff %}
-
-<section id="enter-destination-details" class="mt-7 mb-5">
+  <!-- Input Destination Details -->
+  <section id="enter-destination-details"
+           class="mt-7 mb-5">
     <div class="container">
       <div class="row mb-2">
         <div class="action-title d-flex justify-content-between p-2">
-          <h3 class="display-6">{% if request.resolver_match.url_name == 'locations' %} Create a new destination {% else %} Update details for {{ location.city }} {% endif %}</h3>
+          <h3 class="display-6">
+            {% if request.resolver_match.url_name == 'locations' %} Create a new destination 
+            {% else %} Update details for {{ location.city }}
+            {% endif %}
+          </h3>
         </div>
         <hr />
       </div>
       <div class="row">
-          <div class="col-lg-6">
-              <div class="image-container">
-                  <img src="{% static 'images/map-search-coffe-cup-1250x1500-compress.webp'%}" alt="Magnifying glass searches world map" class="img-fluid d-none d-lg-block">
-              </div>
+        <div class="col-lg-6">
+          <div class="image-container">
+            <img src="{% static 'images/map-search-coffe-cup-1250x1500-compress.webp'%}"
+                alt="Magnifying glass searches world map"
+                class="img-fluid d-none d-lg-block">
           </div>
-          <div class="col-lg-6">
-              <div class="form-container rounded bg-primary p-4">
-                  {% crispy form %}
-              </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="form-container rounded bg-primary p-4">
+            {% crispy form %}
           </div>
+        </div>
       </div>
     </div>
-</section>
-
+  </section>
 {% endif %}
 
+<!-- List of avaialble destinations -->
 <section id="destination-list">
-    <div class="container">
-      <div class="row mb-2">
-        <div class="action-title d-flex justify-content-between align-items-center p-2">
-          <h3 class="display-6 m-0">Destinations</h3>
-          <a href="{% url 'locations' %}" class="h3"><span><i class="fa-solid fa-circle-plus fa-2x"></i>&nbsp&nbsp</span></a>
-        </div>
-        <hr />
+  <div class="container">
+    <div class="row mb-2">
+      <div class="action-title d-flex justify-content-between align-items-center p-2">
+        <h3 class="display-6 m-0">Destinations</h3>
+        <a href="{% url 'locations' %}"
+           class="h3">
+          <span><i class="fa-solid fa-circle-plus fa-2x"></i>&nbsp&nbsp</span>
+        </a>
       </div>
-        <div class="row">
-            {% for destination in destinations %}
-                <div class="col-md-4 mb-4">
-                    {% include 'includes/destination_cards.html' %}
-                </div>
-                {% if forloop.counter|divisibleby:3 %}
-        </div>
-        <div class="row">
-                {% endif %}
-            {% endfor%} 
-        </div>   
+      <hr />
     </div>
+    <div class="row">
+      {% for destination in destinations %}
+        <div class="col-md-4 mb-4">
+          {% include 'includes/destination_cards.html' %}
+        </div>
+        {% if forloop.counter|divisibleby:3 %}
+    </div>
+    <div class="row">
+        {% endif %}
+      {% endfor%}
+    </div>
+  </div>
 </section>
 
+<!-- Destination info modal included -->
 {% include 'includes/destination_modal.html' %}
 
 {% endblock %}
 
 {% block extras %}
-    <script src="{% static 'js/solo-display-modals.js' %}"></script>
+
+<script src="{% static 'js/solo-display-modals.js' %}"></script>
+
 {% endblock extras %}

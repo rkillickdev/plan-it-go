@@ -7,12 +7,11 @@ from .forms import LocationForm
 
 
 class DestinationList(LoginRequiredMixin, CreateView):
-    """
-    """
+    """ """
 
     form_class = LocationForm
     model = Location
-    template_name = 'locations/destinations.html'
+    template_name = "locations/destinations.html"
 
     # Referenced this article to find out about modifying context data
     # in a class based view:
@@ -20,23 +19,22 @@ class DestinationList(LoginRequiredMixin, CreateView):
 
     def get_context_data(self, **kwargs):
         context = super(DestinationList, self).get_context_data(**kwargs)
-        context['destinations'] = Location.objects.all().order_by('city')
+        context["destinations"] = Location.objects.all().order_by("city")
         return context
 
     def get_success_url(self):
-        return reverse_lazy('locations')
+        return reverse_lazy("locations")
 
 
 class UpdateDestination(LoginRequiredMixin, UpdateView):
-
     form_class = LocationForm
     model = Location
-    template_name = 'locations/destinations.html'
+    template_name = "locations/destinations.html"
 
     def get_context_data(self, **kwargs):
         context = super(UpdateDestination, self).get_context_data(**kwargs)
-        context['destinations'] = Location.objects.all().order_by('city')
+        context["destinations"] = Location.objects.all().order_by("city")
         return context
 
     def get_success_url(self):
-        return reverse_lazy('locations')
+        return reverse_lazy("locations")

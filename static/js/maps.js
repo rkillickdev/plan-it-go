@@ -12,8 +12,8 @@ const mapkey = JSON.parse(document.getElementById('maps-api-key').textContent);
 const latitude = JSON.parse(document.getElementById('latitude').textContent);
 const longitude = JSON.parse(document.getElementById('longitude').textContent);
 
-let num_lat = parseFloat(latitude)
-let num_long = parseFloat(longitude)
+let num_lat = parseFloat(latitude);
+let num_long = parseFloat(longitude);
 
 // Initialize and add the map
 let map;

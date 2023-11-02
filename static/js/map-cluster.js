@@ -11,9 +11,9 @@ const mapkey = JSON.parse(document.getElementById('maps-api-key').textContent);
 
 const latitude = JSON.parse(document.getElementById('latitude').textContent);
 const longitude = JSON.parse(document.getElementById('longitude').textContent);
-let num_lat = parseFloat(latitude)
-let num_long = parseFloat(longitude)
-const geo_list = JSON.parse(document.getElementById('geo_list').innerHTML)
+let num_lat = parseFloat(latitude);
+let num_long = parseFloat(longitude);
+const geo_list = JSON.parse(document.getElementById('geo_list').innerHTML);
 
 async function initMap() {
     // Request required libraries.
@@ -56,7 +56,7 @@ async function initMap() {
     const markerCluster = new markerClusterer.MarkerClusterer({ map, markers });
 }
 
-const locations = geo_list
+const locations = geo_list;
 
   
 initMap();

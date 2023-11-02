@@ -17,8 +17,8 @@ for (let button of deleteButtons) {
 // Remove Confirm For Trip Places
 
 let deletePlannerItems = document.getElementsByClassName("delete-planner-item");
-let itemDeleteForm = document.getElementById("item-delete-form");   // SET FORM ID AS THIS
-let itemDeleteConfirm = document.getElementById("item-delete-confirm"); // SET BUTTON ID AS THIS
+let itemDeleteForm = document.getElementById("item-delete-form");
+let itemDeleteConfirm = document.getElementById("item-delete-confirm");
 let itemPlace = document.getElementById("item-place");
 
 

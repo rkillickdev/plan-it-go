@@ -16,10 +16,10 @@ for (let image of soloImages) {
 // Solo Destination Info Modal
 
 let destinationCities = document.getElementsByClassName("destination-city-mini");
-let destinationCity = document.getElementById("destination-city")
-let destinationImage = document.getElementById("destination-image")
-let destinationSummary = document.getElementById("destination-summary")
-let tripIdeasLink = document.getElementById("trip-ideas")
+let destinationCity = document.getElementById("destination-city");
+let destinationImage = document.getElementById("destination-image");
+let destinationSummary = document.getElementById("destination-summary");
+let tripIdeasLink = document.getElementById("trip-ideas");
 
 for(let city of destinationCities) {
     city.addEventListener("click", (e) => {
@@ -30,37 +30,18 @@ for(let city of destinationCities) {
         let city = document.getElementById(`destination-city${destinationId}`).innerText;
         destinationSummary.innerText = summary;
         destinationCity.innerText = city;
-        destinationImage.src = destinationImagePath
-        tripIdeasLink.href = `trip_inspiration/${destinationId}/${destinationSlug}`
+        destinationImage.src = destinationImagePath;
+        tripIdeasLink.href = `trip_inspiration/${destinationId}/${destinationSlug}`;
 
 
 
-    })
-}
-
-// Solo Review Modal
-
-let soloReviews = document.getElementsByClassName("review-solo");
-let soloReviewProfile = document.getElementById("solo-review-profile");
-let soloReviewTitle = document.getElementById("solo-review-title");
-let soloReviewBody = document.getElementById("solo-review-body");
-
-for(let review of soloReviews) {
-    review.addEventListener("click", (e) => {
-        let reviewId = e.currentTarget.getAttribute("review_id");
-        let reviewImagePath = e.target.getAttribute("src");
-        let reviewTitle = document.getElementById(`review-title${reviewId}`).innerText;
-        let reviewBody = document.getElementById(`review-body${reviewId}`).innerText;
-        soloReviewProfile.src = reviewImagePath;
-        soloReviewTitle.innerText = reviewTitle;
-        soloReviewBody.innerText = reviewBody;
-    })
+    });
 }
 
 // Review Modal
 
 let userReviews = document.getElementsByClassName("user-review");
-let modalProfileImage = document.getElementById("modal-profile-image")
+let modalProfileImage = document.getElementById("modal-profile-image");
 let modalProfileName = document.getElementById("modal-profile-name");
 let modalLocation = document.getElementById("modal-location");
 let modalBody = document.getElementById("modal-body");
@@ -77,5 +58,5 @@ for(let review of userReviews) {
         modalBody.innerText = reviewBodyText;
         modalProfileImage.src = reviewImagePath;
 
-    })
+    });
 }

@@ -2,7 +2,7 @@
 // The idea for this came from the following Udemy Bootstrap Tutorial:
 // https://www.udemy.com/course/bootstrap-from-scratch/learn/lecture/38477274#search
 
-const checkReplace = document.querySelector('.replace-me')
+const checkReplace = document.querySelector('.replace-me');
 
 if (checkReplace !== null) {
   const replace = new ReplaceMe(checkReplace, {

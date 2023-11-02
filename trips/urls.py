@@ -5,7 +5,6 @@ from .views import (
     trip_delete,
     TripListView,
     TripDetailView,
-    TripBrowse,
     review_create,
     PlaceDetail,
     review_edit,

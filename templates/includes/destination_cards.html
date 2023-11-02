@@ -1,28 +1,35 @@
 {% load static %}
-
+<!-- Destination Card Display -->
 <div class="destination-city-mini card border-0 bg-secondary text-center h-100">
-    <a data-bs-toggle="modal" data-bs-target="#modal-destination-info" class="image-clickable">
-            {% if 'placeholder' in destination.image.url %}
-            <img class="card-img-top img-fluid img-size-consistent" 
-            src="{% static 'images/placeholders/trip-placeholder-globe-in-hand.webp' %}" alt="{{ destination.name }}"
-            destination_id="{{ destination.id }}" destination_slug="{{ destination.slug }}"
-            destination_summary="{{ destination.summary}}"
-            >
-        {% else %}
-            <img class="card-img-top img-fluid img-size-consistent" 
-            src="{{ destination.image.url }}" alt="{{ destination.name }}"
-            destination_id="{{ destination.id }}" destination_slug="{{ destination.slug }}"
-            destination_summary="{{ destination.summary}}"
-            >
-        {% endif %}
-    </a>
-    <div id="destination-city{{destination.id}}" class="card-body">
-        <h3>{{destination.city}}</h3>
-    </div>
-    {% if user.is_authenticated and request.user.is_staff %}
-    <div class=" {% if request.resolver_match.url_name != 'home'  %} d-flex justify-content-between px-4 pb-4 {% else %} d-none {% endif %}">
-        <a href="{% url 'update_destination' destination.id destination.slug %}"><i class="ps-2 fa-solid fa-pencil fa-2x"></i></a>
-        <a href="{% if destination.places.count > 0 %} {% url 'place_list' destination.id destination.slug %} {% else %} {% url 'get_places' destination.id destination.slug  %} {% endif %}"><i class="pe-2 fa-solid fa-magnifying-glass-location fa-2x"></i></a>
-    </div>
+  <a data-bs-toggle="modal"
+     data-bs-target="#modal-destination-info"
+     class="image-clickable">
+    {% if 'placeholder' in destination.image.url %}
+      <img class="card-img-top img-fluid img-size-consistent"
+          src="{% static 'images/placeholders/trip-placeholder-globe-in-hand.webp' %}"
+          alt="{{ destination.name }}"
+          destination_id="{{ destination.id }}"
+          destination_slug="{{ destination.slug }}"
+          destination_summary="{{ destination.summary}}">
+    {% else %}
+      <img class="card-img-top img-fluid img-size-consistent"
+          src="{{ destination.image.url }}"
+          alt="{{ destination.name }}"
+          destination_id="{{ destination.id }}"
+          destination_slug="{{ destination.slug }}"
+          destination_summary="{{ destination.summary}}">
     {% endif %}
+  </a>
+  <div id="destination-city{{destination.id}}"
+       class="card-body">
+    <h3>{{destination.city}}</h3>
+  </div>
+  {% if user.is_authenticated and request.user.is_staff %}
+    <div class=" {% if request.resolver_match.url_name != 'home' %} d-flex justify-content-between px-4 pb-4 {% else %} d-none {% endif %}">
+      <a href="{% url 'update_destination' destination.id destination.slug %}"><i
+         class="ps-2 fa-solid fa-pencil fa-2x"></i></a>
+      <a href="{% if destination.places.count > 0 %} {% url 'place_list' destination.id destination.slug %} {% else %} {% url 'get_places' destination.id destination.slug %} {% endif %}"><i
+         class="pe-2 fa-solid fa-magnifying-glass-location fa-2x"></i></a>
+    </div>
+  {% endif %}
 </div>

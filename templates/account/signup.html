@@ -1,14 +1,15 @@
 {% extends "base.html" %}
+{% load crispy_forms_tags %}
 
 {% load i18n %}
 
-{% block head_title %}{% trans "Signup" %}{% endblock %}
-
-{% load crispy_forms_tags %}
+{% block head_title %}{% trans "Sign Up" %}{% endblock %}
 
 {% block content %}
 
-<section id="signup" class="mt-7">
+<!-- Sign Up Info -->
+<section id="signup"
+         class="mt-7">
   <div class="container">
     <div class="row mb-2">
       <div class="action-title d-flex justify-content-between p-2">
@@ -18,40 +19,21 @@
     </div>
     <div class="row">
       <div class="col-md-8 mt-3 offset-md-2">
-        <p class="lead">{% blocktrans %}Already have an account? Then please 
-        <a href="{{ login_url }}" class="fw-bold link-transform">sign in</a>{% endblocktrans %}</p>   
+        <p class="lead">{% blocktrans %}Already have an account? Then please
+          <a href="{{ login_url }}"
+             class="fw-bold link-transform">sign in</a>{% endblocktrans %}
+        </p>
       </div>
     </div>
+    <!-- Sign Up Form -->
     <div class="row">
-        <div class="col-md-8 mt-3 offset-md-2">
-          <div class="form-container rounded bg-primary p-4">
-            {% crispy form %}
-          </div>
+      <div class="col-md-8 mt-3 offset-md-2">
+        <div class="form-container rounded bg-primary p-4">
+          {% crispy form %}
         </div>
+      </div>
     </div>
   </div>
 </section>
-
-
-<!-- ORIGINAL FORM HTML -->
-
-<!-- <section id="signup">
-  <div class="container">
-      <div class="row justify-content-center">
-          <div class="col-12 w-75">
-            <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
-              {% csrf_token %}
-              {{ form.as_p }}
-              {% if redirect_field_value %}
-              <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-              {% endif %}
-              <button type="submit">{% trans "Sign Up" %} &raquo;</button>
-            </form>
-          </div>
-      </div>
-  </div>
-</section> -->
-
-
 
 {% endblock %}

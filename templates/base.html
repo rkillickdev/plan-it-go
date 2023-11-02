@@ -3,64 +3,75 @@
 <html lang="en">
 
 <head>
-    <!-- META TAGS -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="keywords" content="">
-    <meta name="description" content="">
+  <!-- META TAGS -->
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+  <meta name="keywords"
+        content="">
+  <meta name="description"
+        content="">
 
-    <!-- Favicon -->
+  <!-- Favicon -->
 
-    <!-- Bootstrap v5.3.2 Customised -->
-    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+  <!-- Bootstrap v5.3.2 Customised -->
+  <link rel="stylesheet"
+        href="{% static 'css/bootstrap.css' %}">
 
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+  <link rel="stylesheet"
+        type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
 
-    <!-- My Stylesheet -->
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  <!-- My Stylesheet -->
+  <link rel="stylesheet"
+        href="{% static 'css/styles.css' %}">
 
-    <!-- Browser Tab Title-->
-    <title>Plan-it Go | {% block title%}{% endblock %}</title>
+  <!-- Browser Tab Title-->
+  <title>Plan-it Go | {% block head_title %}{% endblock %}</title>
 </head>
 
 <body class="d-flex flex-column h-100 main-bg">
-    <!-- Navbar -->
-    {% include 'includes/nav.html' %}
+  <!-- Navbar -->
+  {% include 'includes/nav.html' %}
 
 
-    <!-- Include Messages Template -->
-    {% include 'includes/messages.html' %}
+  <!-- Include Messages Template -->
+  {% include 'includes/messages.html' %}
 
-    <main>
-        {% block content %}
-        <!-- Content Here -->
-        {% endblock content %}
-    </main>
+  <main>
+    {% block content %}
+    <!-- Content Here -->
+    {% endblock content %}
+  </main>
 
-    <!-- Footer -->
-    {% include 'includes/footer.html' %}
+  <!-- Footer -->
+  {% include 'includes/footer.html' %}
 
-    <!-- Javascript files -->
+  <!-- Javascript files -->
 
-    <script src="{% static 'js/replaceme.min.js' %}"></script>
+  <!-- ReplaceMe.js v1.1.0-->
+  <script src="{% static 'js/replaceme.min.js' %}"></script>
 
-    <!-- Bootstrap v5.3.2 JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  <!-- Bootstrap v5.3.2 JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+          crossorigin="anonymous"></script>
 
-    <!-- font awesome script -->
-    <script src="https://kit.fontawesome.com/9e2a74b83d.js" crossorigin="anonymous"></script>
+  <!-- font awesome script -->
+  <script src="https://kit.fontawesome.com/9e2a74b83d.js"
+          crossorigin="anonymous"></script>
 
-    <!-- Google Maps Marker Clusterer-->
-    <script src="https://unpkg.com/@googlemaps/markerclusterer/dist/index.min.js"></script>
+  <!-- Google Maps Marker Clusterer-->
+  <script src="https://unpkg.com/@googlemaps/markerclusterer/dist/index.min.js"></script>
 
-    <!-- Runs JS script to initiliase and show toasts if messages from Django are avaialble -->
-    {% if messages %}
-        <script src="{% static 'js/toasts.js' %}"></script>
-    {% endif %}
+  <!-- Runs JS script to initiliase and show toasts if messages from Django are avaialble -->
+  {% if messages %}
+  <script src="{% static 'js/toasts.js' %}"></script>
+  {% endif %}
 
-    {% block extras %}
+  {% block extras %}
 
-    {% endblock extras %}
+  {% endblock extras %}
 
 </body>
 

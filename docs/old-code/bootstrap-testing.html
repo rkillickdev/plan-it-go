@@ -233,6 +233,25 @@
   </div>
 </a>
 
+<!-- ORIGINAL SIGNUP FORM HTML -->
+
+<section id="signup">
+  <div class="container">
+      <div class="row justify-content-center">
+          <div class="col-12 w-75">
+            <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+              {% csrf_token %}
+              {{ form.as_p }}
+              {% if redirect_field_value %}
+              <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+              {% endif %}
+              <button type="submit">{% trans "Sign Up" %} &raquo;</button>
+            </form>
+          </div>
+      </div>
+  </div>
+</section>
+
 
 <!-- Loading Spinner Trialled on Profile Form For Image Upload -->
 

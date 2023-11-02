@@ -1,116 +1,159 @@
 {% load static %}
 
-<!-- Place Info Section-->
+<!-- Place Info Section -->
 <section class="place-info">
-    <div class="container">
-      <!-- Place Info Tabs -->
-        <nav>
-            <div class="nav nav-tabs h5" id="nav-tab" role="tablist">
-              <button class="nav-link active" id="nav-details-tab" 
-              data-bs-toggle="tab" data-bs-target="#nav-details" type="button" role="tab" 
-              aria-controls="nav-details" aria-selected="true">Details
-              </button>
-              <button class="nav-link {% if review.approved in place.reviews.all %} d-none {% endif %}" 
-              id="nav-reviews-tab" data-bs-toggle="tab" data-bs-target="#nav-reviews" 
-              type="button" role="tab" aria-controls="nav-reviews" aria-selected="false"
-              >Reviews
-              </button>
-              <button class="nav-link {% if image.approved in place.images.all %} d-none {% endif %}" 
-              id="nav-gallery-tab" data-bs-toggle="tab" data-bs-target="#nav-gallery" 
-              type="button" role="tab" aria-controls="nav-gallery" aria-selected="false">Gallery
-              </button>
-            </div>
-        </nav>
-      <!-- Place Info Tab Content -->
-      <div class="tab-content" id="nav-tabContent">
-        <!-- Place Details Tab Content-->
-        <div class="tab-pane fade show active" id="nav-details" role="tabpanel" aria-labelledby="nav-details-tab">
-          <div class="row">
-            <div class="col-12">
-              <div class="text-container p-4 mb-2">
-                <p class="lead">
-                  {{ place.description }}
-                </p>
-              </div>  
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-lg-7">
-              <div class="map-container p-4">
-                <div id="map"></div>
-              </div>
-            </div>
-            <div class="col-lg-5">
-              <div class="text-container p-4 d-flex flex-column justify-content-center h-100 mb-5 text-center">
-                <div class="card border-0 bg-secondary">
-                  <div class="card-header border bg-light">
-                    <h2><span><i class="fa-solid fa-map-pin"></i>&nbsp&nbsp</span>Address</h2>
-                  </div>
-                  <div class="card-body place-address">
-                    <ul>
-                      {% for key, value in place.address.items %}
-                        {% if not value == "" %}
-                          <li class="pb-2">{{ value }}</li> 
-                        {% endif %}
-                      {% endfor %} 
-                    </ul>
-                  </div>
-                  <div class="card-footer border bg-light {% if place.website == None %} d-none {% else %} d-block {% endif %} ">
-                    <a href="{{ place.website }}" target="_blank" rel="noopener" aria-label="Visit the website for {{ place.name }} (opens in a new tab)">
-                      <span><i class="fa-solid fa-wifi"></i>&nbsp&nbsp</span>{{ place.website }}
-                    </a>
-                  </div>
-                </div> 
-              </div>
+  <div class="container">
+    <!-- Place Info Tabs -->
+    <nav>
+      <div class="nav nav-tabs h5"
+           id="nav-tab"
+           role="tablist">
+        <button class="nav-link active"
+                id="nav-details-tab"
+                data-bs-toggle="tab"
+                data-bs-target="#nav-details"
+                type="button"
+                role="tab"
+                aria-controls="nav-details"
+                aria-selected="true">Details
+        </button>
+        <button class="nav-link {% if review.approved in place.reviews.all %} d-none {% endif %}"
+                id="nav-reviews-tab"
+                data-bs-toggle="tab"
+                data-bs-target="#nav-reviews"
+                type="button"
+                role="tab"
+                aria-controls="nav-reviews"
+                aria-selected="false">Reviews
+        </button>
+        <button class="nav-link {% if image.approved in place.images.all %} d-none {% endif %}"
+                id="nav-gallery-tab"
+                data-bs-toggle="tab"
+                data-bs-target="#nav-gallery"
+                type="button"
+                role="tab"
+                aria-controls="nav-gallery"
+                aria-selected="false">Gallery
+        </button>
+      </div>
+    </nav>
+    <!-- Place Info Tab Content -->
+    <div class="tab-content"
+         id="nav-tabContent">
+      <!-- Place Details Tab Content-->
+      <div class="tab-pane fade show active"
+           id="nav-details"
+           role="tabpanel"
+           aria-labelledby="nav-details-tab">
+        <div class="row">
+          <div class="col-12">
+            <div class="text-container p-4 mb-2">
+              <p class="lead">
+                {{ place.description }}
+              </p>
             </div>
           </div>
         </div>
-        <!-- Place Reviews Tab Content -->
-        <div class="tab-pane fade py-4" id="nav-reviews" role="tabpanel" aria-labelledby="nav-reviews-tab">
-          <!-- Review Carousel -->
-          <div id="reviewCarousel" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
-              {% for review in reviews %}
-                <div class="carousel-item {% if forloop.first %} active {% endif %}">
-                  <div class="review-container w-50 m-auto">
-                    <!-- Include Review Card Template -->
-                    {% include 'includes/review_cards.html' %}    
-                  </div>
+        <div class="row">
+          <div class="col-lg-7">
+            <div class="map-container p-4">
+              <div id="map"></div>
+            </div>
+          </div>
+          <div class="col-lg-5">
+            <div class="text-container p-4 d-flex flex-column justify-content-center h-100 mb-5 text-center">
+              <div class="card border-0 bg-secondary">
+                <div class="card-header border bg-light">
+                  <h2>
+                    <span><i class="fa-solid fa-map-pin"></i>&nbsp&nbsp</span>Address
+                  </h2>
                 </div>
-              {% endfor %}
+                <div class="card-body place-address">
+                  <ul>
+                    {% for key, value in place.address.items %}
+                      {% if not value == "" %}
+                        <li class="pb-2">{{ value }}</li>
+                      {% endif %}
+                    {% endfor %}
+                  </ul>
+                </div>
+                <div class="card-footer border bg-light {% if place.website == None %} d-none {% else %} d-block {% endif %}">
+                  <a href="{{ place.website }}"
+                     target="_blank"
+                     rel="noopener"
+                     aria-label="Visit the website for {{ place.name }} (opens in a new tab)">
+                    <span><i class="fa-solid fa-wifi"></i>&nbsp&nbsp</span>{{ place.website }}
+                  </a>
+                </div>
+              </div>
             </div>
-            <!-- Carousel Buttons -->
-            <button class="carousel-control-prev" type="button" data-bs-target="#reviewCarousel" data-bs-slide="prev">
-              <i class="fas fa-arrow-circle-left fa-3x text-dark"></i>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#reviewCarousel" data-bs-slide="next">
-              <i class="fas fa-arrow-circle-right fa-3x text-dark"></i>
-            </button>
           </div>
         </div>
-        <!-- Place Gallery Tab Content -->
-        <div class="tab-pane fade" id="nav-gallery" role="tabpanel" aria-labelledby="nav-gallery-tab">
-          <div class="row mt-4">
-            {% for image in images %}
+      </div>
+      <!-- Place Reviews Tab Content -->
+      <div class="tab-pane fade py-4"
+           id="nav-reviews"
+           role="tabpanel"
+           aria-labelledby="nav-reviews-tab">
+        <!-- Review Carousel -->
+        <div id="reviewCarousel"
+             class="carousel slide"
+             data-bs-ride="carousel">
+          <div class="carousel-inner">
+            {% for review in reviews %}
+              <div class="carousel-item {% if forloop.first %} active {% endif %}">
+                <div class="review-container w-50 m-auto">
+                  <!-- Include Review Card Template -->
+                  {% include 'includes/review_cards.html' %}
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+          <!-- Carousel Buttons -->
+          <button class="carousel-control-prev"
+                  type="button"
+                  data-bs-target="#reviewCarousel"
+                  data-bs-slide="prev">
+            <i class="fas fa-arrow-circle-left fa-3x text-dark"></i>
+          </button>
+          <button class="carousel-control-next"
+                  type="button"
+                  data-bs-target="#reviewCarousel"
+                  data-bs-slide="next">
+            <i class="fas fa-arrow-circle-right fa-3x text-dark"></i>
+          </button>
+        </div>
+      </div>
+      <!-- Place Gallery Tab Content -->
+      <div class="tab-pane fade"
+           id="nav-gallery"
+           role="tabpanel"
+           aria-labelledby="nav-gallery-tab">
+        <div class="row mt-4">
+          {% for image in images %}
             <div class="col-md-4">
               <div class="image-container mb-4">
-                <a data-bs-toggle="modal" data-bs-target="#modal-image-solo">
-                  <img src="{{ image.path.url }}" alt="" class="img-fluid img-size-consistent image-solo rounded">    
+                <a data-bs-toggle="modal"
+                   data-bs-target="#modal-image-solo">
+                  <img src="{{ image.path.url }}"
+                       alt=""
+                       class="img-fluid img-size-consistent image-solo rounded">
                 </a>
               </div>
             </div>
             {% if forloop.counter|divisibleby:3 %}
-          </div>
-          <div class="row">
+        </div>
+        <div class="row">
             {% endif %}
-            {% endfor %}
+          {% endfor %}
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
 <!-- Review Solo Modal Included -->
 {% include 'includes/review_solo_modal.html' %}
-  
+
 <!-- Image Solo Modal Included -->
 {% include 'includes/image_solo_modal.html' %}

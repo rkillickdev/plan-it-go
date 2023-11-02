@@ -1,22 +1,23 @@
 {% extends "base.html" %}
-
+{% block head_title %} About Your Trip {% endblock %}
 {% block content %}
 
 {% load static%}
-
 {% load crispy_forms_tags %}
 
-<section id="enter-trip-details" class="mt-7">
+<!-- Enter Trip Details -->
+<section id="enter-trip-details"
+         class="mt-7">
   <div class="container">
     <div class="row">
       <div class="col-lg-7 d-flex flex-column justify-content-center">
         <div class="image-container px-4">
-          <img
-            src="{% static 'images/map-brazil-hearts-1000x1500-compress.webp'%}"
-            alt="A map of Brazil with two red hearts and a yellow pin flag"
-            class="img-fluid rounded d-none d-lg-block">
+          <img src="{% static 'images/map-brazil-hearts-1000x1500-compress.webp'%}"
+               alt="A map of Brazil with two red hearts and a yellow pin flag"
+               class="img-fluid rounded d-none d-lg-block">
         </div>
       </div>
+      <!-- Trip Form -->
       <div class="col-lg-5 d-flex flex-column justify-content-center">
         <div class="form-container rounded bg-primary p-4">
           {% crispy form %}

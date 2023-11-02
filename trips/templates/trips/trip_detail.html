@@ -1,8 +1,8 @@
 {% extends "base.html" %}
+{% block head_title %} Trip Details {% endblock %}
+{% block content %}
 
 {% load static %}
-
-{% block content %}
 
 <!-- Load Trip Header Template -->
 {% include 'includes/trip_header.html' %}
@@ -14,67 +14,80 @@
       <div class="row mb-4">
         <div class="col-md-12 medium-w-75">
           <div class="card border-0">
+            <!-- Card Header -->
             <div class="card-header border">
-              <h2 class="text-center"><span><i
-                    class="fa-solid fa-note-sticky"></i>&nbsp&nbsp</span>Trip
-                Itinerary</h2>
+              <h2 class="text-center">
+                <span><i class="fa-solid fa-note-sticky"></i>&nbsp&nbsp</span>Trip Itinerary
+              </h2>
             </div>
-            <div class="accordion accordion-flush border-0" id="planner-accordion">
+            <!-- Itinerary Accordion -->
+            <div class="accordion accordion-flush border-0"
+                 id="planner-accordion">
               {% for place in trip.places.all %}
-              <div class="accordion-item">
-                <h2 class="accordion-header"
-                  id="flush-heading-{{ forloop.counter }}">
-                  <button class="accordion-button collapsed text-light"
-                    type="button" data-bs-toggle="collapse"
-                    data-bs-target="#flush-collapse-{{ forloop.counter }}"
-                    aria-expanded="{% if forloop.first %} true {% else %} false {% endif %}"
-                    aria-controls="flush-collapse-{{ forloop.counter }}">
-                    <h4>{{ place.name }}</h4>
-                  </button>
-                </h2>
-                <div id="flush-collapse-{{ forloop.counter }}"
-                  class="accordion-collapse collapse"
-                  aria-labelledby="flush-heading-{{ forloop.counter }}"
-                  data-bs-parent="#planner-accordion">
-                  <div class="accordion-body">
-                    <div class="d-flex flex-column">
-                      <div class="image-container">
-                        <a href="{% url 'place_detail' trip.slug trip.id place.id %}">
-                          <img class="img-fluid image-clickable"
-                          src="{{ place.image }}" alt="{{ place.name }}">
-                        </a>
-                      </div>
-                      <div
-                        class="d-flex flex-column justify-content-between px-4 gap-4 my-4 bg-secondary">
+                <!-- Accordion Items Start -->
+                <div class="accordion-item">
+                  <!-- Accordion Header Starts -->
+                  <h2 class="accordion-header"
+                      id="flush-heading-{{ forloop.counter }}">
+                    <button class="accordion-button collapsed text-light"
+                            type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#flush-collapse-{{ forloop.counter }}"
+                            aria-expanded="{% if forloop.first %} true {% else %} false {% endif %}"
+                            aria-controls="flush-collapse-{{ forloop.counter }}">
+                      <h4>{{ place.name }}</h4>
+                    </button>
+                  </h2>
+                  <!-- Accordion Header Ends -->
+                  <!-- Accordion Collapsible Body Starts -->
+                  <div id="flush-collapse-{{ forloop.counter }}"
+                       class="accordion-collapse collapse"
+                       aria-labelledby="flush-heading-{{ forloop.counter }}"
+                       data-bs-parent="#planner-accordion">
+                    <div class="accordion-body">
+                      <div class="d-flex flex-column">
+                        <div class="image-container">
+                          <a href="{% url 'place_detail' trip.slug trip.id place.id %}">
+                            <img class="img-fluid image-clickable"
+                                 src="{{ place.image }}"
+                                 alt="{{ place.name }}">
+                          </a>
+                        </div>
+                        <div class="d-flex flex-column justify-content-between px-4 gap-4 my-4 bg-secondary">
                           <div class="d-flex flex-column justify-content-center gap-2">
                             <a class="delete-planner-item align-self-center link-transform"
-                              trip_id="{{ trip.id }}" place_id="{{ place.id }}"
+                              trip_id="{{ trip.id }}"
+                              place_id="{{ place.id }}"
                               place_name="{{ place.name }}"
                               data-bs-toggle="modal"
-                              data-bs-target="#modal-item-delete-confirm"
-                            >
-                              <i class="fa-solid fa-circle-xmark fa-4x"></i>
+                              data-bs-target="#modal-item-delete-confirm">
+                                <i class="fa-solid fa-circle-xmark fa-4x"></i>
                             </a>
                             <p class="lead align-self-center m-0">Remove From Planner</p>
                           </div>
-                            
-                        <div class="d-flex justify-content-between">
-                          <div class="d-flex flex-column justify-content-center gap-2">
-                            <a href="{% url 'review' trip.slug trip.id place.id %}"
-                                class="link-transform align-self-center"><i class="fa-solid fa-pen-to-square fa-3x"></i></a>
-                            <p class="lead align-self-center m-0">Leave A Review</p>
+                          <div class="d-flex justify-content-between">
+                            <div class="d-flex flex-column justify-content-center gap-2">
+                              <a href="{% url 'review' trip.slug trip.id place.id %}"
+                                 class="link-transform align-self-center">
+                                <i class="fa-solid fa-pen-to-square fa-3x"></i>
+                              </a>
+                              <p class="lead align-self-center m-0">Leave A Review</p>
+                            </div>
+                            <div class="d-flex flex-column justify-content-center gap-2">
+                              <a href="{% url 'add_image' trip.slug trip.id place.id %}"
+                                 class="link-transform align-self-center">
+                                <i class="fa-solid fa-camera fa-3x"></i>
+                              </a>
+                              <p class="lead align-self-center m-0">Upload Image</p>
+                            </div>
                           </div>
-                          <div class="d-flex flex-column justify-content-center gap-2">
-                            <a href="{% url 'add_image' trip.slug trip.id place.id %}"
-                                class="link-transform align-self-center"><i class="fa-solid fa-camera fa-3x"></i></a>
-                            <p class="lead align-self-center m-0">Upload Image</p>
-                          </div> 
                         </div>
                       </div>
                     </div>
                   </div>
+                  <!-- Accordion Collapsible Body Ends -->
                 </div>
-              </div>
+                <!-- Accordion Item Ends -->
               {% endfor %}
             </div>
           </div>
@@ -84,82 +97,70 @@
   </section>
 {% endif %}
 
-<!-- Recommendations Paginated -->
+<!-- Place Recommendations Paginated -->
 <section class="recommendations">
-    <div class="container">
-      <div class="row">
-        <h3 class="display-6"><span><i class="fa-solid fa-heart"></i>&nbsp&nbsp</span>Recommended Places</h3>
-        <hr />
-      </div>
-        <div class="row mb-4">
-            <div class="col-12">
-                <div class="row gy-3">
-                    {% for place in places %}
-                    <div class="col-md-4">
-                        <div class="card border-0 bg-secondary text-center h-100 image-clickable">
-                            <img class="card-img-top img-fluid img-size-consistent" src="{{ place.image }}" alt="{{ place.name }}">
-                            <div class="card-body">
-                                <h3>{{ place.name }}</h3>
-                            </div>
-                            <a class="stretched-link" href="{% url 'place_detail' trip.slug trip.id place.id %}"></a>
-                        </div>
-                    </div>
-                    {% if forloop.counter|divisibleby:3 %}
+  <div class="container">
+    <div class="row">
+      <h3 class="display-6"><span><i
+             class="fa-solid fa-heart"></i>&nbsp&nbsp</span>Recommended Places
+      </h3>
+      <hr />
+    </div>
+    <div class="row mb-4">
+      <div class="col-12">
+        <div class="row gy-3">
+          {% for place in places %}
+            <div class="col-md-4">
+              <div
+                  class="card border-0 bg-secondary text-center h-100 image-clickable">
+                <img class="card-img-top img-fluid img-size-consistent"
+                    src="{{ place.image }}"
+                    alt="{{ place.name }}">
+                <div class="card-body">
+                  <h3>{{ place.name }}</h3>
                 </div>
-                <div class="row">
-                    {% endif %}
-                    {% endfor %}     
-                </div>
+                <a class="stretched-link"
+                  href="{% url 'place_detail' trip.slug trip.id place.id %}"></a>
+              </div>
             </div>
+            {% if forloop.counter|divisibleby:3 %}
         </div>
-        <!-- Pagination Controls -->
-        <nav aria-label=" place list page navigation">
-            <ul class="pagination justify-content-center">
-                {% if places.has_previous %}
-                <li class="page-item"><a href="?page={{ places.previous_page_number }}" class="page-link me-1">&laquo; PREV </a></li>
-                {% endif %}
-                {% if places.has_next %}
-                <li class="page-item"><a href="?page={{ places.next_page_number }}" class="page-link ms-1"> NEXT &raquo;</a></li>
-                {% endif %}
-            </ul>
-        </nav>
+        <div class="row">
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
     </div>
-</section>
 
-{% for g in geo_data %}
-    <div>
-        {{ g.latitude}}
-        {{ g.longitude}}
-    </div>
-    
-{% endfor %}
+    <!-- Pagination Controls -->
+    <nav aria-label=" place list page navigation">
+      <ul class="pagination justify-content-center">
+        {% if places.has_previous %}
+          <li class="page-item">
+            <a href="?page={{ places.previous_page_number }}" class="page-link me-1">&laquo; PREV </a>
+          </li>
+        {% endif %}
+        {% if places.has_next %}
+          <li class="page-item">
+            <a href="?page={{ places.next_page_number }}" class="page-link ms-1"> NEXT &raquo;</a>
+          </li>
+        {% endif %}
+      </ul>
+    </nav>
+  </div>
+</section>
 
 <!-- Delete Confirm Modal Included -->
 {% include 'includes/delete_confirm_modal.html' %}
 
-<!-- Planner Item Delete Confirm Modal -->
-<div id="modal-item-delete-confirm" class="modal fade">
-    <div class="modal-dialog modal-lg mt-7">
-      <div class="modal-content bg-primary p-5">
-        <div class="row">
-          <div class="col-12 d-flex flex-column justify-content-between">
-            <p>Are you sure you want to delete <span id="item-place"></span> from your trip?</p>
-            <form id="item-delete-form" class="align-self-center" action="" method="POST">
-                {% csrf_token %}
-                <button id="item-delete-confirm" type="submit" name="place_id" value="" class="btn btn-primary btn-icon"><i class="fa-solid fa-circle-xmark fa-4x"></i></button>
-            </form>
-            <button class="btn btn-light" data-bs-dismiss="modal">Close</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+<!-- Planner Delete Item Modal Included -->
+{% include 'includes/planner_delete_item_modal.html' %}
 
 {% endblock %}
 
 {% block extras %}
 
-
+<!-- Geo data and api key to pass to map cluster js file  -->
 {{ trip.location.latitude|json_script:"latitude"}}
 {{ trip.location.longitude|json_script:"longitude"}}
 {{ geo_list|json_script:"geo_list"}}

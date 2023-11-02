@@ -1,38 +1,36 @@
 {% extends "base.html" %}
-
+{% block head_title %} Trips {% endblock %}
 {% block content %}
 
 {% load static %}
 
 <!-- TRIP ACTIONS -->
 <!-- Display options dependent on user account status-->
-<section id="trip-actions" class="mt-7">
+<section id="trip-actions"
+         class="mt-7">
   <div class="container">
     <div class="row">
       <div class="col-lg-7 mb-4">
         <div class="image-container">
           {% if request.user.is_staff %}
-            <img
-              src="{% static 'images/map-laptop-admin-1500x1000-compress.webp'%}"
-              alt="A silhouette of a world map is displayed on a laptop screen,
-              which sits on a wooden desk next to a white coffee mug"
-              class="img-fluid rounded">
+            <img src="{% static 'images/map-laptop-admin-1500x1000-compress.webp'%}"
+                alt="A silhouette of a world map is displayed on a laptop screen,
+                which sits on a wooden desk next to a white coffee mug"
+                class="img-fluid rounded">
           {% else %}
             <img src="{% static 'images/map-planner-camera-compress.webp'%}"
-              alt="A desk with camera, compass, maps, flowers and a passport
-              spread across" 
-              class="img-fluid rounded">
+                alt="A desk with camera, compass, maps, flowers and a passport
+                spread across"
+                class="img-fluid rounded">
           {% endif %}
         </div>
       </div>
       <div class="col-lg-5 d-flex flex-column justify-content-center mb-4">
-        <div
-          class="text-container rounded p-4 d-flex flex-column justify-content-center bg-secondary text-center gap-3">
+        <div class="text-container rounded p-4 d-flex flex-column justify-content-center bg-secondary text-center gap-3">
           {% if request.user.is_staff %}
             <h1>Work to do? </h1>
             <div class="d-flex flex-column gap-3">
-              <a href="{% url 'locations'%}"><i
-                  class="fa-solid fa-circle-plus fa-4x"></i></a>
+              <a href="{% url 'locations'%}"><i class="fa-solid fa-circle-plus fa-4x"></i></a>
               <p class="lead">Add A Destination</p>
             </div>
           {% else %}
@@ -44,8 +42,12 @@
                 and your travels. Click below to add some personal touches to your
                 profile</p>
               <div class="d-flex flex-column gap-3">
-                <a href="{% url 'update_profile' request.user.profile.id %}" class="icon-link button-link m-auto"><i
-                    class="fa-solid fa-circle-plus fa-4x" role="img" aria-label="Plus Icon"></i></a>
+                <a href="{% url 'update_profile' request.user.profile.id %}"
+                   class="icon-link button-link m-auto">
+                  <i class="fa-solid fa-circle-plus fa-4x"
+                     role="img"
+                     aria-label="Plus Icon"></i>
+                </a>
                 <p class="lead">Create A Profile</p>
               </div>
             {% else  %}
@@ -55,8 +57,11 @@
                 <h2 class="display-5">Where to this time?</h2>
               {% endif %}
               <div class="d-flex flex-column gap-3">
-                <a href="{% url 'create_trip' %}" class="link-transform button-link m-auto">
-                  <i class="fa-solid fa-circle-plus fa-4x" role="img" aria-label="Plus Icon"></i></a>
+                <a href="{% url 'create_trip' %}"
+                  class="link-transform button-link m-auto">
+                  <i class="fa-solid fa-circle-plus fa-4x"
+                    role="img"
+                    aria-label="Plus Icon"></i></a>
                 <p class="lead">Create A Trip</p>
               </div>
             {% endif %}
@@ -68,62 +73,62 @@
 </section>
 
 <!-- TRIP LIST -->
-<!-- Only displays section if user has created a profile -->
+<!-- Display dependent on user account status -->
 {% if request.user.profile.screen_name %}
   <section id="trip-list">
     <div class="container">
-    {% if trip_list.count > 0 %}
-      <div class="row">
-        <h3 class="display-6">Upcoming Trips</h3>
-        <hr />
-      </div>
-      <div class="row mb-4">
-      {% for trip in trip_list %}
-        <div class="col-md-4">
-          <div class="card border-0 bg-secondary text-center h-100">
-          {% if 'placeholder' in trip.trip_image.url %}
-            <img
-              src="{% static 'images/placeholders/trip-placeholder-globe-in-hand.webp' %}"
-              alt="Small globe held in the palm of a hand with mountains in the
-              background" 
-              class="card-img-top img-fluid img-size-consistent">
-          {% else %}
-            <img src="{{trip.trip_image.url}}" alt="Image of {{trip.location}}"
-              class="card-img-top img-fluid img-size-consistent">
-          {% endif %}
-            <div class="card-body">{{ trip.title }}</div>
-            <a href="{% url 'trip_detail' trip.slug trip.id%}"
-              class="card-title stretched-link"></a>
+      {% if trip_list.count > 0 %}
+        <div class="row">
+          <h3 class="display-6">Upcoming Trips</h3>
+          <hr />
+        </div>
+        <div class="row mb-4">
+          {% for trip in trip_list %}
+            <div class="col-md-4">
+              <div class="card border-0 bg-secondary text-center h-100">
+                {% if 'placeholder' in trip.trip_image.url %}
+                  <img src="{% static 'images/placeholders/trip-placeholder-globe-in-hand.webp' %}"
+                      alt="Small globe held in the palm of a hand with mountains in the
+                      background"
+                      class="card-img-top img-fluid img-size-consistent">
+                {% else %}
+                  <img src="{{trip.trip_image.url}}"
+                      alt="Image of {{trip.location}}"
+                      class="card-img-top img-fluid img-size-consistent">
+                {% endif %}
+                <div class="card-body">{{ trip.title }}</div>
+                <a href="{% url 'trip_detail' trip.slug trip.id%}"
+                  class="card-title stretched-link"></a>
+              </div>
+            </div>
+            {% if forloop.counter|divisibleby:3 %}
+        </div>
+        <div class="row">
+            {% endif %}
+          {% endfor %}
+        </div>
+      {% else %}
+        <div class="row">
+          <div class="col-lg-7">
+            <div class="text-container d-flex flex-column justify-content-center h-100 mb-5 px-4">
+              <h3 class="display-6 text-center">Need Inspiration?</h3>
+              <i class="fa-solid fa-passport fa-3x p-4 text-center"></i>
+              <p>Be inspired by the trips that have already been mapped out on
+                PlanIt Go. All it takes is a spark, so let your imagination run
+                free...</p>
+              <a href="#browse"
+                class="btn btn-dark button-link align-self-center">Browse Trips</a>
+            </div>
+          </div>
+          <div class="col-lg-5">
+            <div class="image-container px-4">
+              <img src="{% static 'images/yellow-van-1500x1000-compress.webp'%}"
+                  alt="Toy yellow van with suitcases strapped to the top"
+                  class="img-fluid">
+            </div>
           </div>
         </div>
-        {% if forloop.counter|divisibleby:3 %}
-      </div>
-      <div class="row">
-        {% endif %}
-      {% endfor %}
-      </div>
-    {% else %}
-      <div class="row">
-        <div class="col-lg-7">
-          <div
-            class="text-container d-flex flex-column justify-content-center h-100 mb-5 px-4">
-            <h3 class="display-6 text-center">Need Inspiration?</h3>
-            <i class="fa-solid fa-passport fa-3x p-4 text-center"></i>
-            <p>Be inspired by the trips that have already been mapped out on
-              PlanIt Go. All it takes is a spark, so let your imagination run
-              free...</p>
-            <a href="#browse" class="btn btn-dark button-link align-self-center">Browse Trips</a>
-          </div>
-        </div>
-        <div class="col-lg-5">
-          <div class="image-container px-4">
-            <img src="{% static 'images/yellow-van-1500x1000-compress.webp'%}"
-              alt="Toy yellow van with suitcases strapped to the top"
-              class="img-fluid">
-          </div>
-        </div>
-      </div>
-    {% endif %}
+      {% endif %}
     </div>
   </section>
 {% endif %}
@@ -131,5 +136,5 @@
 {% endblock %}
 
 {% block extras %}
-    
+
 {% endblock extras %}

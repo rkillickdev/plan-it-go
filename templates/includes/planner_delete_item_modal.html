@@ -1,0 +1,28 @@
+<!-- Planner Item Delete Confirm Modal -->
+<div id="modal-item-delete-confirm"
+     class="modal fade">
+  <div class="modal-dialog modal-lg mt-7">
+    <div class="modal-content bg-primary p-5">
+      <div class="row">
+        <div class="col-12 d-flex flex-column justify-content-between">
+          <p>Are you sure you want to delete <span id="item-place"></span> from your trip?</p>
+          <form id="item-delete-form"
+                class="align-self-center"
+                action=""
+                method="POST">
+            {% csrf_token %}
+            <button id="item-delete-confirm"
+                    type="submit"
+                    name="place_id"
+                    value=""
+                    class="btn btn-primary btn-icon">
+              <i class="fa-solid fa-circle-xmark fa-4x"></i>
+            </button>
+          </form>
+          <button class="btn btn-light"
+                  data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

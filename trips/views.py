@@ -301,7 +301,7 @@ def review_delete(request, trip_id, place_id, review_id, *args, **kwargs):
         messages.add_message(request, messages.SUCCESS, "Comment deleted!")
     else:
         messages.add_message(
-            request, messages.ERROR, "You can only delete your own comments!"
+            request, messages.SUCCESS, "You can only delete your own comments!"
         )
 
     return HttpResponseRedirect(

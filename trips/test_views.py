@@ -1,5 +1,6 @@
 from django.test import TestCase, Client, RequestFactory
 from django.urls import reverse, reverse_lazy
+from django.contrib.messages import get_messages
 
 from django.contrib.auth.models import User
 from .models import Trip, Profile, Place, Location
@@ -12,7 +13,6 @@ class TestTripsViews(TestCase):
     """
     Testing Trips Views
     """
-
     def setUp(self):
         """
         Setup creates user, profile, trip, place, review and image.
@@ -94,7 +94,6 @@ class TestTripsViews(TestCase):
         Test that review_create view renders correct page with existing reviews
         and create review works
         """
-
         # Test GET method
         self.client.login(username="testuser", password="testpassword")
         response = self.client.get(
@@ -141,7 +140,6 @@ class TestTripsViews(TestCase):
         """
         Tests response if the review form submitted is not valid
         """
-
         self.client.login(username="testuser", password="testpassword")
         review_data = {
             "place": self.place,
@@ -170,6 +168,7 @@ class TestTripsViews(TestCase):
 
     def test_review_edit(self):
         """
+        Tests edit review
         """
         self.client.login(username="testuser", password="testpassword")
         review_data = {
@@ -186,7 +185,8 @@ class TestTripsViews(TestCase):
                     "place_id": self.place.id,
                     "review_id": self.review.id
                 },
-            )
+            ),
+            data=review_data
         )
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, reverse(
@@ -199,12 +199,114 @@ class TestTripsViews(TestCase):
             )
         )
         updated_review = Review.objects.get(id=self.review.id)
-        self.assertEqual(
-            updated_review.review, "Cracking movie love this movie"
+        self.assertEqual(updated_review.place, self.place)
+        self.assertEqual(updated_review.profile, self.profile)
+        self.assertEqual(updated_review.body, "update test review")
+
+    def test_invalid_update_review_submission(self):
+        """
+        Tests response if the review update form submitted is not valid
+        """
+        self.client.login(username="testuser", password="testpassword")
+        review_data = {
+            "place": self.place,
+            "profile": self.profile,
+            "body": "",
+        }
+
+        response = self.client.post(
+            reverse(
+                "edit_review",
+                kwargs={
+                    "slug": self.trip.slug,
+                    "trip_id": self.trip.id,
+                    "place_id": self.place.id,
+                    "review_id": self.review.id
+                },
+            ),
+            data=review_data
         )
 
+        # Referenced the following article for testing messages
+        # on a response that has no context:
+        # https://stackoverflow.com/questions/2897609/how-can-i-unit-test-django-messages
 
+        messages = list(get_messages(response.wsgi_request))
+        self.assertEqual(len(messages), 1)
+        self.assertEqual(str(messages[0]), 'Error updating comment!')
+
+    def test_review_delete(self):
+        """
+        Tests review delete
+        """
+        self.client.login(username="testuser", password="testpassword")
+        review_count = Review.objects.all().count()
+        self.assertEqual(review_count, 1)
+
+        response = self.client.post(
+            reverse(
+                "delete_review",
+                kwargs={
+                    "slug": self.trip.slug,
+                    "trip_id": self.trip.id,
+                    "place_id": self.place.id,
+                    "review_id": self.review.id
+                }
+            )
+        )
+        self.assertEqual(response.status_code, 302)
+        self.assertRedirects(response, reverse(
+            "review",
+            kwargs={
+                    "slug": self.trip.slug,
+                    "trip_id": self.trip.id,
+                    "place_id": self.place.id,
+                }
+            )
+        )
+        self.assertFalse(Review.objects.filter(id=self.review.id).exists())
+        new_review_count = Review.objects.all().count()
+        self.assertEqual(new_review_count, 0)
+
+    def test_review_defensive_programming(self):
+        """
+        """
+        # self.client.login(username="testuser", password="testpassword")
+        self.client.login(username="random user", password="randompassword")
+        response = self.client.post(
+            reverse(
+                "delete_review",
+                kwargs={
+                    "slug": self.trip.slug,
+                    "trip_id": self.trip.id,
+                    "place_id": self.place.id,
+                    "review_id": self.review.id
+                }
+            )
+        )
+        messages = list(get_messages(response.wsgi_request))
+        print(messages)
+
+
+        selected_review = Review.objects.get(id=self.review.id)
+        print(selected_review)
+        print(selected_review.profile)
+        # self.assertFalse(selected_review.profile == self.client)
+        # self.assertTrue(Review.objects.filter(id=self.review.id).exists())
+        
+        # self.assertEqual(len(messages), 1)
+        # self.assertEqual(str(messages[0]), 'You can only delete your own images!')
+        
+
+        
+
+
+
+        
     def test_successful_trip_delete_redirect(self):
+        """
+
+        """
         self.client.login(username="testuser", password="testpassword")
         response = self.client.get(
             reverse(

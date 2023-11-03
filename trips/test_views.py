@@ -90,6 +90,12 @@ class TestTripsViews(TestCase):
     #     self.assertTrue(form.is_valid())
 
     def test_review_page_and_create_review(self):
+        """
+        Test that review_create view renders correct page with existing reviews
+        and create review works
+        """
+
+        # Test GET method
         self.client.login(username="testuser", password="testpassword")
         response = self.client.get(
             reverse(
@@ -107,10 +113,98 @@ class TestTripsViews(TestCase):
         review_data = {
             "place": self.place,
             "profile": self.profile,
-            "body": "test review"
+            "body": "test review",
         }
 
-    def test_successfull_trip_delete_redirect(self):
+        # Test POST method
+        response = self.client.post(
+            reverse(
+                "review",
+                kwargs={
+                    "slug": self.trip.slug,
+                    "trip_id": self.trip.id,
+                    "place_id": self.place.id,
+                },
+            ),
+            data=review_data,
+        )
+
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "trips/review.html")
+
+        new_review = Review.objects.get(id=2)
+        self.assertEqual(new_review.place, self.place)
+        self.assertEqual(new_review.profile, self.profile)
+        self.assertEqual(new_review.body, "test review")
+
+    def test_invalid_review_submission(self):
+        """
+        Tests response if the review form submitted is not valid
+        """
+
+        self.client.login(username="testuser", password="testpassword")
+        review_data = {
+            "place": self.place,
+            "profile": self.profile,
+            "body": "",
+        }
+
+        response = self.client.post(
+            reverse(
+                "review",
+                kwargs={
+                    "slug": self.trip.slug,
+                    "trip_id": self.trip.id,
+                    "place_id": self.place.id,
+                },
+            ),
+            data=review_data,
+        )
+
+        # Referenced the following article for testing messages:
+        # https://stackoverflow.com/questions/2897609/how-can-i-unit-test-django-messages
+
+        messages = list(response.context["messages"])
+        self.assertEqual(len(messages), 1)
+        self.assertEqual(str(messages[0]), "There was an error!")
+
+    def test_review_edit(self):
+        """
+        """
+        self.client.login(username="testuser", password="testpassword")
+        review_data = {
+            "place": self.place,
+            "profile": self.profile,
+            "body": "update test review",
+        }
+        response = self.client.post(
+            reverse(
+                "edit_review",
+                kwargs={
+                    "slug": self.trip.slug,
+                    "trip_id": self.trip.id,
+                    "place_id": self.place.id,
+                    "review_id": self.review.id
+                },
+            )
+        )
+        self.assertEqual(response.status_code, 302)
+        self.assertRedirects(response, reverse(
+            "review",
+            kwargs={
+                    "slug": self.trip.slug,
+                    "trip_id": self.trip.id,
+                    "place_id": self.place.id,
+                }
+            )
+        )
+        updated_review = Review.objects.get(id=self.review.id)
+        self.assertEqual(
+            updated_review.review, "Cracking movie love this movie"
+        )
+
+
+    def test_successful_trip_delete_redirect(self):
         self.client.login(username="testuser", password="testpassword")
         response = self.client.get(
             reverse(

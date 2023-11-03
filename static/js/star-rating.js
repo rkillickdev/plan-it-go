@@ -7,12 +7,16 @@ document.getElementById("stars").innerHTML = generateStars(ratingNumber);
 
 function generateStars(rating) {
     let starList = [];
+    let number = rating 
 
     // Append filled stars to starList
-    for (let i = rating; i >=1; i--)
+    for (number; number >=1; number--)
         starList.push('<i class="fa-solid fa-star" aria-hidden="true"></i>&nbsp');
+        
+    // Append any half stars if necessary
+    if (number == .5) starList.push('<i class="fa-solid fa-star-half-stroke" aria-hidden="true"></i>&nbsp;');
 
-    // Append empty stars to starList
+    // // Append empty stars to starList
     for (let i =(5 - rating); i>=1; i--)
         starList.push('<i class="fa-regular fa-star" aria-hidden="true"></i>&nbsp');
 

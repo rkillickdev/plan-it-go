@@ -52,18 +52,18 @@ class TripCreateView(LoginRequiredMixin, CreateView):
     model = Trip
     template_name = "trips/create_trip.html"
 
-    def get_success_url(self):
-        return reverse_lazy(
-            "trip_detail",
-            kwargs={"slug": self.object.slug, "trip_id": self.object.id},
-        )
-
     # Populate profile field of model Trip with profile linked tologged in user
     # https://stackoverflow.com/questions/18246326/how-do-i-set-user-field-in-form-to-the-currently-logged-in-user
 
     def form_valid(self, form):
         form.instance.profile = Profile.objects.get(user=self.request.user)
         return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse_lazy(
+            "trip_detail",
+            kwargs={"slug": self.object.slug, "trip_id": self.object.id},
+        )
 
 
 class TripUpdateView(LoginRequiredMixin, UpdateView):
@@ -298,10 +298,10 @@ def review_delete(request, trip_id, place_id, review_id, *args, **kwargs):
 
     if review.profile.id == request.user.profile.id:
         review.delete()
-        messages.add_message(request, messages.SUCCESS, "Comment deleted!")
+        messages.add_message(request, messages.SUCCESS, "Review deleted!")
     else:
         messages.add_message(
-            request, messages.SUCCESS, "You can only delete your own comments!"
+            request, messages.ERROR, "You can only delete your own reviews!"
         )
 
     return HttpResponseRedirect(

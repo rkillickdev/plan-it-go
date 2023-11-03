@@ -24,6 +24,9 @@ class TestTripsViews(TestCase):
         self.user = User.objects.create_user(
             username="testuser", email="test@test.com", password="testpassword"
         )
+        self.user_alt = User.objects.create_user(
+            username="testuseralt", email="testalt@test.com", password="alttestpassword"
+        )
         self.profile = Profile.objects.get(user=self.user)
         self.location = Location.objects.create(
             city="London",
@@ -88,6 +91,53 @@ class TestTripsViews(TestCase):
     #     form = TripForm(form_data)
     #     self.assertTrue(form.instance.profile)
     #     self.assertTrue(form.is_valid())
+
+    def test_get_success_url_redirect(self):
+        """
+        """
+        trip_data = {
+            "profile": self.profile,
+            "location": self.location,
+            "title": "West End Shows",
+            "slug": "west-end-shows",
+        }
+        self.client.login(username="testuser", password="testpassword")
+        response = self.client.post(reverse("create_trip"), data=trip_data)
+        self.assertTrue(Trip.objects.filter(title="City Sightseeing").exists())
+
+        self.assertRedirects(response, 
+                            reverse_lazy(
+                                "trip_detail",
+                                kwargs={
+                                    "slug": self.trip.slug,
+                                    "trip_id": self.trip.id
+                                }      
+                            )
+                            )
+        
+
+    def test_trip_defensive_programming(self):
+        """
+        Tests whether a logged in user can delete a trip belonging to
+        another user.  Also tests whether an error message is generated
+        if a user attempts to delete a trip that does not belong to them.
+        """
+        # Login alt user that does not own trip 
+        self.client.login(username="testuseralt", password="alttestpassword")
+        response = self.client.get(
+            reverse(
+                "delete_trip",
+                kwargs={
+                    "slug": self.trip.slug,
+                    "trip_id": self.trip.id
+                }
+            )
+        )
+        # Checks whether trip still exists
+        self.assertTrue(Trip.objects.filter(id=self.trip.id).exists())
+        messages = list(get_messages(response.wsgi_request))
+        self.assertEqual(len(messages), 1)
+        self.assertEqual(str(messages[0]), 'You can only delete your own trips!')
 
     def test_review_page_and_create_review(self):
         """
@@ -237,13 +287,13 @@ class TestTripsViews(TestCase):
 
     def test_review_delete(self):
         """
-        Tests review delete
+        Tests Review delete
         """
         self.client.login(username="testuser", password="testpassword")
         review_count = Review.objects.all().count()
         self.assertEqual(review_count, 1)
 
-        response = self.client.post(
+        response = self.client.get(
             reverse(
                 "delete_review",
                 kwargs={
@@ -265,15 +315,18 @@ class TestTripsViews(TestCase):
             )
         )
         self.assertFalse(Review.objects.filter(id=self.review.id).exists())
-        new_review_count = Review.objects.all().count()
-        self.assertEqual(new_review_count, 0)
+        updated_review_count = Review.objects.all().count()
+        self.assertEqual(updated_review_count, 0)
 
     def test_review_defensive_programming(self):
         """
+        Tests whether a logged in user can delete a review belonging to
+        another user.  Also tests whether an error message is generated
+        if a user attempts to delete a review that does not belong to them.
         """
-        # self.client.login(username="testuser", password="testpassword")
-        self.client.login(username="random user", password="randompassword")
-        response = self.client.post(
+        # Login alt user that does not own review
+        self.client.login(username="testuseralt", password="alttestpassword")
+        response = self.client.get(
             reverse(
                 "delete_review",
                 kwargs={
@@ -284,25 +337,70 @@ class TestTripsViews(TestCase):
                 }
             )
         )
+        # Checks whether review still exists
+        self.assertTrue(Review.objects.filter(id=self.review.id).exists())
         messages = list(get_messages(response.wsgi_request))
-        print(messages)
+        self.assertEqual(len(messages), 1)
+        self.assertEqual(str(messages[0]), 'You can only delete your own reviews!')
 
+    def test_image_delete(self):
+        """
+        Tests Image delete
+        """
+        self.client.login(username="testuser", password="testpassword")
+        image_count = Image.objects.all().count()
+        self.assertEqual(image_count, 1)
 
-        selected_review = Review.objects.get(id=self.review.id)
-        print(selected_review)
-        print(selected_review.profile)
-        # self.assertFalse(selected_review.profile == self.client)
-        # self.assertTrue(Review.objects.filter(id=self.review.id).exists())
-        
-        # self.assertEqual(len(messages), 1)
-        # self.assertEqual(str(messages[0]), 'You can only delete your own images!')
-        
+        response = self.client.get(
+            reverse(
+                "delete_image",
+                kwargs={
+                    "slug": self.trip.slug,
+                    "trip_id": self.trip.id,
+                    "place_id": self.place.id,
+                    "image_id": self.image.id
+                }
+            )
+        )
+        self.assertEqual(response.status_code, 302)
+        self.assertRedirects(response, reverse(
+            "add_image",
+            kwargs={
+                    "slug": self.trip.slug,
+                    "trip_id": self.trip.id,
+                    "place_id": self.place.id,
+                }
+            )
+        )
+        self.assertFalse(Image.objects.filter(id=self.image.id).exists())
+        updated_image_count = Image.objects.all().count()
+        self.assertEqual(updated_image_count, 0)     
 
-        
-
-
-
-        
+    def test_image_defensive_programming(self):
+        """
+        Tests whether a logged in user can delete an image belonging to
+        another user.  Also tests whether an error message is generated
+        if a user attempts to delete an image that does not belong to them.
+        """
+        # Login alt user that does not own image 
+        self.client.login(username="testuseralt", password="alttestpassword")
+        response = self.client.get(
+            reverse(
+                "delete_image",
+                kwargs={
+                    "slug": self.trip.slug,
+                    "trip_id": self.trip.id,
+                    "place_id": self.place.id,
+                    "image_id": self.image.id
+                }
+            )
+        )
+        # Checks whether image still exists
+        self.assertTrue(Image.objects.filter(id=self.image.id).exists())
+        messages = list(get_messages(response.wsgi_request))
+        self.assertEqual(len(messages), 1)
+        self.assertEqual(str(messages[0]), 'You can only delete your own images!')
+   
     def test_successful_trip_delete_redirect(self):
         """
 
@@ -322,6 +420,7 @@ class TestTripsViews(TestCase):
         # request.user = self.user
         # response = TripCreateView.as_view()(request)
         # self.assertEqual(response.status_code, 200)
+
 
     def test_toggle_add_place_to_trip(self):
         """

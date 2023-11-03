@@ -77,15 +77,38 @@ class TestTripsViews(TestCase):
 
     # def test_successful_trip_create_form_valid(self):
     #     form_data = {
-    #         'profile': self.profile,
-    #         'title': 'Simple Post',
-    #         'description': 'very good description',
+    #         # 'profile': self.profile,
+    #         'location': self.location,
+    #         'title': 'The Bright Lights',
+    #         'slug': 'the-bright-lights',
+    #         'description': 'about the trip'
     #     }
+    #     self.client.login(username="testuser", password="testpassword")
+    #     response = self.client.post(reverse("create_trip"))
     #     form = TripForm(form_data)
+    #     self.assertTrue(form.instance.profile)
     #     self.assertTrue(form.is_valid())
 
-    # self.client.login(username="testuser", password="testpassword")
-    # response = self.client.get(reverse("create"))
+    def test_review_page_and_create_review(self):
+        self.client.login(username="testuser", password="testpassword")
+        response = self.client.get(
+            reverse(
+                "review",
+                kwargs={
+                    "slug": self.trip.slug,
+                    "trip_id": self.trip.id,
+                    "place_id": self.place.id,
+                },
+            )
+        )
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "trips/review.html")
+
+        review_data = {
+            "place": self.place,
+            "profile": self.profile,
+            "body": "test review"
+        }
 
     def test_successfull_trip_delete_redirect(self):
         self.client.login(username="testuser", password="testpassword")

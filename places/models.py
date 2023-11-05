@@ -75,7 +75,7 @@ class Review(models.Model):
         ordering = ["created_on"]
 
     def __str__(self):
-        return f"Review For {self.place.name} by {self.profile.user}"
+        return f"Review For {self.place.name}, {self.place.location.city}: {self.profile.screen_name}"
 
 
 class Image(models.Model):
@@ -114,4 +114,4 @@ class Image(models.Model):
         ordering = ["created_on"]
 
     def __str__(self):
-        return f"Image For {self.place.name} by {self.profile.user}"
+        return f"Image For {self.place.name}, {self.place.location.city}: {self.profile.screen_name}"

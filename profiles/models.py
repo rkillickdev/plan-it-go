@@ -14,7 +14,7 @@ class Profile(models.Model):
     )
     first_name = models.CharField(max_length=50, null=True)
     surname = models.CharField(max_length=50, null=True)
-    screen_name = models.CharField(max_length=15, unique=True, null=True)
+    screen_name = models.CharField(max_length=25, unique=True, null=True)
     slug = models.SlugField(max_length=150, unique=True, null=True)
     date_of_birth = models.DateField(blank=True, null=True)
     about = models.TextField(blank=True)
@@ -25,7 +25,7 @@ class Profile(models.Model):
             {
                 "width": "100",
                 "height": "100",
-                "gravity": "face",
+                "gravity": "auto",
                 "crop": "thumb",
             }
         ],

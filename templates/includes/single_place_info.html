@@ -17,7 +17,7 @@
                 aria-controls="nav-details"
                 aria-selected="true">Details
         </button>
-        <button class="nav-link {% if review.approved in place.reviews.all %} d-none {% endif %}"
+        <button class="nav-link {% if reviews.count > 0 %} d-block {% else %} d-none {% endif %}"
                 id="nav-reviews-tab"
                 data-bs-toggle="tab"
                 data-bs-target="#nav-reviews"
@@ -26,7 +26,7 @@
                 aria-controls="nav-reviews"
                 aria-selected="false">Reviews
         </button>
-        <button class="nav-link {% if image.approved in place.images.all %} d-none {% endif %}"
+        <button class="nav-link {% if images.count > 0 %} d-block {% else %} d-none {% endif %}"
                 id="nav-gallery-tab"
                 data-bs-toggle="tab"
                 data-bs-target="#nav-gallery"

@@ -51,6 +51,11 @@ class PlaceBrowseDetail(DetailView):
     model = Place
     template_name = "places/browse_detail.html"
 
+    def get_context_data(self, **kwargs):
+        context = super(PlaceBrowseDetail, self).get_context_data(**kwargs)
+        context["g_maps_api_key"] = os.environ.get("GOOGLE_MAPS_API_KEY")
+        return context
+
 
 @staff_member_required
 def get_places(request, destination_id, slug):

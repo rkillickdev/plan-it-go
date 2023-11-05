@@ -49,8 +49,7 @@ class Profile(models.Model):
         Returns the username as a string representation for each instance
         of the Profile model.
         """
-        return f"Screen Name: {self.user.profile.screen_name}. User: {self.user.username}."
-
+        return f"{self.user.profile.screen_name}"
 
 # Create a Profile when new user signs up
 

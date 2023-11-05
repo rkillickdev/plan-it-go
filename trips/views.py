@@ -241,19 +241,23 @@ def review_create(request, slug, trip_id, place_id, *args, **kwargs):
             messages.add_message(
                 request, messages.ERROR, "There was an error!"
             )
+
+        return HttpResponseRedirect(
+        reverse("review", args=[trip.slug, trip_id, place_id])
+        )
     else:
         review_form = ReviewForm()
 
-    return render(
-        request,
-        "trips/review.html",
-        {
-            "trip": trip,
-            "place": place,
-            "reviews": reviews,
-            "review_form": ReviewForm(),
-        },
-    )
+        return render(
+            request,
+            "trips/review.html",
+            {
+                "trip": trip,
+                "place": place,
+                "reviews": reviews,
+                "review_form": ReviewForm(),
+            },
+        )
 
 
 @login_required()

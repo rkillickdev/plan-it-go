@@ -27,7 +27,12 @@ class PlaceForm(ModelForm):
         self.helper.layout = Layout(
             Field("location", css_class="mt-2"),
             Div(
-                Submit("Submit", "Request Places", css_id="submitButton"),
+                Submit(
+                    "Submit",
+                    "Request Places",
+                    css_id="submitButton",
+                    css_class="btn btn-dark"
+                    ),
                 css_class="my-4",
             ),
         )

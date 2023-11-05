@@ -71,7 +71,7 @@
                 <div class="card-body place-address">
                   <ul>
                     {% for key, value in place.address.items %}
-                      {% if not value == "" %}
+                      {% if value and not value == "" %}
                         <li class="pb-2">{{ value }}</li>
                       {% endif %}
                     {% endfor %}

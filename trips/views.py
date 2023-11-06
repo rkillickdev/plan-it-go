@@ -71,10 +71,13 @@ class TripUpdateView(LoginRequiredMixin, UpdateView):
     View to update trip info.  Redirects to trip detail
     template once updated.
     """
-
+    
     model = Trip
     form_class = TripForm
     template_name = "trips/create_trip.html"
+
+    def get_queryset(self):
+        return Trip.objects.filter(profile=self.request.user.profile)
 
     def get_success_url(self):
         return reverse_lazy(
@@ -139,47 +142,54 @@ class TripDetailView(LoginRequiredMixin, View):
     """
 
     def get(self, request, slug, trip_id, *args, **kwargs):
+        
         trip = get_object_or_404(Trip, id=trip_id)
-        geo_data = list(
-            Place.objects.filter(
-                id__in=trip.places.values_list("id", flat=True)
-            ).values("latitude", "longitude")
-        )
+        if trip.profile.id == request.user.profile.id:
+            geo_data = list(
+                Place.objects.filter(
+                    id__in=trip.places.values_list("id", flat=True)
+                ).values("latitude", "longitude")
+            )
 
-        geo_list = []
+            geo_list = []
 
-        # Prepares list of geo data named correctly to pass to Google Maps
-        for item in geo_data:
-            new_dict = {
-                "lat": float(item["latitude"]),
-                "lng": float(item["longitude"]),
-            }
-            geo_list.append(new_dict)
+            # Prepares list of geo data named correctly to pass to Google Maps
+            for item in geo_data:
+                new_dict = {
+                    "lat": float(item["latitude"]),
+                    "lng": float(item["longitude"]),
+                }
+                geo_list.append(new_dict)
 
-        # Used following tutorial for pagination for function based views:
-        # https://www.youtube.com/watch?v=N-PB-HMFmdo&list=PLCC34OHNcOtqW9BJmgQPPzUpJ8hl49AGy&index=18
+            # Used following tutorial for pagination for function based views:
+            # https://www.youtube.com/watch?v=N-PB-HMFmdo&list=PLCC34OHNcOtqW9BJmgQPPzUpJ8hl49AGy&index=18
 
-        p = Paginator(
-            Place.objects.filter(location=trip.location)
-            .exclude(id__in=trip.places.values_list("id", flat=True))
-            .order_by("ranking_position"),
-            3,
-        )
-        page = request.GET.get("page")
-        places = p.get_page(page)
+            p = Paginator(
+                Place.objects.filter(location=trip.location)
+                .exclude(id__in=trip.places.values_list("id", flat=True))
+                .order_by("ranking_position"),
+                3,
+            )
+            page = request.GET.get("page")
+            places = p.get_page(page)
 
-        g_maps_api_key = os.environ.get("GOOGLE_MAPS_API_KEY")
+            g_maps_api_key = os.environ.get("GOOGLE_MAPS_API_KEY")
 
-        return render(
-            request,
-            "trips/trip_detail.html",
-            {
-                "trip": trip,
-                "places": places,
-                "g_maps_api_key": g_maps_api_key,
-                "geo_list": geo_list,
-            },
-        )
+            return render(
+                request,
+                "trips/trip_detail.html",
+                {
+                    "trip": trip,
+                    "places": places,
+                    "g_maps_api_key": g_maps_api_key,
+                    "geo_list": geo_list,
+                },
+            )
+        else:
+            messages.add_message(
+            request, messages.ERROR, "You can only access your own trips!"
+            )
+            return HttpResponseRedirect(reverse("home"))
 
 
 class PlaceDetail(LoginRequiredMixin, View):
@@ -194,28 +204,34 @@ class PlaceDetail(LoginRequiredMixin, View):
 
     def get(self, request, slug, trip_id, place_id, *args, **kwargs):
         trip = get_object_or_404(Trip, id=trip_id)
-        place = get_object_or_404(Place, id=place_id)
-        reviews = place.reviews.filter(approved=True).order_by("created_on")
-        images = place.images.filter(approved=True).order_by("created_on")
-        added = False
+        if trip.profile.id == request.user.profile.id:
+            place = get_object_or_404(Place, id=place_id)
+            reviews = place.reviews.filter(approved=True).order_by("created_on")
+            images = place.images.filter(approved=True).order_by("created_on")
+            added = False
 
-        if trip.places.filter(id=place.id).exists():
-            added = True
+            if trip.places.filter(id=place.id).exists():
+                added = True
 
-        g_maps_api_key = os.environ.get("GOOGLE_MAPS_API_KEY")
+            g_maps_api_key = os.environ.get("GOOGLE_MAPS_API_KEY")
 
-        return render(
-            request,
-            "trips/place_detail.html",
-            {
-                "trip": trip,
-                "place": place,
-                "added": added,
-                "reviews": reviews,
-                "images": images,
-                "g_maps_api_key": g_maps_api_key,
-            },
-        )
+            return render(
+                request,
+                "trips/place_detail.html",
+                {
+                    "trip": trip,
+                    "place": place,
+                    "added": added,
+                    "reviews": reviews,
+                    "images": images,
+                    "g_maps_api_key": g_maps_api_key,
+                },
+            )
+        else:
+            messages.add_message(
+            request, messages.ERROR, "This page does not belong to your Trip!"
+            )
+            return HttpResponseRedirect(reverse("home"))
 
 
 @login_required()

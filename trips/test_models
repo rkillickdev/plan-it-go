@@ -1,0 +1,42 @@
+from django.test import TestCase
+from django.contrib.auth.models import User
+from .models import Trip
+
+
+class TestTripModel(TestCase):
+    """
+    Tests Trip Model
+    """
+
+    def setUp(self):
+        """
+        Create an instance of the class Profile and set attributes
+        """
+
+        self.user = User.objects.create_user(
+            username="testuser",
+            email="testuser@email.com",
+            password="testpassword",
+        )
+        self.location = Location.objects.create(
+            city="London",
+            slug="london",
+            summary="The Big Smoke",
+            latitude=51.509865,
+            longitude=-0.118092,
+        )
+        self.profile = Profile.objects.get(user=self.user)
+        self.trip = Trip.objects.create(
+            profile=self.profile,
+            location=self.location,
+            title="City Sightseeing",
+            slug="city-sightseeing",
+        )
+
+        self.expected_str = self.trip.title
+
+    def test_trip_model(self):
+        """
+        Tests the attibutes in the Trip model
+        """
+

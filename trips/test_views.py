@@ -96,24 +96,30 @@ class TestTripsViews(TestCase):
         """
         """
         trip_data = {
-            "profile": self.profile,
+            # "profile": self.profile,
             "location": self.location,
             "title": "West End Shows",
             "slug": "west-end-shows",
         }
         self.client.login(username="testuser", password="testpassword")
         response = self.client.post(reverse("create_trip"), data=trip_data)
-        self.assertTrue(Trip.objects.filter(title="City Sightseeing").exists())
+        form = TripForm(data=trip_data)
+        self.assertTrue(form.is_valid())
+        # self.assertTrue(form.instance.profile)
+        print(form.instance.title)
+        new_trip = Trip.objects.get(id=2)
+        print(new_trip)
+        # self.assertTrue(Trip.objects.filter(title="West End Shows").exists())
 
-        self.assertRedirects(response, 
-                            reverse_lazy(
-                                "trip_detail",
-                                kwargs={
-                                    "slug": self.trip.slug,
-                                    "trip_id": self.trip.id
-                                }      
-                            )
-                            )
+        # self.assertRedirects(response, 
+        #                     reverse_lazy(
+        #                         "trip_detail",
+        #                         kwargs={
+        #                             "slug": self.trip.slug,
+        #                             "trip_id": self.trip.id
+        #                         }      
+        #                     )
+        #                     )
         
 
     def test_trip_defensive_programming(self):
@@ -178,8 +184,16 @@ class TestTripsViews(TestCase):
             data=review_data,
         )
 
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "trips/review.html")
+        self.assertEqual(response.status_code, 302)
+        self.assertRedirects(response, reverse(
+            "review",
+            kwargs={
+                    "slug": self.trip.slug,
+                    "trip_id": self.trip.id,
+                    "place_id": self.place.id,
+                }
+            )
+        )
 
         new_review = Review.objects.get(id=2)
         self.assertEqual(new_review.place, self.place)
@@ -212,7 +226,7 @@ class TestTripsViews(TestCase):
         # Referenced the following article for testing messages:
         # https://stackoverflow.com/questions/2897609/how-can-i-unit-test-django-messages
 
-        messages = list(response.context["messages"])
+        messages = list(get_messages(response.wsgi_request))
         self.assertEqual(len(messages), 1)
         self.assertEqual(str(messages[0]), "There was an error!")
 

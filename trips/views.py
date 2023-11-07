@@ -4,7 +4,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.core.paginator import Paginator
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, Http404
 from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import (
@@ -76,8 +76,14 @@ class TripUpdateView(LoginRequiredMixin, UpdateView):
     form_class = TripForm
     template_name = "trips/create_trip.html"
 
-    def get_queryset(self):
-        return Trip.objects.filter(profile=self.request.user.profile)
+    # Referenced the following article to modify get_object method:
+    # https://stackoverflow.com/questions/25324948/django-generic-updateview-how-to-check-credential
+    def get_object(self, *args, **kwargs):
+        obj = super(TripUpdateView, self).get_object(*args, **kwargs)
+        if not obj.profile == self.request.user.profile:
+            raise Http404
+        return obj
+
 
     def get_success_url(self):
         return reverse_lazy(
@@ -102,6 +108,7 @@ def trip_delete(request, trip_id, *args, **kwargs):
         messages.add_message(
             request, messages.ERROR, "You can only delete your own trips!"
         )
+        raise Http404
 
     return HttpResponseRedirect(reverse("trip_list"))
 
@@ -300,6 +307,13 @@ def review_edit(request, trip_id, place_id, review_id, *args, **kwargs):
             messages.add_message(
                 request, messages.ERROR, "Error updating comment!"
             )
+    else:
+        trip = get_object_or_404(Trip, id=trip_id)
+        place = get_object_or_404(Place, id=place_id)
+        review = get_object_or_404(Review, id=review_id)
+
+        if not review.profile.id == request.user.profile.id:
+            raise Http404       
 
     return HttpResponseRedirect(
         reverse("review", args=[trip.slug, trip_id, place_id])
@@ -320,6 +334,7 @@ def review_delete(request, trip_id, place_id, review_id, *args, **kwargs):
         review.delete()
         messages.add_message(request, messages.SUCCESS, "Review deleted!")
     else:
+
         messages.add_message(
             request, messages.ERROR, "You can only delete your own reviews!"
         )

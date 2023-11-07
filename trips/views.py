@@ -1,5 +1,5 @@
 import os
-from django.shortcuts import render, get_object_or_404, reverse
+from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -361,14 +361,22 @@ class ImageUploadView(LoginRequiredMixin, CreateView):
     form_class = ImageForm
     model = Image
     template_name = "trips/add_image.html"
-
+    
     # Referenced this article to find out about accessing url kwargs:
     # https://stackoverflow.com/questions/72599545/get-url-kwargs-in-class-based-views
 
     def setup(self, request, *args, **kwargs):
+        self.slug = kwargs["slug"]
         self.place_id = kwargs["place_id"]
         self.trip_id = kwargs["trip_id"]
         return super().setup(request, *args, **kwargs)
+
+    # Add defensive programming to check if trip belongs to the logged in user.
+
+    def get(self, request, *args, **kwargs):
+        if not Trip.objects.filter(profile=self.request.user.profile).exists():
+            raise Http404
+        return super().get(request, *args, **kwargs) 
 
     # Referenced this article to automatically populate filed forms:
     # https://stackoverflow.com/questions/18246326/how-do-i-set-user-field-in-form-to-the-currently-logged-in-user
@@ -417,6 +425,7 @@ def image_delete(request, trip_id, place_id, image_id, *args, **kwargs):
         image.delete()
         messages.add_message(request, messages.SUCCESS, "Image deleted!")
     else:
+        raise Http404
         messages.add_message(
             request, messages.ERROR, "You can only delete your own images!"
         )

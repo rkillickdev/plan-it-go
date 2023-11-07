@@ -1,3 +1,7 @@
+// Referenced the following article when finding a solution for inserting
+// default images where external image links return an error:
+// https://dillionmegida.com/p/default-image-src/
+
 const destinationImages = document.getElementsByClassName("destination-image")
 
 for (let image of destinationImages ) {

@@ -196,7 +196,7 @@ class TripDetailView(LoginRequiredMixin, View):
             messages.add_message(
             request, messages.ERROR, "You can only access your own trips!"
             )
-            return HttpResponseRedirect(reverse("home"))
+            raise Http404
 
 
 class PlaceDetail(LoginRequiredMixin, View):
@@ -238,7 +238,7 @@ class PlaceDetail(LoginRequiredMixin, View):
             messages.add_message(
             request, messages.ERROR, "This page does not belong to your Trip!"
             )
-            return HttpResponseRedirect(reverse("home"))
+            raise Http404
 
 
 @login_required()

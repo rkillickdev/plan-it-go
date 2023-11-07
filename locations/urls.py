@@ -1,6 +1,5 @@
 from django.urls import path
 from .views import DestinationList, UpdateDestination
-from trips.views import TripBrowse
 
 urlpatterns = [
     path("", DestinationList.as_view(), name="locations"),

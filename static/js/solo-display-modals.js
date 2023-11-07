@@ -31,7 +31,7 @@ for(let city of destinationCities) {
         destinationSummary.innerText = summary;
         destinationCity.innerText = city;
         destinationImage.src = destinationImagePath;
-        tripIdeasLink.href = `trip_inspiration/${destinationId}/${destinationSlug}`;
+        tripIdeasLink.href = `../locations/trip_inspiration/${destinationId}/${destinationSlug}`;
 
 
 

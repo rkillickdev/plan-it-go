@@ -1,14 +1,58 @@
 {% extends "base.html" %}
-
+{% block head_title %} Trip Inspiration {% endblock %}
 {% block content %}
 
-{% for trip in destination_trips %}
+{% load static %}
 
 <section class="mt-7">
-    <div>{{ trip }}</div>
+    <div class="container">
+      <div class="row">
+        <div id="tripCarousel"
+             class="carousel slide"
+             data-bs-ride="carousel">
+          <div class="carousel-inner">
+            {% for trip in destination_trips %}
+              <div class="carousel-item {% if forloop.first %} active {% endif %}">
+                <div class="trip-container w-50 m-auto">
+                  <!-- Include Trip Card Template -->
+                  <div class="col-md-4">
+                    <div class="card border-0 bg-secondary text-center h-100">
+                      {% if 'placeholder' in trip.trip_image.url %}
+                        <img src="{% static 'images/placeholders/trip-placeholder-globe-in-hand.webp' %}"
+                            alt="Small globe held in the palm of a hand with mountains in the
+                            background"
+                            class="card-img-top img-fluid img-size-consistent">
+                      {% else %}
+                        <img src="{{trip.trip_image.url}}"
+                            alt="Image of {{trip.location}}"
+                            class="card-img-top img-fluid img-size-consistent">
+                      {% endif %}
+                      <div class="card-body">{{ trip.title }}</div>
+                      <a href="{% url 'trip_detail' trip.slug trip.id%}"
+                        class="card-title stretched-link"></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+          <!-- Carousel Buttons -->
+          <button class="carousel-control-prev"
+                  type="button"
+                  data-bs-target="#reviewCarousel"
+                  data-bs-slide="prev">
+            <i class="fas fa-arrow-circle-left fa-3x text-dark"></i>
+          </button>
+          <button class="carousel-control-next"
+                  type="button"
+                  data-bs-target="#reviewCarousel"
+                  data-bs-slide="next">
+            <i class="fas fa-arrow-circle-right fa-3x text-dark"></i>
+          </button>
+        </div>
+      </div>
+    </div>
 </section>
-
-{% endfor %}
 
 {% endblock %}
 

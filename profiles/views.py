@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.urls import reverse, reverse_lazy
 from django.http import Http404
+from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView, UpdateView, DetailView
 from .models import Profile

@@ -3,6 +3,7 @@ from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.contrib.messages.views import SuccessMessageMixin
 from django.core.paginator import Paginator
 from django.http import HttpResponseRedirect, Http404
 from django.urls import reverse_lazy
@@ -20,7 +21,7 @@ from .forms import TripForm
 from places.forms import ReviewForm, ImageForm
 
 
-class TripCreateView(LoginRequiredMixin, CreateView):
+class TripCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     """
     View to render the profile update form.
     Assigns slug field and primary key id to kwargs.
@@ -32,6 +33,7 @@ class TripCreateView(LoginRequiredMixin, CreateView):
     form_class = TripForm
     model = Trip
     template_name = "trips/create_trip.html"
+    success_message = "Congratulations, you created a new trip!"
 
     # Populate profile field of model Trip with profile linked tologged in user
     # https://stackoverflow.com/questions/18246326/how-do-i-set-user-field-in-form-to-the-currently-logged-in-user

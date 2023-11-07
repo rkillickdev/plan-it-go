@@ -270,6 +270,8 @@ def review_create(request, slug, trip_id, place_id, *args, **kwargs):
         )
     else:
         review_form = ReviewForm()
+        if not trip.profile.id == request.user.profile.id:
+            raise Http404
 
         return render(
             request,

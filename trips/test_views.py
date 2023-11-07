@@ -61,23 +61,6 @@ class TestTripsViews(TestCase):
         )
         self.trip.places.add(self.place)
 
-    def test_get_queryset(self):
-        url = reverse(
-            "trip_browse",
-            kwargs={
-                "location_id": self.location.id,
-                "slug": self.location.slug,
-            },
-        )
-        request = self.factory.get(url)
-        view = TripBrowse()
-        view.setup(
-            request, location_id=self.location.id, slug=self.location.slug
-        )
-
-        queryset = view.get_queryset()
-        self.assertIn(self.trip, queryset)
-
     # def test_successful_trip_create_form_valid(self):
     #     form_data = {
     #         # 'profile': self.profile,

@@ -20,25 +20,6 @@ from .forms import TripForm
 from places.forms import ReviewForm, ImageForm
 
 
-class TripBrowse(ListView):
-    """
-    View to render a list of trips based on the location id argument
-    supplied in the url.
-    """
-
-    model = Trip
-    context_object_name = "destination_trips"
-    template_name = "trips/trip_browse.html"
-
-    def get_queryset(self):
-        self.location = get_object_or_404(
-            Location, id=self.kwargs["location_id"]
-        )
-        return Trip.objects.filter(location=self.location).order_by(
-            "created_on"
-        )
-
-
 class TripCreateView(LoginRequiredMixin, CreateView):
     """
     View to render the profile update form.

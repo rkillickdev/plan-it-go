@@ -1,4 +1,27 @@
 """
+Trip Browse.  Decided to go with ability to browse places in the end
+"""
+
+# class TripBrowse(ListView):
+#     """
+#     View to render a list of trips based on the location id argument
+#     supplied in the url.
+#     """
+
+#     model = Trip
+#     context_object_name = "destination_trips"
+#     template_name = "trips/trip_browse.html"
+
+#     def get_queryset(self):
+#         self.location = get_object_or_404(
+#             Location, id=self.kwargs["location_id"]
+#         )
+#         return Trip.objects.filter(location=self.location).order_by(
+#             "created_on"
+#         )
+
+
+"""
 Class based view originally used for creating a review
 """
 

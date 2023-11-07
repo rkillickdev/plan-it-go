@@ -21,6 +21,11 @@
             {% if request.resolver_match.url_name == 'place_detail' %}
               <!-- place_toggle template included -->
               {% include 'includes/place_toggle.html' %}
+            {% else %}
+            <div class="gap-3">
+              <a href="{% url 'trip_list' %}"><i class="fa-solid fa-circle-plus fa-4x"></i></a>
+              <p>Plan A Trip</p>
+            </div>  
             {% endif %}
             <div class="justify-content-center">
               <a href="{% if request.resolver_match.url_name == 'place_detail' %} {% url 'trip_detail' trip.slug trip.id %} {% else %} {% url 'place_list' place.location.id place.location.slug %} {% endif %}"

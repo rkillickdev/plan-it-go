@@ -11,25 +11,20 @@
              class="carousel slide"
              data-bs-ride="carousel">
           <div class="carousel-inner">
-            {% for trip in destination_trips %}
+            {% for place in places %}
               <div class="carousel-item {% if forloop.first %} active {% endif %}">
                 <div class="trip-container w-50 m-auto">
                   <!-- Include Trip Card Template -->
                   <div class="col-md-4">
-                    <div class="card border-0 bg-secondary text-center h-100">
-                      {% if 'placeholder' in trip.trip_image.url %}
-                        <img src="{% static 'images/placeholders/trip-placeholder-globe-in-hand.webp' %}"
-                            alt="Small globe held in the palm of a hand with mountains in the
-                            background"
-                            class="card-img-top img-fluid img-size-consistent">
-                      {% else %}
-                        <img src="{{trip.trip_image.url}}"
-                            alt="Image of {{trip.location}}"
-                            class="card-img-top img-fluid img-size-consistent">
-                      {% endif %}
-                      <div class="card-body">{{ trip.title }}</div>
-                      <a href="{% url 'trip_detail' trip.slug trip.id%}"
-                        class="card-title stretched-link"></a>
+                    <div class="card text-center border-0 h-100">
+                      <img class="card-img-top img-fluid img-size-consistent"
+                          src="{{ place.image }}"
+                          alt="{{ place.name }}">
+                      <div class="card-body">
+                        <h3>{{ place.name }}</h3>
+                      </div>
+                      <a class="stretched-link"
+                        href="{% url 'place_browse_detail' place.slug place.id %}"></a>
                     </div>
                   </div>
                 </div>

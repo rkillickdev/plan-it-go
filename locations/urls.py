@@ -8,10 +8,5 @@ urlpatterns = [
         "update_destination/<int:location_id>/<slug:slug>",
         UpdateDestination.as_view(),
         name="update_destination",
-    ),
-    path(
-        "trip_inspiration/<int:location_id>/<slug:slug>",
-        TripBrowse.as_view(),
-        name="trip_browse",
-    ),
+    )
 ]

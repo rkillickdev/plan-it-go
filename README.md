@@ -328,6 +328,9 @@ if image.profile.id == request.user.profile.id:
 ### **Responsive design**
 
 
+### **Bugs**
+
+
 
 
 

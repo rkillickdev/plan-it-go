@@ -30,7 +30,7 @@
           {% if request.user.is_staff %}
             <h1>Work to do? </h1>
             <div class="d-flex flex-column gap-3">
-              <a href="{% url 'locations'%}"><i class="fa-solid fa-circle-plus fa-4x"></i></a>
+              <a href="{% url 'locations'%}" class="link-transform"><i class="fa-solid fa-circle-plus fa-4x"></i></a>
               <p class="lead">Add A Destination</p>
             </div>
           {% else %}
@@ -43,7 +43,7 @@
                 profile</p>
               <div class="d-flex flex-column gap-3">
                 <a href="{% url 'update_profile' request.user.profile.id %}"
-                   class="icon-link button-link m-auto">
+                   class="icon-link button-link m-auto link-transform">
                   <i class="fa-solid fa-circle-plus fa-4x"
                      role="img"
                      aria-label="Plus Icon"></i>

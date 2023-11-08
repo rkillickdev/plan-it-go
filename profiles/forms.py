@@ -81,7 +81,7 @@ class CustomLoginForm(LoginForm):
             Div(
                 Submit(
                     "Submit",
-                    "Sign In",
+                    "Log In",
                     css_id="signin-button",
                     css_class="btn btn-dark",
                 ),
@@ -114,7 +114,7 @@ class CustomSignupForm(SignupForm):
             Div(
                 Submit(
                     "Submit",
-                    "Sign In",
+                    "Sign Up",
                     css_id="signup-button",
                     css_class="btn btn-dark",
                 ),

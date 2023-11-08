@@ -75,17 +75,17 @@
 <!-- TRIP LIST -->
 <!-- Display dependent on user account status -->
 {% if request.user.profile.screen_name %}
-  <section id="trip-list">
+  <section id="trip-list" class="mb-5">
     <div class="container">
       {% if trip_list.count > 0 %}
         <div class="row">
-          <h3 class="display-6">Upcoming Trips</h3>
+          <h3 class="display-6">Your Trips</h3>
           <hr />
         </div>
         <div class="row mb-4">
           {% for trip in trip_list %}
             <div class="col-md-4">
-              <div class="card border-0 bg-secondary text-center h-100">
+              <div class="image-clickable card border-0 bg-secondary text-center h-100">
                 {% if 'placeholder' in trip.trip_image.url %}
                   <img src="{% static 'images/placeholders/trip-placeholder-globe-in-hand.webp' %}"
                       alt="Small globe held in the palm of a hand with mountains in the
@@ -116,8 +116,8 @@
               <p>Be inspired by the trips that have already been mapped out on
                 PlanIt Go. All it takes is a spark, so let your imagination run
                 free...</p>
-              <a href="#browse"
-                class="btn btn-dark button-link align-self-center">Browse Trips</a>
+              <a href="{% url 'home' %}#destination-ideas"
+                class="btn btn-dark button-link align-self-center">Browse Destinations</a>
             </div>
           </div>
           <div class="col-lg-5">

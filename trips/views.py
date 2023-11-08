@@ -163,7 +163,7 @@ class TripDetailView(LoginRequiredMixin, View):
                 Place.objects.filter(location=trip.location)
                 .exclude(id__in=trip.places.values_list("id", flat=True))
                 .order_by("ranking_position"),
-                3,
+                12,
             )
             page = request.GET.get("page")
             places = p.get_page(page)
@@ -292,10 +292,10 @@ def review_edit(request, trip_id, place_id, review_id, *args, **kwargs):
             review.place = place
             review.approved = False
             review.save()
-            messages.add_message(request, messages.SUCCESS, "Comment Updated!")
+            messages.add_message(request, messages.SUCCESS, "Review has been updated!")
         else:
             messages.add_message(
-                request, messages.ERROR, "Error updating comment!"
+                request, messages.ERROR, "Error updating this review!"
             )
     else:
         trip = get_object_or_404(Trip, id=trip_id)

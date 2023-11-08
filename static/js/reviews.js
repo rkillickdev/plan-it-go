@@ -1,4 +1,5 @@
 let editButtons = document.getElementsByClassName("btn-edit");
+let reviewHeading = document.getElementById("review-heading");
 let reviewText = document.getElementsByTagName("textarea")[0];
 let reviewForm = document.getElementById("reviewForm");
 let submitButton = document.getElementById("submitButton");
@@ -12,6 +13,7 @@ for (let button of editButtons) {
         let reviewContent = document.getElementById(`review-body${reviewId}`).innerText;
         reviewText.value = reviewContent;
         submitButton.value = "Update Review";
+        reviewHeading.innerText = "Update Your"
         reviewForm.setAttribute("action", `edit_review/${reviewId}`);
     });
 }

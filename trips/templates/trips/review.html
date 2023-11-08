@@ -14,7 +14,7 @@
         <h3 class="display-6">
           <span>
             <i class="fa-solid fa-comment-dots"></i>&nbsp&nbsp
-          </span>Add a review for {{ place.name }}
+          </span><span id="review-heading">Add a</span> review for {{ place.name }}
         </h3>
         <a class="btn btn-dark button-link align-self-center "
            href="{% url 'trip_detail' trip.slug trip.id %}">
@@ -84,7 +84,7 @@
                   <div
                       class="col-md-7 d-flex flex-column justify-content-center">
                     <h4 id="review-location{{ review.id }}"
-                        class="review-card-text display-5">
+                        class="review-card-text">
                       {{ review.place.name }}</h4>
                   </div>
                 </div>
@@ -101,8 +101,12 @@
           {% if user.is_authenticated and review.profile.id == user.profile.id %}
           <div class="d-flex justify-content-between bg-primary rounded mt-2">
             <button class="btn btn-edit"
-                    review_id="{{ review.id }}"><i
-                class="fa-solid fa-pencil fa-2x"></i></button>
+                    review_id="{{ review.id }}"
+            >
+              <a href="#write-review">
+                <i class="fa-solid fa-pencil fa-2x"></i>
+              </a> 
+            </button>
             <button class="btn btn-delete"
                     target_id="{{ review.id }}"
                     task="delete_review"

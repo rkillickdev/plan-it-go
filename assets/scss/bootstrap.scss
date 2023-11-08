@@ -87,5 +87,7 @@ $accordion-button-focus-box-shadow: none;
 $pagination-color: white;
 $pagination-bg: $dark;
 $pagination-border-width: none;
+$pagination-hover-bg: $primary;
+$pagination-hover-color: white;
 
 @import'../../node_modules/bootstrap/scss/bootstrap.scss';

@@ -3,7 +3,7 @@
   <div class="container">
     <!-- Nav Logo Starts-->
     <a href="{% url 'home' %}"
-       class="navbar-brand">
+       class="navbar-brand image-clickable">
       <h1>Plan<span class="text-primary">It</span> G<span><i class="text-primary fa-solid fa-earth-americas"></i></span></h1>
     </a>
     <!-- Nav Logo Ends-->
@@ -32,7 +32,7 @@
             <li class="nav-item">
               <a href="{% url 'locations' %}"
                 class="nav-link
-                    {% if request.resolver_match.url_name == 'add_location' %} active {% endif %} fw-semibold">Admin</a>
+                    {% if request.resolver_match.url_name == 'locations' %} active {% endif %} fw-semibold">Admin</a>
             </li>
           {% else %}
             <li class="nav-item">
@@ -53,8 +53,9 @@
           </li>
         {% else %}
           <li class="nav-item">
-            <a href="#"
-              class="nav-link fw-semibold">Trips</a>
+            <a href="{% url 'home' %}#destination-ideas"
+              class="nav-link 
+              {% if request.resolver_match.url_name == 'home' %} active {% endif %} fw-semibold">Ideas</a>
           </li>
           <li class="nav-item">
             <a href="{% url 'account_signup' %}"

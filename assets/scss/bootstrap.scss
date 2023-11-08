@@ -51,8 +51,10 @@ $btn-padding-y-lg: $button-padding-y;
 
 /* Navbar */
 $navbar-light-color: $dark;
-$navbar-light-active-color: $dark;
+$navbar-light-active-color: $primary;
 $navbar-light-hover-color: $primary;
+$navbar-light-brand-color: $dark;
+$navbar-light-brand-hover-color: none;
 
 /* Links */
 

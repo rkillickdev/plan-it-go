@@ -13,8 +13,8 @@
             <h1 class="display-3 text-center">
               Make<br><span class="fw-bold replace-me map-pin">Plans,Memories,It Happen</span>
             </h1>
-            <a href="{% if request.user.is_staff %} {% url 'locations' %} {% else %} {% url 'trip_list' %} {% endif %}"
-               class="btn btn-primary text-white button-link">Get Started</a>
+            <a href="{% if request.user.is_staff %} {% url 'locations' %} {% elif user.is_authenticated %} {% url 'trip_list' %} {% else %} {% url 'account_signup' %} {% endif %}"
+               class="btn btn-primary text-white button-link">{% if request.user.is_staff %}Add Destinations{% elif user.is_authenticated %}Get Started{% else %}Sign Up{% endif %}</a>
           </div>
         </div>
       </div>

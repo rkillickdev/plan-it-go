@@ -5,7 +5,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 from django.core.paginator import Paginator
-from django.http import HttpResponseRedirect, Http404
+from django.http import HttpResponseRedirect, Http404, HttpResponseForbidden
+from django.core.exceptions import PermissionDenied
 from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import (
@@ -28,6 +29,8 @@ class TripCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     The get_success_url() method is used to redirect to 'get_detail.html'.
     The following stack overflow helped with understanding self.object:
     https://stackoverflow.com/questions/52063861/django-access-form-argument-in-createview-to-pass-to-get-success-url
+    Also learnt about sending messages in class based views here:
+    https://dev.to/serhatteker/show-message-in-class-based-views-django-4a4d
     """
 
     form_class = TripForm
@@ -61,12 +64,14 @@ class TripUpdateView(LoginRequiredMixin, UpdateView):
 
     # Referenced the following article to modify get_object method:
     # https://stackoverflow.com/questions/25324948/django-generic-updateview-how-to-check-credential
+    # Referenced this article on using Permission Denied():
+    # https://stackoverflow.com/questions/10326938/add-object-level-permission-to-generic-view
+
     def get_object(self, *args, **kwargs):
         obj = super(TripUpdateView, self).get_object(*args, **kwargs)
         if not obj.profile == self.request.user.profile:
-            raise Http404
+            raise PermissionDenied()
         return obj
-
 
     def get_success_url(self):
         return reverse_lazy(
@@ -91,7 +96,7 @@ def trip_delete(request, trip_id, *args, **kwargs):
         messages.add_message(
             request, messages.ERROR, "You can only delete your own trips!"
         )
-        raise Http404
+        raise PermissionDenied()
 
     return HttpResponseRedirect(reverse("trip_list"))
 
@@ -179,7 +184,7 @@ class TripDetailView(LoginRequiredMixin, View):
             messages.add_message(
             request, messages.ERROR, "You can only access your own trips!"
             )
-            raise Http404
+            raise PermissionDenied()
 
 
 class PlaceDetail(LoginRequiredMixin, View):
@@ -221,7 +226,7 @@ class PlaceDetail(LoginRequiredMixin, View):
             messages.add_message(
             request, messages.ERROR, "This page does not belong to your Trip!"
             )
-            raise Http404
+            raise PermissionDenied()
 
 
 @login_required()
@@ -254,7 +259,7 @@ def review_create(request, slug, trip_id, place_id, *args, **kwargs):
     else:
         review_form = ReviewForm()
         if not trip.profile.id == request.user.profile.id:
-            raise Http404
+            raise PermissionDenied()
 
         return render(
             request,
@@ -298,7 +303,7 @@ def review_edit(request, trip_id, place_id, review_id, *args, **kwargs):
         review = get_object_or_404(Review, id=review_id)
 
         if not review.profile.id == request.user.profile.id:
-            raise Http404       
+            raise PermissionDenied()       
 
     return HttpResponseRedirect(
         reverse("review", args=[trip.slug, trip_id, place_id])
@@ -358,7 +363,7 @@ class ImageUploadView(LoginRequiredMixin, CreateView):
 
     def get(self, request, *args, **kwargs):
         if not Trip.objects.filter(profile=self.request.user.profile).exists():
-            raise Http404
+            raise PermissionDenied()
         return super().get(request, *args, **kwargs) 
 
     # Referenced this article to automatically populate filed forms:
@@ -408,7 +413,7 @@ def image_delete(request, trip_id, place_id, image_id, *args, **kwargs):
         image.delete()
         messages.add_message(request, messages.SUCCESS, "Image deleted!")
     else:
-        raise Http404
+        raise PermissionDenied()
         messages.add_message(
             request, messages.ERROR, "You can only delete your own images!"
         )

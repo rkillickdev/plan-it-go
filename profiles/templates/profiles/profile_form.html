@@ -13,7 +13,7 @@
       <div class="col-lg-6 d-flex flex-column justify-content-center">
         <div class="image-container p-2 align align-self-center">
           {% if request.user.profile.screen_name %}
-            {% if 'placeholder' in review.profile.profile_image.url %}
+            {% if 'placeholder' in profile.profile_image.url %}
               <img src="{% static 'images/placeholders/globe-profile-face-compress-square.webp' %}"
                   alt="Inflatable globe with two eyes stuck on"
                   class="img-fluid rounded-circle"
@@ -24,16 +24,14 @@
                   class="img-fluid rounded-circle"
                   width="250px">
             {% endif %}
-            <h4 id="review-profile-name{{ review.id }}"
-                class="review-card-text text-center fst-italic p-2">
+            <h4 class="text-center fst-italic p-2">
               {{ profile.screen_name}}</h4>
           {% else %}
             <img src="{% static 'images/placeholders/globe-profile-face-compress-square.webp' %}"
                 alt="Inflatable globe with two eyes stuck on"
                 class="img-fluid rounded-circle"
                 width="250px">
-            <h4 id="review-profile-name{{ review.id }}"
-                class="review-card-text text-center fst-italic p-2">
+            <h4 class="text-center fst-italic p-2">
               {{ request.user.username }}</h4>
           {% endif %}
         </div>
@@ -66,7 +64,7 @@
     <!-- Profile Form -->
     <div class="row">
       <div class="col-lg-6">
-        <div class="form-container rounded bg-primary p-4">
+        <div id="profile-form-container" class="form-container rounded bg-primary p-4" form_purpose="{% if request.user.profile.screen_name %}update{% else %}create{% endif %}">
           {% crispy form %}
         </div>
       </div>
@@ -75,4 +73,10 @@
 </section>
 
 {% endblock %}
+
+{% block extras %}
+
+<script src="{% static 'js/profile-form.js' %}"></script>
+
+{% endblock extras %}
 

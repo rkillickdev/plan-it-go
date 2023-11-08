@@ -38,7 +38,7 @@ class ProfileForm(ModelForm):
                 Submit(
                     "Submit",
                     "Create Profile",
-                    css_id="submitButton",
+                    css_id="profile-submit-button",
                     css_class="btn btn-dark",
                 ),
                 css_class="mb-4 text-center",

@@ -57,7 +57,7 @@ class ReviewForm(ModelForm):
                     "Submit",
                     "Post Review",
                     css_id="submitButton",
-                    css_class="btn btn-dark",
+                    css_class="btn btn-primary text-light",
                 ),
                 css_class="my-4 text-center",
             ),

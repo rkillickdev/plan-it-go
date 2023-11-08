@@ -83,9 +83,19 @@ hr {
 }
 
 .link-transform:hover {
-    transform: scale(1.1);
+    // transform: scale(1.1);
     color: var(--bs-primary);
 }
+
+.transform-dark:hover {
+    color: var(--bs-dark);
+}
+
+// .button-transform:hover {
+//     color: var(--bs-light);
+//     background: var(--bs-primary);
+//     border: none;
+// }
 
 /* Card Images */
 

@@ -8,7 +8,7 @@
       <div class="row mb-4">
         <div class="user-review card border-0 text-center image-clickable"
              review_id="{{ review.id }}">
-          <div class="card-header border-0 bg-primary">
+          <div class="card-header border-0 bg-dark text-light">
             <div class="row">
               <div class="col-md-5">
                 <div class="image-container p-2">
@@ -38,7 +38,7 @@
           </div>
           <div class="card-body bg-secondary">
             <p id="modal-body"
-               class=" review-card-text {% if not review.approved and review.profile == request.user.profile %} faded {% elif not.review.approved %} d-none{% endif %}">
+               class=" review-card-text fst-italic {% if not review.approved and review.profile == request.user.profile %} faded {% elif not.review.approved %} d-none{% endif %}">
             </p>
           </div>
         </div>
@@ -46,7 +46,7 @@
       <div class="row justify-content-center">
         <button class="btn button-link"
                 data-bs-dismiss="modal">
-          <i class="fa-solid fa-circle-xmark fa-4x"></i>
+          <i class="fa-solid fa-circle-xmark fa-4x link-transform"></i>
         </button>
       </div>
     </div>

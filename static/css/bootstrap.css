@@ -175,10 +175,10 @@
   --bs-light-border-subtle: #495057;
   --bs-dark-border-subtle: #343a40;
   --bs-heading-color: inherit;
-  --bs-link-color: #ee97a6;
-  --bs-link-hover-color: #f1acb8;
-  --bs-link-color-rgb: 238, 151, 166;
-  --bs-link-hover-color-rgb: 241, 172, 184;
+  --bs-link-color: red;
+  --bs-link-hover-color: #E2526A;
+  --bs-link-color-rgb: 255, 0, 0;
+  --bs-link-hover-color-rgb: 226, 82, 106;
   --bs-code-color: #e685b5;
   --bs-highlight-color: #dee2e6;
   --bs-highlight-bg: #664d03;

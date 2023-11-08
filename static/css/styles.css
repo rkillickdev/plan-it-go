@@ -76,8 +76,11 @@ hr {
 }
 
 .link-transform:hover {
-  transform: scale(1.1);
   color: var(--bs-primary);
+}
+
+.transform-dark:hover {
+  color: var(--bs-dark);
 }
 
 /* Card Images */

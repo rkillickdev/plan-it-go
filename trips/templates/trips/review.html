@@ -11,15 +11,15 @@
   <div class="container">
     <div class="row mb-2">
       <div class="action-title d-flex justify-content-between p-2">
-        <h3 class="display-6">
+        <h3 class="display-6 mb-auto">
           <span>
             <i class="fa-solid fa-comment-dots"></i>&nbsp&nbsp
           </span><span id="review-heading">Add a</span> review for {{ place.name }}
         </h3>
-        <a class="btn btn-dark button-link align-self-center "
+        <a class="btn btn-dark button-link align-self-center button-transform"
            href="{% url 'trip_detail' trip.slug trip.id %}">
           <span>
-            <i class="fa-solid fa-angles-left"></i>&nbsp&nbsp
+            <i class="fa-solid fa-left-long text-primary"></i>&nbsp&nbsp
           </span>Back To Trip
         </a>
       </div>
@@ -34,8 +34,8 @@
         </div>
       </div>
       <!-- Review Form -->
-      <div class="col-lg-5 d-flex flex-column">
-        <div class="form-container rounded bg-primary p-4">
+      <div class="col-lg-5 d-flex flex-column justify-content-center">
+        <div class="form-container rounded bg-dark p-4">
           {% crispy review_form %}
         </div>
       </div>
@@ -59,7 +59,7 @@
             data-bs-target="#modal-user-review">
             <div class="user-review card border-0 text-center image-clickable"
                 review_id="{{ review.id }}">
-              <div class="card-header border-0 bg-primary">
+              <div class="card-header border-0 bg-secondary">
                 <div class="row">
                   <div class="col-md-5">
                     <div class="image-container p-2">
@@ -89,7 +89,7 @@
                   </div>
                 </div>
               </div>
-              <div class="card-body bg-secondary">
+              <div class="card-body bg-dark text-light">
                 <p class="review-card-text lead"><span><i
                       class="fa-solid fa-magnifying-glass"></i>&nbsp&nbsp</span>
                   Read Review</p>
@@ -100,19 +100,19 @@
           </a>
           {% if user.is_authenticated and review.profile.id == user.profile.id %}
           <div class="d-flex justify-content-between bg-primary rounded mt-2">
-            <button class="btn btn-edit"
+            <button class="btn btn-edit text-light"
                     review_id="{{ review.id }}"
             >
               <a href="#write-review">
-                <i class="fa-solid fa-pencil fa-2x"></i>
+                <i class="fa-solid fa-pencil fa-2x transform-dark"></i>
               </a> 
             </button>
-            <button class="btn btn-delete"
+            <button class="btn btn-delete text-light"
                     target_id="{{ review.id }}"
                     task="delete_review"
                     data-bs-toggle="modal"
                     data-bs-target="#modal-delete-confirm"><i
-                class="fa-solid fa-trash-can fa-2x"></i></button>
+                class="fa-solid fa-trash-can fa-2x transform-dark"></i></button>
           </div>
           {% endif %} 
         </div>

@@ -2,9 +2,11 @@
 $font-family-sans-serif: 'Source Sans Pro', sans-serif;
 
 // Colors
-$primary: #E2C3B6;
+// $primary: #E2C3B6;
+$primary: #E2526A;
 $secondary: #f4f4f4;
-$dark: #307D8C;
+$dark: #145C6A;
+// $dark: #307D8C;
 $light: #fff;
 $body-color: $dark;
 $body-bg: $light; 
@@ -25,7 +27,7 @@ $spacers: (
 
 /* Borders */
 
-$border-color: $primary;
+$border-color: $dark;
 $card-border-color: $border-color;
 
 /* Forms */
@@ -64,14 +66,16 @@ $link-color: $dark;
 
 $nav-tabs-link-active-color: $dark;
 $nav-tabs-link-hover-border-color: $primary;
+$nav-tabs-link-active-border-color: $primary;
+$nav-tabs-border-color: $primary;
 
 /* Accordion */
 $accordion-body-padding-y: 0;
 $accordion-body-padding-x: 0;
-$accordion-bg: $primary;
-$accordion-border-color: $primary;
+$accordion-bg: $dark;
+$accordion-border-color: $dark;
 $accordion-border-width: none;
-$accordion-button-active-bg: $primary;
+$accordion-button-active-bg: $dark;
 $accordion-icon-color: $light;
 $accordion-icon-active-color: $light;
 $accordion-button-active-color: $dark;

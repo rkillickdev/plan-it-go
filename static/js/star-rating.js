@@ -18,7 +18,7 @@ function generateStars(rating) {
 
     // // Append empty stars to starList
     for (let i =(5 - rating); i>=1; i--)
-        starList.push('<i class="fa-regular fa-sta text-primary" aria-hidden="true"></i>&nbsp');
+        starList.push('<i class="fa-regular fa-star text-primary" aria-hidden="true"></i>&nbsp');
 
     return starList.join('');
 }

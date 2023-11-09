@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block head_title %} Profile {% endblock %}
+{% block content %}
+
+{% load static %}
+
+<!-- 403 Start -->
+<section id="403-error" class="mt-7">
+  <div class="container">
+    <div class="row flex-wrap-reverse">
+      <div class="col-lg-7 mb-4">
+        <img src="{% static 'images/errors/403-no-entry-1200x1600-compress.webp' %}" alt="A no entry sign in the desert" class="img-fluid">
+      </div>
+      <div class="col-lg-5 mb-4 d-flex flex-column justify-content-center">
+        <i class="fa-solid fa-hand text-center display-3 fw-bold"></i>
+        <h1 class="text-center display-3 fw-bold text-uppercase">Forbidden</h1>
+        <p class="display-2 text-center text-primary fw-bold">403</p>
+        <p class="lead text-center">We are sorry, but you do not have access to this page or resource</p>
+        <a href="{% url 'home' %}" class="btn btn-dark button-link align-self-center">Back To Home Page</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

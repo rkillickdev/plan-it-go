@@ -21,7 +21,8 @@ class LocationForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
-        self.helper.form_id = "reviewForm"
+        self.helper.form_id = "location-form"
+        self.helper.form_class ="rounded bg-dark text-light p-4"
         self.helper.form_show_labels = False
         self.helper.form_method = "POST"
 
@@ -49,8 +50,8 @@ class LocationForm(ModelForm):
                 Submit(
                     "Submit",
                     "Create",
-                    css_id="submitButton",
-                    css_class="btn btn-dark",
+                    css_id="submit-button",
+                    css_class="btn btn-primary text-light",
                 ),
                 css_class="mt-4 text-center",
             ),

@@ -25,11 +25,11 @@
           <div class="image-container">
             <img src="{% static 'images/map-search-coffe-cup-1250x1500-compress.webp'%}"
                 alt="Magnifying glass searches world map"
-                class="img-fluid d-none d-lg-block">
+                class="img-fluid rounded d-none d-lg-block">
           </div>
         </div>
         <div class="col-lg-6">
-          <div class="form-container rounded bg-primary p-4">
+          <div id="form-container" form_purpose="{% if request.resolver_match.url_name == 'update_destination' %}update{% else %}create{% endif %}">
             {% crispy form %}
           </div>
         </div>
@@ -73,5 +73,6 @@
 {% block extras %}
 
 <script src="{% static 'js/solo-display-modals.js' %}"></script>
+<script src="{% static 'js/forms.js' %}"></script>
 
 {% endblock extras %}

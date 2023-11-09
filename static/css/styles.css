@@ -79,6 +79,10 @@ hr {
   color: var(--bs-primary);
 }
 
+.transform-reverse:hover {
+  color: var(--bs-dark);
+}
+
 .transform-dark:hover {
   color: var(--bs-dark);
 }

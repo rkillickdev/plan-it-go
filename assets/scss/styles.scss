@@ -83,8 +83,11 @@ hr {
 }
 
 .link-transform:hover {
-    // transform: scale(1.1);
     color: var(--bs-primary);
+}
+
+.transform-reverse:hover {
+    color: var(--bs-dark);
 }
 
 .transform-dark:hover {

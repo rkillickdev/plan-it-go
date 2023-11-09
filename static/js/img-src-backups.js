@@ -2,11 +2,12 @@
 // default images where external image links return an error:
 // https://dillionmegida.com/p/default-image-src/
 
-const destinationImages = document.getElementsByClassName("destination-image")
+const images = document.getElementsByTagName("img");
 
-for (let image of destinationImages ) {
+for (let image of images ) {
     image.addEventListener("error", (e) => {
         e.target.src = "/static/images/world-map-plane-1500x1000-compress.webp";
         e.onerror = null;
     });
 }
+

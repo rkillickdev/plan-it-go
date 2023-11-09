@@ -6,8 +6,7 @@
   <div class="user-review card border-0 text-center image-clickable"
        review_id="{{ review.id }}">
     <div class="card-header border-0 bg-secondary">
-      <div class="row">
-        <div class="col-md-5 {% if request.resolver_match.url_name == 'place_browse_detail' %} m-auto {% endif %}">
+        <div class="row {% if request.resolver_match.url_name == 'place_browse_detail' %} m-auto {% endif %}">
           <div class="image-container p-2">
             {% if 'placeholder' in review.profile.profile_image.url %}
               <img src="{% static 'images/placeholders/globe-profile-face-compress-square.webp' %}"
@@ -15,6 +14,12 @@
                   id="review-image{{ review.id }}"
                   class="img-fluid rounded-circle"
                   width="120px">
+            {% elif 'placeholder' in trip.trip_image.url %}
+              <img src="{% static 'images/placeholders/trip-placeholder-globe-in-hand.webp' %}"
+              alt="Inflatable globe with two eyes stuck on"
+              id="review-image{{ review.id }}"
+              class="img-fluid rounded-circle"
+              width="120px">
             {% else %}
               <img src="{{ review.profile.profile_image.url }}"
                   alt="picture of {{ profile.screen_name }}"
@@ -24,16 +29,14 @@
             {% endif %}
           </div>
           <h4 id="review-profile-name{{ review.id }}"
-              class="review-card-text fst-italic p-2">
-            {{ review.profile.screen_name}}
+              class="review-card-text fst-italic p-2">{% if request.resolver_match.url_name == 'review' %}{{ trip.title }}{% else %}{{ review.profile.screen_name}}{% endif %}
           </h4>
         </div>
-        <div class="col-md-7 d-flex flex-column justify-content-center {% if request.resolver_match.url_name == 'place_browse_detail' %} d-none {% endif %}">
+        <div class="row {% if request.resolver_match.url_name == 'place_browse_detail' %} d-none {% endif %}">
           <h4 id="review-location{{ review.id }}"
-              class="review-card-text display-5">{{ review.place.name }}
+              class="review-card-text fw-bold">{{ review.place.name }}
           </h4>
         </div>
-      </div>
     </div>
     <div class="card-body bg-dark">
       <p class="review-card-text lead text-light">

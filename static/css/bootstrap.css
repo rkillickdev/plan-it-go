@@ -3,6 +3,8 @@
 /* Forms */
 /* Inputs */
 /* Selects */
+/* Links */
+/* Modals */
 /* Navbar */
 /* Links */
 /* Nav Tabs */
@@ -5556,7 +5558,7 @@ textarea.form-control-lg {
   --bs-modal-title-line-height: 1.5;
   --bs-modal-footer-gap: 0.5rem;
   --bs-modal-footer-bg: ;
-  --bs-modal-footer-border-color: var(--bs-border-color);
+  --bs-modal-footer-border-color: #E2526A;
   --bs-modal-footer-border-width: var(--bs-border-width);
   position: fixed;
   top: 0;

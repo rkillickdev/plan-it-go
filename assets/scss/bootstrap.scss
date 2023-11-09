@@ -2,11 +2,9 @@
 $font-family-sans-serif: 'Source Sans Pro', sans-serif;
 
 // Colors
-// $primary: #E2C3B6;
 $primary: #E2526A;
 $secondary: #f4f4f4;
 $dark: #145C6A;
-// $dark: #307D8C;
 $light: #fff;
 $body-color: $dark;
 $body-bg: $light; 
@@ -39,14 +37,14 @@ $input-border-color: none;
 /* Selects */
 $form-select-indicator-color: $dark;
 
-// $link-hover-color: $primary;
-
-// $link-color: red;
-
-// $btn-link-hover-color: red;
+/* Links */
 
 $link-color-dark: red;
 $link-hover-color-dark: $primary;
+
+/* Modals */
+
+$modal-footer-border-color: $primary;
 
 // Buttons
 $button-padding-x: 20px;

@@ -1,9 +1,9 @@
 {% load static %}
 <!-- Destination Card Display -->
 <div class="destination-city-mini card border-0 bg-secondary text-center h-100">
-  <a data-bs-toggle="modal"
+  <button data-bs-toggle="modal"
      data-bs-target="#modal-destination-info"
-     class="image-clickable">
+     class="image-clickable border-0">
     {% if 'placeholder' in destination.image.url %}
       <img class="card-img-top img-fluid img-size-consistent"
           src="{% static 'images/placeholders/trip-placeholder-globe-in-hand.webp' %}"
@@ -19,7 +19,7 @@
           destination_slug="{{ destination.slug }}"
           destination_summary="{{ destination.summary}}">
     {% endif %}
-  </a>
+</button>
   <div id="destination-city{{destination.id}}"
        class="card-body">
     <h3>{{destination.city}}</h3>

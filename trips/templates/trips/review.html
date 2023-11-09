@@ -14,7 +14,7 @@
         <h3 class="display-6 mb-auto">
           <span>
             <i class="fa-solid fa-comment-dots"></i>&nbsp&nbsp
-          </span><span id="review-heading">Add a</span> review for {{ place.name }}
+          </span><span id="review-heading">Add a</span> review for <span id="review-place">{{ place.name }}</span>
         </h3>
         <a class="btn btn-dark button-link align-self-center button-transform"
            href="{% url 'trip_detail' trip.slug trip.id %}">
@@ -59,8 +59,9 @@
           <div class="d-flex justify-content-between bg-primary rounded mt-2">
             <button class="btn btn-edit text-light"
                     review_id="{{ review.id }}"
+                    place_name="{{ review.place.name }}"
             >
-              <a href="#write-review">
+              <a href="#top">
                 <i class="fa-solid fa-pencil fa-2x transform-dark"></i>
               </a> 
             </button>

@@ -260,3 +260,49 @@ HTML("""
         <span class="visually-hidden">Loading...</span>
         </div>
     """),
+
+<!-- Code originally used to display review card.  Found a more DRY way by including review_card html -->
+
+ <a data-bs-toggle="modal"
+            data-bs-target="#modal-user-review">
+            <div class="user-review card border-0 text-center image-clickable"
+                review_id="{{ review.id }}">
+              <div class="card-header border-0 bg-secondary">
+                <div class="row">
+                  <div class="col-md-5">
+                    <div class="image-container p-2">
+                      {% if 'placeholder' in review.profile.profile_image.url %}
+                      <img src="{% static 'images/placeholders/globe-profile-face-compress-square.webp' %}"
+                          alt="Inflatable globe with two eyes stuck on"
+                          id="review-image{{ review.id }}"
+                          class="img-fluid rounded-circle"
+                          width="120px">
+                      {% else %}
+                      <img src="{{ review.profile.profile_image.url }}"
+                          alt="picture of {{ profile.screen_name }}"
+                          id="review-image{{ review.id }}"
+                          class="img-fluid rounded-circle"
+                          width="120px">
+                      {% endif %}
+                    </div>
+                    <h4 id="review-profile-name{{ review.id }}"
+                        class="review-card-text fst-italic p-2">
+                      {{ review.profile.screen_name}}</h4>
+                  </div>
+                  <div
+                      class="col-md-7 d-flex flex-column justify-content-center">
+                    <h4 id="review-location{{ review.id }}"
+                        class="review-card-text">
+                      {{ review.place.name }}</h4>
+                  </div>
+                </div>
+              </div>
+              <div class="card-body bg-dark text-light">
+                <p class="review-card-text lead"><span><i
+                      class="fa-solid fa-magnifying-glass"></i>&nbsp&nbsp</span>
+                  Read Review</p>
+                <p id="review-body{{ review.id }}"
+                  class=" review-card-text card-title d-none {% if not review.approved and review.profile == request.user.profile %} faded {% elif not.review.approved %} d-none{% endif %}">{{review.body}}</p>
+              </div>
+            </div>
+          </a>

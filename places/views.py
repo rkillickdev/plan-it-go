@@ -53,7 +53,10 @@ class PlaceBrowseDetail(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(PlaceBrowseDetail, self).get_context_data(**kwargs)
+        place = get_object_or_404(Place, id=self.object.id)
         context["g_maps_api_key"] = os.environ.get("GOOGLE_MAPS_API_KEY")
+        context["reviews"] = place.reviews.filter(approved=True).order_by("created_on")
+        context["images"] = place.images.filter(approved=True).order_by("created_on")
         return context
 
 

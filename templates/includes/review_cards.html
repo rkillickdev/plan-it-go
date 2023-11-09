@@ -5,9 +5,9 @@
    data-bs-target="#modal-user-review">
   <div class="user-review card border-0 text-center image-clickable"
        review_id="{{ review.id }}">
-    <div class="card-header border-0 bg-primary">
+    <div class="card-header border-0 bg-secondary">
       <div class="row">
-        <div class="col-md-5 {% if request.resolver_match.url_name == 'place_detail' %} m-auto {% endif %}">
+        <div class="col-md-5 {% if request.resolver_match.url_name == 'place_browse_detail' %} m-auto {% endif %}">
           <div class="image-container p-2">
             {% if 'placeholder' in review.profile.profile_image.url %}
               <img src="{% static 'images/placeholders/globe-profile-face-compress-square.webp' %}"
@@ -28,15 +28,15 @@
             {{ review.profile.screen_name}}
           </h4>
         </div>
-        <div class="col-md-7 d-flex flex-column justify-content-center {% if request.resolver_match.url_name == 'place_detail' %} d-none {% endif %}">
+        <div class="col-md-7 d-flex flex-column justify-content-center {% if request.resolver_match.url_name == 'place_browse_detail' %} d-none {% endif %}">
           <h4 id="review-location{{ review.id }}"
               class="review-card-text display-5">{{ review.place.name }}
           </h4>
         </div>
       </div>
     </div>
-    <div class="card-body bg-secondary">
-      <p class="review-card-text lead">
+    <div class="card-body bg-dark">
+      <p class="review-card-text lead text-light">
         <span><i class="fa-solid fa-magnifying-glass"></i>&nbsp&nbsp</span> Read Review
       </p>
       <p id="review-body{{ review.id }}"

@@ -64,7 +64,7 @@
     <!-- Profile Form -->
     <div class="row">
       <div class="col-lg-6">
-        <div id="profile-form-container" class="form-container rounded bg-primary p-4" form_purpose="{% if request.user.profile.screen_name %}update{% else %}create{% endif %}">
+        <div id="form-container" class="rounded bg-primary p-4" form_purpose="{% if request.user.profile.screen_name %}update{% else %}create{% endif %}">
           {% crispy form %}
         </div>
       </div>
@@ -76,7 +76,7 @@
 
 {% block extras %}
 
-<script src="{% static 'js/profile-form.js' %}"></script>
+<script src="{% static 'js/forms.js' %}"></script>
 
 {% endblock extras %}
 

@@ -18,6 +18,7 @@ class TripForm(ModelForm):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.form_id = "trip-form"
+        self.helper.form_class ="rounded bg-dark text-light p-4"
         self.helper.form_method = "post"
         self.fields["location"].label = "Choose a destination"
         self.fields["title"].label = False
@@ -27,14 +28,6 @@ class TripForm(ModelForm):
         self.fields["end_date"].label = "When do you come back?"
 
         self.helper.layout = Layout(
-            Div(
-                HTML(
-                    """
-                <h2>Trip Details...</h2>
-                """
-                ),
-                css_class="py-2 text-center",
-            ),
             Field("location", css_class="form-select mt-2 mb-4"),
             Field(
                 "title", css_class="mb-4", placeholder="Give your trip a name"
@@ -51,8 +44,8 @@ class TripForm(ModelForm):
                 Submit(
                     "Submit",
                     "Create",
-                    css_id="submitButton",
-                    css_class="btn btn-dark",
+                    css_id="submit-button",
+                    css_class="btn btn-primary text-light",
                 ),
                 css_class="mb-4 text-center",
             ),

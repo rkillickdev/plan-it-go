@@ -10,19 +10,16 @@
          class="mt-7">
   <div class="container">
     <div class="row">
-      <div class="col-lg-7 d-flex flex-column justify-content-center">
-        <div class="image-container px-4">
-          <img src="{% static 'images/map-brazil-hearts-1000x1500-compress.webp'%}"
-               alt="A map of Brazil with two red hearts and a yellow pin flag"
-               class="img-fluid rounded d-none d-lg-block">
-        </div>
-      </div>
+      <h3 class="display-6">
+        {% if request.resolver_match.url_name == 'update_trip' %} Update Trip Details {% else %} Enter Trip Details {% endif %}
+      </h3>
+      <hr />
+    </div>
+    <div class="row mb-4">
       <!-- Trip Form -->
-      <div class="col-lg-5 d-flex flex-column justify-content-center">
-        <div class="form-container rounded bg-primary p-4">
+        <div id="form-container" class="medium-w-75" form_purpose="{% if request.resolver_match.url_name == 'update_trip' %}update{% else %}create{% endif %}">
           {% crispy form %}
         </div>
-      </div>
     </div>
   </div>
 </section>
@@ -30,5 +27,7 @@
 {% endblock %}
 
 {% block extras %}
+
+<script src="{% static 'js/forms.js' %}"></script>
 
 {% endblock extras %}

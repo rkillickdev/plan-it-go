@@ -9,18 +9,18 @@
 <section id="logout-confirm" class="mt-7">
   <div class="container">
     <div class="row">
-      <h1>{% trans "Sign Out" %}</h1>
+      <h1>{% trans "We're sorry to see you go!" %}</h1>
       <p>{% trans 'Are you sure you want to sign out?' %}</p>
     </div>
     <div class="row">
       <div class="col-md-8 mt-3 offset-md-2">
-        <div class="form-container rounded bg-primary p-4">
+        <div class="form-container rounded bg-dark text-light p-4 text-center">
           <form method="post" action="{% url 'account_logout' %}">
             {% csrf_token %}
             {% if redirect_field_value %}
             <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
             {% endif %}
-            <button type="submit">{% trans 'Sign Out' %}</button>
+            <button type="submit" class="btn btn-primary text-light">{% trans 'Sign Out' %}</button>
           </form>
         </div>
       </div>

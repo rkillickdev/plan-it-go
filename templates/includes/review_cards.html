@@ -40,8 +40,7 @@
         <span><i class="fa-solid fa-magnifying-glass"></i>&nbsp&nbsp</span> Read Review
       </p>
       <p id="review-body{{ review.id }}"
-         class=" review-card-text card-title d-none {% if not review.approved and review.profile == request.user.profile %} faded {% elif not.review.approved %} d-none{% endif %}">
-        {{review.body}}
+         class=" review-card-text card-title d-none {% if not review.approved and review.profile == request.user.profile %} faded {% elif not.review.approved %} d-none{% endif %}">{{review.body}}
       </p>
     </div>
   </div>

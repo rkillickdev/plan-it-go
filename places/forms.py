@@ -59,7 +59,7 @@ class ReviewForm(ModelForm):
                     css_id="submitButton",
                     css_class="btn btn-primary text-light",
                 ),
-                css_class="my-4 text-center",
+                css_class="mt-4 text-center",
             ),
         )
 

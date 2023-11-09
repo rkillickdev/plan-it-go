@@ -2,7 +2,7 @@
 
 <!-- Trip Info  -->
 <section id="trip-summary"
-         class="mt-6 mb-4">
+         class="mt-7 mb-4">
   <div class="container">
     <div class="row">
       <div class="col-12">
@@ -27,38 +27,35 @@
              <!-- Trip Info Accordion Header Ends -->
              <!-- Trip Info Accordion Collapsible Body Starts -->
             <div id="flush-collapseOne"
-                 class="accordion-collapse collapse"
+                 class="accordion-collapse collapse show"
                  aria-labelledby="flush-headingOne"
                  data-bs-parent="#accordionFlushExample">
               <div class="accordion-body">
                 <div class="row">
-                  <div class="col-md-7 pe-0">
+                  <div class="col-lg-7 pe-0">
                     <div class="map-container p-4">
                       <div id="map"></div>
                     </div>
                   </div>
-                  <div class="col-md-5 d-flex flex-column justify-content-between ps-0">
-                    <div class="card border-0 bg-secondary m-4">
-                      {% if 'placeholder' in trip.trip_image.url %}
-                        {% if 'placeholder' in trip.location.image.url %}
-                          <img src="{% static 'images/map-pins-sunlight-1500x1000-compress.webp' %}"
-                              alt=""
-                              class="card-img-top img-fluid img-size-consistent">
-                        {% else %}
-                          <img src="{{ trip.location.image.url }}"
-                              alt=""
-                              class="card-img-top img-fluid img-size-consistent">
-                        {% endif %}
-                      {% endif %}
-                      <div class="card-body">
-                        <h3 class="card-title text-center">{{ trip.title }}</h3>
-                        <p class="card-text">{{ trip.description }}</p>
+                  <div class="col-lg-5 d-flex flex-column justify-content-between ps-0">
+                    <div class="text-container p-4">
+                      <h3 class="text-center p-4">{{ trip.title }}</h3>
+                      <div class="card border-0 bg-light">
+                        <div class="card-body">
+                          <p class="card-text fst-italic">{{ trip.description }}</p>
+                        </div>
                       </div>
+                    </div>
+                    <div class="d-flex flex-column justify-content-center gap-2">
+                      <a href="#trip-recommendations" class="align-self-center">
+                        <i class="fa-solid fa-magnifying-glass-location fa-3x link-transform"></i>
+                      </a>
+                      <p class="lead align-self-center m-0">View Recommendations</p>
                     </div>
                     <div class="d-flex justify-content-between p-4">
                       <div class="card border-0 bg-secondary">
                         <a href="{% url 'update_trip' trip.slug trip.id %}">
-                          <i class="fa-solid fa-pencil anchor-icon"></i>
+                          <i class="fa-solid fa-pencil fa-2x anchor-icon link-transform"></i>
                         </a>
                       </div>
                       <div class="card border-0 bg-secondary">
@@ -67,7 +64,7 @@
                                 task="delete_trip"
                                 data-bs-toggle="modal"
                                 data-bs-target="#modal-delete-confirm">
-                          <i class="fa-solid fa-trash-can fa-3x"></i>
+                          <i class="fa-solid fa-trash-can fa-2x link-transform"></i>
                         </button>
                       </div>
                     </div>

@@ -460,6 +460,10 @@ class PlaceRemove(LoginRequiredMixin, View):
 
         trip.places.remove(place)
 
+        messages.add_message(
+                request, messages.SUCCESS, "Removed From Your Trip"
+            )
+
         return HttpResponseRedirect(
             reverse("trip_detail", args=[trip.slug, trip_id])
         )

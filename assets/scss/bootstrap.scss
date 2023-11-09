@@ -39,12 +39,16 @@ $form-select-indicator-color: $dark;
 
 /* Links */
 
-$link-color-dark: red;
 $link-hover-color-dark: $primary;
 
 /* Modals */
 
 $modal-footer-border-color: $primary;
+
+/* Toasts */
+
+$toast-header-border-color: $primary;
+
 
 // Buttons
 $button-padding-x: 20px;
@@ -56,6 +60,8 @@ $btn-padding-x-lg: $button-padding-x;
 $btn-padding-y: $button-padding-y;
 $btn-padding-y-sm: $button-padding-y;
 $btn-padding-y-lg: $button-padding-y;
+
+$btn-close-color: $dark;
 
 /* Navbar */
 $navbar-light-color: $dark;

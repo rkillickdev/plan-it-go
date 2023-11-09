@@ -47,6 +47,7 @@ class ReviewForm(ModelForm):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.form_id = "reviewForm"
+        self.helper.form_class ="rounded bg-dark text-light p-4"
         self.helper.form_show_labels = False
         self.helper.form_method = "POST"
 
@@ -73,6 +74,7 @@ class ImageForm(ModelForm):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.form_id = "imageForm"
+        self.helper.form_class ="rounded bg-dark text-light p-4"
         self.fields["path"].label = False
         self.helper.form_method = "POST"
 
@@ -83,9 +85,9 @@ class ImageForm(ModelForm):
                     "Submit",
                     "Upload",
                     css_id="imageUploadButton",
-                    css_class="btn btn-dark",
+                    css_class="btn btn-primary text-light",
                 ),
-                css_class="my-4 text-center",
+                css_class="mt-4 text-center",
             ),
         )
 

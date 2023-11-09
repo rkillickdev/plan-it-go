@@ -19,6 +19,7 @@ class ProfileForm(ModelForm):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.form_id = "profile-form"
+        self.helper.form_class ="rounded bg-dark text-light p-4"
         self.helper.form_show_labels = False
         self.helper.form_method = "post"
 
@@ -39,9 +40,9 @@ class ProfileForm(ModelForm):
                     "Submit",
                     "Create",
                     css_id="submit-button",
-                    css_class="btn btn-dark",
+                    css_class="btn btn-primary text-light",
                 ),
-                css_class="mb-4 text-center",
+                css_class="mt-4 text-center",
             ),
         )
 

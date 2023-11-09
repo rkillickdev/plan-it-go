@@ -24,8 +24,6 @@ class TripForm(ModelForm):
         self.fields["title"].label = False
         self.fields["description"].label = False
         self.fields["trip_image"].label = "Add your own image"
-        self.fields["start_date"].label = "When do you go?"
-        self.fields["end_date"].label = "When do you come back?"
 
         self.helper.layout = Layout(
             Field("location", css_class="form-select mt-2 mb-4"),
@@ -37,9 +35,10 @@ class TripForm(ModelForm):
                 css_class="mb-4",
                 placeholder="Tell us about your trip...",
             ),
-            Field("trip_image", css_class=" form-select mt-2 mb-4"),
-            Field("start_date", css_class="mt-2 mb-4"),
-            Field("end_date", css_class="mt-2 mb-4"),
+            Div (
+                Field("trip_image", css_class=" form-select"),
+                css_class="mb-4"
+            ),
             Div(
                 Submit(
                     "Submit",
@@ -47,7 +46,7 @@ class TripForm(ModelForm):
                     css_id="submit-button",
                     css_class="btn btn-primary text-light",
                 ),
-                css_class="mb-4 text-center",
+                css_class="mt-4 text-center",
             ),
         )
 
@@ -57,7 +56,5 @@ class TripForm(ModelForm):
             "location",
             "title",
             "description",
-            "trip_image",
-            "start_date",
-            "end_date",
+            "trip_image"
         ]

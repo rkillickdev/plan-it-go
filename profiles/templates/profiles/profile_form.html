@@ -61,13 +61,11 @@
       </h3>
       <hr />
     </div>
-    <!-- Profile Form -->
-    <div class="row">
-      <div class="col-lg-6">
-        <div id="form-container" class="rounded bg-primary p-4" form_purpose="{% if request.user.profile.screen_name %}update{% else %}create{% endif %}">
+    <div class="row mb-4">
+        <!-- Profile Form -->
+        <div id="form-container" class="medium-w-75" form_purpose="{% if request.user.profile.screen_name %}update{% else %}create{% endif %}">
           {% crispy form %}
         </div>
-      </div>
     </div>
   </div>
 </section>

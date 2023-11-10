@@ -47,14 +47,17 @@
                       </div>
                     </div>
                     <div class="d-flex flex-column justify-content-center gap-2">
-                      <a href="#trip-recommendations" class="align-self-center">
+                      <a href="#trip-recommendations" 
+                         class="align-self-center"
+                         aria-label="View recommendations for your trip destination">
                         <i class="fa-solid fa-magnifying-glass-location fa-3x link-transform"></i>
                       </a>
                       <p class="lead align-self-center m-0">View Recommendations</p>
                     </div>
                     <div class="d-flex justify-content-between p-4">
                       <div class="card border-0 bg-secondary">
-                        <a href="{% url 'update_trip' trip.slug trip.id %}">
+                        <a href="{% url 'update_trip' trip.slug trip.id %}"
+                           aria-label="Edit details of this trip">
                           <i class="fa-solid fa-pencil fa-2x anchor-icon link-transform"></i>
                         </a>
                       </div>
@@ -63,7 +66,8 @@
                                 target_id="{{ trip.id }}"
                                 task="delete_trip"
                                 data-bs-toggle="modal"
-                                data-bs-target="#modal-delete-confirm">
+                                data-bs-target="#modal-delete-confirm"
+                                aria-label="Delete this trip">
                           <i class="fa-solid fa-trash-can fa-2x link-transform"></i>
                         </button>
                       </div>

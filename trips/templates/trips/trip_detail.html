@@ -33,9 +33,8 @@
                             type="button"
                             data-bs-toggle="collapse"
                             data-bs-target="#flush-collapse-{{ forloop.counter }}"
-                            aria-expanded="{% if forloop.first %} true {% else %} false {% endif %}"
                             aria-controls="flush-collapse-{{ forloop.counter }}">
-                      <h4>{{ place.name }}</h4>
+                      {{ place.name }}
                     </button>
                   </h2>
                   <!-- Accordion Header Ends -->
@@ -55,27 +54,33 @@
                         </div>
                         <div class="d-flex flex-column justify-content-between px-4 gap-4 my-4 bg-secondary">
                           <div class="d-flex flex-column justify-content-center gap-2">
-                            <a class="delete-planner-item align-self-center link-transform"
+                            <button class="delete-planner-item align-self-center link-transform btn-icon"
                               trip_id="{{ trip.id }}"
                               place_id="{{ place.id }}"
                               place_name="{{ place.name }}"
                               data-bs-toggle="modal"
-                              data-bs-target="#modal-item-delete-confirm">
+                              data-bs-target="#modal-item-delete-confirm"
+                              aria-label="Delete this place from your trip"
+                            >
                                 <i class="fa-solid fa-circle-xmark fa-4x"></i>
-                            </a>
+                          </button>
                             <p class="lead align-self-center m-0">Remove From Planner</p>
                           </div>
                           <div class="d-flex justify-content-between">
                             <div class="d-flex flex-column justify-content-center gap-2">
                               <a href="{% url 'review' trip.slug trip.id place.id %}"
-                                 class="link-transform align-self-center">
+                                 class="link-transform align-self-center"
+                                 aria-label="Leave a review for this place"
+                              >
                                 <i class="fa-solid fa-pen-to-square fa-3x"></i>
                               </a>
                               <p class="lead align-self-center m-0">Leave A Review</p>
                             </div>
                             <div class="d-flex flex-column justify-content-center gap-2">
                               <a href="{% url 'add_image' trip.slug trip.id place.id %}"
-                                 class="link-transform align-self-center">
+                                 class="link-transform align-self-center"
+                                 aria-label="Upload an image for this place"
+                              >
                                 <i class="fa-solid fa-camera fa-3x"></i>
                               </a>
                               <p class="lead align-self-center m-0">Upload Image</p>
@@ -101,9 +106,9 @@
 <section id="trip-recommendations">
   <div class="container">
     <div class="row">
-      <h3 class="display-6"><span><i
+      <h2 class="display-6"><span><i
              class="fa-solid fa-heart text-primary"></i>&nbsp&nbsp</span>Recommended Places
-      </h3>
+      </h2>
       <hr />
     </div>
     <div class="row">
@@ -120,7 +125,8 @@
                   <h3>{{ place.name }}</h3>
                 </div>
                 <a class="stretched-link"
-                  href="{% url 'place_detail' trip.slug trip.id place.id %}"></a>
+                   href="{% url 'place_detail' trip.slug trip.id place.id %}"
+                   aria-label="Discover more details about this place"></a>
               </div>
             </div>
             {% if forloop.counter|divisibleby:3 %}

@@ -114,4 +114,4 @@ class Image(models.Model):
         ordering = ["created_on"]
 
     def __str__(self):
-        return f"Image For {self.place.name}, {self.place.location.city}: {self.profile.screen_name}"
+        return f"Image For {self.place.name}"

@@ -21,5 +21,8 @@ class ReviewAdmin(admin.ModelAdmin):
     
 @admin.register(Image)
 class ImageAdmin(admin.ModelAdmin):
+    list_display = ('place', 'profile', 'created_on', 'approved')
+    search_fields = ['place__name', 'profile__screen_name', 'approved']
+
     def approve_images(self, request, queryset):
         queryset.update(approved=True)

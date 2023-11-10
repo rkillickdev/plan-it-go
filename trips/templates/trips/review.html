@@ -11,11 +11,11 @@
   <div class="container">
     <div class="row mb-2">
       <div class="action-title d-flex justify-content-between p-2">
-        <h3 class="display-6 mb-auto">
+        <h2 class="display-6 mb-auto">
           <span>
             <i class="fa-solid fa-comment-dots"></i>&nbsp&nbsp
           </span><span id="review-heading">Add a</span> review for <span id="review-place">{{ place.name }}</span>
-        </h3>
+        </h2>
         <a class="btn btn-dark button-link align-self-center button-transform"
            href="{% url 'trip_detail' trip.slug trip.id %}">
           <span>
@@ -45,9 +45,9 @@
 <section id="reviews-list">
   <div class="container">
     <div class="row">
-      <h3 class="action-title display-6"><span><i
+      <h2 class="action-title display-6"><span><i
              class="fa-solid fa-folder-open"></i>&nbsp&nbsp</span>Your Reviews
-      </h3>
+      </h2>
       <hr />
     </div>
     <div class="row mb-4">
@@ -60,8 +60,10 @@
             <button class="btn btn-edit text-light"
                     review_id="{{ review.id }}"
                     place_name="{{ review.place.name }}"
+                    aria-label="Edit this review"
             >
-              <a href="#top">
+              <a href="#top"
+                 aria-label="Editing review takes you back to top of page">
                 <i class="fa-solid fa-pencil fa-2x transform-dark"></i>
               </a> 
             </button>
@@ -69,7 +71,8 @@
                     target_id="{{ review.id }}"
                     task="delete_review"
                     data-bs-toggle="modal"
-                    data-bs-target="#modal-delete-confirm"><i
+                    data-bs-target="#modal-delete-confirm"
+                    aria-label="Delete this review"><i
                 class="fa-solid fa-trash-can fa-2x transform-dark"></i></button>
           </div>
           {% endif %} 

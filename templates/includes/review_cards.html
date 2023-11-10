@@ -14,13 +14,15 @@
                   alt="Inflatable globe with two eyes stuck on"
                   id="review-image{{ review.id }}"
                   class="img-fluid rounded-circle"
-                  width="120px">
+                  width="120px"
+                  height="120px">
             {% elif 'placeholder' in trip.trip_image.url %}
               <img src="{% static 'images/placeholders/trip-placeholder-globe-in-hand.webp' %}"
               alt="Inflatable globe with two eyes stuck on"
               id="review-image{{ review.id }}"
               class="img-fluid rounded-circle"
-              width="120px">
+              width="120px"
+              height="120px">
             {% else %}
               <img src="{{ review.profile.profile_image.url }}"
                   alt="picture of {{ profile.screen_name }}"

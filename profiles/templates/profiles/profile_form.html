@@ -24,15 +24,15 @@
                   class="img-fluid rounded-circle"
                   width="250px">
             {% endif %}
-            <h4 class="text-center fst-italic p-2">
-              {{ profile.screen_name}}</h4>
+            <p class="text-center fst-italic p-2">
+              {{ profile.screen_name}}</p>
           {% else %}
             <img src="{% static 'images/placeholders/globe-profile-face-compress-square.webp' %}"
                 alt="Inflatable globe with two eyes stuck on"
                 class="img-fluid rounded-circle"
                 width="250px">
-            <h4 class="text-center fst-italic p-2">
-              {{ request.user.username }}</h4>
+            <p class="text-center fst-italic p-2">
+              {{ request.user.username }}</p>
           {% endif %}
         </div>
       </div>
@@ -56,9 +56,9 @@
     </div>
     <!-- Enter or Update Profile Details -->
     <div class="row">
-      <h3 class="display-6 text-center">
+      <h2 class="display-6 text-center">
         {% if request.user.profile.screen_name %} Update Your Details {% else %} Enter Your Details {% endif %}
-      </h3>
+      </h2>
       <hr />
     </div>
     <div class="row mb-4">

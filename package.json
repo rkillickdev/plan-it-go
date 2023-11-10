@@ -8,7 +8,7 @@
   },
   "scripts": {
     "sass-dev": "sass --watch --no-source-map --style=expanded assets/scss:static/css",
-    "sass-prod": "sass --no-source-map --style=compressed assets/scss:static/css"
+    "sass-prod": "sass --no-source-map --style=compressed assets/scss:static/css/min"
   },
   "repository": {
     "type": "git",

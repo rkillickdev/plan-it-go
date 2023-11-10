@@ -12,11 +12,11 @@
   <div class="container">
     <div class="row mb-2">
       <div class="action-title d-flex justify-content-between p-2">
-        <h3 class="display-6">
+        <h2 class="display-6">
           <span>
             <i class="fa-solid fa-camera"></i>&nbsp&nbsp
           </span>Add an image for {{ place.name }}
-        </h3>
+        </h2>
         <a class="btn btn-dark button-link align-self-center "
            href="{% url 'trip_detail' trip.slug trip.id %}">
           <span>
@@ -47,11 +47,11 @@
 <section id="image-gallery">
   <div class="container">
     <div class="row">
-      <h3 class="action-title display-6">
+      <h2 class="action-title display-6">
         <span>
           <i class="fa-solid fa-image"></i>&nbsp&nbsp
         </span>Your Image Gallery
-      </h3>
+      </h2>
       <hr />
     </div>
     {% for place in trip.places.all %}
@@ -69,8 +69,9 @@
           {% for image in place.images.all%}
             <div class="col-md-3 mb-4">
               <div class="card border-0 bg-secondary text-center h-100">
-                <a data-bs-toggle="modal"
-                  data-bs-target="#modal-image-solo">
+                <button data-bs-toggle="modal"
+                        data-bs-target="#modal-image-solo"
+                        class="border-0">
                   {% if 'placeholder' in image.path.url %}
                     <img src="{% static 'images/world-map-plane-1500x1000-compress.webp' %}"
                         alt="A toy plastic aeroplane pushed across a world map"
@@ -80,14 +81,15 @@
                         alt="{{ image.place.name }}"
                         class="card-img-top img-fluid image-solo img-size-consistent image-clickable">
                   {% endif %}
-                </a>
+              </button>
                 {% if user.is_authenticated and image.profile.id == user.profile.id %}
                   <div class="card-body py-2">
                     <button class="btn btn-delete"
                             target_id="{{ image.id }}"
                             task="delete_image"
                             data-bs-toggle="modal"
-                            data-bs-target="#modal-delete-confirm"><i
+                            data-bs-target="#modal-delete-confirm"
+                            aria-label="Delete this image"><i
                         class="fa-solid fa-trash-can fa-2x"></i></button>
                   </div>
                 {% endif %}

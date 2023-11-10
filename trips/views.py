@@ -143,7 +143,7 @@ class TripDetailView(LoginRequiredMixin, View):
             geo_data = list(
                 Place.objects.filter(
                     id__in=trip.places.values_list("id", flat=True)
-                ).values("latitude", "longitude")
+                ).values("latitude", "longitude", "name")
             )
 
             geo_list = []
@@ -153,6 +153,7 @@ class TripDetailView(LoginRequiredMixin, View):
                 new_dict = {
                     "lat": float(item["latitude"]),
                     "lng": float(item["longitude"]),
+                    "place": item["name"]
                 }
                 geo_list.append(new_dict)
 

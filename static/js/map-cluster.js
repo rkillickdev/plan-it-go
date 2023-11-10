@@ -46,7 +46,7 @@ async function initMap() {
   
       // open info window when marker is clicked
       marker.addListener("click", () => {
-        infoWindow.setContent(position.lat + ", " + position.lng);
+        infoWindow.setContent(position.place);
         infoWindow.open(map, marker);
       });
       return marker;
@@ -57,7 +57,6 @@ async function initMap() {
 }
 
 const locations = geo_list;
-
   
 initMap();
     

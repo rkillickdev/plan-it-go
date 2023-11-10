@@ -98,7 +98,8 @@
                 {% endif %}
                 <div class="card-body">{{ trip.title }}</div>
                 <a href="{% url 'trip_detail' trip.slug trip.id%}"
-                  class="card-title stretched-link"></a>
+                   aria-label="Find out more details about this trip"
+                   class="card-title stretched-link"></a>
               </div>
             </div>
             {% if forloop.counter|divisibleby:3 %}

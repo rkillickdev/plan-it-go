@@ -63,7 +63,7 @@
     </div>
     <div class="row mb-4">
         <!-- Profile Form -->
-        <div id="form-container" class="medium-w-75" form_purpose="{% if request.user.profile.screen_name %}update{% else %}create{% endif %}">
+        <div id="form-container" class="medium-w-75" data-form_purpose="{% if request.user.profile.screen_name %}update{% else %}create{% endif %}">
           {% crispy form %}
         </div>
     </div>

@@ -13,11 +13,11 @@
       <h2 class="display-6">
         {% if request.resolver_match.url_name == 'update_trip' %} Update Trip Details {% else %} Enter Trip Details {% endif %}
       </h2>
-      <hr />
+      <hr>
     </div>
     <div class="row mb-4">
       <!-- Trip Form -->
-        <div id="form-container" class="medium-w-75" form_purpose="{% if request.resolver_match.url_name == 'update_trip' %}update{% else %}create{% endif %}">
+        <div id="form-container" class="medium-w-75" data-form_purpose="{% if request.resolver_match.url_name == 'update_trip' %}update{% else %}create{% endif %}">
           {% crispy form %}
         </div>
     </div>

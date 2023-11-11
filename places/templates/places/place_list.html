@@ -11,10 +11,10 @@
         <h2 class="display-6">Places For {{ location.city }}</h2>
         <a class="btn btn-dark button-link align-self-center "
            href="{% if request.user.is_staff %} {% url 'locations' %} {% else %} {% url 'home' %}#destination-ideas {% endif %}">
-          <span><i class="fa-solid fa-angles-left"></i>&nbsp&nbsp</span>More Destinations
+          <span><i class="fa-solid fa-angles-left"></i>&nbsp;;&nbsp;;</span>More Destinations
         </a>
       </div>
-      <hr />
+      <hr>
     </div>
     <div class="row">
       <div class="col-12">

@@ -224,7 +224,7 @@
         </div>
     </div>
     <div class="card-body">
-        <p class="lead"><span><i class="fa-solid fa-magnifying-glass"></i>&nbsp&nbsp</span> Read Review</p>
+        <p class="lead"><span><i class="fa-solid fa-magnifying-glass"></i>&nbsp;&nbsp;</span> Read Review</p>
         <p id="review-body{{ review.id }}" class=" card-title d-none {% if not review.approved and review.profile == request.user.profile %} faded {% elif not.review.approved %} d-none{% endif %}">{{review.body}}</p>
     </div>
     <div class="card-footer">
@@ -299,7 +299,7 @@ HTML("""
               </div>
               <div class="card-body bg-dark text-light">
                 <p class="review-card-text lead"><span><i
-                      class="fa-solid fa-magnifying-glass"></i>&nbsp&nbsp</span>
+                      class="fa-solid fa-magnifying-glass"></i>&nbsp;&nbsp;</span>
                   Read Review</p>
                 <p id="review-body{{ review.id }}"
                   class=" review-card-text card-title d-none {% if not review.approved and review.profile == request.user.profile %} faded {% elif not.review.approved %} d-none{% endif %}">{{review.body}}</p>

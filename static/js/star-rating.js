@@ -11,14 +11,14 @@ function generateStars(rating) {
 
     // Append filled stars to starList
     for (number; number >=1; number--)
-        starList.push('<i class="fa-solid fa-star text-primary" aria-hidden="true"></i>&nbsp');
+        starList.push('<i class="fa-solid fa-star text-primary" aria-hidden="true"></i>&nbsp;');
         
     // Append any half stars if necessary
-    if (number == .5) starList.push('<i class="fa-solid fa-star-half-stroke text-primary" aria-hidden="true"></i>&nbsp;');
+    if (number == .5) starList.push('<i class="fa-solid fa-star-half-stroke text-primary" aria-hidden="true"></i>&nbsp;;');
 
     // // Append empty stars to starList
     for (let i =(5 - rating); i>=1; i--)
-        starList.push('<i class="fa-regular fa-star text-primary" aria-hidden="true"></i>&nbsp');
+        starList.push('<i class="fa-regular fa-star text-primary" aria-hidden="true"></i>&nbsp;');
 
     return starList.join('');
 }

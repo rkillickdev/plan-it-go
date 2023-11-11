@@ -4,7 +4,7 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content p-5">
       <div class="modal-body">
-        <p class="lead m-0">Are you sure you want to delete this&nbsp{% if request.resolver_match.url_name == 'trip_detail' %}trip{% elif request.resolver_match.url_name == 'review' %}review{% elif request.resolver_match.url_name == 'add_image' %}image{% else %}this{% endif %}?</p>
+        <p class="lead m-0">Are you sure you want to delete this&nbsp;{% if request.resolver_match.url_name == 'trip_detail' %}trip{% elif request.resolver_match.url_name == 'review' %}review{% elif request.resolver_match.url_name == 'add_image' %}image{% else %}this{% endif %}?</p>
       </div>
       <div class="modal-footer">
         <button class="btn btn-dark text-light"

@@ -1,4 +1,4 @@
-let ratingNumber = document.getElementById("stars").getAttribute("place_rating");
+let ratingNumber = document.getElementById("stars").getAttribute("data-place_rating");
 
 document.getElementById("stars").innerHTML = generateStars(ratingNumber);
 
@@ -14,7 +14,7 @@ function generateStars(rating) {
         starList.push('<i class="fa-solid fa-star text-primary" aria-hidden="true"></i>&nbsp;');
         
     // Append any half stars if necessary
-    if (number == .5) starList.push('<i class="fa-solid fa-star-half-stroke text-primary" aria-hidden="true"></i>&nbsp;;');
+    if (number == .5) starList.push('<i class="fa-solid fa-star-half-stroke text-primary" aria-hidden="true"></i>&nbsp;');
 
     // // Append empty stars to starList
     for (let i =(5 - rating); i>=1; i--)

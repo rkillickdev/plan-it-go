@@ -12,7 +12,7 @@
       <div class="col-md-6">
         <div class="card border-0 h-100 bg-secondary">
           <div class="card-header bg-light border text-center display-6">
-            <span place_rating="{{ place.rating }}"
+            <span data-place_rating="{{ place.rating }}"
                   id="stars">
             </span>
           </div>
@@ -32,7 +32,7 @@
             <div class="justify-content-center">
               <a href="{% if request.resolver_match.url_name == 'place_detail' %} {% url 'trip_detail' trip.slug trip.id %}#trip-recommendations {% else %} {% url 'place_list' place.location.id place.location.slug %} {% endif %}"
                  class="btn btn-dark button-link">
-                <span><i class="fa-solid fa-angles-left"></i>&nbsp;&nbsp;</span>
+                <span><i class="fa-solid fa-angles-left"></i>&ensp;</span>
                 {% if request.resolver_match.url_name == 'place_detail' %}
                 More Recommendations {% else %} More Places {% endif %}
               </a>

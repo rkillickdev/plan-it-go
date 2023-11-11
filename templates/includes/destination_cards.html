@@ -8,16 +8,16 @@
       <img class="card-img-top img-fluid img-size-consistent"
           src="{% static 'images/placeholders/trip-placeholder-globe-in-hand.webp' %}"
           alt="{{ destination.name }}"
-          destination_id="{{ destination.id }}"
-          destination_slug="{{ destination.slug }}"
-          destination_summary="{{ destination.summary}}">
+          data-destination_id="{{ destination.id }}"
+          data-destination_slug="{{ destination.slug }}"
+          data-destination_summary="{{ destination.summary}}">
     {% else %}
       <img class="destination-image card-img-top img-fluid img-size-consistent"
           src="{{ destination.image.url }}"
           alt="{{ destination.city }}"
-          destination_id="{{ destination.id }}"
-          destination_slug="{{ destination.slug }}"
-          destination_summary="{{ destination.summary}}">
+          data-destination_id="{{ destination.id }}"
+          data-destination_slug="{{ destination.slug }}"
+          data-destination_summary="{{ destination.summary}}">
     {% endif %}
 </button>
   <div id="destination-city{{destination.id}}"

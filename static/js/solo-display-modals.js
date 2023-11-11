@@ -23,9 +23,9 @@ let tripIdeasLink = document.getElementById("trip-ideas");
 
 for(let city of destinationCities) {
     city.addEventListener("click", (e) => {
-        let destinationId = e.target.getAttribute("destination_id");
-        let destinationSlug = e.target.getAttribute("destination_slug");
-        let summary = e.target.getAttribute("destination_summary");
+        let destinationId = e.target.getAttribute("data-destination_id");
+        let destinationSlug = e.target.getAttribute("data-destination_slug");
+        let summary = e.target.getAttribute("data-destination_summary");
         let destinationImagePath = e.target.getAttribute("src");
         let city = document.getElementById(`destination-city${destinationId}`).innerText;
         destinationSummary.innerText = summary;

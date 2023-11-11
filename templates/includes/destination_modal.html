@@ -1,4 +1,5 @@
 <!-- Destination Info Modal -->
+{% load static %}
 <div id="modal-destination-info"
      class="modal fade">
   <div class="modal-dialog modal-lg mt-7">
@@ -9,15 +10,15 @@
             <div class="card-header border-0 bg-secondary py-3">
               <div class="d-flex justify-content-between">
                 <h2 id="destination-city"
-                    class="display-5"></h2>
+                    class="display-5">Destination</h2>
                 <a id="trip-ideas"
                    href=""
                    class="btn btn-dark button-link align-self-center">Things To Do</a>
               </div>
             </div>
             <img id="destination-image"
-                 src=""
-                 alt=""
+                 src="{% static 'images/world-map-plane-1500x1000-compress.webp' %}"
+                 alt="A world map with a plastic toy plane"
                  class="img-fluid">
             <div class="card-body bg-secondary">
               <p id="destination-summary"></p>

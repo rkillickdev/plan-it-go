@@ -5,7 +5,7 @@ from django.contrib.messages import get_messages
 from django.contrib.auth.models import User
 from .models import Trip, Profile, Place, Location
 from places.models import Review, Image
-from .views import TripBrowse, TripCreateView, PlaceToggle
+from .views import TripCreateView, PlaceToggle
 from .forms import TripForm
 
 

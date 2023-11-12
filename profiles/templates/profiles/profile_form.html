@@ -17,12 +17,12 @@
               <img src="{% static 'images/placeholders/globe-profile-face-compress-square.webp' %}"
                   alt="Inflatable globe with two eyes stuck on"
                   class="img-fluid rounded-circle"
-                  width="250px">
+                  width="250">
             {% else %}
               <img src="{{ profile.profile_image.url }}"
                   alt="picture of {{ profile.screen_name }}"
                   class="img-fluid rounded-circle"
-                  width="250px">
+                  width="250">
             {% endif %}
             <p class="text-center fst-italic p-2">
               {{ profile.screen_name}}</p>
@@ -30,7 +30,7 @@
             <img src="{% static 'images/placeholders/globe-profile-face-compress-square.webp' %}"
                 alt="Inflatable globe with two eyes stuck on"
                 class="img-fluid rounded-circle"
-                width="250px">
+                width="250">
             <p class="text-center fst-italic p-2">
               {{ request.user.username }}</p>
           {% endif %}
@@ -59,7 +59,7 @@
       <h2 class="display-6 text-center">
         {% if request.user.profile.screen_name %} Update Your Details {% else %} Enter Your Details {% endif %}
       </h2>
-      <hr />
+      <hr>
     </div>
     <div class="row mb-4">
         <!-- Profile Form -->

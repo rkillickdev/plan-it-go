@@ -20,7 +20,8 @@ class PlaceForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
-        self.helper.form_id = "place-api-form"
+        self.helper.form_id = "retrieve-places"
+        self.helper.form_class ="rounded bg-dark text-light p-4"
         self.fields["location"].label = "Select A Destination"
         self.helper.form_method = "POST"
 
@@ -31,7 +32,7 @@ class PlaceForm(ModelForm):
                     "Submit",
                     "Request Places",
                     css_id="submitButton",
-                    css_class="btn btn-dark"
+                    css_class="btn btn-primary text-light"
                     ),
                 css_class="my-4",
             ),

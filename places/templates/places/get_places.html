@@ -11,11 +11,11 @@
   <div class="container">
     <div class="row mb-2">
       <div class="action-title d-flex justify-content-between p-2">
-        <h3 class="display-6">
+        <h2 class="display-6">
           <span>
             <i class="fa-solid fa-magnifying-glass-location"></i>&ensp;
           </span>Retrieve places for {{ location.city }}
-        </h3>
+        </h2>
         <a class="btn btn-dark button-link align-self-center"
            href="{% url 'locations' %}">
           <span>
@@ -40,7 +40,7 @@
               to retrieve</p>
           </div>
         <!-- Retrieve Places Form -->  
-        <div class="form-container rounded bg-primary p-4 text-center">
+        <div id="form-container">
           {% crispy form %}
         </div>
       </div>

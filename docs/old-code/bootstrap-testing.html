@@ -105,7 +105,7 @@
 <!-- CODE ORIGINALLY USED TO DISPLAY REVIEWS ON PLACE DETAIL PAGE-->
 
 <a data-bs-toggle="modal" data-bs-target="#modal-review-solo">
-  <div class="review-solo d-flex flex-column justify-content-center align-items-center text-center" review_id="{{ review.id }}">
+  <div class="review-solo d-flex flex-column justify-content-center align-items-center text-center" data-review_id="{{ review.id }}">
     <img src="{% static 'images/placeholders/globe-profile-face-compress-square.webp'%}" alt="" class="rounded-circle" width="120">
     <p id="review-title{{review.id}}" class="w-50 my-4 fst-italic fs-4 mb-4">
       {{ review.title }}    
@@ -210,7 +210,7 @@
 <!-- OLD CAROUSEL REVIEW CARDS -->
 
 <a data-bs-toggle="modal" data-bs-target="#modal-user-review">
-  <div class="user-review card mb-4 text-center" review_id="{{ review.id }}">
+  <div class="user-review card mb-4 text-center" data-review_id="{{ review.id }}">
     <div class="card-header">
         <div class="d-flex justify-content-between">
             <div class="image-container">

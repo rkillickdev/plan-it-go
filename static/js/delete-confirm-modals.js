@@ -8,8 +8,8 @@ let DeleteConfirm = document.getElementById("delete-confirm");
 
 for (let button of deleteButtons) {
     button.addEventListener("click", (e) => {
-        let targetId = e.currentTarget.getAttribute("target_id");
-        let task = e.currentTarget.getAttribute("task");
+        let targetId = e.currentTarget.getAttribute("data-target_id");
+        let task = e.currentTarget.getAttribute("data-task");
         DeleteConfirm.href = `${task}/${targetId}`;
     });
 }
@@ -24,9 +24,9 @@ let itemPlace = document.getElementById("item-place");
 
 for (let item of deletePlannerItems) {
     item.addEventListener("click", (e) => {
-        let tripId = e.currentTarget.getAttribute("trip_id");
-        let placeId = e.currentTarget.getAttribute("place_id");
-        let placeName = e.currentTarget.getAttribute("place_name");
+        let tripId = e.currentTarget.getAttribute("data-trip_id");
+        let placeId = e.currentTarget.getAttribute("data-place_id");
+        let placeName = e.currentTarget.getAttribute("data-place_name");
         itemDeleteForm.setAttribute("action", `/trips/remove_place/${tripId}/${placeId}`);
         itemDeleteConfirm.value = placeId;
         itemPlace.innerText = placeName;

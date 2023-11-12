@@ -7,7 +7,7 @@ let soloReviewBody = document.getElementById("solo-review-body");
 
 for(let review of soloReviews) {
     review.addEventListener("click", (e) => {
-        let reviewId = e.currentTarget.getAttribute("review_id");
+        let reviewId = e.currentTarget.getAttribute("data-review_id");
         let reviewImagePath = e.target.getAttribute("src");
         let reviewTitle = document.getElementById(`review-title${reviewId}`).innerText;
         let reviewBody = document.getElementById(`review-body${reviewId}`).innerText;

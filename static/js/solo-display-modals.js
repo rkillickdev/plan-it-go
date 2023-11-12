@@ -48,7 +48,7 @@ let modalBody = document.getElementById("modal-body");
 
 for(let review of userReviews) {
     review.addEventListener("click", (e) => {
-        let reviewId = e.currentTarget.getAttribute("review_id");
+        let reviewId = e.currentTarget.getAttribute("data-review_id");
         let reviewImagePath = document.getElementById(`review-image${reviewId}`).getAttribute("src");
         let reviewProfile = document.getElementById(`review-profile-name${reviewId}`).innerText;
         let reviewLocation = document.getElementById(`review-location${reviewId}`).innerText;

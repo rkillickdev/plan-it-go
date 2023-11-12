@@ -55,9 +55,9 @@
                         <div class="d-flex flex-column justify-content-between px-4 gap-4 my-4 bg-secondary">
                           <div class="d-flex flex-column justify-content-center gap-2">
                             <button class="delete-planner-item align-self-center link-transform btn-icon"
-                              trip_id="{{ trip.id }}"
-                              place_id="{{ place.id }}"
-                              place_name="{{ place.name }}"
+                              data-trip_id="{{ trip.id }}"
+                              data-place_id="{{ place.id }}"
+                              data-place_name="{{ place.name }}"
                               data-bs-toggle="modal"
                               data-bs-target="#modal-item-delete-confirm"
                               aria-label="Delete this place from your trip"
@@ -109,7 +109,7 @@
       <h2 class="display-6"><span><i
              class="fa-solid fa-heart text-primary"></i>&ensp;</span>Recommended Places
       </h2>
-      <hr />
+      <hr>
     </div>
     <div class="row">
       <div class="col-12">

@@ -58,8 +58,8 @@
           {% if user.is_authenticated and review.profile.id == user.profile.id %}
           <div class="d-flex justify-content-between bg-primary rounded mt-2">
             <button class="btn btn-edit text-light"
-                    review_id="{{ review.id }}"
-                    place_name="{{ review.place.name }}"
+                    data-review_id="{{ review.id }}"
+                    data-place_name="{{ review.place.name }}"
                     aria-label="Edit this review"
             >
               <a href="#top"
@@ -68,8 +68,8 @@
               </a> 
             </button>
             <button class="btn btn-delete text-light"
-                    target_id="{{ review.id }}"
-                    task="delete_review"
+                    data-target_id="{{ review.id }}"
+                    data-task="delete_review"
                     data-bs-toggle="modal"
                     data-bs-target="#modal-delete-confirm"
                     aria-label="Delete this review"><i

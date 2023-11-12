@@ -10,8 +10,8 @@ let submitButton = document.getElementById("submitButton");
 
 for (let button of editButtons) {
     button.addEventListener("click", (e) => {
-        let reviewId = e.currentTarget.getAttribute("review_id");
-        let placeName = e.currentTarget.getAttribute("place_name");
+        let reviewId = e.currentTarget.getAttribute("data-review_id");
+        let placeName = e.currentTarget.getAttribute("data-place_name");
         let reviewContent = document.getElementById(`review-body${reviewId}`).innerText;
         reviewText.value = reviewContent;
         submitButton.value = "Update Review";

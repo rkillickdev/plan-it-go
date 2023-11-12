@@ -85,8 +85,8 @@
                 {% if user.is_authenticated and image.profile.id == user.profile.id %}
                   <div class="card-body py-2">
                     <button class="btn btn-delete"
-                            target_id="{{ image.id }}"
-                            task="delete_image"
+                            data-target_id="{{ image.id }}"
+                            data-task="delete_image"
                             data-bs-toggle="modal"
                             data-bs-target="#modal-delete-confirm"
                             aria-label="Delete this image"><i

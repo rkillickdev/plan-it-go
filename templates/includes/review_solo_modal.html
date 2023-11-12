@@ -13,26 +13,25 @@
               <div class="col-md-5">
                 <div class="image-container p-2">
                   {% if 'placeholder' in review.profile.profile_image.url %}
-                    <img src="{% static 'images/placeholders/globe-profile-face-compress-square.webp' %}"
-                        alt="Inflatable globe with two eyes stuck on"
+                    <img src="data:,"
+                        alt="Alternative Text"
                         id="modal-profile-image"
                         class="img-fluid rounded-circle"
-                        width="120px">
+                        width="120">
                   {% else %}
-                    <img src="{{ review.profile.profile_image.url }}"
-                        alt="picture of {{ profile.screen_name }}"
+                    <img src="data:,"
+                        alt="Alternative Text"
                         id="modal-profile-image"
                         class="img-fluid rounded-circle"
-                        width="120px">
+                        width="120">
                   {% endif %}
                 </div>
                 <h4 id="modal-profile-name"
-                    class="review-card-text fst-italic p-2"></h4>
+                    class="review-card-text fst-italic p-2">Profile Name</h4>
               </div>
               <div class="col-md-7 d-flex flex-column justify-content-center">
                 <h4 id="modal-location"
-                    class="review-card-text display-5">
-                  {{ review.place.name }}</h4>
+                    class="review-card-text display-5">Place Name</h4>
               </div>
             </div>
           </div>

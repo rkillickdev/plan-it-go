@@ -1,7 +1,7 @@
 {% load static %}
 
 <!-- Clickable review card that opens full review in modal -->
-<button data-bs-toggle="modal"
+<div data-bs-toggle="modal"
         data-bs-target="#modal-user-review"
         class="border-0">
   <div class="user-review card border-0 text-center image-clickable"
@@ -14,21 +14,22 @@
                   alt="Inflatable globe with two eyes stuck on"
                   id="review-image{{ review.id }}"
                   class="img-fluid rounded-circle"
-                  width="120px"
-                  height="120px">
+                  width="120"
+                  height="120">
             {% elif 'placeholder' in trip.trip_image.url %}
               <img src="{% static 'images/placeholders/trip-placeholder-globe-in-hand.webp' %}"
               alt="Inflatable globe with two eyes stuck on"
               id="review-image{{ review.id }}"
               class="img-fluid rounded-circle"
-              width="120px"
-              height="120px">
+              width="120"
+              height="120">
             {% else %}
               <img src="{{ review.profile.profile_image.url }}"
                   alt="picture of {{ profile.screen_name }}"
                   id="review-image{{ review.id }}"
                   class="img-fluid rounded-circle"
-                  width="120px">
+                  width="120"
+                  height="120">
             {% endif %}
           </div>
           <h3 id="review-profile-name{{ review.id }}"
@@ -50,4 +51,4 @@
       </p>
     </div>
   </div>
-</button>
+</div>

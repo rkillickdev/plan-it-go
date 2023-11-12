@@ -45,7 +45,7 @@ class LocationForm(ModelForm):
                 css_class="mb-4",
                 placeholder="Destination longitude",
             ),
-            Field("image", css_class="mb-4", placeholder="Upload an image..."),
+            Field("image", css_class="mb-4"),
             Div(
                 Submit(
                     "Submit",

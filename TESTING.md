@@ -64,3 +64,17 @@ Warning: The type: attribute is unnecessary for JavaScript resources.
 
 ### **W3C CSS Validator**
 
+### **Lighthouse:**
+
+<br>
+
+I used Lighthouse within Google Chrome developer tools as a way of testing performance, accessibility, best practices and SEO of the site.
+
+<br>
+
+<details><summary>Desktop Results</summary>
+
+Home Page
+
+[! Lighthouse Desktop Results]
+

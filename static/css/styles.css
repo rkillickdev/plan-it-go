@@ -25,6 +25,11 @@ hr {
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
 }
 
+/* Forms */
+input[type=file] {
+  display: none;
+}
+
 /* Header */
 .hero-image {
   background: linear-gradient(to left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.6)), url("/static/images/hero/map-pins-hero-1500x1000-compress.webp") left center no-repeat;

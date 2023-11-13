@@ -69,7 +69,9 @@ class CustomLoginForm(LoginForm):
         self.helper.form_class ="rounded bg-dark text-light p-4"
         self.helper.field_class = "mb-4"
         self.fields["login"].label = False
+        self.fields["login"].aria_label = "Enter your username"
         self.fields["password"].label = False
+        self.fields["password"].aria_label = "Enter your password"
 
         self.helper.layout.append(
             HTML(

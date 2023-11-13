@@ -28,16 +28,16 @@ class TripForm(ModelForm):
         self.helper.layout = Layout(
             Field("location", css_class="form-select mt-2 mb-4"),
             Field(
-                "title", css_class="mb-4", placeholder="Give your trip a name"
+                "title", css_class="mb-4", aria_label="Enter A trip name", placeholder="Give your trip a name"
             ),
             Field(
                 "description",
                 css_class="mb-4",
+                aria_label="Enter a trip description",
                 placeholder="Tell us about your trip...",
             ),
-            Div (
-                Field("trip_image", css_class=" form-select"),
-                css_class="mb-4"
+            Field(
+                "trip_image", css_class="form-select"
             ),
             Div(
                 Submit(

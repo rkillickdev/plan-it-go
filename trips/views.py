@@ -414,11 +414,11 @@ def image_delete(request, trip_id, place_id, image_id, *args, **kwargs):
         image.delete()
         messages.add_message(request, messages.SUCCESS, "Image deleted!")
     else:
-        raise PermissionDenied()
         messages.add_message(
             request, messages.ERROR, "You can only delete your own images!"
         )
-
+        raise PermissionDenied()
+        
     return HttpResponseRedirect(
         reverse("add_image", args=[trip.slug, trip_id, place_id])
     )

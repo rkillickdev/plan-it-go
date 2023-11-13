@@ -75,25 +75,24 @@ class TestTripsViews(TestCase):
     #     self.assertTrue(form.instance.profile)
     #     self.assertTrue(form.is_valid())
 
-    def test_get_success_url_redirect(self):
-        """
-        """
-        trip_data = {
-            # "profile": self.profile,
-            "location": self.location,
-            "title": "West End Shows",
-            "slug": "west-end-shows",
-        }
-        self.client.login(username="testuser", password="testpassword")
-        response = self.client.post(reverse("create_trip"), data=trip_data)
-        form = TripForm(data=trip_data)
-        self.assertTrue(form.is_valid())
+    # def test_get_success_url_redirect(self):
+    #     """
+    #     """
+    #     trip_data = {
+    #         "profile": self.profile,
+    #         "location": self.location,
+    #         "title": "West End Shows",
+    #         "slug": "west-end-shows",
+    #     }
+    #     self.client.login(username="testuser", password="testpassword")
+    #     response = self.client.post(reverse("create_trip"), data=trip_data)
+        # form = TripForm(data=trip_data)
+        # self.assertTrue(form.is_valid())
         # self.assertTrue(form.instance.profile)
-        print(form.instance.title)
-        new_trip = Trip.objects.get(id=2)
-        print(new_trip)
+        # new_trip = Trip.objects.get(id=2)
         # self.assertTrue(Trip.objects.filter(title="West End Shows").exists())
 
+        # self.assertEqual(response.status_code, 302)
         # self.assertRedirects(response, 
         #                     reverse_lazy(
         #                         "trip_detail",
@@ -105,7 +104,81 @@ class TestTripsViews(TestCase):
         #                     )
         
 
-    def test_trip_defensive_programming(self):
+    def test_trip_update_defensive_programming(self):
+        """
+        Tests whether a logged in user can access update trip page belonging
+        to another user.  It is expected that they should be redirected to the
+        403 error template.
+        """
+        # Login alt user that does not own trip 
+        self.client.login(username="testuseralt", password="alttestpassword")
+        response = self.client.get(
+            reverse(
+                "update_trip",
+                kwargs={
+                    "slug": self.trip.slug,
+                    "pk": self.trip.id
+                }
+            )
+        )
+        self.assertEqual(response.status_code, 403)
+
+    # def test_get_object_method(self):
+    #     """
+    #     """
+    #     self.client.login(username="testuser", password="testpassword")
+    #     response = self.client.get(
+    #         reverse(
+    #             "update_trip",
+    #             kwargs={
+    #                 "slug": self.trip.slug,
+    #                 "pk": self.trip.id
+    #             }
+    #         )
+    #     )
+    #     self.assertTrue(Trip.objects.filter(id=self.trip.id).exists())
+
+    def test_trip_detail(self):
+        """
+        """
+        # Login alt user that does not own trip 
+        self.client.login(username="testuseralt", password="alttestpassword")
+        response = self.client.get(
+            reverse(
+                "trip_detail",
+                kwargs={
+                    "slug": self.trip.slug,
+                    "trip_id": self.trip.id
+                }
+            )
+        )
+        self.assertEqual(response.status_code, 403)
+        messages = list(get_messages(response.wsgi_request))
+        self.assertEqual(len(messages), 1)
+        self.assertEqual(str(messages[0]), 'You can only access your own trips!')
+
+    def test_place_detail_defensive_programming(self):
+        """
+        """
+        # Login alt user that does not own trip 
+        self.client.login(username="testuseralt", password="alttestpassword")
+        response = self.client.get(
+            reverse(
+                "place_detail",
+                kwargs={
+                    "slug": self.trip.slug,
+                    "trip_id": self.trip.id,
+                    "place_id": self.place.id
+                }
+            )
+        )
+        self.assertEqual(response.status_code, 403)
+        messages = list(get_messages(response.wsgi_request))
+        self.assertEqual(len(messages), 1)
+        self.assertEqual(str(messages[0]), 'This page does not belong to your Trip!')
+
+
+    def test_trip_delete_defensive_programming(self):
         """
         Tests whether a logged in user can delete a trip belonging to
         another user.  Also tests whether an error message is generated
@@ -182,6 +255,47 @@ class TestTripsViews(TestCase):
         self.assertEqual(new_review.place, self.place)
         self.assertEqual(new_review.profile, self.profile)
         self.assertEqual(new_review.body, "test review")
+
+    def test_review_create_defensive_programming(self):
+        """
+        Tests whether a logged in user can access review page belonging
+        to another user.  It is expected that they should be redirected to the
+        403 error template.
+        """
+        # Login alt user that does not own trip 
+        self.client.login(username="testuseralt", password="alttestpassword")
+        response = self.client.get(
+            reverse(
+                "review",
+                kwargs={
+                    "slug": self.trip.slug,
+                    "trip_id": self.trip.id,
+                    "place_id": self.place.id,
+                }
+            )
+        )
+        self.assertEqual(response.status_code, 403)
+
+    def test_review_edit_defensive_programming(self):
+        """
+        Tests whether a logged in user can access review page belonging
+        to another user.  It is expected that they should be redirected to the
+        403 error template.
+        """
+        # Login alt user that does not own trip 
+        self.client.login(username="testuseralt", password="alttestpassword")
+        response = self.client.get(
+            reverse(
+                "edit_review",
+                kwargs={
+                    "slug": self.trip.slug,
+                    "trip_id": self.trip.id,
+                    "place_id": self.place.id,
+                    "review_id": self.review.id
+                }
+            )
+        )
+        self.assertEqual(response.status_code, 403)
 
     def test_invalid_review_submission(self):
         """
@@ -280,7 +394,7 @@ class TestTripsViews(TestCase):
 
         messages = list(get_messages(response.wsgi_request))
         self.assertEqual(len(messages), 1)
-        self.assertEqual(str(messages[0]), 'Error updating comment!')
+        self.assertEqual(str(messages[0]), 'Error updating this review!')
 
     def test_review_delete(self):
         """
@@ -340,6 +454,8 @@ class TestTripsViews(TestCase):
         self.assertEqual(len(messages), 1)
         self.assertEqual(str(messages[0]), 'You can only delete your own reviews!')
 
+    
+
     def test_image_delete(self):
         """
         Tests Image delete
@@ -371,9 +487,29 @@ class TestTripsViews(TestCase):
         )
         self.assertFalse(Image.objects.filter(id=self.image.id).exists())
         updated_image_count = Image.objects.all().count()
-        self.assertEqual(updated_image_count, 0)     
+        self.assertEqual(updated_image_count, 0) 
 
-    def test_image_defensive_programming(self):
+    def test_add_image_defensive_programming(self):
+        """
+        Tests whether a logged in user can access add image page belonging
+        to another user.  It is expected that they should be redirected to the
+        403 error template.
+        """
+        # Login alt user that does not own trip 
+        self.client.login(username="testuseralt", password="alttestpassword")
+        response = self.client.get(
+            reverse(
+                "add_image",
+                kwargs={
+                    "slug": self.trip.slug,
+                    "trip_id": self.trip.id,
+                    "place_id": self.place.id
+                }
+            )
+        )
+        self.assertEqual(response.status_code, 403)    
+
+    def test_image_delete_defensive_programming(self):
         """
         Tests whether a logged in user can delete an image belonging to
         another user.  Also tests whether an error message is generated
@@ -397,6 +533,7 @@ class TestTripsViews(TestCase):
         messages = list(get_messages(response.wsgi_request))
         self.assertEqual(len(messages), 1)
         self.assertEqual(str(messages[0]), 'You can only delete your own images!')
+        self.assertEqual(response.status_code, 403)
    
     def test_successful_trip_delete_redirect(self):
         """

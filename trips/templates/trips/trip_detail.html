@@ -11,14 +11,14 @@
 {% if trip.places.count > 0 %}
   <section class="trip-planner">
     <div class="container">
-      <div class="row mb-4">
+      <div class="row mb-5">
         <div class="col-md-12 medium-w-75">
           <div class="card border-0">
             <!-- Card Header -->
             <div class="card-header border">
-              <h2 class="text-center">
+              <h3 class="text-center my-2">
                 <span><i class="fa-solid fa-note-sticky text-primary"></i>&ensp;</span>Trip Itinerary
-              </h2>
+              </h3>
             </div>
             <!-- Itinerary Accordion -->
             <div class="accordion accordion-flush border-0"
@@ -27,16 +27,16 @@
                 <!-- Accordion Items Start -->
                 <div class="accordion-item">
                   <!-- Accordion Header Starts -->
-                  <h2 class="accordion-header"
+                  <h4 class="accordion-header"
                       id="flush-heading-{{ forloop.counter }}">
-                    <button class="accordion-button collapsed text-light"
+                    <button class="planner-heading accordion-button collapsed text-light fs-5 text-uppercase"
                             type="button"
                             data-bs-toggle="collapse"
                             data-bs-target="#flush-collapse-{{ forloop.counter }}"
                             aria-controls="flush-collapse-{{ forloop.counter }}">
                       {{ place.name }}
                     </button>
-                  </h2>
+                  </h4>
                   <!-- Accordion Header Ends -->
                   <!-- Accordion Collapsible Body Starts -->
                   <div id="flush-collapse-{{ forloop.counter }}"
@@ -106,9 +106,9 @@
 <section id="trip-recommendations">
   <div class="container">
     <div class="row">
-      <h2 class="display-6"><span><i
+      <h3><span><i
              class="fa-solid fa-heart text-primary"></i>&ensp;</span>Recommended Places
-      </h2>
+      </h3>
       <hr>
     </div>
     <div class="row">
@@ -121,8 +121,8 @@
                 <img class="card-img-top img-fluid img-size-consistent"
                     src="{{ place.image }}"
                     alt="{{ place.name }}">
-                <div class="card-body">
-                  <h3>{{ place.name }}</h3>
+                <div class="card-body d-flex flex-column justify-content-center">
+                  <h4 class="fs-5 my-2">{{ place.name }}</h4>
                 </div>
                 <a class="stretched-link"
                    href="{% url 'place_detail' trip.slug trip.id place.id %}"

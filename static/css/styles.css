@@ -31,6 +31,10 @@ h2, h3, h4 {
 }
 
 /* Forms */
+.asteriskField {
+  display: none;
+}
+
 input[type=file]::file-selector-button {
   border: 2px solid var(--bs-dark);
   padding: 0.2em 0.4em;
@@ -161,6 +165,10 @@ input[type=checkbox i] {
 
 .accordion-body {
   background-color: var(--bs-secondary);
+}
+
+.planner-heading {
+  letter-spacing: 2px;
 }
 
 /* Maps */

@@ -96,8 +96,8 @@
                       alt="User uploaded image of {{trip.location}}"
                       class="card-img-top img-fluid img-size-consistent">
                 {% endif %}
-                <div class="card-body">
-                  <h4>{{ trip.title }}</h4>
+                <div class="card-body d-flex flex-column justify-content-center">
+                  <h4 class="m-0 py-2">{{ trip.title }}</h4>
                 </div>
                 <a href="{% url 'trip_detail' trip.slug trip.id%}"
                    aria-label="Find out more details about this trip"

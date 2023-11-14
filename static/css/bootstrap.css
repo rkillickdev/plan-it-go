@@ -1,7 +1,6 @@
 @charset "UTF-8";
 /* Borders */
 /* Navbar Toggler */
-/* Forms */
 /* Carousels */
 /* Inputs */
 /* Selects */
@@ -4549,7 +4548,7 @@ textarea.form-control-lg {
 .pagination {
   --bs-pagination-padding-x: 0.75rem;
   --bs-pagination-padding-y: 0.375rem;
-  --bs-pagination-font-size: 1rem;
+  --bs-pagination-font-size: 0.75rem;
   --bs-pagination-color: white;
   --bs-pagination-bg: #145C6A;
   --bs-pagination-border-width: none;

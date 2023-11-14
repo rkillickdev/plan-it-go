@@ -1,8 +1,7 @@
 // Font
-$font-family-sans-serif: 'Source Sans Pro', sans-serif;
+$font-family-sans-serif: 'Raleway', sans-serif;
 
 // Colors
-// $primary: #E2526A;
 $primary: #D53C55;
 $secondary: #f4f4f4;
 $dark: #145C6A;
@@ -28,6 +27,13 @@ $spacers: (
 
 $border-color: $dark;
 $card-border-color: $border-color;
+
+/* Navbar Toggler */
+
+$navbar-light-icon-color: $dark;
+$navbar-toggler-font-size: 1.5rem;
+$navbar-light-toggler-border-color: $dark;
+$navbar-toggler-focus-width: 0;
 
 /* Carousels */
 

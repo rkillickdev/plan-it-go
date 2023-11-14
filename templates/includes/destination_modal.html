@@ -4,13 +4,13 @@
      class="modal fade">
   <div class="modal-dialog modal-lg mt-7">
     <div class="modal-content p-5">
-      <div class="row mb-4">
+      <div class="row mb-5">
         <div class="col-12">
           <div class="card border-0">
             <div class="card-header border-0 bg-secondary py-3">
-              <div class="d-flex justify-content-between">
+              <div class="destination-title d-flex justify-content-between">
                 <h2 id="destination-city"
-                    class="display-5">Destination</h2>
+                    class="display-6 align-self-center">Destination</h2>
                 <a id="trip-ideas"
                    href=""
                    class="btn btn-dark button-link align-self-center">Things To Do</a>
@@ -20,7 +20,7 @@
                  src="{% static 'images/world-map-plane-1500x1000-compress.webp' %}"
                  alt="A world map with a plastic toy plane"
                  class="img-fluid">
-            <div class="card-body bg-secondary">
+            <div class="card-body bg-secondary text-center">
               <p id="destination-summary"></p>
             </div>
           </div>
@@ -28,10 +28,10 @@
       </div>
       <div class="row">
         <div class="col-12 text-center">
-          <button class="btn btn-icon"
+          <button class="btn btn-icon p-0"
                   data-bs-dismiss="modal"
                   aria-label="Click to close destination modal">
-            <i class="fa-solid fa-circle-xmark fa-4x"></i>
+            <i class="fa-solid fa-circle-xmark fa-4x link-transform"></i>
           </button>
         </div>
       </div>

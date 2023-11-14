@@ -20,8 +20,7 @@ hr {
   opacity: 0.5;
 }
 
-h2, h3 {
-  font-weight: 600;
+h2, h3, h4 {
   text-transform: uppercase;
   letter-spacing: 2px;
 }
@@ -39,6 +38,10 @@ input[type=file]::file-selector-button {
   color: var(--bs-light);
   background-color: var(--bs-dark);
   transition: 1s;
+}
+
+input[type=checkbox i] {
+  accent-color: var(--bs-primary);
 }
 
 /* Header */
@@ -122,12 +125,25 @@ input[type=file]::file-selector-button {
   object-fit: cover;
 }
 
-.img-portrait-limit {
-  width: 100%;
-  height: 30vw;
-  object-fit: cover;
+@media only screen and (max-width: 991px) {
+  .img-portrait-limit,
+  .img-size-consistent {
+    height: 20vw;
+  }
 }
-
+/* Media query for mobile devices from 767px and down increases height to value 50% of viewport width */
+@media only screen and (max-width: 767px) {
+  .img-portrait-limit,
+  .img-size-consistent {
+    height: 50vw;
+  }
+}
+/* Media query for mobile devices from 991px and down increases height to value 40% of viewport width */
+@media only screen and (max-width: 991px) {
+  .img-portrait-limit {
+    height: 40vw;
+  }
+}
 /* Clickable images and cards */
 .image-clickable {
   transition: all 0.15s ease;

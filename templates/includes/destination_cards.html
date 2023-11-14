@@ -23,7 +23,7 @@
 </button>
   <div id="destination-city{{destination.id}}"
        class="card-body">
-    <h3>{{destination.city}}</h3>
+    <h4>{{destination.city}}</h4>
   </div>
   {% if user.is_authenticated and request.user.is_staff %}
     <div class=" {% if request.resolver_match.url_name != 'home' %} d-flex justify-content-between px-4 pb-4 {% else %} d-none {% endif %}">

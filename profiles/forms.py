@@ -24,17 +24,32 @@ class ProfileForm(ModelForm):
         self.helper.form_method = "post"
 
         self.helper.layout = Layout(
-            Field("first_name", css_class="mb-4", placeholder="First Name"),
-            Field("surname", css_class="mb-4", placeholder="Surname"),
+            Field("first_name", 
+                  css_class="mb-4",
+                  aria_label="Enter your first name",
+                  placeholder="First Name"
+            ),
+            Field("surname",
+                  css_class="mb-4",
+                  aria_label="Enter your surname",
+                  placeholder="Surname"
+            ),
             Field(
                 "screen_name",
                 css_class="mb-4",
+                aria_label="Enter a screen name for yourself",
                 placeholder="Give yourself a screen name...",
             ),
             Field(
-                "about", css_class="mb-4", placeholder="Tell us about you..."
+                "about", 
+                css_class="mb-4",
+                aria_label="Enter some information about yourself",
+                placeholder="Tell us about you..."
             ),
-            Field("profile_image", css_class="mb-4"),
+            Field("profile_image", 
+                  css_class="mb-4",
+                  aria_label="Select a profile image"
+            ),
             Div(
                 Submit(
                     "Submit",

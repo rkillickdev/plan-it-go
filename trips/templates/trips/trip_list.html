@@ -9,8 +9,8 @@
 <section id="trip-actions"
          class="mt-7">
   <div class="container">
-    <div class="row">
-      <div class="col-lg-7 mb-4">
+    <div class="row mb-5 flex-wrap-reverse">
+      <div class="col-lg-7 d-flex flex-column justify-content-center">
         <div class="image-container">
           {% if request.user.is_staff %}
             <img src="{% static 'images/map-laptop-admin-1500x1000-compress.webp'%}"
@@ -35,10 +35,10 @@
             </div>
           {% else %}
             {% if trip_list.count == 0 and not request.user.profile.screen_name %}
-              <h1>Welcome to PlanIt Go</h1>
-              <h3>A world of adventures await you...</h3>
+            <i class="text-primary fa-solid fa-earth-americas fa-4x"></i>
+              <h2>Adventure Awaits...</h2>
               <p>Congratulations for signing up. You're almost ready to start
-                planning your adventures. We'd love to know a bit more about you
+                planning your adventures. We would love to know a bit more about you
                 and your travels. Click below to add some personal touches to your
                 profile</p>
               <div class="d-flex flex-column gap-3">
@@ -46,23 +46,23 @@
                    class="icon-link button-link m-auto link-transform">
                   <i class="fa-solid fa-circle-plus fa-4x"
                      role="img"
-                     aria-label="Plus Icon"></i>
+                     aria-label="Click to create a profile"></i>
                 </a>
-                <p class="lead">Create A Profile</p>
+                <p class="lead fw-semibold">Create A Profile</p>
               </div>
             {% else  %}
               {% if trip_list.count == 0 %}
                 <h2>Start Planning</h2>
               {% else %}
-                <h2 class="display-5">Where to this time?</h2>
+                <h2>Where to this time?</h2>
               {% endif %}
               <div class="d-flex flex-column gap-3">
                 <a href="{% url 'create_trip' %}"
                   class="link-transform button-link m-auto">
                   <i class="fa-solid fa-circle-plus fa-4x"
                     role="img"
-                    aria-label="Plus Icon"></i></a>
-                <p class="lead">Create A Trip</p>
+                    aria-label="Click to create a trip"></i></a>
+                <p class="lead fw-semibold">Create A Trip</p>
               </div>
             {% endif %}
           {% endif %}
@@ -79,12 +79,12 @@
     <div class="container">
       {% if trip_list.count > 0 %}
         <div class="row">
-          <h3 class="display-6">Your Trips</h3>
+          <h3>Your Trips</h3>
           <hr>
         </div>
-        <div class="row mb-4">
+        <div class="row">
           {% for trip in trip_list %}
-            <div class="col-md-4">
+            <div class="col-md-4 gy-4">
               <div class="image-clickable card border-0 bg-secondary text-center h-100">
                 {% if 'placeholder' in trip.trip_image.url %}
                   <img src="{% static 'images/placeholders/trip-placeholder-globe-in-hand.webp' %}"
@@ -93,10 +93,12 @@
                       class="card-img-top img-fluid img-size-consistent">
                 {% else %}
                   <img src="{{trip.trip_image.url}}"
-                      alt="Image of {{trip.location}}"
+                      alt="User uploaded image of {{trip.location}}"
                       class="card-img-top img-fluid img-size-consistent">
                 {% endif %}
-                <div class="card-body">{{ trip.title }}</div>
+                <div class="card-body">
+                  <h4>{{ trip.title }}</h4>
+                </div>
                 <a href="{% url 'trip_detail' trip.slug trip.id%}"
                    aria-label="Find out more details about this trip"
                    class="card-title stretched-link"></a>
@@ -109,23 +111,28 @@
           {% endfor %}
         </div>
       {% else %}
-        <div class="row">
-          <div class="col-lg-7">
-            <div class="text-container d-flex flex-column justify-content-center h-100 mb-5 px-4">
-              <h3 class="display-6 text-center">Need Inspiration?</h3>
-              <i class="fa-solid fa-passport fa-3x p-4 text-center"></i>
+      <div class="row mb-4">
+        <div class="col-12 text-center">
+          <h3>Need Inspiration?</h3>
+        </div>
+        <hr>
+      </div>
+        <div class="row gy-4">
+          <div class="col-lg-7 d-flex flex-column justify-content-center">
+            <div class="text-container rounded d-flex flex-column justify-content-center bg-secondary h-100 text-center gap-2 p-4"> 
+              <i class="fa-solid fa-passport fa-3x text-center text-primary"></i>
               <p>Be inspired by the trips that have already been mapped out on
                 PlanIt Go. All it takes is a spark, so let your imagination run
                 free...</p>
               <a href="{% url 'home' %}#destination-ideas"
-                class="btn btn-dark button-link align-self-center">Browse Destinations</a>
+                class="btn btn-dark button-link align-self-center">Destinations</a>
             </div>
           </div>
-          <div class="col-lg-5">
-            <div class="image-container px-4">
+          <div class="col-lg-5 d-flex flex-column justify-content-center">
+            <div class="image-container">
               <img src="{% static 'images/yellow-van-1500x1000-compress.webp'%}"
                   alt="Toy yellow van with suitcases strapped to the top"
-                  class="img-fluid">
+                  class="img-fluid rounded">
             </div>
           </div>
         </div>

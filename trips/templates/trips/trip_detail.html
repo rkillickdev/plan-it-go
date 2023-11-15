@@ -172,7 +172,7 @@
 <!-- Geo data and api key to pass to map cluster js file  -->
 {{ trip.location.latitude|json_script:"latitude"}}
 {{ trip.location.longitude|json_script:"longitude"}}
-{{ geo_list|json_script:"geo_list"}}
+{{ geo_list|json_script:"geo-list"}}
 {{ g_maps_api_key|json_script:"maps-api-key" }}
 
 {% load static %}

@@ -11,9 +11,9 @@ const mapkey = JSON.parse(document.getElementById('maps-api-key').textContent);
 
 const latitude = JSON.parse(document.getElementById('latitude').textContent);
 const longitude = JSON.parse(document.getElementById('longitude').textContent);
-let num_lat = parseFloat(latitude);
-let num_long = parseFloat(longitude);
-const geo_list = JSON.parse(document.getElementById('geo_list').innerHTML);
+let numLat = parseFloat(latitude);
+let numLong = parseFloat(longitude);
+const geoList = JSON.parse(document.getElementById('geo-list').innerHTML);
 
 async function initMap() {
     // Request required libraries.
@@ -23,8 +23,8 @@ async function initMap() {
     );
     const map = new google.maps.Map(document.getElementById("map"), {
       zoom: 10,
-      center: { lat: num_lat, lng: num_long },
-      mapId: "DEMO_MAP_ID",
+      center: { lat: numLat, lng: numLong },
+      mapId: "trip-detail-map",
     });
     const infoWindow = new google.maps.InfoWindow({
       content: "",
@@ -56,7 +56,7 @@ async function initMap() {
     const markerCluster = new markerClusterer.MarkerClusterer({ map, markers });
 }
 
-const locations = geo_list;
+const locations = geoList;
   
 initMap();
     

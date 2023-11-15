@@ -30,6 +30,14 @@ h2, h3, h4 {
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
 }
 
+.navbar button.navbar-toggler {
+  transition: all 0.15s ease;
+}
+
+.navbar button.navbar-toggler:hover {
+  color: var(--bs-primary);
+}
+
 /* Forms */
 .asteriskField {
   display: none;

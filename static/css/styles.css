@@ -43,13 +43,18 @@ h2, h3, h4 {
   display: none;
 }
 
-input[type=file]::file-selector-button {
-  border: 2px solid var(--bs-dark);
-  padding: 0.2em 0.4em;
-  border-radius: 0.2em;
-  color: var(--bs-light);
-  background-color: var(--bs-dark);
-  transition: 1s;
+input[type=file] {
+  opacity: 0; /* make transparent */
+  z-index: -1; /* move under anything else */
+  position: absolute; /* don't let it take up space */
+}
+
+input[type=file] + label {
+  cursor: pointer;
+}
+
+input[type=file]:focus + label {
+  outline: 2px solid; /* example focus style */
 }
 
 input[type=checkbox i] {

@@ -162,7 +162,12 @@ input[type=checkbox i] {
 
 /* Planner */
 .opaque-image {
-  opacity: 0.7;
+  opacity: 0.5;
+}
+
+.planner-image-link .image-clickable:hover {
+  cursor: pointer;
+  opacity: 0.8;
 }
 
 .accordion-body {

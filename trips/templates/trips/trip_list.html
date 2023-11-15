@@ -9,7 +9,7 @@
 <section id="trip-actions"
          class="mt-7">
   <div class="container">
-    <div class="row mb-5 flex-wrap-reverse">
+    <div class="row mb-5 gy-4 flex-wrap-reverse">
       <div class="col-lg-7 d-flex flex-column justify-content-center">
         <div class="image-container">
           {% if request.user.is_staff %}
@@ -25,7 +25,7 @@
           {% endif %}
         </div>
       </div>
-      <div class="col-lg-5 d-flex flex-column justify-content-center mb-4">
+      <div class="col-lg-5 d-flex flex-column justify-content-center">
         <div class="text-container rounded p-4 d-flex flex-column justify-content-center bg-secondary text-center gap-3">
           {% if request.user.is_staff %}
             <h1>Work to do? </h1>
@@ -118,17 +118,16 @@
         <hr>
       </div>
         <div class="row gy-4">
-          <div class="col-lg-7 d-flex flex-column justify-content-center">
+          <div class="col-lg-5 d-flex flex-column justify-content-center">
             <div class="text-container rounded d-flex flex-column justify-content-center bg-secondary h-100 text-center gap-2 p-4"> 
               <i class="fa-solid fa-passport fa-3x text-center text-primary"></i>
-              <p>Be inspired by the trips that have already been mapped out on
-                PlanIt Go. All it takes is a spark, so let your imagination run
+              <p>Be inspired by destinations from all around the world.  All it takes is a spark, so let your imagination run
                 free...</p>
               <a href="{% url 'home' %}#destination-ideas"
                 class="btn btn-dark button-link align-self-center">Destinations</a>
             </div>
           </div>
-          <div class="col-lg-5 d-flex flex-column justify-content-center">
+          <div class="col-lg-7 d-flex flex-column justify-content-center">
             <div class="image-container">
               <img src="{% static 'images/yellow-van-1500x1000-compress.webp'%}"
                   alt="Toy yellow van with suitcases strapped to the top"

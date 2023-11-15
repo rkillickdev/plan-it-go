@@ -45,10 +45,11 @@
                        data-bs-parent="#planner-accordion">
                     <div class="accordion-body">
                       <div class="d-flex flex-column">
-                        <div class="image-container">
+                        <div class="image-container m-auto">
                           <a href="{% url 'place_detail' trip.slug trip.id place.id %}"
+                             class="planner-image-link"
                              aria-label="Click to visit place detail page">
-                            <img class="img-fluid image-clickable"
+                            <img class="img-fluid image-clickable opaque-image"
                                  src="{{ place.image }}"
                                  alt="{{ place.name }}">
                           </a>

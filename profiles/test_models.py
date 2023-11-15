@@ -26,7 +26,7 @@ class TestProfileModel(TestCase):
         self.profile.date_of_birth = 2022 - 9 - 15
         self.profile.about = "Test Bio"
         self.profile.profile_image = "test.jpg"
-        self.expected_str = self.user.username
+        self.expected_str = self.profile.screen_name
 
     def test_profile_model(self):
         """

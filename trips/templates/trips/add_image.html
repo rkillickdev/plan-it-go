@@ -8,11 +8,11 @@
 
 <!-- Image Upload -->
 <section id="image-upload"
-         class="mt-6 mb-4">
+         class="mt-6 mb-5">
   <div class="container">
     <div class="row mb-2">
       <div class="action-title d-flex justify-content-between p-2">
-        <h2 class="display-6">
+        <h2>
           <span>
             <i class="fa-solid fa-camera"></i>&ensp;
           </span>Add an image for {{ place.name }}
@@ -43,11 +43,12 @@
   </div>
 </section>
 
+{% if request.user.profile.images.count > 0 %}
 <!-- User Image Gallery -->
 <section id="image-gallery">
   <div class="container">
     <div class="row">
-      <h2 class="action-title display-6">
+      <h2 class="action-title">
         <span>
           <i class="fa-solid fa-image"></i>&ensp;
         </span>Your Image Gallery
@@ -57,10 +58,10 @@
     {% for place in trip.places.all %}
       {% if place.images.count > 0 %}
         <div class="row mb-4">
-          <div class="col-12 d-flex justify-content-between bg-secondary rounded p-2">
-            <h3 class="m-0">{{ place.name }}</h3>
+          <div class="col-12 d-flex justify-content-between align-items-center bg-secondary rounded p-2">
+            <h3 class="m-0 fs-4">{{ place.name }}</h3>
             <a href="{% url 'add_image' trip.slug trip.id place.id %}"
-              class="h3 m-0">
+              class="fs-4 mb-0">
               <span><i class="fa-solid fa-circle-plus"></i>&ensp;</span>Add Images
             </a>
           </div>
@@ -107,6 +108,7 @@
     {% endfor %}
   </div>
 </section>
+{% endif %}
 
 <!-- Delete Confirm Modal Included -->
 {% include 'includes/delete_confirm_modal.html' %}

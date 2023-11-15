@@ -7,7 +7,7 @@
 
 <!-- Write/edit review -->
 <section id="write-review"
-         class="reviews mt-7 mb-4">
+         class="reviews mt-7 mb-5">
   <div class="container">
     <div class="row mb-2">
       <div class="action-title d-flex justify-content-between p-2">
@@ -41,6 +41,7 @@
   </div>
 </section>
 
+{% if request.user.profile.reviews.count > 0 %}
 <!-- List of user reviews -->
 <section id="reviews-list"
          class="mb-5">
@@ -84,6 +85,7 @@
     </div>
   </div>
 </section>
+{% endif %}
 
 <!-- Review Solo Modal Included -->
 {% include 'includes/review_solo_modal.html' %}

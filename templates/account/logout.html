@@ -8,13 +8,14 @@
 
 <section id="logout-confirm" class="mt-7">
   <div class="container">
-    <div class="row">
-      <h1>{% trans "We're sorry to see you go!" %}</h1>
-      <p>{% trans 'Are you sure you want to sign out?' %}</p>
+    <div class="row text-center">
+      <h2>{% trans "We're sorry to see you go!" %}</h2>
+      <p class="lead">{% trans 'Are you sure you want to sign out?' %}</p>
     </div>
+    <hr>
     <div class="row">
-      <div class="col-md-8 mt-3 offset-md-2">
-        <div class="form-container rounded bg-dark text-light p-4 text-center">
+      <div class="col-md-6 offset-md-3">
+        <div class="form-container text-center">
           <form method="post" action="{% url 'account_logout' %}">
             {% csrf_token %}
             {% if redirect_field_value %}

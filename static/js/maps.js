@@ -11,29 +11,30 @@ const mapkey = JSON.parse(document.getElementById('maps-api-key').textContent);
 
 const latitude = JSON.parse(document.getElementById('latitude').textContent);
 const longitude = JSON.parse(document.getElementById('longitude').textContent);
+const placeName = JSON.parse(document.getElementById('place-name').textContent);
 
-let num_lat = parseFloat(latitude);
-let num_long = parseFloat(longitude);
+let numLat = parseFloat(latitude);
+let numLong = parseFloat(longitude);
 
 // Initialize and add the map
 let map;
 
 async function initMap() {
-  const position = { lat: num_lat, lng: num_long };
+  const position = { lat: numLat, lng: numLong };
   const { Map } = await google.maps.importLibrary("maps");
   const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
 
   map = new Map(document.getElementById("map"), {
     zoom: 16,
     center: position,
-    mapId: "DEMO_MAP_ID",
+    mapId: "place-detail-map",
   });
 
-  // The marker, positioned at Uluru
+  // Marker added and named
   const marker = new AdvancedMarkerElement({
     map: map,
     position: position,
-    title: "Uluru",
+    title: placeName,
   });
 }
 

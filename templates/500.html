@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block head_title %} Profile {% endblock %}
+{% block content %}
+
+{% load static %}
+
+<!-- 500 Error Start -->
+<section id="500-error" class="mt-7">
+  <div class="container">
+    <div class="row mb-5 gy-4">
+      <div class="col-lg-6 d-flex flex-column justify-content-center">
+        <i class="fa-solid fa-screwdriver-wrench text-center display-3 fw-bold"></i>
+        <h1 class="text-center display-3 fw-bold text-uppercase">Sorry!</h1>
+        <p class="display-2 text-center text-primary fw-bold">500</p>
+        <p class="lead text-center">Something went wrong and we're working to fix the problem!  We'll be up and running soon.</p>
+        <a href="{% url 'home' %}" class="btn btn-dark button-link align-self-center">Back To Home Page</a>
+      </div>
+      <div class="col-lg-6">
+        <img src="{% static 'images/errors/500-dead-end-1200x1600-compress.webp' %}" alt="A wrong way sign in the desert" class="img-fluid">
+      </div>
+    </div>
+  </div>
+</section>
+<!-- 404 End -->
+{% endblock %}

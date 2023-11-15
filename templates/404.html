@@ -4,19 +4,19 @@
 
 {% load static %}
 
-<!-- 404 Start -->
+<!-- 404 Error Start -->
 <section id="404-error" class="mt-7">
   <div class="container">
-    <div class="row flex-wrap-reverse">
-      <div class="col-lg-7 mb-4">
-        <img src="{% static 'images/errors/404-wrong-way-1200x1600-compress.webp' %}" alt="A wrong way sign in the desert" class="img-fluid">
-      </div>
-      <div class="col-lg-5 mb-4 d-flex flex-column justify-content-center">
+    <div class="row mb-5 gy-4">
+      <div class="col-lg-6 d-flex flex-column justify-content-center">
         <i class="fa-solid fa-diamond-turn-right text-center display-3 fw-bold"></i>
         <h1 class="text-center display-3 fw-bold text-uppercase">Lost?</h1>
         <p class="display-2 text-center text-primary fw-bold">404</p>
         <p class="lead text-center">The page you are trying to access does not exist</p>
         <a href="{% url 'home' %}" class="btn btn-dark button-link align-self-center">Back To Home Page</a>
+      </div>
+      <div class="col-lg-6">
+        <img src="{% static 'images/errors/404-wrong-way-1200x1600-compress.webp' %}" alt="A wrong way sign in the desert" class="img-fluid">
       </div>
     </div>
   </div>

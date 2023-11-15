@@ -53,7 +53,11 @@ class ReviewForm(ModelForm):
         self.helper.form_method = "POST"
 
         self.helper.layout = Layout(
-            Field("body", placeholder="Tell us more about your visit..."),
+            Field(
+                "body",
+                placeholder="Tell us more about your visit...",
+                aria_label="Write a description of your trip"
+                ),
             Div(
                 Submit(
                     "Submit",

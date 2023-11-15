@@ -76,17 +76,22 @@ class CustomLoginForm(LoginForm):
     """
     Used this following example to help with styling of Django allauth forms:
     https://gist.github.com/ambivalentno/9d6828fe8b5d894a6f2d
+
+    And this article was referenced to remove placeholders from allauth forms.
+    I did this as I am using labels on these forms to ensure no accessibility
+    errors, so do not need to double up with the placeholder:
+
+    https://stackoverflow.com/questions/33650657/how-do-i-remove-a-placeholder-on-an-emailfield-in-django
+
     """
 
     def __init__(self, *args, **kwargs):
         super(CustomLoginForm, self).__init__(*args, **kwargs)
+        del self.fields['login'].widget.attrs['placeholder']
+        del self.fields['password'].widget.attrs['placeholder']
         self.helper = FormHelper(self)
         self.helper.form_class ="rounded bg-dark text-light p-4"
-        self.helper.field_class = "mb-4"
-        self.fields["login"].label = False
-        self.fields["login"].aria_label = "Enter your username"
-        self.fields["password"].label = False
-        self.fields["password"].aria_label = "Enter your password"
+        self.helper.field_class = "mb-4 mt-1"
 
         self.helper.layout.append(
             HTML(
@@ -117,10 +122,13 @@ class CustomSignupForm(SignupForm):
 
     def __init__(self, *args, **kwargs):
         super(CustomSignupForm, self).__init__(*args, **kwargs)
+        del self.fields['username'].widget.attrs['placeholder']
+        del self.fields['email'].widget.attrs['placeholder']
+        del self.fields['password1'].widget.attrs['placeholder']
+        del self.fields['password2'].widget.attrs['placeholder']
         self.helper = FormHelper(self)
-        self.helper.field_class = "mb-4"
         self.helper.form_class ="rounded bg-dark text-light p-4"
-        self.helper.form_show_labels = False
+        self.helper.field_class = "mb-4 mt-1"
 
         self.helper.layout.append(
             HTML(

@@ -23,26 +23,36 @@ class LocationForm(ModelForm):
         self.helper = FormHelper()
         self.helper.form_id = "location-form"
         self.helper.form_class ="rounded bg-dark text-light p-4"
-        self.helper.form_show_labels = False
+        self.fields["city"].label = False
+        self.fields["summary"].label = False
+        self.fields["latitude"].label = False
+        self.fields["longitude"].label = False
+        self.fields["image"].label = "Add an image"
         self.helper.form_method = "POST"
 
         self.helper.layout = Layout(
             Field(
-                "city", css_class="mb-4", placeholder="Enter a City Location"
+                "city",
+                css_class="mb-4",
+                aria_label="Enter a city location",
+                placeholder="Enter a City Location"
             ),
             Field(
                 "summary",
                 css_class="mb-4",
+                aria_label="Enter a synopsis for the selected locatio",
                 placeholder="Destination synopsis...",
             ),
             Field(
                 "latitude",
                 css_class="mb-4",
+                aria_label="Enter a latitude for the selected location",
                 placeholder="Destination latitude",
             ),
             Field(
                 "longitude",
                 css_class="mb-4",
+                aria_label="Enter a longitude for the selected location",
                 placeholder="Destination longitude",
             ),
             Field("image", css_class="mb-4"),

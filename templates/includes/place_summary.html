@@ -22,11 +22,12 @@
               <!-- place_toggle template included -->
               {% include 'includes/place_toggle.html' %}
             {% else %}
-            <div class="gap-3">
+            <div class="vstack gap-3 {% if request.user.is_staff %} d-none {% endif %}">
               <a href="{% url 'trip_list' %}" aria-labelledby="plan-trip-label">
                 <i class="fa-solid fa-circle-plus fa-4x link-transform"></i>
               </a>
-              <p id="plan-trip-label">Plan A Trip</p>
+              <p id="plan-trip-label"
+                 class="lead fw-light">Plan A Trip</p>
             </div>  
             {% endif %}
             <div class="justify-content-center">

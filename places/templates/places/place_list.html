@@ -8,9 +8,9 @@
   <div class="container">
     <div class="row mb-2">
       <div class="action-title d-flex justify-content-between p-2">
-        <h2 class="display-6">Places For {{ location.city }}</h2>
+        <h2>Places For {{ location.city }}</h2>
         <a class="btn btn-dark button-link align-self-center "
-           href="{% if request.user.is_staff %} {% url 'locations' %} {% else %} {% url 'home' %}#destination-ideas {% endif %}">
+           href="{% if request.user.is_staff %} {% url 'locations' %}#destination-list {% else %} {% url 'home' %}#destination-ideas {% endif %}">
           <span><i class="fa-solid fa-angles-left"></i>&ensp;</span>More Destinations
         </a>
       </div>
@@ -20,13 +20,13 @@
       <div class="col-12">
         <div class="row gy-3">
           {% for place in places %}
-            <div class="col-md-4">
-              <div class="card text-center border-0 h-100">
+            <div class="col-md-4 mb-4">
+              <div class="card border-0 bg-secondary text-center h-100 image-clickable">
                 <img class="card-img-top img-fluid img-size-consistent"
                     src="{{ place.image }}"
                     alt="{{ place.name }}">
                 <div class="card-body">
-                  <h3>{{ place.name }}</h3>
+                  <h3 class="fs-4">{{ place.name }}</h3>
                 </div>
                 <a class="stretched-link"
                    aria-label="Find out more details about this place"
@@ -42,22 +42,24 @@
       </div>
     </div>
     {% if is_paginated %}
+    <div class="row mb-5">
       <nav aria-label="Page navigation">
         <ul class="pagination justify-content-center">
           {% if page_obj.has_previous %}
             <li>
               <a href="?page={{ page_obj.previous_page_number }}"
-                class="page-link">&laquo; PREV </a>
+                class="page-link me-1"><span><i class="fa-solid fa-arrow-left"></i>&ensp;</span>PREV</a>
             </li>
           {% endif %}
           {% if page_obj.has_next %}
             <li>
               <a href="?page={{ page_obj.next_page_number }}"
-                class="page-link"> NEXT &raquo;</a>
+                class="page-link ms-1">NEXT<span>&ensp;<i class="fa-solid fa-arrow-right"></i></span></a>
             </li>
           {% endif %}
         </ul>
       </nav>
+    </div>
     {% endif %}
   </div>
 </section>

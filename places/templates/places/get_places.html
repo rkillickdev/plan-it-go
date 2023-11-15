@@ -7,11 +7,11 @@
 
 <!-- Retrieve Places -->
 <section id="get-places"
-         class="mt-6">
+         class="mt-7">
   <div class="container">
-    <div class="row mb-2">
+    <div class="row mb-2 align-items-center">
       <div class="action-title d-flex justify-content-between p-2">
-        <h2 class="display-6">
+        <h2 class="mb-0">
           <span>
             <i class="fa-solid fa-magnifying-glass-location"></i>&ensp;
           </span>Retrieve places for {{ location.city }}
@@ -29,15 +29,17 @@
       <div class="col-md-7">
         <div class="img-container">
           <img src="{% static 'images/magnifying-glass-map-1500x1000-compress.webp'%}"
-               alt=""
-               class="img-fluid">
+               alt="A magnifying glass sits on a world map"
+               class="img-fluid rounded">
         </div>
       </div>
       <div class="col-md-5 d-flex flex-column justify-content-center gap-4">
           <div class="bg-secondary rounded p-4">
-            <p>It looks like we don't currently have any places stored for
+            <p class="text-center">It looks like we don't currently have any places stored for
               {{ location.city }}. Go ahead and see if there are any avaialble
-              to retrieve</p>
+              to retrieve.  If you select a different location, we will search and update
+              places if they are available.
+            </p>
           </div>
         <!-- Retrieve Places Form -->  
         <div id="form-container">

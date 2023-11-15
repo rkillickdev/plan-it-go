@@ -11,9 +11,11 @@
               <div class="destination-title d-flex justify-content-between">
                 <h2 id="destination-city"
                     class="display-6 align-self-center">Destination</h2>
+                {% if not request.resolver_match.url_name == 'locations' %}
                 <a id="trip-ideas"
                    href=""
                    class="btn btn-dark button-link align-self-center">Things To Do</a>
+                {% endif %}
               </div>
             </div>
             <img id="destination-image"

@@ -149,6 +149,12 @@ def get_places(request, destination_id, slug):
                     # Save to database
                     place_data.save()
 
+            messages.add_message(
+                request,
+                messages.SUCCESS,
+                "Places for this location have been populated with the latest data"
+            )
+
             return HttpResponseRedirect(
                 reverse(
                     "place_list",
@@ -161,7 +167,7 @@ def get_places(request, destination_id, slug):
             messages.add_message(
                 request,
                 messages.ERROR,
-                "We were not able to retrieve this data!",
+                "We were not able to retrieve this data!"
             )
 
             return HttpResponseRedirect(reverse("locations"))

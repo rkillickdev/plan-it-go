@@ -1,12 +1,12 @@
 <!-- Place Summary Section -->
 <section class="place-summary mt-7 mb-5">
   <div class="container">
-    <div class="row flex-wrap-reverse my-4">
+    <div class="row flex-wrap-reverse gy-4">
       <div class="col-md-6 d-flex flex-column justify-content-center">
         <div class="image-container">
           <img src="{{ place.image }}"
                alt="{{ place.name }}"
-               class="img-fluid img-portrait-limit">
+               class="img-fluid">
         </div>
       </div>
       <div class="col-md-6">
@@ -34,7 +34,7 @@
                  class="btn btn-dark button-link">
                 <span><i class="fa-solid fa-angles-left"></i>&ensp;</span>
                 {% if request.resolver_match.url_name == 'place_detail' %}
-                More Recommendations {% else %} More Places {% endif %}
+                More Places {% else %} More Places {% endif %}
               </a>
             </div>
           </div>

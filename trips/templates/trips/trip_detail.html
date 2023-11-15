@@ -46,7 +46,8 @@
                     <div class="accordion-body">
                       <div class="d-flex flex-column">
                         <div class="image-container">
-                          <a href="{% url 'place_detail' trip.slug trip.id place.id %}">
+                          <a href="{% url 'place_detail' trip.slug trip.id place.id %}"
+                             aria-label="Click to visit place detail page">
                             <img class="img-fluid image-clickable"
                                  src="{{ place.image }}"
                                  alt="{{ place.name }}">

@@ -47,16 +47,16 @@
            aria-labelledby="nav-details-tab">
         <div class="row">
           <div class="col-12">
-            <div class="text-container p-4 mb-2">
+            <div class="text-container p-4">
               <p class="lead">
                 {{ place.description }}
               </p>
             </div>
           </div>
         </div>
-        <div class="row">
+        <div class="row mb-5">
           <div class="col-lg-7">
-            <div class="map-container p-4">
+            <div class="map-container px-4">
               <div id="map"></div>
             </div>
           </div>
@@ -64,12 +64,12 @@
             <div class="text-container p-4 d-flex flex-column justify-content-center h-100 mb-5 text-center">
               <div class="card border-0 bg-secondary">
                 <div class="card-header border bg-light">
-                  <h2>
+                  <h3 class="m-0 py-2">
                     <span><i class="fa-solid fa-map-pin text-primary"></i>&ensp;</span>Address
-                  </h2>
+                  </h3>
                 </div>
                 <div class="card-body place-address">
-                  <ul>
+                  <ul class="m-0">
                     {% for key, value in place.address.items %}
                       {% if value and not value == "" %}
                         <li class="pb-2">{{ value }}</li>
@@ -77,8 +77,9 @@
                     {% endfor %}
                   </ul>
                 </div>
-                <div class="card-footer border bg-light {% if place.website == None %} d-none {% else %} d-block {% endif %}">
+                <div class="card-footer border bg-light fw-semibold {% if place.website == None %} d-none {% else %} d-block {% endif %}">
                   <a href="{{ place.website }}"
+                     class="link-transform"
                      target="_blank"
                      rel="noopener"
                      aria-label="Visit the website for {{ place.name }} (opens in a new tab)">
@@ -139,7 +140,7 @@
                    data-bs-target="#modal-image-solo">
                   <img src="{{ image.path.url }}"
                        alt="Picture of {{ image.place.name }}"
-                       class="img-fluid img-size-consistent image-solo rounded">
+                       class="img-fluid img-size-consistent image-solo rounded image-clickable">
                 </a>
               </div>
             </div>

@@ -10,7 +10,7 @@
              data-review_id="{{ review.id }}">
           <div class="card-header border-0 bg-dark text-light">
             <div class="row">
-              <div class="col-md-5">
+              <div class="col-lg-5">
                 <div class="image-container p-2">
                   {% if 'placeholder' in review.profile.profile_image.url %}
                     <img src="data:,"
@@ -26,12 +26,12 @@
                         width="120">
                   {% endif %}
                 </div>
-                <h3 id="modal-profile-name"
-                    class="review-card-text fst-italic p-2">Profile Name</h3>
+                <p id="modal-profile-name"
+                    class="review-card-text fs-5 fst-italic p-2">Profile Name</p>
               </div>
-              <div class="col-md-7 d-flex flex-column justify-content-center">
+              <div class="col-lg-7 d-flex flex-column justify-content-center">
                 <h3 id="modal-location"
-                    class="review-card-text display-5">Place Name</h3>
+                    class="review-card-text">Place Name</h3>
               </div>
             </div>
           </div>

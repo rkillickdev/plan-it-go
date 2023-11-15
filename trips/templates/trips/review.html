@@ -11,7 +11,7 @@
   <div class="container">
     <div class="row mb-2">
       <div class="action-title d-flex justify-content-between p-2">
-        <h2 class="display-6 mb-auto">
+        <h2 class="mb-auto">
           <span>
             <i class="fa-solid fa-comment-dots"></i>&ensp;
           </span><span id="review-heading">Add a</span> review for <span id="review-place">{{ place.name }}</span>
@@ -42,17 +42,18 @@
 </section>
 
 <!-- List of user reviews -->
-<section id="reviews-list">
+<section id="reviews-list"
+         class="mb-5">
   <div class="container">
     <div class="row">
-      <h2 class="action-title display-6"><span><i
+      <h2 class="action-title"><span><i
              class="fa-solid fa-folder-open"></i>&ensp;</span>Your Reviews
       </h2>
       <hr>
     </div>
-    <div class="row mb-4">
+    <div class="row">
       {% for review in reviews %}
-        <div class="col-lg-4 d-flex flex-column ps-0">
+        <div class="col-lg-4 d-flex flex-column justify-content-between gy-4">
           <!-- Include Review Card -->
           {% include 'includes/review_cards.html' %}
           {% if user.is_authenticated and review.profile.id == user.profile.id %}

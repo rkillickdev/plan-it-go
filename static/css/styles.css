@@ -129,23 +129,17 @@ input[type=checkbox i] {
   object-fit: cover;
 }
 
+/* Media query for mobile devices from 991px and down decreases height to value 20% of viewport width */
 @media only screen and (max-width: 991px) {
-  .img-portrait-limit,
   .img-size-consistent {
     height: 20vw;
   }
 }
-/* Media query for mobile devices from 767px and down increases height to value 50% of viewport width */
+/* Media query for mobile devices from 767px and down where there is a switch to singhle column */
+/* Increases height to value 50% of viewport width */
 @media only screen and (max-width: 767px) {
-  .img-portrait-limit,
   .img-size-consistent {
     height: 50vw;
-  }
-}
-/* Media query for mobile devices from 991px and down increases height to value 40% of viewport width */
-@media only screen and (max-width: 991px) {
-  .img-portrait-limit {
-    height: 40vw;
   }
 }
 /* Clickable images and cards */

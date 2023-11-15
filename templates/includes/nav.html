@@ -53,11 +53,6 @@
           </li>
         {% else %}
           <li class="nav-item">
-            <a href="{% url 'home' %}#destination-ideas"
-              class="nav-link 
-              {% if request.resolver_match.url_name == 'home' %} active {% endif %} fw-semibold">Ideas</a>
-          </li>
-          <li class="nav-item">
             <a href="{% url 'account_signup' %}"
               class="nav-link
             {% if request.resolver_match.url_name == 'account_signup' %} active {% endif %} fw-semibold">Sign Up</a>

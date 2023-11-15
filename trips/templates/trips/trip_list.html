@@ -14,8 +14,7 @@
         <div class="image-container">
           {% if request.user.is_staff %}
             <img src="{% static 'images/map-laptop-admin-1500x1000-compress.webp'%}"
-                alt="A silhouette of a world map is displayed on a laptop screen,
-                which sits on a wooden desk next to a white coffee mug"
+                alt="A silhouette of a world map is displayed on a laptop screen"
                 class="img-fluid rounded">
           {% else %}
             <img src="{% static 'images/map-planner-camera-compress.webp'%}"
@@ -28,9 +27,9 @@
       <div class="col-lg-5 d-flex flex-column justify-content-center">
         <div class="text-container rounded p-4 d-flex flex-column justify-content-center bg-secondary text-center gap-3">
           {% if request.user.is_staff %}
-            <h1>Work to do? </h1>
+            <h2>Work to do? </h2>
             <div class="d-flex flex-column gap-3">
-              <a href="{% url 'locations'%}" class="link-transform"><i class="fa-solid fa-circle-plus fa-4x"></i></a>
+              <a href="{% url 'locations'%}" class="link-transform" aria-label="Click to navigate to admin page"><i class="fa-solid fa-circle-plus fa-4x"></i></a>
               <p class="lead">Add A Destination</p>
             </div>
           {% else %}

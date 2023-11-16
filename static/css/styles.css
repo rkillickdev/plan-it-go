@@ -25,6 +25,10 @@ h2, h3, h4 {
   letter-spacing: 2px;
 }
 
+.modal-button {
+  outline: none;
+}
+
 /* Navbar */
 .navbar {
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
@@ -54,10 +58,6 @@ input[type=file]::file-selector-button {
 
 input[type=file]::file-selector-button:hover {
   background-color: var(--bs-primary);
-}
-
-input[type=file] {
-  color: rgba(0, 0, 0, 0);
 }
 
 input[type=file] + label {

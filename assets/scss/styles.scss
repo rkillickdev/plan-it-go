@@ -30,6 +30,10 @@ h2, h3, h4 {
     letter-spacing: 2px;    
 }
 
+.modal-button {
+    outline: none;
+}
+
 /* Navbar */
 
 .navbar {
@@ -63,9 +67,9 @@ input[type="file"]::file-selector-button {
     background-color: var(--bs-primary);
   }
 
-  input[type='file'] {
-    color: rgba(0, 0, 0, 0)
-  }
+//   input[type='file'] {
+//     color: rgba(0, 0, 0, 0)
+//   }
 
 // WORK IN PROGRESS FOR STYLING INPUT BUTTON //
 

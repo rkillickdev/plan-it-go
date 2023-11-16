@@ -55,7 +55,7 @@ class LocationForm(ModelForm):
                 aria_label="Enter a longitude for the selected location",
                 placeholder="Destination longitude",
             ),
-            Field("image", css_class="mb-4"),
+            Field("image", css_class="px-2 py-3"),
             Div(
                 Submit(
                     "Submit",

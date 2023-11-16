@@ -93,7 +93,6 @@ class Image(models.Model):
     )
     path = CloudinaryField(
         "image",
-        default="placeholder",
         transformation={
             "width": "900",
             "height": "600",

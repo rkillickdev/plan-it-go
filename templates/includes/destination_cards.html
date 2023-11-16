@@ -20,12 +20,11 @@
           data-destination_slug="{{ destination.slug }}"
           data-destination_summary="{{ destination.summary}}">
     {% endif %}
+  </button>
   <div id="destination-city{{destination.id}}"
        class="card-body bg-secondary">
     <h4>{{destination.city}}</h4>
   </div>
-</button>
-  
   {% if user.is_authenticated and request.user.is_staff %}
     <div class=" {% if request.resolver_match.url_name != 'home' %} d-flex justify-content-between px-4 pb-4 {% else %} d-none {% endif %}">
       <a href="{% url 'update_destination' destination.id destination.slug %}"

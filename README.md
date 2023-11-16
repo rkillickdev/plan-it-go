@@ -410,6 +410,26 @@ If a message is detected on page load, the following [toasts javascript file](st
 
 ### **Error Pages**
 
+I have included custom 403, 404 and 500 error pages as a form of defensive design. This improves the user experience by keeping the user informed about the problem and engaged with the site.  The styling imagery and branding used on these pages is consistent with the rest of the user experience.  To ensure the user does not decide to navigate away from the site, a 'Back To Home Page' button is displayed.  This also ensures they do not have to use the back button in their browser for navigation.
+
+#### **404 Error Page:**
+
+Displayed if the user tries to access a broken link or page on the site that does not exist/ has been moved.
+
+![PlanIt-Go 404 error](docs/features/pp4-features-404-error.png)
+
+#### **403 Error Page:**
+
+Displayed if the user tries to access unauthorised content.  Read more about the defensive programming that was implemented to stop unauthorised users accessing, editing and deleting content that does not belong to them.
+
+![PlanIt-Go 403 error](docs/features/pp4-features-403-error.png)
+
+#### **500 Error Page:**
+
+Displayed to warn the user when an internal server error occurs.  This lets them know that there is a problem with the site and not at their end. They are also informed that a solution to the problem is being worked on in the hope that they will not navigate away from the site.
+
+![PlanIt-Go 500 error](docs/features/pp4-features-500-error.png)
+
 ### **Favicon and Meta Tags**
 
 ### **Security & Defensive Design**

@@ -240,7 +240,11 @@ Three cards on the home page layout the ways in which the site can be used.  The
 
 ![PlanIt-Go home page destinations carousel](docs/features/pp4-features-destinations-carousel.png)
 
-The aim of this section is to allow users to browse and draw inspiration.  Clicking on each carousel card display information about the featured destination in a large modal window.  From here, they can follow a link to browse places for this specific destination.  Throughout, the user will be gently guided and given the option to sign up and enjoy the full features and functionality of the site.
+The aim of this section is to allow users to browse and draw inspiration.  Clicking on each carousel card display information about the featured destination in a large modal window.  From here, they can follow a 'Things To Do' link for this specific destination.  Throughout, the user will be gently guided and given the option to sign up and enjoy the full features and functionality of the site.
+
+**Browse Places**
+
+
 
 ### **Login/ Sign Up Pages**
 
@@ -372,15 +376,31 @@ The gallery tab is only visible to users if images relating to the selected plac
 
 ### **User Reviews**
 
-From their trip itinerary, users can navigate to their 'reviews page' to leave a review for a place once they have visited.  From this page, they can also view, edit or delete any other reviews they have already left for places in their trip itinerary.  A confirmation modal is used to check the user really wants to delete a review before removing from the database.  Once a review has been submitted, this is immediately visible to the logged in user and they still have the ability to edit/ delete, but the review is not accessible to other site users until the content has been approved by a site administrator.
+From their trip itinerary, users can navigate to their 'reviews page' to leave a review for a place once they have visited.  The form is generated using django crispy forms.  Styling is done in the forms.py file for the places app.
+
+![PlanIt-Go user review form](docs/features/pp4-features-user-review-none-existing.png)
+
+Users can also view, edit or delete any other reviews they have already left.  A confirmation modal is used to check the user really wants to delete a review before removing from the database.  Once a review has been submitted, this is immediately visible to the logged in user and they still have the ability to edit/ delete, but the review is not accessible to other site users until the content has been approved by a site administrator.
+
+![PlanIt-Go existing user reviews](docs/features/pp4-features-existing-user-reviews.png)
+
+![PlanIt-Go review delete confirm](docs/features/pp4-features-review-delete-confirm.png)
 
 ### **User Images**
 
-Users are presented with the option to 'upload image' for each place in their trip itinerary.  Once directed to this page, they can select an image to upload and also view a gallery of images already added.  Functionality has also been implemented to allow the user to 'add more' images to a place listed in the gallery, or delete an image.  A confirmation modal is used to check the user really wants to delete an image before removing from the database.  Once an image has been submitted it is immediately visible to the logged in user, but the image is not visible to other site users in the 'place gallery' tab until it has been approved by a site administrator.
+Users are presented with the option to 'upload image' for each place in their trip itinerary.  Once directed to this page, they can select an image to upload:
+
+![PlanIt-Go add image](docs/features/pp4-features-add-image.png)
+
+If a user has already uploaded images for other places, a gallery is displayed.  Functionality has been implemented to allow the user to 'add more' images to a place listed in the gallery, or delete an image.  A confirmation modal is used to check the user really wants to delete an image before removing from the database.  Once an image has been submitted it is immediately visible to the logged in user, but the image is not visible to other site users in the 'place gallery' tab until it has been approved by a site administrator.
 
 ### **Toasts**
 
-Toasts are available as a Bootstrap component, and have been used in conjunction with [Django Messages](https://docs.djangoproject.com/en/4.2/ref/contrib/messages/) to provide the user with feedback as they navigate the site. This helps to communicate when an interaction has been successful or unsuccessful, therefore always keeping the user informed and providing an enhanced user experience.  To avoid the repetition of code and to ensure that the appearance of messages is consistent across the site, the toast  html structure lives in the [messages.html](templates/includes/messages.html) file and has been included in the base.html template.
+Toasts are available as a Bootstrap component, and have been used in conjunction with [Django Messages](https://docs.djangoproject.com/en/4.2/ref/contrib/messages/) to provide the user with feedback as they navigate the site. This helps to communicate when an interaction has been successful or unsuccessful, therefore always keeping the user informed and providing an enhanced user experience.  
+
+![PlanIt-Go toast success message ](docs/features/pp4-features-toast-success-trip-add.png)
+
+To avoid the repetition of code and to ensure that the appearance of messages is consistent across the site, the toast  html structure lives in the [messages.html](templates/includes/messages.html) file and has been included in the base.html template.
 
 If a message is detected on page load, the following [toasts javascript file](static/js/toasts.js) is loaded which initialises the toast.
 

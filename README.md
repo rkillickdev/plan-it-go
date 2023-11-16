@@ -173,39 +173,62 @@ ___
 
 ### **Navbar**
 
-The navbar is common to all pages.  The HTML structure for this feature lives in the nav.html files with the following file path:
+![PlanIt-Go navbar above 991px. Logged Out User](docs/features/pp4-features-navbar-full-logged-out.png)
 
-`
+The navbar is common to all pages.  The HTML structure for this feature lives in the nav.html file with the following file path:
+
+```
 templates/includes/nav.html
-
-`
+```
 This file is then included in the base.html file, which is subsequently included in every html template.  This ensures that any changes to the navbar html code need only be made once.
 
 To the left of the navbar is a clean, minimal brand logo that is deigned to instantly comumunicate the core aims of the site.  By using a globe as a substitute for the letter 'O' in 'GO', site users are subconciously aware that 'planning of global travel' is at the heart of the site's objectives.  The colours used in the brand logo are consistent with the colour scheme used throughout the rest of the site.  The hover effect applied to the brand logo is consistent with the effect used for all other clickable links throughout.  Clicking on the logo takes the site user back to the home page.
 
-To the right of the navbar, page links are displayed and a hover effect applied so users know they are clickable.  Dependent on the status of the site user, links display as follows:
+To the right of the navbar, page links are displayed and a hover effect applied so users know they are clickable.  Links for the currently active page are styled using the site's primary colour.  Dependent on the status of the site user, links display as shown in the table below.  This helps to signal to the user their current authentication status.
 
-* Home -> index.html - Visible to all users
-* Ideas -> trip_browse.html - Visible to all users
-* Profile -> profile_form.html - Visible to logged in users
-* My Trips -> trip_list.html - Visible to logged in users
-* Signup -> login.html - Visible to logged out users
-* Login -> login.html - Visible to logged out users
-* Logout -> logout.html - Visible to logged in users
- 
- To ensure good user experience and satisfy the site owner's goal of responsive design across a range of device sizes, the navigation menu collapses down into a hamburger menu on screen sizes below 992px.  This prevents the navbar from feeling cluttered on smaller devices and the instantly recognisable hamburger icon ensures that site navigation remains intuitive for users.
+| Link | Template | Visibility |
+| ---- | -------| -------- |
+| Home | index.html | All users |
+| Profile | profile_form.html | Logged in users |
+| My Trips | trip_list.html | Logged in users |
+| Signup | signup.html | Logged out users |
+| Login | login.html | Logged out users |
+| Logout | logout.html | Logged in users |
+
+![PlanIt-Go navbar above 991px. Logged Out User](docs/features/pp4-features-navbar-full-logged-in.png)
+
+To ensure good user experience and satisfy the site owner's goal of responsive design across a range of device sizes, the navigation menu collapses down into a hamburger menu on screen sizes below 992px.  This prevents the navbar from feeling cluttered on smaller devices and the instantly recognisable hamburger icon ensures that site navigation remains intuitive for users.
+
+![PlanIt-Go collapsed nav items below 992px](docs/features/pp4-features-navmenu-toggler-collapsed.png)
+
+Clicking on the hamburger icon expands the nav links which are stacked vertically.  Clicking again collapses the links.
+
+![PlanIt-Go expanded nav items below 992px](docs/features/pp4-features-navmenu-toggler-expanded.png)
+
 
 ### **Footer**
+
+![PlanIt-Go footer](docs/features/pp4-features-footer.png)
+
+The footer is common to all pages.  The HTML structure for this feature lives in the footer.html file with the following file path:
+
+```
+templates/includes/footer.html
+```
+
+The footer displays social media links to the PlanIt-Go Facebook, Twitter and Instagram pages.  These open in new browser tabs when clicked.  Font awesome icons are used as they are universally recognisable for the user without the need for text.  A hover effect which transforms the icon to the primary site colour indicates to the user that these links are clickable.  The GitHub profile name of the site developer is also displayed and a clickable GitHub icon that directs the user to the repository for PlanIt-Go in a new browser tab.
 
 ### **Home Page**
 
 **Header Hero Image**
 
+![PlanIt-Go footer](docs/features/pp4-features-hero-image.png)
+
 The aim of the owner is that the purpose of the site should be immediately evident to the user when they land on the home page.  The hero image chosen to convey this message communicate both the themes of travel and planning, with the coloured pins placed in the map reminiscent of an age before the possibility of online trip planning.  A younger site user is more likely to associate these pins with the recognisable Google Maps interface, where digital pins are used to comunicate location.
 
-The colours from the hero image were the starting point for the colour scheme used consistently throughout the rest of the site.  The core goals of the site are reinforced by the title in the header, and the revolving words adds a touch of visual interest for the user.  The colours chosen for these interchanging words tie in with the three featured pins on the map hero image.
+The colours from the hero image were the starting point for the colour scheme used consistently throughout the rest of the site, although for accessibility I had to use stronger shades to ensure acceptable contrast.  The core goals of the site are reinforced by the title in the header, and the revolving words add a touch of visual interest for the user.  The colours chosen for these interchanging words tie in with one of the featured pins shown on the map.
 
-A call to action is then used, to draw the user into the 'trip planning' fuctionality of the site.  The 'start planning' clickable button will direct non logged in users to the signup page.  Those that already have user credentials can easily switch to the login page to enter their details.  If a user is already logged in, they will be taken directly to their 'trip list' page where they can edit existing trips or create new ones.
+A call to action is then used, to draw the user into the 'trip planning' fuctionality of the site.  The 'Sign Up' clickable button will direct non logged in users to the signup page.  Those that already have user credentials can easily switch to the login page to enter their details.  If a user is already logged in, the call to action button displays 'Get Started' and redirects the user to their 'trip list' page where they can edit existing trips or create new ones.
 
 **Site Goals**
 

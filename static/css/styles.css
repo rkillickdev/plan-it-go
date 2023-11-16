@@ -38,10 +38,14 @@ h2, h3, h4 {
   transition: all 0.15s ease;
 }
 
-.navbar button.navbar-toggler:hover {
-  color: var(--bs-primary);
+/* Referenced the following article to learn about only applying */
+/* hover effect to devices with true hover functionality: */
+/* https://stackoverflow.com/questions/70375065/button-keeps-hover-effect-after-being-clicked-on-mobile-screens */
+@media (hover: hover) {
+  .navbar button.navbar-toggler:hover {
+    color: var(--bs-primary);
+  }
 }
-
 /* Forms */
 .asteriskField {
   display: none;

@@ -47,7 +47,7 @@ class ProfileForm(ModelForm):
                 placeholder="Tell us about you..."
             ),
             Field("profile_image", 
-                  css_class="mb-4",
+                  css_class="form-select",
                   aria_label="Select a profile image"
             ),
             Div(

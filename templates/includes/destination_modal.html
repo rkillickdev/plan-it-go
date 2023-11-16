@@ -11,7 +11,7 @@
               <div class="destination-title d-flex justify-content-between gap-2">
                 <h2 id="destination-city"
                     class="m-0 align-self-center">Destination</h2>
-                {% if not request.resolver_match.url_name == 'locations' %}
+                {% if request.resolver_match.url_name == 'home' %}
                 <a id="trip-ideas"
                    href=""
                    class="btn btn-dark button-link align-self-center">Things To Do</a>

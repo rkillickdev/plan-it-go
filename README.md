@@ -232,13 +232,25 @@ A call to action is then used, to draw the user into the 'trip planning' fuction
 
 **Site Goals**
 
-Next three cards layout the ways in which the site can be used.  The inclusion of icons above each statement helps communicate these goals before the user has even read the text.
+![PlanIt-Go home page site goals](docs/features/pp4-features-site-goals.png)
+
+Three cards on the home page layout the ways in which the site can be used.  The inclusion of icons above each statement helps communicate these goals before the user has even read the text.
 
 **Destinations Carousel**
 
-The aim of this section is to allow users to browse and draw inspiration from the trips of other site users.  Clicking on each carousel card display information about the featured destination in a large modal window.  From here, they can follow a link to browse trips for this specific destination.  Throughout, the user will be gently guided and given the option to sign up and enjoy the full features and functionality of the site.
+![PlanIt-Go home page destinations carousel](docs/features/pp4-features-destinations-carousel.png)
+
+The aim of this section is to allow users to browse and draw inspiration.  Clicking on each carousel card display information about the featured destination in a large modal window.  From here, they can follow a link to browse places for this specific destination.  Throughout, the user will be gently guided and given the option to sign up and enjoy the full features and functionality of the site.
 
 ### **Login/ Sign Up Pages**
+
+The default Django allauth templates used for signing up, logging in and logging out have been styled to match the rest of the site and ensure a consistent user experience.
+
+![PlanIt-Go sign up page](docs/features/pp4-features-signup.png)
+
+![PlanIt-Go login page](docs/features/pp4-features-login.png)
+
+![PlanIt-Go logout page](docs/features/pp4-features-logout.png)
 
 In the settings.py file, the following urls have been set for redirecting users after signup and login:
 
@@ -255,31 +267,72 @@ Dependent on the status of the logged in user account, one of three pages are di
 
 Upon successful login, a user profile is automatically created with a unique id.  The aim of the site however is to offer personalised profiles, so new users are encouraged to click the 'Create Profile' link where they can enter a unique screen name, upload a profile image and write a bio.  Only the screen name is a compulsory field in the form, as this is how they will be identified on the site moving forwards.
 
+![PlanIt-Go trip list with no profile](docs/features/pp4-features-trip-list-no-profile-action-call.png)
+
 * **Returning Users**
 
-If a logged in user has already provided a screen name, but as yet have not created any trips, they are encouraged to get started and click the + button 'plan your first trip'.  There is also the option to seek some inspiration, which lets the user browse trips planned by fellow site users.
+If a logged in user has already provided a screen name, but as yet have not created any trips, they are encouraged to get started and click the + button 'Create A Trip'.  There is also the option to seek some inspiration, which lets the user browse trips planned by fellow site users.
 
-If a logged in user already has one or trips created, these are listed in date order.  They can either click on each trip to view further details, or click the + button 'plan your next trip'.
+![PlanIt-Go trip list with no trips action call](docs/features/pp4-features-trip-list-no-trips-action-call.png)
+![PlanIt-Go trip list with no trips inpiration offered](docs/features/pp4-features-trip-list-no-trips-inspiration.png)
+
+If a logged in user already has one or more trips created, these are listed in date created order.  They can either click on each trip to view further details, or click the + button 'Create A Trip'.
+
+![PlanIt-Go trip list with existing trips action](docs/features/pp4-features-trip-list-existing-trips-action.png)
+![PlanIt-Go existing trips list](docs/features/pp4-features-trip-list-existing-trips.png)
+
+### **Profile Creation**
+
+If the user has not already entered profile information, placeholders are used for the image and bio.  I f the user enters these fields, their own image and bio is then displayed on their profile page.
+
+![PlanIt-Go create profile](docs/features/pp4-features-create-profile-header.png)
+![PlanIt-Go create profile](docs/features/pp4-features-create-profile-form.png)
+
+Once the user has entered required profile details, clicking on the profile link in the nav bar at any time displays their profile info which they can update if desired.
+
+![PlanIt-Go create profile](docs/features/pp4-features-update-profile-header.png)
+![PlanIt-Go create profile](docs/features/pp4-features-update-profile-form.png)
+
+### **Trip Creation**
+
+The form used to create a new trip has been generated using django-crispy-forms.  Styling to keep it consistent with the est of the site has been done in the forms.py file in the trips app.
+
+![PlanIt-Go trip creation page](docs/features/pp4-features-create-trip.png)
 
 ### **Trip Details**
 
 **Trip Summary**
 
-The bootstrap accordion component is used to collapse and store a summary of the trip.  Clicking the arrow icon expands the accordion and reveals a map displaying the trip destination.  As places are added to the trip itinerary, markers are added to pinpoint that place on the map.  This functionality has been implemented using Google Maps [Marker Clustering](https://developers.google.com/maps/documentation/javascript/marker-clustering#cdn).
-Other information displayed in ther summary section are a trip description if one has been provided and the number of days until travel.
+The bootstrap accordion component is used to store a map displaying the trip destination, trip title, trip title and clickable icons for users to instigate actions.  The accordion is displayed open by default but clicking the arrow icon collapses it.  As places are added to the trip itinerary, markers are added to pinpoint that place on the map.  If there are several places in a small radius, a cluster icon is displayed.  This functionality has been implemented using Google Maps [Marker Clustering](https://developers.google.com/maps/documentation/javascript/marker-clustering#cdn).
 
-**Trip Itinerary**
+![PlanIt-Go trip details summary](docs/features/pp4-features-trip-details-summary.png)
 
-An accordion component is also used to display information relating to the trip itinerary, but only appears on screen once the trip has at least one place added.  Expanding each accordion item presents the user with the followig clickable options:
+Clicking on view recommendations locates the user to the 'Recommendations' section on the same page.  Clicking on the pencil icon directs the user to the trip update form where they can edit details.  Clicking on the trash can icon displays a delete confirm modal.  If the user confirms deletion of the trip, they are redirected back to their trip list page.
 
-* View Details -> Directs user to the [Place Details Page](#place-details)
-* Remove From Itinerary -> A modal is used to confirm the user's intention to delete the place.
-* Leave A Review -> Directs user to the [User Reviews Page](#user-reviews) 
-* Upload Image -> Directs user to the [User Images Page](#user-images)
+![PlanIt-Go trip details delete confirm modal](docs/features/pp4-features-delete-confirm-trip-modal.png)
 
 **Recommendations**
 
-Users are presented with recommended places to add to their itinerary based on the trip destination.  The results returned from the Place model are paginated with 3 places displayed in a row per page. The card for each place has a hover effect applied to indicate to the user that this is a clickable link.  Clicking on a place directs the user to the relevant [Place Details Page](#place-details).  Places that have already been added to the trip itinerary do not appear as part of this list of recommendations.
+![PlanIt-Go trip details recommendations](docs/features/pp4-features-trip-details-recommendations.png)
+
+Users are presented with recommended places to add to their itinerary based on the trip destination.  The results returned from the Place model are paginated 12 places at a time with 3 places displayed per row. The card for each place has a hover effect applied to indicate to the user that this is a clickable link.  Clicking on a place directs the user to the relevant [Place Details Page](#place-details).  Places that have already been added to the trip itinerary do not appear as part of this list of recommendations.
+
+**Trip Itinerary**
+
+An accordion component is used to display information relating to the trip itinerary, but only appears on screen once the trip has at least one place added. By default, each place in the itinerary is collapsed:
+
+![PlanIt-Go trip details itinerary collapsed](docs/features/pp4-features-trip-itinerary-collapsed.png)
+
+Expanding each accordion item presents the user with the followig clickable options:
+
+* Image is clickable -> Directs user to the [Place Details Page](#place-details)
+* Remove From Planner -> A modal is used to confirm the user's intention to delete the place.
+* Leave A Review -> Directs user to the [User Reviews Page](#user-reviews) 
+* Upload Image -> Directs user to the [User Images Page](#user-images)
+
+![PlanIt-Go trip details itinerary expanded](docs/features/pp4-features-trip-itinerary-expanded.png)
+
+![PlanIt-Go planner place delete confirm](docs/features/pp4-features-planner-delete-confirm-place-modal.png)
 
 ### **Place Details**
 
@@ -293,14 +346,21 @@ On naviagting to a 'place details' page, the user is presented with a summary se
 * Add/ Remove From Trip -> This button allows the user to toggle between adding or removing the place
 * More Recommendations -> This button directs the user back to the [Trip Details Page](#trip-details)
 
+![PlanIt-Go planner place summary](docs/features/pp4-features-place-summary.png)
+
 **Details Tab**
 
-Further information about the place can be found in the details navigation tab.  This contains:
+A full description of the place is displayed in the details navigation tab:
 
-* Description
+![PlanIt-Go planner place description](docs/features/pp4-features-place-detail.png)
+
+Below the description, the following details are available:
+
 * Address
 * Website if avaialble - this link opens in a new browser tab
 * Google Map displaying location of the place.  This functionally was implemented with the help of the following [Google's Map Documentation](https://developers.google.com/maps/documentation/javascript/adding-a-google-map).  The following [javascript file](static/js/maps.js) is loaded at the bottom of the place detail page.
+
+![PlanIt-Go planner place location details](docs/features/pp4-features-place-location-details.png)
 
 **Reviews Tab**
 

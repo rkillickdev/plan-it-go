@@ -49,17 +49,26 @@ class Trip(models.Model):
         ordering = ["-start_date"]
 
     def __str__(self):
+        """
+        Returns the trip title as a string representation for each instance
+        of the Trip model.
+        """
+
         return self.title
 
     def number_of_places(self):
+        """
+        Returns the number of places belonging to the trip instance.
+        """
+
         return self.places.count()
 
-    """
-     Populates the slug field with a slugified version
-     of the title field.
-     https://stackoverflow.com/questions/141487/is-there-an-easy-way-to-populate-slugfield-from-charfield
-    """
-
     def save(self, *args, **kwargs):
+        """
+        Populates the slug field with a slugified version
+        of the title field.
+        https://stackoverflow.com/questions/141487/is-there-an-easy-way-to-populate-slugfield-from-charfield
+        """
+
         self.slug = slugify(self.title)
         super().save(*args, **kwargs)

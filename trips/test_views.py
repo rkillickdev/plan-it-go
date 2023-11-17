@@ -11,8 +11,9 @@ from .forms import TripForm
 
 class TestTripsViews(TestCase):
     """
-    Testing Trips Views
+    Testing for Trips Views.
     """
+
     def setUp(self):
         """
         Setup creates user, profile, trip, place, review and image.
@@ -25,7 +26,9 @@ class TestTripsViews(TestCase):
             username="testuser", email="test@test.com", password="testpassword"
         )
         self.user_alt = User.objects.create_user(
-            username="testuseralt", email="testalt@test.com", password="alttestpassword"
+            username="testuseralt",
+            email="testalt@test.com",
+            password="alttestpassword",
         )
         self.profile = Profile.objects.get(user=self.user)
         self.location = Location.objects.create(
@@ -86,23 +89,22 @@ class TestTripsViews(TestCase):
     #     }
     #     self.client.login(username="testuser", password="testpassword")
     #     response = self.client.post(reverse("create_trip"), data=trip_data)
-        # form = TripForm(data=trip_data)
-        # self.assertTrue(form.is_valid())
-        # self.assertTrue(form.instance.profile)
-        # new_trip = Trip.objects.get(id=2)
-        # self.assertTrue(Trip.objects.filter(title="West End Shows").exists())
+    # form = TripForm(data=trip_data)
+    # self.assertTrue(form.is_valid())
+    # self.assertTrue(form.instance.profile)
+    # new_trip = Trip.objects.get(id=2)
+    # self.assertTrue(Trip.objects.filter(title="West End Shows").exists())
 
-        # self.assertEqual(response.status_code, 302)
-        # self.assertRedirects(response, 
-        #                     reverse_lazy(
-        #                         "trip_detail",
-        #                         kwargs={
-        #                             "slug": self.trip.slug,
-        #                             "trip_id": self.trip.id
-        #                         }      
-        #                     )
-        #                     )
-        
+    # self.assertEqual(response.status_code, 302)
+    # self.assertRedirects(response,
+    #                     reverse_lazy(
+    #                         "trip_detail",
+    #                         kwargs={
+    #                             "slug": self.trip.slug,
+    #                             "trip_id": self.trip.id
+    #                         }
+    #                     )
+    #                     )
 
     def test_trip_update_defensive_programming(self):
         """
@@ -110,15 +112,12 @@ class TestTripsViews(TestCase):
         to another user.  It is expected that they should be redirected to the
         403 error template.
         """
-        # Login alt user that does not own trip 
+        # Login alt user that does not own trip
         self.client.login(username="testuseralt", password="alttestpassword")
         response = self.client.get(
             reverse(
                 "update_trip",
-                kwargs={
-                    "slug": self.trip.slug,
-                    "pk": self.trip.id
-                }
+                kwargs={"slug": self.trip.slug, "pk": self.trip.id},
             )
         )
         self.assertEqual(response.status_code, 403)
@@ -139,28 +138,25 @@ class TestTripsViews(TestCase):
     #     self.assertTrue(Trip.objects.filter(id=self.trip.id).exists())
 
     def test_trip_detail(self):
-        """
-        """
-        # Login alt user that does not own trip 
+        """ """
+        # Login alt user that does not own trip
         self.client.login(username="testuseralt", password="alttestpassword")
         response = self.client.get(
             reverse(
                 "trip_detail",
-                kwargs={
-                    "slug": self.trip.slug,
-                    "trip_id": self.trip.id
-                }
+                kwargs={"slug": self.trip.slug, "trip_id": self.trip.id},
             )
         )
         self.assertEqual(response.status_code, 403)
         messages = list(get_messages(response.wsgi_request))
         self.assertEqual(len(messages), 1)
-        self.assertEqual(str(messages[0]), 'You can only access your own trips!')
+        self.assertEqual(
+            str(messages[0]), "You can only access your own trips!"
+        )
 
     def test_place_detail_defensive_programming(self):
-        """
-        """
-        # Login alt user that does not own trip 
+        """ """
+        # Login alt user that does not own trip
         self.client.login(username="testuseralt", password="alttestpassword")
         response = self.client.get(
             reverse(
@@ -168,15 +164,16 @@ class TestTripsViews(TestCase):
                 kwargs={
                     "slug": self.trip.slug,
                     "trip_id": self.trip.id,
-                    "place_id": self.place.id
-                }
+                    "place_id": self.place.id,
+                },
             )
         )
         self.assertEqual(response.status_code, 403)
         messages = list(get_messages(response.wsgi_request))
         self.assertEqual(len(messages), 1)
-        self.assertEqual(str(messages[0]), 'This page does not belong to your Trip!')
-
+        self.assertEqual(
+            str(messages[0]), "This page does not belong to your Trip!"
+        )
 
     def test_trip_delete_defensive_programming(self):
         """
@@ -184,22 +181,21 @@ class TestTripsViews(TestCase):
         another user.  Also tests whether an error message is generated
         if a user attempts to delete a trip that does not belong to them.
         """
-        # Login alt user that does not own trip 
+        # Login alt user that does not own trip
         self.client.login(username="testuseralt", password="alttestpassword")
         response = self.client.get(
             reverse(
                 "delete_trip",
-                kwargs={
-                    "slug": self.trip.slug,
-                    "trip_id": self.trip.id
-                }
+                kwargs={"slug": self.trip.slug, "trip_id": self.trip.id},
             )
         )
         # Checks whether trip still exists
         self.assertTrue(Trip.objects.filter(id=self.trip.id).exists())
         messages = list(get_messages(response.wsgi_request))
         self.assertEqual(len(messages), 1)
-        self.assertEqual(str(messages[0]), 'You can only delete your own trips!')
+        self.assertEqual(
+            str(messages[0]), "You can only delete your own trips!"
+        )
 
     def test_review_page_and_create_review(self):
         """
@@ -241,14 +237,16 @@ class TestTripsViews(TestCase):
         )
 
         self.assertEqual(response.status_code, 302)
-        self.assertRedirects(response, reverse(
-            "review",
-            kwargs={
+        self.assertRedirects(
+            response,
+            reverse(
+                "review",
+                kwargs={
                     "slug": self.trip.slug,
                     "trip_id": self.trip.id,
                     "place_id": self.place.id,
-                }
-            )
+                },
+            ),
         )
 
         new_review = Review.objects.get(id=2)
@@ -262,7 +260,7 @@ class TestTripsViews(TestCase):
         to another user.  It is expected that they should be redirected to the
         403 error template.
         """
-        # Login alt user that does not own trip 
+        # Login alt user that does not own trip
         self.client.login(username="testuseralt", password="alttestpassword")
         response = self.client.get(
             reverse(
@@ -271,7 +269,7 @@ class TestTripsViews(TestCase):
                     "slug": self.trip.slug,
                     "trip_id": self.trip.id,
                     "place_id": self.place.id,
-                }
+                },
             )
         )
         self.assertEqual(response.status_code, 403)
@@ -282,7 +280,7 @@ class TestTripsViews(TestCase):
         to another user.  It is expected that they should be redirected to the
         403 error template.
         """
-        # Login alt user that does not own trip 
+        # Login alt user that does not own trip
         self.client.login(username="testuseralt", password="alttestpassword")
         response = self.client.get(
             reverse(
@@ -291,8 +289,8 @@ class TestTripsViews(TestCase):
                     "slug": self.trip.slug,
                     "trip_id": self.trip.id,
                     "place_id": self.place.id,
-                    "review_id": self.review.id
-                }
+                    "review_id": self.review.id,
+                },
             )
         )
         self.assertEqual(response.status_code, 403)
@@ -344,20 +342,22 @@ class TestTripsViews(TestCase):
                     "slug": self.trip.slug,
                     "trip_id": self.trip.id,
                     "place_id": self.place.id,
-                    "review_id": self.review.id
+                    "review_id": self.review.id,
                 },
             ),
-            data=review_data
+            data=review_data,
         )
         self.assertEqual(response.status_code, 302)
-        self.assertRedirects(response, reverse(
-            "review",
-            kwargs={
+        self.assertRedirects(
+            response,
+            reverse(
+                "review",
+                kwargs={
                     "slug": self.trip.slug,
                     "trip_id": self.trip.id,
                     "place_id": self.place.id,
-                }
-            )
+                },
+            ),
         )
         updated_review = Review.objects.get(id=self.review.id)
         self.assertEqual(updated_review.place, self.place)
@@ -382,10 +382,10 @@ class TestTripsViews(TestCase):
                     "slug": self.trip.slug,
                     "trip_id": self.trip.id,
                     "place_id": self.place.id,
-                    "review_id": self.review.id
+                    "review_id": self.review.id,
                 },
             ),
-            data=review_data
+            data=review_data,
         )
 
         # Referenced the following article for testing messages
@@ -394,7 +394,7 @@ class TestTripsViews(TestCase):
 
         messages = list(get_messages(response.wsgi_request))
         self.assertEqual(len(messages), 1)
-        self.assertEqual(str(messages[0]), 'Error updating this review!')
+        self.assertEqual(str(messages[0]), "Error updating this review!")
 
     def test_review_delete(self):
         """
@@ -411,19 +411,21 @@ class TestTripsViews(TestCase):
                     "slug": self.trip.slug,
                     "trip_id": self.trip.id,
                     "place_id": self.place.id,
-                    "review_id": self.review.id
-                }
+                    "review_id": self.review.id,
+                },
             )
         )
         self.assertEqual(response.status_code, 302)
-        self.assertRedirects(response, reverse(
-            "review",
-            kwargs={
+        self.assertRedirects(
+            response,
+            reverse(
+                "review",
+                kwargs={
                     "slug": self.trip.slug,
                     "trip_id": self.trip.id,
                     "place_id": self.place.id,
-                }
-            )
+                },
+            ),
         )
         self.assertFalse(Review.objects.filter(id=self.review.id).exists())
         updated_review_count = Review.objects.all().count()
@@ -444,17 +446,17 @@ class TestTripsViews(TestCase):
                     "slug": self.trip.slug,
                     "trip_id": self.trip.id,
                     "place_id": self.place.id,
-                    "review_id": self.review.id
-                }
+                    "review_id": self.review.id,
+                },
             )
         )
         # Checks whether review still exists
         self.assertTrue(Review.objects.filter(id=self.review.id).exists())
         messages = list(get_messages(response.wsgi_request))
         self.assertEqual(len(messages), 1)
-        self.assertEqual(str(messages[0]), 'You can only delete your own reviews!')
-
-    
+        self.assertEqual(
+            str(messages[0]), "You can only delete your own reviews!"
+        )
 
     def test_image_delete(self):
         """
@@ -471,23 +473,25 @@ class TestTripsViews(TestCase):
                     "slug": self.trip.slug,
                     "trip_id": self.trip.id,
                     "place_id": self.place.id,
-                    "image_id": self.image.id
-                }
+                    "image_id": self.image.id,
+                },
             )
         )
         self.assertEqual(response.status_code, 302)
-        self.assertRedirects(response, reverse(
-            "add_image",
-            kwargs={
+        self.assertRedirects(
+            response,
+            reverse(
+                "add_image",
+                kwargs={
                     "slug": self.trip.slug,
                     "trip_id": self.trip.id,
                     "place_id": self.place.id,
-                }
-            )
+                },
+            ),
         )
         self.assertFalse(Image.objects.filter(id=self.image.id).exists())
         updated_image_count = Image.objects.all().count()
-        self.assertEqual(updated_image_count, 0) 
+        self.assertEqual(updated_image_count, 0)
 
     def test_add_image_defensive_programming(self):
         """
@@ -495,7 +499,7 @@ class TestTripsViews(TestCase):
         to another user.  It is expected that they should be redirected to the
         403 error template.
         """
-        # Login alt user that does not own trip 
+        # Login alt user that does not own trip
         self.client.login(username="testuseralt", password="alttestpassword")
         response = self.client.get(
             reverse(
@@ -503,11 +507,11 @@ class TestTripsViews(TestCase):
                 kwargs={
                     "slug": self.trip.slug,
                     "trip_id": self.trip.id,
-                    "place_id": self.place.id
-                }
+                    "place_id": self.place.id,
+                },
             )
         )
-        self.assertEqual(response.status_code, 403)    
+        self.assertEqual(response.status_code, 403)
 
     def test_image_delete_defensive_programming(self):
         """
@@ -515,7 +519,7 @@ class TestTripsViews(TestCase):
         another user.  Also tests whether an error message is generated
         if a user attempts to delete an image that does not belong to them.
         """
-        # Login alt user that does not own image 
+        # Login alt user that does not own image
         self.client.login(username="testuseralt", password="alttestpassword")
         response = self.client.get(
             reverse(
@@ -524,21 +528,21 @@ class TestTripsViews(TestCase):
                     "slug": self.trip.slug,
                     "trip_id": self.trip.id,
                     "place_id": self.place.id,
-                    "image_id": self.image.id
-                }
+                    "image_id": self.image.id,
+                },
             )
         )
         # Checks whether image still exists
         self.assertTrue(Image.objects.filter(id=self.image.id).exists())
         messages = list(get_messages(response.wsgi_request))
         self.assertEqual(len(messages), 1)
-        self.assertEqual(str(messages[0]), 'You can only delete your own images!')
+        self.assertEqual(
+            str(messages[0]), "You can only delete your own images!"
+        )
         self.assertEqual(response.status_code, 403)
-   
-    def test_successful_trip_delete_redirect(self):
-        """
 
-        """
+    def test_successful_trip_delete_redirect(self):
+        """ """
         self.client.login(username="testuser", password="testpassword")
         response = self.client.get(
             reverse(
@@ -554,7 +558,6 @@ class TestTripsViews(TestCase):
         # request.user = self.user
         # response = TripCreateView.as_view()(request)
         # self.assertEqual(response.status_code, 200)
-
 
     def test_toggle_add_place_to_trip(self):
         """

@@ -57,7 +57,7 @@ class TripUpdateView(LoginRequiredMixin, UpdateView):
     View to update trip info.  Redirects to trip detail
     template once updated.
     """
-    
+
     model = Trip
     form_class = TripForm
     template_name = "trips/create_trip.html"
@@ -137,7 +137,6 @@ class TripDetailView(LoginRequiredMixin, View):
     """
 
     def get(self, request, slug, trip_id, *args, **kwargs):
-        
         trip = get_object_or_404(Trip, id=trip_id)
         if trip.profile.id == request.user.profile.id:
             geo_data = list(
@@ -153,7 +152,7 @@ class TripDetailView(LoginRequiredMixin, View):
                 new_dict = {
                     "lat": float(item["latitude"]),
                     "lng": float(item["longitude"]),
-                    "place": item["name"]
+                    "place": item["name"],
                 }
                 geo_list.append(new_dict)
 
@@ -183,7 +182,7 @@ class TripDetailView(LoginRequiredMixin, View):
             )
         else:
             messages.add_message(
-            request, messages.ERROR, "You can only access your own trips!"
+                request, messages.ERROR, "You can only access your own trips!"
             )
             raise PermissionDenied()
 
@@ -202,7 +201,9 @@ class PlaceDetail(LoginRequiredMixin, View):
         trip = get_object_or_404(Trip, id=trip_id)
         if trip.profile.id == request.user.profile.id:
             place = get_object_or_404(Place, id=place_id)
-            reviews = place.reviews.filter(approved=True).order_by("created_on")
+            reviews = place.reviews.filter(approved=True).order_by(
+                "created_on"
+            )
             images = place.images.filter(approved=True).order_by("created_on")
             added = False
 
@@ -225,7 +226,9 @@ class PlaceDetail(LoginRequiredMixin, View):
             )
         else:
             messages.add_message(
-            request, messages.ERROR, "This page does not belong to your Trip!"
+                request,
+                messages.ERROR,
+                "This page does not belong to your Trip!",
             )
             raise PermissionDenied()
 
@@ -255,7 +258,7 @@ def review_create(request, slug, trip_id, place_id, *args, **kwargs):
             )
 
         return HttpResponseRedirect(
-        reverse("review", args=[trip.slug, trip_id, place_id])
+            reverse("review", args=[trip.slug, trip_id, place_id])
         )
     else:
         review_form = ReviewForm()
@@ -293,7 +296,9 @@ def review_edit(request, trip_id, place_id, review_id, *args, **kwargs):
             review.place = place
             review.approved = False
             review.save()
-            messages.add_message(request, messages.SUCCESS, "Review has been updated!")
+            messages.add_message(
+                request, messages.SUCCESS, "Review has been updated!"
+            )
         else:
             messages.add_message(
                 request, messages.ERROR, "Error updating this review!"
@@ -304,7 +309,7 @@ def review_edit(request, trip_id, place_id, review_id, *args, **kwargs):
         review = get_object_or_404(Review, id=review_id)
 
         if not review.profile.id == request.user.profile.id:
-            raise PermissionDenied()       
+            raise PermissionDenied()
 
     return HttpResponseRedirect(
         reverse("review", args=[trip.slug, trip_id, place_id])
@@ -325,7 +330,6 @@ def review_delete(request, trip_id, place_id, review_id, *args, **kwargs):
         review.delete()
         messages.add_message(request, messages.SUCCESS, "Review deleted!")
     else:
-
         messages.add_message(
             request, messages.ERROR, "You can only delete your own reviews!"
         )
@@ -350,7 +354,7 @@ class ImageUploadView(LoginRequiredMixin, CreateView):
     form_class = ImageForm
     model = Image
     template_name = "trips/add_image.html"
-    
+
     # Referenced this article to find out about accessing url kwargs:
     # https://stackoverflow.com/questions/72599545/get-url-kwargs-in-class-based-views
 
@@ -365,7 +369,7 @@ class ImageUploadView(LoginRequiredMixin, CreateView):
     def get(self, request, *args, **kwargs):
         if not Trip.objects.filter(profile=self.request.user.profile).exists():
             raise PermissionDenied()
-        return super().get(request, *args, **kwargs) 
+        return super().get(request, *args, **kwargs)
 
     # Referenced this article to automatically populate filed forms:
     # https://stackoverflow.com/questions/18246326/how-do-i-set-user-field-in-form-to-the-currently-logged-in-user
@@ -418,7 +422,7 @@ def image_delete(request, trip_id, place_id, image_id, *args, **kwargs):
             request, messages.ERROR, "You can only delete your own images!"
         )
         raise PermissionDenied()
-        
+
     return HttpResponseRedirect(
         reverse("add_image", args=[trip.slug, trip_id, place_id])
     )
@@ -462,8 +466,8 @@ class PlaceRemove(LoginRequiredMixin, View):
         trip.places.remove(place)
 
         messages.add_message(
-                request, messages.SUCCESS, "Removed From Your Trip"
-            )
+            request, messages.SUCCESS, "Removed From Your Trip"
+        )
 
         return HttpResponseRedirect(
             reverse("trip_detail", args=[trip.slug, trip_id])

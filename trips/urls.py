@@ -44,12 +44,14 @@ urlpatterns = [
         name="review",
     ),
     path(
-        "<slug:slug>/<int:trip_id>/review/<int:place_id>/edit_review/<int:review_id>",
+        "<slug:slug>/<int:trip_id>/review/<int:place_id>"
+        "/edit_review/<int:review_id>",
         review_edit,
         name="edit_review",
     ),
     path(
-        "<slug:slug>/<int:trip_id>/review/<int:place_id>/delete_review/<int:review_id>",
+        "<slug:slug>/<int:trip_id>/review/<int:place_id>"
+        "/delete_review/<int:review_id>",
         review_delete,
         name="delete_review",
     ),
@@ -59,7 +61,8 @@ urlpatterns = [
         name="add_image",
     ),
     path(
-        "<slug:slug>/<int:trip_id>/images/<int:place_id>/delete_image/<int:image_id>",
+        "<slug:slug>/<int:trip_id>/images/<int:place_id>"
+        "/delete_image/<int:image_id>",
         image_delete,
         name="delete_image",
     ),

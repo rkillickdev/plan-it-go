@@ -10,7 +10,7 @@ class TestTripModel(TestCase):
 
     def setUp(self):
         """
-        Create an instance of the class Profile and set attributes
+        Create a user, location, profile and trip.
         """
 
         self.user = User.objects.create_user(
@@ -36,10 +36,9 @@ class TestTripModel(TestCase):
         self.expected_str = self.trip.title
         self.number_of_expected_places = self.trip.places.count()
 
-
     def test_trip_model(self):
         """
-        Tests the attibutes in the Trip model
+        Tests the attibutes in the Trip model.
         """
 
         self.assertEqual(self.trip.profile.user.username, "testuser")
@@ -47,4 +46,6 @@ class TestTripModel(TestCase):
         self.assertEqual(self.trip.title, "City Sightseeing")
         self.assertEqual(self.trip.slug, "city-sightseeing")
         self.assertEqual(str(self.trip), self.expected_str)
-        self.assertEqual(self.trip.number_of_places(), self.number_of_expected_places)
+        self.assertEqual(
+            self.trip.number_of_places(), self.number_of_expected_places
+        )

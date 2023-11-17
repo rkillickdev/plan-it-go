@@ -76,7 +76,11 @@ class Review(models.Model):
         ordering = ["created_on"]
 
     def __str__(self):
-        return f"Review For {self.place.name}, {self.place.location.city}: {self.profile.screen_name}"
+        """
+        Returns the place name and city as a string representation
+        of the object.
+        """
+        return f"Review For {self.place.name}, {self.place.location.city}"
 
 
 class Image(models.Model):

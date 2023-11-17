@@ -191,7 +191,7 @@ def get_places(request, destination_id, slug):
                 # Calculate number of words in description field using numpy
                 word_count = np.char.count(place_data.description, " ") + 1
 
-                # Checks if venue already exists of description word count < 30.
+                # Checks if venue exists or description word count < 30.
                 if venue.exists() or word_count < 30:
                     continue
                 else:
@@ -201,7 +201,7 @@ def get_places(request, destination_id, slug):
             messages.add_message(
                 request,
                 messages.SUCCESS,
-                "Places for this location have been populated with the latest data",
+                "Places for location have been populated with the latest data",
             )
 
             return HttpResponseRedirect(

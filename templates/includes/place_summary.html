@@ -21,8 +21,11 @@
             {% if request.resolver_match.url_name == 'place_detail' %}
               <!-- place_toggle template included -->
               {% include 'includes/place_toggle.html' %}
+            {% elif request.user.is_staff %}
+              <!-- place_staff_approve_toggle included -->
+              {% include 'includes/place_staff_approve_toggle.html' %}
             {% else %}
-            <div class="d-flex flex-column justify-content-center {% if request.user.is_staff %} d-none {% endif %}">
+            <div class="d-flex flex-column justify-content-center">
               <a href="{% url 'trip_list' %}"
                  class="mb-3" 
                  aria-labelledby="plan-trip-label">

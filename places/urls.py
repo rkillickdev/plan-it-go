@@ -1,5 +1,11 @@
 from django.urls import path
-from .views import get_places, PlaceListView, PlaceBrowseDetail
+from .views import (
+    get_places,
+    PlaceListView,
+    PlaceBrowseDetail,
+    PlaceApproveToggle
+)
+
 
 urlpatterns = [
     path(
@@ -17,4 +23,9 @@ urlpatterns = [
         PlaceBrowseDetail.as_view(),
         name="place_browse_detail",
     ),
+    path(
+        "<slug:slug>/<int:place_id>/toggle_approval",
+        PlaceApproveToggle.as_view(),
+        name="place_toggle_approval"
+    )
 ]

@@ -6,6 +6,8 @@ from django.utils.text import slugify
 from django.shortcuts import render, get_object_or_404, reverse
 from django.http import HttpResponseRedirect
 from django.views.generic import ListView, DetailView
+from django.views import View
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.admin.views.decorators import staff_member_required
 from apify_client import ApifyClient
@@ -58,6 +60,46 @@ class PlaceBrowseDetail(DetailView):
         context["reviews"] = place.reviews.filter(approved=True).order_by("created_on")
         context["images"] = place.images.filter(approved=True).order_by("created_on")
         return context
+
+
+class PlaceApproveToggle(LoginRequiredMixin, View):
+    """
+    View to toggle between adding and removing approval
+    of a place by a staff user.
+    """
+    @staff_member_required
+    def post(self, request, slug, place_id):
+        """
+        Defines post method.  Toggles True/False value and
+        provides message as feedback to the staff user.
+        """
+        place = get_object_or_404(Place, id=place_id)
+
+        if place.approved:
+            place.approved = False
+            place.save()
+            messages.add_message(
+                request, messages.SUCCESS, "Approval removed for this place"
+            )
+        else:
+            place.approved = True
+            place.save()
+            messages.add_message(
+                request, messages.SUCCESS, "Approval added for this place"
+            )
+
+        return HttpResponseRedirect(
+            reverse("place_browse_detail", args=[place.slug, place_id])
+        )
+    def get(self, request, slug, place_id):
+        """
+        Defines get method
+        """
+        place = get_object_or_404(Place, id=place_id)
+
+        return HttpResponseRedirect(
+            reverse("place_browse_detail", args=[place.slug, place_id])
+        )
 
 
 @staff_member_required

@@ -1,0 +1,31 @@
+<!-- Place toggle add/remove from planner-->
+<form class="d-inline"
+      action="{% url 'place_toggle_approval' place.slug place.id %}"
+      method="POST">
+  {% csrf_token %}
+  {% if place.approved %}
+    <div class="vstack gap-3">
+      <button type="submit"
+              name="place_id"
+              value="{{place.id}}"
+              class="btn-icon text-primary"
+              aria-labelledby="place-approve-toggle">
+        <i class="fa-solid fa-thumbs-down fa-4x transform-reverse"></i>
+      </button>
+      <p id="place-approve-toggle"
+         class="lead fw-light">Remove Approval</p>
+    </div>
+  {% else %}
+    <div class="vstack gap-3">
+      <button type="submit"
+              name="place_id"
+              value="{{place.id}}"
+              class="btn-icon"
+              aria-labelledby="trip-add-toggle">
+        <i class="fa-solid fa-thumbs-up fa-4x link-transform"></i>
+      </button>
+      <p id="trip-add-toggle"
+         class="lead fw-light">Add Approval</p>
+    </div>
+  {% endif %}
+</form>

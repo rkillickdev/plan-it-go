@@ -1,5 +1,5 @@
 from django import forms
-from .models import Trip
+from .models import Trip, Location
 from django.forms import ModelForm
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import (
@@ -16,6 +16,7 @@ from crispy_forms.layout import (
 class TripForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        self.fields['location'].queryset = Location.objects.filter(approved=True)
         self.helper = FormHelper()
         self.helper.form_id = "trip-form"
         self.helper.form_class ="rounded bg-dark text-light p-4"

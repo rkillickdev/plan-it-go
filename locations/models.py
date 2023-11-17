@@ -19,6 +19,7 @@ class Location(models.Model):
         folder="/images/locations",
         format="webp",
     )
+    approved = models.BooleanField(default=False)
 
     class Meta:
         ordering = ["-city"]

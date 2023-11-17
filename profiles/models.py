@@ -51,9 +51,8 @@ class Profile(models.Model):
         """
         return f"{self.user.profile.screen_name}"
 
+
 # Create a Profile when new user signs up
-
-
 def create_profile(sender, instance, created, **kwargs):
     if created:
         user_profile = Profile(user=instance)

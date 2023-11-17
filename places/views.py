@@ -34,7 +34,9 @@ class PlaceListView(ListView):
         self.location = get_object_or_404(
             Location, id=self.kwargs["location_id"]
         )
-        return Place.objects.filter(location=self.location, approved=True).order_by("-rating")
+        return Place.objects.filter(
+            location=self.location, approved=True
+        ).order_by("-rating")
 
     def get_context_data(self, **kwargs):
         context = super(PlaceListView, self).get_context_data(**kwargs)
@@ -57,8 +59,12 @@ class PlaceBrowseDetail(DetailView):
         context = super(PlaceBrowseDetail, self).get_context_data(**kwargs)
         place = get_object_or_404(Place, id=self.object.id)
         context["g_maps_api_key"] = os.environ.get("GOOGLE_MAPS_API_KEY")
-        context["reviews"] = place.reviews.filter(approved=True).order_by("created_on")
-        context["images"] = place.images.filter(approved=True).order_by("created_on")
+        context["reviews"] = place.reviews.filter(approved=True).order_by(
+            "created_on"
+        )
+        context["images"] = place.images.filter(approved=True).order_by(
+            "created_on"
+        )
         return context
 
 
@@ -67,6 +73,7 @@ class PlaceApproveToggle(LoginRequiredMixin, View):
     View to toggle between adding and removing approval
     of a place by a staff user.
     """
+
     def post(self, request, slug, place_id):
         """
         Defines post method.  Toggles True/False value and
@@ -90,6 +97,7 @@ class PlaceApproveToggle(LoginRequiredMixin, View):
         return HttpResponseRedirect(
             reverse("place_browse_detail", args=[place.slug, place_id])
         )
+
     def get(self, request, slug, place_id):
         """
         Defines get method
@@ -193,7 +201,7 @@ def get_places(request, destination_id, slug):
             messages.add_message(
                 request,
                 messages.SUCCESS,
-                "Places for this location have been populated with the latest data"
+                "Places for this location have been populated with the latest data",
             )
 
             return HttpResponseRedirect(
@@ -208,7 +216,7 @@ def get_places(request, destination_id, slug):
             messages.add_message(
                 request,
                 messages.ERROR,
-                "We were not able to retrieve this data!"
+                "We were not able to retrieve this data!",
             )
 
             return HttpResponseRedirect(reverse("locations"))

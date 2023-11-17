@@ -17,11 +17,16 @@ from .models import Image
 
 
 class PlaceForm(ModelForm):
+    """
+    Form for Place Model.  Crispy forms helper used for
+    layout and styling.
+    """
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.form_id = "retrieve-places"
-        self.helper.form_class ="rounded bg-dark text-light p-4"
+        self.helper.form_class = "rounded bg-dark text-light p-4"
         self.fields["location"].label = "Select A Destination"
         self.helper.form_method = "POST"
 
@@ -32,8 +37,8 @@ class PlaceForm(ModelForm):
                     "Submit",
                     "Request Places",
                     css_id="submitButton",
-                    css_class="btn btn-primary text-light"
-                    ),
+                    css_class="btn btn-primary text-light",
+                ),
                 css_class="my-4",
             ),
         )
@@ -44,11 +49,16 @@ class PlaceForm(ModelForm):
 
 
 class ReviewForm(ModelForm):
+    """
+    Form for Review Model.  Crispy forms helper used for
+    layout and styling.
+    """
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.form_id = "reviewForm"
-        self.helper.form_class ="rounded bg-dark text-light p-4"
+        self.helper.form_class = "rounded bg-dark text-light p-4"
         self.helper.form_show_labels = False
         self.helper.form_method = "POST"
 
@@ -56,8 +66,8 @@ class ReviewForm(ModelForm):
             Field(
                 "body",
                 placeholder="Tell us more about your visit...",
-                aria_label="Write a description of your trip"
-                ),
+                aria_label="Write a description of your trip",
+            ),
             Div(
                 Submit(
                     "Submit",
@@ -75,11 +85,16 @@ class ReviewForm(ModelForm):
 
 
 class ImageForm(ModelForm):
+    """
+    Form for Image Model.  Crispy forms helper used for
+    layout and styling.
+    """
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.form_id = "imageForm"
-        self.helper.form_class ="rounded bg-dark text-light p-4"
+        self.helper.form_class = "rounded bg-dark text-light p-4"
         self.fields["path"].label = False
         self.helper.form_method = "POST"
 

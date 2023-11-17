@@ -15,6 +15,11 @@ from .models import Location
 
 
 class LocationForm(ModelForm):
+    """
+    Form for Location Model.  Crispy forms helper used for
+    layout and styling.
+    """
+
     latitude = forms.DecimalField(widget=forms.TextInput())
     longitude = forms.DecimalField(widget=forms.TextInput())
 
@@ -22,7 +27,7 @@ class LocationForm(ModelForm):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.form_id = "location-form"
-        self.helper.form_class ="rounded bg-dark text-light p-4"
+        self.helper.form_class = "rounded bg-dark text-light p-4"
         self.fields["city"].label = False
         self.fields["summary"].label = False
         self.fields["latitude"].label = False
@@ -35,7 +40,7 @@ class LocationForm(ModelForm):
                 "city",
                 css_class="mb-4",
                 aria_label="Enter a city location",
-                placeholder="Enter a City Location"
+                placeholder="Enter a City Location",
             ),
             Field(
                 "summary",

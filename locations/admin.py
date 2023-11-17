@@ -6,9 +6,10 @@ from .models import Location
 class LocationAdmin(admin.ModelAdmin):
     """
     Defines method for admin to approve locations
-    in the Django admin panel
+    in the Django admin panel.
     """
-    list_display = ('city', 'approved')
-    
+
+    list_display = ("city", "approved")
+
     def approve_locations(self, request, queryset):
         queryset.update(approved=True)

@@ -25,6 +25,10 @@ class Location(models.Model):
         ordering = ["-city"]
 
     def __str__(self):
+        """
+        Returns the city field as a string representation
+        of the object.
+        """
         return self.city
 
     def save(self, *args, **kwargs):

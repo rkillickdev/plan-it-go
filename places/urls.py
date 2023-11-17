@@ -3,7 +3,7 @@ from .views import (
     get_places,
     PlaceListView,
     PlaceBrowseDetail,
-    PlaceApproveToggle
+    PlaceApproveToggle,
 )
 
 
@@ -26,6 +26,6 @@ urlpatterns = [
     path(
         "<slug:slug>/<int:place_id>/toggle_approval",
         PlaceApproveToggle.as_view(),
-        name="place_toggle_approval"
-    )
+        name="place_toggle_approval",
+    ),
 ]

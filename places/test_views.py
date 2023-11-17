@@ -6,6 +6,7 @@ from profiles.models import Profile
 from .models import Place, Review, Image
 from locations.models import Location
 
+
 class TestPlacesViews(TestCase):
     """
     Testing Places Views
@@ -13,17 +14,22 @@ class TestPlacesViews(TestCase):
 
     def setUp(self):
         """
+        Setup creates user, alt user, profile,
+        location, place, review and image.
         """
+
         self.client = Client()
-        
+
         self.user = User.objects.create_user(
             username="testuser", email="test@test.com", password="testpassword"
         )
         self.user_alt = User.objects.create_user(
-            username="testuseralt", email="testalt@test.com", password="alttestpassword"
+            username="testuseralt",
+            email="testalt@test.com",
+            password="alttestpassword",
         )
         self.profile = Profile.objects.get(user=self.user)
-        
+
         self.location = Location.objects.create(
             city="London",
             slug="london",
@@ -52,31 +58,37 @@ class TestPlacesViews(TestCase):
             profile=self.profile, place=self.place
         )
 
-    
     def test_list_places(self):
         """
         Tests that place list page renders
         """
+
         response = self.client.get(
-            reverse('place_list', 
-                    kwargs={
-                        "location_id": self.location.id, 
-                        "slug": self.location.slug
-                    }
+            reverse(
+                "place_list",
+                kwargs={
+                    "location_id": self.location.id,
+                    "slug": self.location.slug,
+                },
             )
         )
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'places/place_list.html')
+        self.assertTemplateUsed(response, "places/place_list.html")
 
     def test_place_browse_detail(self):
         """
+        Test that reviews and images are included in the context
+        returned by the browse detail view.
         """
+
         response = self.client.get(
-            reverse('place_browse_detail',
-            kwargs={
-                "slug": self.place.slug, 
-                "pk": self.place.id,    
-            })
+            reverse(
+                "place_browse_detail",
+                kwargs={
+                    "slug": self.place.slug,
+                    "pk": self.place.id,
+                },
+            )
         )
-        self.assertIn('reviews', response.context)
-        self.assertIn('images', response.context)
+        self.assertIn("reviews", response.context)
+        self.assertIn("images", response.context)

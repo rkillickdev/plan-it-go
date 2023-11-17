@@ -7,8 +7,11 @@ from .models import Location
 from .forms import LocationForm
 
 
-class DestinationList(LoginRequiredMixin, SuccessMessageMixin, CreateView):
-    """ 
+class CreateDestination(LoginRequiredMixin, SuccessMessageMixin, CreateView):
+    """
+    View to create a destination.  A success message has been added on
+    successful creation.  Destinations ordered by the city field are
+    returned as the view context.
     """
 
     form_class = LocationForm
@@ -21,7 +24,7 @@ class DestinationList(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     # https://magbanum.com/blog/let-cloudinary-handle-image-uploads-in-your-django-application
 
     def get_context_data(self, **kwargs):
-        context = super(DestinationList, self).get_context_data(**kwargs)
+        context = super(CreateDestination, self).get_context_data(**kwargs)
         context["destinations"] = Location.objects.all().order_by("city")
         return context
 
@@ -30,6 +33,12 @@ class DestinationList(LoginRequiredMixin, SuccessMessageMixin, CreateView):
 
 
 class UpdateDestination(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
+    """
+    View to update a destination.  A success message has been added on
+    successful creation.  Destinations ordered by the city field are
+    returned as the view context.
+    """
+
     form_class = LocationForm
     model = Location
     template_name = "locations/destinations.html"

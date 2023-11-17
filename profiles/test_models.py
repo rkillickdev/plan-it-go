@@ -10,7 +10,7 @@ class TestProfileModel(TestCase):
 
     def setUp(self):
         """
-        Create an instance of the class Profile and set attributes
+        Create an instance of the class Profile and set attributes.
         """
 
         self.user = User.objects.create_user(

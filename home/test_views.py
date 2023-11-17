@@ -4,6 +4,7 @@ from django.urls import reverse
 from django.contrib.auth.models import User
 from locations.models import Location
 
+
 class TestHomeViews(TestCase):
     """
     Testing Trips Views
@@ -15,7 +16,11 @@ class TestHomeViews(TestCase):
         """
         self.client = Client()
 
-        self.user = User.objects.create_superuser(username="superuser", password="supertest", email="supertest@test.com")
+        self.user = User.objects.create_superuser(
+            username="superuser",
+            password="supertest",
+            email="supertest@test.com",
+        )
 
         self.location = Location.objects.create(
             city="London",
@@ -30,9 +35,11 @@ class TestHomeViews(TestCase):
         Tests to see that index.html is returned
         as home page.
         """
-        response = self.client.get(reverse('home'))
+        response = self.client.get(reverse("home"))
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'home/index.html')
+        self.assertTemplateUsed(response, "home/index.html")
 
         self.expected_context = Location.objects.all().order_by("city")
-        self.assertQuerysetEqual(response.context["destinations"], self.expected_context)
+        self.assertQuerysetEqual(
+            response.context["destinations"], self.expected_context
+        )

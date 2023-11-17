@@ -67,7 +67,6 @@ class PlaceApproveToggle(LoginRequiredMixin, View):
     View to toggle between adding and removing approval
     of a place by a staff user.
     """
-    @staff_member_required
     def post(self, request, slug, place_id):
         """
         Defines post method.  Toggles True/False value and

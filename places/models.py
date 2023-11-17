@@ -17,7 +17,7 @@ class Place(models.Model):
     venue_id = models.CharField(max_length=50, unique=True)
     type = models.CharField(max_length=150, null=True)
     category = models.CharField(max_length=150)
-    sub_categories = models.JSONField(null=True)
+    sub_categories = models.JSONField(null=True, blank=True)
     name = models.CharField(max_length=50)
     slug = models.SlugField(max_length=50)
     location_string = models.CharField(max_length=150, null=True)

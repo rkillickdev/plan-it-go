@@ -32,7 +32,7 @@ class PlaceListView(ListView):
         self.location = get_object_or_404(
             Location, id=self.kwargs["location_id"]
         )
-        return Place.objects.filter(location=self.location).order_by("-rating")
+        return Place.objects.filter(location=self.location, approved=True).order_by("-rating")
 
     def get_context_data(self, **kwargs):
         context = super(PlaceListView, self).get_context_data(**kwargs)

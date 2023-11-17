@@ -161,9 +161,9 @@ class TripDetailView(LoginRequiredMixin, View):
             # https://www.youtube.com/watch?v=N-PB-HMFmdo&list=PLCC34OHNcOtqW9BJmgQPPzUpJ8hl49AGy&index=18
 
             p = Paginator(
-                Place.objects.filter(location=trip.location)
+                Place.objects.filter(location=trip.location, approved=True)
                 .exclude(id__in=trip.places.values_list("id", flat=True))
-                .order_by("ranking_position"),
+                .order_by("-rating"),
                 12,
             )
             page = request.GET.get("page")

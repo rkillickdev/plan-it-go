@@ -6,8 +6,11 @@ from .models import Image
 
 @admin.register(Place)
 class PlaceAdmin(admin.ModelAdmin):
-    list_display = ('name', 'location', 'rating')
+    list_display = ('name', 'location', 'rating', 'approved')
     search_fields = ['location__city', 'rating']
+
+    def approve_places(self, request, queryset):
+        queryset.update(approved=False)
 
 
 @admin.register(Review)

@@ -32,6 +32,7 @@ class Place(models.Model):
     website = models.CharField(max_length=200, null=True)
     ranking_string = models.CharField(max_length=150, null=True)
     created_on = models.DateTimeField(auto_now_add=True)
+    approved = models.BooleanField(default=True)
 
     class Meta:
         ordering = ["-ranking_position"]

@@ -5,7 +5,6 @@
 const submitButton = document.getElementById("submit-button");
 const formContainer = document.getElementById("form-container");
 formPurpose = formContainer.getAttribute("data-form_purpose");
-console.log(formPurpose)
 
 document.addEventListener("DOMContentLoaded", () => {
     if (formPurpose === 'update') {

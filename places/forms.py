@@ -108,7 +108,11 @@ class ImageForm(ModelForm):
         self.helper.form_method = "POST"
 
         self.helper.layout = Layout(
-            Field("path"),
+            Field(
+                "path",
+                css_class="form-select",
+                aria_label="Select an image",
+                ),
             Div(
                 Submit(
                     "Submit",

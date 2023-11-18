@@ -54,6 +54,22 @@ All users of the site will be able find inspiration for their next getaway, by b
 ## **AGILE METHODOLOGY**
 ___
 
+This project was approached following the principles of Agile Development, building the solution incrementally through repeated iterations.  Initially, 5 [epics](#Epics) were defined.  These were broad definitions of functionality for the site that would not fit into a single iteration.
+
+Epics were then broken down into user stories and logged as issues on GitHub using the following [customised template](https://github.com/rkillickdev/plan-it-go/blob/main/.github/ISSUE_TEMPLATE/epic.md).  Acceptance Criteria were defined as part of each user story to clearly present the objectives and conditions that must be satisfied for the user story to be marked as complete.  Implementation of the user story was then broken down into tasks - technical work required to facilitate execution of the user story.  Each user story was given a story points label to indicate the estimated amount of work required to complete the story.
+
+A Product Backlog milestone was created on GitHub to establish a 'single authoritative source of work'.  I initially moved all user stories to the backlog before they were allocated to sprints.  The product backlog was refined throughout the course of development with user stories reprioritised as the project evolved.
+
+Timeboxing was used throughout the development of the project.  Week long 'sprints' (otherwise referred to as iterations) were defined using Milestones on Github.  User stories from the product backlog were then allocated to a sprint following the principles of moSCow prioritisation.  Each user story was assigned a label specifying "Must Have", "Could Have" or "Should Have" to indicate expecation of its completion.  Stories were then tackled according to level of priority.  When defining prioritisation levels for each user story in a sprint, I was mindful that the percentage of "Must Haves" should 'not exceed 60% of the overall effort planned for the iteration'.  A 20% contingency of "Could Haves" was set, therefore leaving the remaining 20% for "Should Haves".  If it was clear that a user story would not be completed in the current sprint, it was labelled as "Won't Have" and returned to the Product Backlog.  This was then allocated to a future sprint with a highter prioritisation level.
+
+
+
+![User Story Template](docs/features/agile/pp4-agile-user-story-template.png)
+
+
+
+
+
 ## **Epics**
 
 #### **EPIC: User Account [#1](https://github.com/rkillickdev/plan-it-go/issues/1)**

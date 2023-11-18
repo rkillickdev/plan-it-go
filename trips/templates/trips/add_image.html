@@ -62,14 +62,14 @@
             <h3 class="m-0 fs-4">{{ place.name }}</h3>
             <a href="{% url 'add_image' trip.slug trip.id place.id %}"
               class="fs-4 mb-0">
-              <span><i class="fa-solid fa-circle-plus"></i>&ensp;</span>Add Images
+              <span><i class="fa-solid fa-circle-plus link-transform"></i>&ensp;</span>Add Images
             </a>
           </div>
         </div>
         <div class="row mb-4">
           {% for image in place.images.all %}
             {% if image.profile == request.user.profile %}
-              <div class="col-md-3 mb-4">
+              <div class="col-md-4 mb-4">
                 <div class="card border-0 bg-secondary text-center h-100">
                   <button data-bs-toggle="modal"
                           data-bs-target="#modal-image-solo"
@@ -92,13 +92,13 @@
                               data-bs-toggle="modal"
                               data-bs-target="#modal-delete-confirm"
                               aria-label="Delete this image"><i
-                          class="fa-solid fa-trash-can fa-2x"></i></button>
+                          class="fa-solid fa-trash-can fa-2x link-transform"></i></button>
                     </div>
                   {% endif %}
                 </div>
               </div>
             {% endif %}
-            {% if forloop.counter|divisibleby:6 %}
+            {% if forloop.counter|divisibleby:3 %}
         </div>
         <div class="row mb-4">
             {% endif %}

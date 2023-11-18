@@ -166,6 +166,8 @@ input[type=checkbox i] {
     height: 50vw;
   }
 }
+/* Media query for mobile devices from 575px and down */
+/* Increases height to value 70% of viewport width */
 @media only screen and (max-width: 575px) {
   .img-size-consistent {
     height: 70vw;

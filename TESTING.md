@@ -14,7 +14,22 @@
 
 #### **Homepage**
 
+![PlanIt-Go manual test home 01](docs/testing/manual-testing/pp4-manual-testing-home-01.png)
+![PlanIt-Go manual test home 02](docs/testing/manual-testing/pp4-manual-testing-home-02.png)
+
 #### **Navbar**
+
+![PlanIt-Go manual test nav 01](docs/testing/manual-testing/pp4-manual-testing-nav-01.png)
+![PlanIt-Go manual test nav 02](docs/testing/manual-testing/pp4-manual-testing-nav-02.png)
+
+#### **Footer**
+
+![PlanIt-Go manual test footer](docs/testing/manual-testing/pp4-manual-testing-footer.png)
+
+#### **AllAuth**
+
+![PlanIt-Go manual test signup](docs/testing/manual-testing/pp4-manual-testing-signup.png)
+![PlanIt-Go manual test login](docs/testing/manual-testing/pp4-manual-testing-login.png)
 
 ### **User Story Testing**
 

@@ -15,7 +15,50 @@
         * [Wireframes](#wireframes)
         * [Database Schema](#database-schema)
     * [Structure Plane](#structure-plane)
-        *[Features](#features)
+        * [Features](#features)
+            * [Navbar](#navbar)
+            * [Footer](#footer)
+            * [Home Page](#home-page)
+                * [Header Hero Image](#header-hero-image)
+                * [Site Goals](#site-goals)
+                * [Destination Carousel](#destinations-carousel)
+            * [Browse Places](#browse-places)
+            * [Authorisation](#authorisation)
+                * [Sign Up](#sign-up)
+                * [Login](#login)
+                * [Logout](#logout)
+            * [Trip List](#trip-list)
+                * [New Users](#new-users)
+                * [Returning Users](#returning-users)
+            * [Profile Creation](#profile-creation)
+            * [Trip Creation](#trip-creation)
+            * [Trip Details](#trip-details)
+                * [Trip Summary](#trip-summary)
+                * [Recommendations](#recommendations)
+                * [Trip Itinerary](#trip-itinerary)
+            * [Place Details](#place-details)
+                * [Place Summary](#place-summary)
+                * [Details Tab](#details-tab)
+                * [Reviews Tab](#reviews-tab)
+                * [Gallery Tab](#gallery-tab)
+            * [User Reviews](#user-reviews)
+            * [User Images](#user-images)
+            * [Toasts](#toasts)
+            * [Role Based Login](#role-based-login)
+                * [Staff User Functionality](#staff-user-functionality)
+                * [Django Admin Panel](#django-admin-panel)
+            * [Error Pages](#error-pages)
+                * [404 Error Page](#404-error-page)
+                * [403 Error Page](#403-error-page)
+                * [500 Error Page](#500-error-page)
+            * [Favicon and Meta Tags](#favicon-and-meta-tags)
+            * [Security](#security)
+                * [Defensive Programming](#defensive-programnming)
+                * [CRSF Tokens](#crsf-tokens)
+            * [Responsive Design](#responsive-design)
+                
+
+
 
 # **User Experience (UX)**
 
@@ -58,19 +101,21 @@ This project was approached following the principles of Agile Development, build
 
 Epics were then broken down into user stories and logged as issues on GitHub using the following [customised template](https://github.com/rkillickdev/plan-it-go/blob/main/.github/ISSUE_TEMPLATE/epic.md).  Acceptance Criteria were defined as part of each user story to clearly present the objectives and conditions that must be satisfied for the user story to be marked as complete.  Implementation of the user story was then broken down into tasks - technical work required to facilitate execution of the user story.  Each user story was given a story points label to indicate the estimated amount of work required to complete the story.
 
+![User Story Template](docs/features/agile/pp4-agile-user-story-template.png)
+
 A Product Backlog milestone was created on GitHub to establish a 'single authoritative source of work'.  I initially moved all user stories to the backlog before they were allocated to sprints.  The product backlog was refined throughout the course of development with user stories reprioritised as the project evolved.
 
 Timeboxing was used throughout the development of the project.  Week long 'sprints' (otherwise referred to as iterations) were defined using Milestones on Github.  User stories from the product backlog were then allocated to a sprint following the principles of moSCow prioritisation.  Each user story was assigned a label specifying "Must Have", "Could Have" or "Should Have" to indicate expecation of its completion.  Stories were then tackled according to level of priority.  When defining prioritisation levels for each user story in a sprint, I was mindful that the percentage of "Must Haves" should 'not exceed 60% of the overall effort planned for the iteration'.  A 20% contingency of "Could Haves" was set, therefore leaving the remaining 20% for "Should Haves".  If it was clear that a user story would not be completed in the current sprint, it was labelled as "Won't Have" and returned to the Product Backlog.  This was then allocated to a future sprint with a highter prioritisation level.
 
+Throughout the development process, I used a kanban board to provide up to date information about the status of progress for each iteration.  The board was created and managed using GitHub Projects and can be viewed [here](https://github.com/users/rkillickdev/projects/4).
 
+![PlanIt Go Kanban Board](docs/features/agile/pp4-agile-kanban-board.png)
 
-![User Story Template](docs/features/agile/pp4-agile-user-story-template.png)
+User stories for each sprint were initially allocated to the 'Todo' column and then transferred to the 'In Progress' column as they were worked on.  Once each task for the user story had been completed and all acceptance criteria satisfied, the issue was marked as complete and moved to the 'Done' column.
 
+There are three user stories that have not been addressed in any of the iterations so far.  These are not core to the functionality of the site, but might be nice to have eventually so I have stored these in a 'Future Features' column.  They can then easily be prioritised and allocated to a future sprint.
 
-
-
-
-## **Epics**
+### **Epics**
 
 #### **EPIC: User Account [#1](https://github.com/rkillickdev/plan-it-go/issues/1)**
 `
@@ -97,9 +142,7 @@ Create functionality for the user to log their experiences of visiting a place f
 Implement functionality and design within the site to ensure a positive user experience
 `
 
-
-
-## **User Stories**
+### **User Stories**
 
 #### **EPIC: User Account [#1](https://github.com/rkillickdev/plan-it-go/issues/1)**
 
@@ -246,7 +289,7 @@ The footer displays social media links to the PlanIt-Go Facebook, Twitter and In
 
 ### **Home Page**
 
-**Header Hero Image**
+#### **Header Hero Image**
 
 ![PlanIt-Go footer](docs/features/pp4-features-hero-image.png)
 
@@ -256,29 +299,35 @@ The colours from the hero image were the starting point for the colour scheme us
 
 A call to action is then used, to draw the user into the 'trip planning' fuctionality of the site.  The 'Sign Up' clickable button will direct non logged in users to the signup page.  Those that already have user credentials can easily switch to the login page to enter their details.  If a user is already logged in, the call to action button displays 'Get Started' and redirects the user to their 'trip list' page where they can edit existing trips or create new ones.
 
-**Site Goals**
+#### **Site Goals**
 
 ![PlanIt-Go home page site goals](docs/features/pp4-features-site-goals.png)
 
 Three cards on the home page layout the ways in which the site can be used.  The inclusion of icons above each statement helps communicate these goals before the user has even read the text.
 
-**Destinations Carousel**
+#### **Destinations Carousel**
 
 ![PlanIt-Go home page destinations carousel](docs/features/pp4-features-destinations-carousel.png)
 
 The aim of this section is to allow users to browse and draw inspiration.  Clicking on each carousel card display information about the featured destination in a large modal window.  From here, they can follow a 'Things To Do' link for this specific destination.  Throughout, the user will be gently guided and given the option to sign up and enjoy the full features and functionality of the site.
 
-**Browse Places**
+#### **Browse Places**
 
 
 
-### **Login/ Sign Up Pages**
+### **Authorisation**
 
 The default Django allauth templates used for signing up, logging in and logging out have been styled to match the rest of the site and ensure a consistent user experience.
 
+#### **Sign Up**
+
 ![PlanIt-Go sign up page](docs/features/pp4-features-signup.png)
 
+#### **Login**
+
 ![PlanIt-Go login page](docs/features/pp4-features-login.png)
+
+#### **Logout**
 
 ![PlanIt-Go logout page](docs/features/pp4-features-logout.png)
 
@@ -293,13 +342,13 @@ LOGIN_REDIRECT_URL = '/trips/trip_list'
 
 Dependent on the status of the logged in user account, one of three pages are displayed.  Conditional 'If/ Else' statements are used in the html template to achieve these different displays:
 
-* **New Users**
+#### **New Users**
 
 Upon successful login, a user profile is automatically created with a unique id.  The aim of the site however is to offer personalised profiles, so new users are encouraged to click the 'Create Profile' link where they can enter a unique screen name, upload a profile image and write a bio.  Only the screen name is a compulsory field in the form, as this is how they will be identified on the site moving forwards.
 
 ![PlanIt-Go trip list with no profile](docs/features/pp4-features-trip-list-no-profile-action-call.png)
 
-* **Returning Users**
+#### **Returning Users**
 
 If a logged in user has already provided a screen name, but as yet have not created any trips, they are encouraged to get started and click the + button 'Create A Trip'.  There is also the option to seek some inspiration, which lets the user browse trips planned by fellow site users.
 
@@ -331,7 +380,7 @@ The form used to create a new trip has been generated using django-crispy-forms.
 
 ### **Trip Details**
 
-**Trip Summary**
+#### **Trip Summary**
 
 The bootstrap accordion component is used to store a map displaying the trip destination, trip title, trip title and clickable icons for users to instigate actions.  The accordion is displayed open by default but clicking the arrow icon collapses it.  As places are added to the trip itinerary, markers are added to pinpoint that place on the map.  If there are several places in a small radius, a cluster icon is displayed.  This functionality has been implemented using Google Maps [Marker Clustering](https://developers.google.com/maps/documentation/javascript/marker-clustering#cdn).
 
@@ -341,13 +390,13 @@ Clicking on view recommendations locates the user to the 'Recommendations' secti
 
 ![PlanIt-Go trip details delete confirm modal](docs/features/pp4-features-delete-confirm-trip-modal.png)
 
-**Recommendations**
+#### **Recommendations**
 
 ![PlanIt-Go trip details recommendations](docs/features/pp4-features-trip-details-recommendations.png)
 
 Users are presented with recommended places to add to their itinerary based on the trip destination.  The results returned from the Place model are paginated 12 places at a time with 3 places displayed per row. The card for each place has a hover effect applied to indicate to the user that this is a clickable link.  Clicking on a place directs the user to the relevant [Place Details Page](#place-details).  Places that have already been added to the trip itinerary do not appear as part of this list of recommendations.
 
-**Trip Itinerary**
+#### **Trip Itinerary**
 
 An accordion component is used to display information relating to the trip itinerary, but only appears on screen once the trip has at least one place added. By default, each place in the itinerary is collapsed:
 
@@ -366,7 +415,7 @@ Expanding each accordion item presents the user with the followig clickable opti
 
 ### **Place Details**
 
-**Place Summary**
+#### **Place Summary**
 
 On naviagting to a 'place details' page, the user is presented with a summary section containing the following:
 
@@ -378,7 +427,7 @@ On naviagting to a 'place details' page, the user is presented with a summary se
 
 ![PlanIt-Go planner place summary](docs/features/pp4-features-place-summary.png)
 
-**Details Tab**
+#### **Details Tab**
 
 A full description of the place is displayed in the details navigation tab:
 
@@ -392,11 +441,11 @@ Below the description, the following details are available:
 
 ![PlanIt-Go planner place location details](docs/features/pp4-features-place-location-details.png)
 
-**Reviews Tab**
+#### **Reviews Tab**
 
 The review tab is only visible to users if a review exists for the selected place.  Reviews are displayed using the Bootstrap Carousel component and appear as clickable cards with hover effect consistent with the rest of the site.  Clicking on a card opens the full review in a modal.  Only reviews that have been approved by a site administrator will be displayed.
 
-**Gallery Tab**
+#### **Gallery Tab**
 
 The gallery tab is only visible to users if images relating to the selected place have been uploaded to the site. Images are displayed as thumbnails in rows of 3.  Clicking on any of the images opens a full size version in a modal.
 
@@ -430,27 +479,29 @@ To avoid the repetition of code and to ensure that the appearance of messages is
 
 If a message is detected on page load, the following [toasts javascript file](static/js/toasts.js) is loaded which initialises the toast.
 
-### **Staff Login Functionality**
+### **Role Based Login**
 
-### **Django Admin Panel**
+#### **Staff User Functionality**
+
+#### **Django Admin Panel**
 
 ### **Error Pages**
 
 I have included custom 403, 404 and 500 error pages as a form of defensive design. This improves the user experience by keeping the user informed about the problem and engaged with the site.  The styling imagery and branding used on these pages is consistent with the rest of the user experience.  To ensure the user does not decide to navigate away from the site, a 'Back To Home Page' button is displayed.  This also ensures they do not have to use the back button in their browser for navigation.
 
-#### **404 Error Page:**
+#### **404 Error Page**
 
 Displayed if the user tries to access a broken link or page on the site that does not exist/ has been moved.
 
 ![PlanIt-Go 404 error](docs/features/pp4-features-404-error.png)
 
-#### **403 Error Page:**
+#### **403 Error Page**
 
 Displayed if the user tries to access unauthorised content.  Read more about the defensive programming that was implemented to stop unauthorised users accessing, editing and deleting content that does not belong to them.
 
 ![PlanIt-Go 403 error](docs/features/pp4-features-403-error.png)
 
-#### **500 Error Page:**
+#### **500 Error Page**
 
 Displayed to warn the user when an internal server error occurs.  This lets them know that there is a problem with the site and not at their end. They are also informed that a solution to the problem is being worked on in the hope that they will not navigate away from the site.
 
@@ -458,7 +509,9 @@ Displayed to warn the user when an internal server error occurs.  This lets them
 
 ### **Favicon and Meta Tags**
 
-### **Security & Defensive Design**
+### **Security**
+
+#### **Defensive Programnming**
 
 To secure certain Django Views and ensure they are only accessible to registered users, the ```
 @login_required()``` decorator is used for function based views. 
@@ -473,6 +526,8 @@ if image.profile.id == request.user.profile.id:
     else:
         messages.add_message(request, messages.ERROR, 'You can only delete your own images!')
 ```
+
+#### **CRSF Tokens**
 
 ### **Responsive design**
 

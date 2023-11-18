@@ -159,11 +159,16 @@ input[type=checkbox i] {
     height: 20vw;
   }
 }
-/* Media query for mobile devices from 767px and down where there is a switch to singhle column */
+/* Media query for mobile devices from 767px and down where there is a switch to single column */
 /* Increases height to value 50% of viewport width */
 @media only screen and (max-width: 767px) {
   .img-size-consistent {
     height: 50vw;
+  }
+}
+@media only screen and (max-width: 575px) {
+  .img-size-consistent {
+    height: 70vw;
   }
 }
 /* Clickable images and cards */

@@ -23,6 +23,7 @@
                 * [Site Goals](#site-goals)
                 * [Destination Carousel](#destinations-carousel)
             * [Browse Places](#browse-places)
+            * [Browse Details](#browse-details)
             * [Authorisation](#authorisation)
                 * [Sign Up](#sign-up)
                 * [Login](#login)
@@ -56,7 +57,7 @@
                 * [Defensive Programming](#defensive-programnming)
                 * [CRSF Tokens](#crsf-tokens)
             * [Responsive Design](#responsive-design)
-                
+
 
 
 
@@ -311,9 +312,21 @@ Three cards on the home page layout the ways in which the site can be used.  The
 
 The aim of this section is to allow users to browse and draw inspiration.  Clicking on each carousel card display information about the featured destination in a large modal window.  From here, they can follow a 'Things To Do' link for this specific destination.  Throughout, the user will be gently guided and given the option to sign up and enjoy the full features and functionality of the site.
 
+![PlanIt-Go home page destination modal](docs/features/pp4-features-destination-modal.png)
+
 #### **Browse Places**
 
+Users that are not logged in can still browse place recommendations for each featured destination.  Results are paginated to 12 places per page and displayed as clickable cards.  Users are always provided with the option to discover 'More Destinations'.  Clicking on this button directs them back to the home page destinations carousel.
 
+![PlanIt-Go browse places](docs/features/pp4-features-browse-places.png)
+
+#### **Browse Details**
+
+Users that are not logged in can view details of a place.  The appearance and styling of this page replicates what a logged in user would see.  The main difference is that clicking on the 'Plan A Trip' button directs the user to the 'sign up' page.  Clicking on the 'More Places' button navigates back to the browse places page.
+
+![PlanIt-Go browse details summary](docs/features/pp4-features-browse-details-summary.png)
+
+![PlanIt-Go browse details](docs/features/pp4-features-browse-details.png)
 
 ### **Authorisation**
 
@@ -483,6 +496,20 @@ If a message is detected on page load, the following [toasts javascript file](st
 
 #### **Staff User Functionality**
 
+Functionality is included on the site that is only available to users with 'staff' status.  These user logins can be created and provided with relevant permissions by a superuser in the [Django Admin Panel](#django-admin-panel)/. Clicking on the 'Add A Destination' directs the staff user to a page where they can create and edit destinations.
+
+![PlanIt-Go staff user login redirect page ](docs/features/pp4-features-trip-list-staff-user.png)
+
+![PlanIt-Go staff user create destination form ](docs/features/pp4-features-create-destination-staff-user.png)
+
+Once the location form has been succesfully populated with the required information, an instance of Location is created and saved to the database and displayed as a card in the destinations list below.  A success message is displayed in a toast to keep the user informed.  Clicking on the destination card opens the destination modal.
+
+![PlanIt-Go staff user destination list ](docs/features/pp4-features-destination-list-staff-user.png)
+
+At this stage,  the destination has no recommended places associated with it.  Staff users are able to check if any places for the destination can be retrieved.  If they click on the magnifying glass icon at the bottom of a destination with no associated places, they are directed to the 'get places' page.
+
+
+
 #### **Django Admin Panel**
 
 ### **Error Pages**
@@ -527,6 +554,8 @@ if image.profile.id == request.user.profile.id:
         messages.add_message(request, messages.ERROR, 'You can only delete your own images!')
 ```
 
+#### **Protection Of Sensitive Details**
+
 #### **CRSF Tokens**
 
 ### **Responsive design**
@@ -534,6 +563,9 @@ if image.profile.id == request.user.profile.id:
 
 ### **Bugs**
 
+### **Bugs**
+
+Include Proc File details
 
 
 

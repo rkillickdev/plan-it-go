@@ -14,19 +14,28 @@ from crispy_forms.layout import (
 from .models import Place
 from .models import Review
 from .models import Image
+from locations.models import Location
 
 
 class PlaceForm(ModelForm):
     """
     Form for Place Model.  Crispy forms helper used for
     layout and styling.
+    I referenced the following article to ensure that the 
+    only location options available in the 'locations' field
+    of the form are those without any places associated with
+    them:
+    https://stackoverflow.com/questions/61712605/reverse-foreign-key-in-filter-of-queryset-in-django
     """
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        self.fields["location"].queryset = Location.objects.filter(
+            places__isnull=True
+        ).distinct()
         self.helper = FormHelper()
         self.helper.form_id = "retrieve-places"
-        self.helper.form_class = "rounded bg-dark text-light p-4"
+        self.helper.form_class = "rounded bg-dark text-light p-4 text-center"
         self.fields["location"].label = "Select A Destination"
         self.helper.form_method = "POST"
 
@@ -39,7 +48,7 @@ class PlaceForm(ModelForm):
                     css_id="submitButton",
                     css_class="btn btn-primary text-light",
                 ),
-                css_class="my-4",
+                css_class="mt-4",
             ),
         )
 

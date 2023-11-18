@@ -506,13 +506,29 @@ Once the location form has been succesfully populated with the required informat
 
 ![PlanIt-Go staff user destination list ](docs/features/pp4-features-destination-list-staff-user.png)
 
-At this stage,  the destination has no recommended places associated with it.  Staff users are able to check if any places for the destination can be retrieved.  If they click on the magnifying glass icon at the bottom of a destination with no associated places, they are directed to the 'get places' page.
+At this stage,  the newly created destination has no recommended places associated with it.  Staff users are able to check if any places for the destination can be retrieved.  If they click on the magnifying glass icon at the bottom of a destination with no associated places, they are directed to the 'get places' page.  The form drop down menu loaction field is filtered so only locations that do not have any associated places appear.  The form is submitted and an attempt is made to retrieve places for the selected location.  Read [here](#population-of-the-places-database) about how place data is retrieved and handled.  If there is place data available for the selected location, the database will be populated and the user is redirected to the place list page for the newly populated destination.  A success message of "Places have been retrieved successfully" is displayed in a toast to keep the user informed.  If no place data is currently available, users are alerted to this with a toast message of "We were not able to retrieve this data" and they are redirected to the 'destinations' page.
 
 ![PlanIt-Go staff user destination list ](docs/features/pp4-features-get-places-staff-user.png)
 
+If a staff user clicks on the magnifying glass for a destination that is already populated with places, they are directed to the [place list page](#browse-places) for the selected destination.
 
+#### **Place Moderation**
+
+I realised that an element of moderation is required on the data returned in the json response from the APIFY web scraper.  Sometimes descriptions are not worded very well or might not appear in english.  I therefore decided to build in functionality that gives staff users the ability to 'disapprove' a place when they are checking these details.  When logged in as staff and accessing the place detail page, there is an option to toggle approval.  By default, all places are approved but if the staff moderator is not satisfied with the quality of the data, they can unapprove it.  These places will subsequently not be displayed to regualar site users.  Once a place has been unapproved, it can only be re-approved via the Django admin panel.
+
+![PlanIt-Go staff unapprove place](docs/features/pp4-features-remove-place-approval.png)
+
+![PlanIt-Go staff approve place](docs/features/pp4-features-add-place-approval.png)
+
+#### **Destination Moderation**
+
+There might be an occassion, where a staff user creates a new destination but does not immediately populate with place data.  I do not want destinations displayed to regular site users until the associated content and data has been throughly checked and approved.  I therefore added an 'approved' field to the Location Model which defaults to false.  While this boolean field is set to false on an instance of a Location, it will not be avaialble to regular site users whether they are browsing or creating trips.  This field can only be set to true by a superuser in the Django Admin Panel.
 
 #### **Django Admin Panel**
+
+Models for the site can be accessed and manipulated from the Django Admin panel.  The designated superuser has total control over this.  I have set up a 'moderator' login for a staff user with limited permissions in the admin panel.  They are able to view and approve reviews and images created by users.  I have customised the layout and selected display fields to be shown for each model in the Django admin panel.  Code for this has been implemented in the related admin.py files.
+
+![PlanIt-Go Django admin moderator](docs/features/pp4-features-django-admin-moderator.png)
 
 ### **Error Pages**
 
@@ -558,9 +574,17 @@ if image.profile.id == request.user.profile.id:
 
 #### **Protection Of Sensitive Details**
 
+Any keys containing sensitive data were stored in and retrieved from the env.py file during development. This was added to the gitignore file to ensure this data was never pushed to the GitHub repo.  For the deployed production version of the site hosted on Heroku, these sensitive keys are stored securely in the config vars.
+
+I have also made my best efforts to protect my Google Maps API key, which needs to be accessible in certain html templates and javascript files.  The key is passed from the back end to the front end as part of the context data.  I am then using the [json_script template tag](https://adamj.eu/tech/2020/02/18/safely-including-data-for-javascript-in-a-django-template/) so the key can be accessed in the javascript files.  This way, the key is never actually written or stored in any of the files that live in the GitHub repo.  However, if you inspect the page, you can still see the google maps key.  I spoke with my mentor about this and he confirmed that this should be ok, as I am taking extra security measures with my Google Account by setting up application restrictions that limit the API keys' usage to only website addresses that I have specified.
+
 #### **CRSF Tokens**
 
+CSRF tokens were used in forms across the site to protect against [Cross Site Request Forgery](https://docs.djangoproject.com/en/3.2/ref/csrf/).  When rendering forms using the crispy forms helper, these are automatically included.  For any other forms across the site, I have added manually.
+
 ### **Responsive design**
+
+## **Future Features**
 
 
 ### **Bugs**

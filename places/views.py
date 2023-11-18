@@ -201,7 +201,7 @@ def get_places(request, destination_id, slug):
             messages.add_message(
                 request,
                 messages.SUCCESS,
-                "Places for location have been populated with the latest data",
+                "Places have been retrieved successfully",
             )
 
             return HttpResponseRedirect(
@@ -216,7 +216,7 @@ def get_places(request, destination_id, slug):
             messages.add_message(
                 request,
                 messages.ERROR,
-                "We were not able to retrieve this data!",
+                "We were not able to retrieve this data",
             )
 
             return HttpResponseRedirect(reverse("locations"))

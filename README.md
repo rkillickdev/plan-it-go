@@ -508,6 +508,8 @@ Once the location form has been succesfully populated with the required informat
 
 At this stage,  the destination has no recommended places associated with it.  Staff users are able to check if any places for the destination can be retrieved.  If they click on the magnifying glass icon at the bottom of a destination with no associated places, they are directed to the 'get places' page.
 
+![PlanIt-Go staff user destination list ](docs/features/pp4-features-get-places-staff-user.png)
+
 
 
 #### **Django Admin Panel**

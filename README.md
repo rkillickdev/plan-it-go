@@ -506,11 +506,15 @@ Once the location form has been succesfully populated with the required informat
 
 ![PlanIt-Go staff user destination list ](docs/features/pp4-features-destination-list-staff-user.png)
 
-At this stage,  the newly created destination has no recommended places associated with it.  Staff users are able to check if any places for the destination can be retrieved.  If they click on the magnifying glass icon at the bottom of a destination with no associated places, they are directed to the 'get places' page.  The form drop down menu loaction field is filtered so only locations that do not have any associated places appear.  The form is submitted and an attempt is made to retrieve places for the selected location.  Read [here](#population-of-the-places-database) about how place data is retrieved and handled.  If there is place data available for the selected location, the database will be populated and the user is redirected to the place list page for the newly populated destination.  A success message of "Places have been retrieved successfully" is displayed in a toast to keep the user informed.  If no place data is currently available, users are alerted to this with a toast message of "We were not able to retrieve this data" and they are redirected to the 'destinations' page.
+If a staff user clicks on the magnifying glass for a destination that is already populated with places, they are directed to the [place list page](#browse-places) for the selected destination.
+
+Clicking on the pencil icon on any of the destination cards allows the staff user to update details.  The form is populated with details of the selected location, the submit button changes to 'update' and the title also changes to 'Update Details For...'
+
+![PlanIt-Go staff user update destination](docs/features/pp4-features-update-destination-staff.png)
+
+At this stage,  a newly created destination will have no recommended places associated with it.  Staff users are able to check if any places for the destination can be retrieved.  If they click on the magnifying glass icon at the bottom of a destination with no associated places, they are directed to the 'get places' page.  The form drop down menu loaction field is filtered so only locations that do not have any associated places appear.  The form is submitted and an attempt is made to retrieve places for the selected location.  Read [here](#population-of-the-places-database) about how place data is retrieved and handled.  If there is place data available for the selected location, the database will be populated and the user is redirected to the place list page for the newly populated destination.  A success message of "Places have been retrieved successfully" is displayed in a toast to keep the user informed.  If no place data is currently available, users are alerted to this with a toast message of "We were not able to retrieve this data" and they are redirected to the 'destinations' page.
 
 ![PlanIt-Go staff user destination list ](docs/features/pp4-features-get-places-staff-user.png)
-
-If a staff user clicks on the magnifying glass for a destination that is already populated with places, they are directed to the [place list page](#browse-places) for the selected destination.
 
 #### **Place Moderation**
 
@@ -523,6 +527,8 @@ I realised that an element of moderation is required on the data returned in the
 #### **Destination Moderation**
 
 There might be an occassion, where a staff user creates a new destination but does not immediately populate with place data.  I do not want destinations displayed to regular site users until the associated content and data has been throughly checked and approved.  I therefore added an 'approved' field to the Location Model which defaults to false.  While this boolean field is set to false on an instance of a Location, it will not be avaialble to regular site users whether they are browsing or creating trips.  This field can only be set to true by a superuser in the Django Admin Panel.
+
+![PlanIt-Go staff approve place](docs/features/pp4-features-django-admin-superuser.png)
 
 #### **Django Admin Panel**
 

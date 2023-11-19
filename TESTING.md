@@ -13,6 +13,7 @@
 * [Automated Testing](#automated-testing)
 * [Validator](#validators)
     * [PEP8 Validation](#pep8-validation)
+    * [JSHint Javascript Validation](#jshint-javascript-validation)
     * [W3C Markup HTML Validator](#w3c-html-markup-validator)
     * [W3C CSS Validator](#w3c-css-validator)
 * [Performance](#performace)
@@ -408,7 +409,65 @@ Main Directory:
 | env.py | 0 | Passed |
 | manage.py | 0 | Passed |
 
+### **JSHint Javascript Validation**
 
+I passed my JavaScript files through the linter JSHint to validate and check for any syntax errors.  Reports for each file can be viewd below.  Some warnings were returned in the two files relating to Google Maps.  This is not javascript that I have written, but sourced from the Google documentation about implementing Maps, markers and clusters.  I have therefore not addressed these warnings as the functionality of the maps is operating as expected.
+
+The hero-text-replace.js file notes one undeclared variable and one unused variable.  This is code I sourced from the [ReplaceMe.js](https://adrianklimek.github.io/replaceme/#:~:text=About-,ReplaceMe.,can%20be%20used%20with%20jQuery.) documentation so I have not addressed this warning, as this feature is functioning as expected.
+
+The toasts.js file notes one undefined variable but this is needed to implement this feature, so I have not addressed the warning.
+
+The only other warnings raised for my own javascript in solo-display-modals.js, delete-confirm-modals.js and reviews.js are:
+
+```
+Functions declared within loops referencing an outer scoped variable may lead to confusing semantics.
+```
+
+<details><summary>JSHint Reports</summary>
+
+<br>
+
+**delete-confirm-modal**
+
+![JSHint delete-confirm-modal](docs/testing/validation/js/pp4-jshint-delete-confirm-modal.png)
+
+**forms**
+
+![JSHint forms](docs/testing/validation/js/pp4-jshint-forms.png)
+
+**hero-text-replace**
+
+![JSHint hero-text-replace](docs/testing/validation/js/pp4-jshint-hero-text-replace.png)
+
+**img-src-backup**
+
+![JSHint img-src-backup](docs/testing/validation/js/pp4-jshint-img-src-backup.png)
+
+**map-cluster**
+
+![JSHint map-cluster](docs/testing/validation/js/pp4-jshint-map-cluster.png)
+
+**maps**
+
+![JSHint maps](docs/testing/validation/js/pp4-jshint-maps.png)
+
+**reviews**
+
+![JSHint reviews](docs/testing/validation/js/pp4-jshint-reviews.png)
+
+**solo-display-modal**
+
+![JSHint solo-display-modal](docs/testing/validation/js/pp4-jshint-solo-display-modal.png)
+
+**star-rating**
+
+![JSHint star-rating](docs/testing/validation/js/pp4-jshint-star-rating.png)
+
+**toasts**
+
+![JSHint toasts](docs/testing/validation/js/pp4-jshint-toasts.png)
+
+</details>
 
 ### **W3C HTML Markup Validator**
 

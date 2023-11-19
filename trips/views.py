@@ -162,7 +162,7 @@ class TripDetailView(LoginRequiredMixin, View):
             p = Paginator(
                 Place.objects.filter(location=trip.location, approved=True)
                 .exclude(id__in=trip.places.values_list("id", flat=True))
-                .order_by("-rating"),
+                .order_by("-pk"),
                 12,
             )
             page = request.GET.get("page")

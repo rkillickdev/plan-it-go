@@ -29,6 +29,45 @@ h2, h3, h4 {
   outline: none;
 }
 
+/* Buttons and Links */
+.btn-icon {
+  color: var(--bs-dark);
+  border: none;
+  background: transparent;
+}
+
+.btn-dark {
+  --bs-btn-hover-color:var(--bs-light);
+}
+
+.button-link {
+  width: fit-content;
+}
+
+.anchor-icon {
+  padding: 10px 20px;
+}
+
+.link-transform {
+  transition: all 0.15s ease;
+}
+
+.link-transform:hover {
+  color: var(--bs-primary);
+}
+
+.transform-reverse {
+  transition: all 0.15s ease;
+}
+
+.transform-reverse:hover {
+  color: var(--bs-dark);
+}
+
+.transform-dark:hover {
+  color: var(--bs-dark);
+}
+
 /* Navbar */
 .navbar {
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
@@ -98,54 +137,6 @@ input[type=checkbox i] {
     justify-content: end;
   }
 }
-/* Trip Header */
-.trip-bg-image {
-  background: url("/static/images/placeholders/trip-placeholder-globe-in-hand.webp") left center;
-  opacity: 0.5;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  height: 600px;
-}
-
-.btn-icon {
-  color: var(--bs-dark);
-  border: none;
-  background: transparent;
-}
-
-.btn-dark {
-  --bs-btn-hover-color:var(--bs-light);
-}
-
-.button-link {
-  width: fit-content;
-}
-
-.anchor-icon {
-  padding: 10px 20px;
-}
-
-.link-transform {
-  transition: all 0.15s ease;
-}
-
-.link-transform:hover {
-  color: var(--bs-primary);
-}
-
-.transform-reverse {
-  transition: all 0.15s ease;
-}
-
-.transform-reverse:hover {
-  color: var(--bs-dark);
-}
-
-.transform-dark:hover {
-  color: var(--bs-dark);
-}
-
 /* Card Images */
 .img-size-consistent {
   width: 100%;
@@ -216,12 +207,14 @@ input[type=checkbox i] {
   margin: 0;
 }
 
+/* Destination Modal */
 /* Media query for mobile devices from 991px and down. Destination modal title switches to flex column */
 @media only screen and (max-width: 767px) {
   .destination-title {
     flex-direction: column;
   }
 }
+/* Utility Media Queries */
 /* Media query for mobile devices from 991px and down switches to flex column */
 @media only screen and (max-width: 991px) {
   .action-title {
@@ -231,7 +224,7 @@ input[type=checkbox i] {
     gap: 1rem;
   }
 }
-/* Media query for medium devices and above.  Reduces width of planner to 75% and centers using margin auto */
+/* Media query for medium devices and above.  Reduces width to 75% and centers using margin auto */
 @media only screen and (min-width: 768px) {
   .medium-w-75 {
     width: 75%;

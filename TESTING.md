@@ -19,6 +19,7 @@
 * [Performance](#performace)
     * [Lighthouse](#lighthouse)
     * [Wave Accessibility](#wave-accessibility)
+* [Responsiveness](#responsiveness)
 
 ## **Manual Testing**
 
@@ -507,6 +508,14 @@ Warning: The type: attribute is unnecessary for JavaScript resources.
 
 ### **W3C CSS Validator**
 
+I used the [W3C jigsaw](https://jigsaw.w3.org/css-validator/) CSS Validation Service to validate my CSS stylesheet.
+
+| File | Errors | Warnings| Result |
+| ---- | :------: | :-------: | :------: |
+| static/css/styles.css | 0 | 0 | Pass |
+
+![styles.css w3c validation](docs/testing/validation/css/pp4-css-validation.png)
+
 ## **Performace**
 
 ### **Lighthouse**
@@ -666,6 +675,34 @@ The images referred to here are served by the trip advisor cdn, so I have not be
 
 
 ### **Wave Accessibility**
+
+## **Responsiveness**
+
+Full testing for responsiveness of all pages across the site has been carried out with the help of Google Dev Tools along side the following physical devices:
+
+* Macbook Pro 2021 14 inch M1 Pro
+* iPhone 11
+* iPad 9th generation A2602
+
+<br>
+
+The following browsers were used to test on each device to check for consistency of appearance and performance:
+
+* Google Chrome
+* Firefox
+* Safari
+
+<br>
+
+| Browser Compatibility |  |        |       |                        
+| :---: | :---:  | :---:   | :---:  |
+|       | Chrome | Firefox | Safari |  
+| Appearance | Good | Good | Good |
+| Responsiveness | Good | Good | Good |
+
+
+
+
 
 
 

@@ -61,10 +61,8 @@
     * [Languages Used](#languages-used)
     * [Programs and Tools Used](#programs-and-tools-used)
     * [Frameworks and Libraries Used](#frameworks-and-libraries-used)
-* [Deployment and Local Development](#deployment-and-local-development)
 * [Testing](#testing)
-    * [Automated Testing](#automated-testing)
-    * [Manual Testing](#manual-testing)
+* [Deployment and Local Development](#deployment-and-local-development)
 * [Bugs](#bugs)
     * [Known Bugs](#known-bugs)
     * [Solved Bugs](#solved-bugs)
@@ -648,12 +646,11 @@ CSRF tokens were used in forms across the site to protect against [Cross Site Re
 
 * cloudinary - Python library to facilitate integration of cloudinary with Django
 
+# **Testing**
 
+Please follow this link to the [TESTING.md file](https://github.com/rkillickdev/plan-it-go/blob/main/TESTING.md), for documentation about the testing procedure I followed for this project.
 
-
-
-
-
+# **Deployment and Local Development**
 
 # **Bugs**
 

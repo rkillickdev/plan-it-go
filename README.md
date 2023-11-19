@@ -57,8 +57,21 @@
                 * [Defensive Programming](#defensive-programnming)
                 * [CRSF Tokens](#crsf-tokens)
             * [Responsive Design](#responsive-design)
-
-
+* [Technologies Used](#technologies-used)
+    * [Languages Used](#languages-used)
+    * [Programs Used](#programs-used)
+    * [Frameworks and Libraries used](#frameworks-and-libraries-used)
+* [Deployment and Local Development](#deployment-and-local-development)
+* [Testing](#testing)
+    * [Automated Testing](#automated-testing)
+    * [Manual Testing](#manual-testing)
+* [Bugs](#bugs)
+    * [Known Bugs](#known-bugs)
+    * [Solved Bugs](#solved-bugs)
+* [Credits](#credits)
+    * [Code Used and Referenced](#code-used-and-referenced)
+    * [Media](#media)
+    * [Acknowledgements](#acknowledgements)
 
 
 # **User Experience (UX)**
@@ -593,9 +606,27 @@ CSRF tokens were used in forms across the site to protect against [Cross Site Re
 ## **Future Features**
 
 
-### **Bugs**
+# **Bugs**
 
-### **Bugs**
+## **Known Bugs**
+
+## **Solved Bugs**
+
+Below are bugs that were discovered during development and testing.  I have not listed some of the smaller quick fixes that were implemented during the testing phase, but they were raised as 'bug' issues on GitHub and can be seen as part of my [Project Kanban Board]((docs/features/agile/pp4-agile-kanban-board.png)).
+
+| Bug Description | Solution |
+| ------------ | --------------- |
+| ModeuleNotFoundError when using Django allauth | I found this [article](https://stackoverflow.com/questions/77012106/django-allauth-modulenotfounderror-no-module-named-allauth-account-middlewar) on the problem.  The solution was to insert: ```'allauth.account.middleware.AccountMiddleware'``` in MIDDLEWARE in the settings.py file.  This is required for allauth version 0.56.0 |
+| I discovered that once a review had been submitted on the reviews page, refreshing the browser would result in another identical review being created | For the review_create view (trips/view.py),I added an ```HttpResponseRedirect``` for any requests with the 'POST' method.  Prior to this, both POST and GET requests were using render, and this was causing the problem when posting a review. |
+| Addresses displaying ```None``` as a value on the place detail / browse detail pages | I discovered that within the address object of place json data returned by the web scraper, some empty address lines would be represented as an empty string and some as Null which then showed as None when the json data was parsed by python.  I added an additional conditional statement to the single_place_info.html template on line 74, which now reads as ```{% if value and not value == "" %}```.  This checks if there is any value at all, and then goes on to check whether this value is an empty string.  It must satisfy these two conditions to then render the value to the template. |
+| Defensive programming missing on trip and profile views | Add defensive programming where necessay using ```raise PermissionDenied()```.  View [GitHub Issue#44](https://github.com/rkillickdev/plan-it-go/issues/44) to see the full steps taken to resolve |
+| If Image links that are loaded from external sources such as the https://media-cdn.tripadvisor.com/ or Cloudinary are broken/ return an error, there was no defensive programming in place to ensure a replacement image is displayed | I wrote a javascript file to listen for errors on any image tags on the page.  If an error is detected, a placeholder image is loaded from the static/images folder is loaded.  View [GitHub Issue#45](https://github.com/rkillickdev/plan-it-go/issues/45) to see the full steps taken to resolve |
+| Profile form submit button displaying 'Create Profile' if user is updating their profile | Wrote the forms.js javascript file determine form status and change the submit button value to 'Update' if required. View [GitHub Issue#47](https://github.com/rkillickdev/plan-it-go/issues/47) |
+| Google maps markers not displaying the correct place names on hover/ clicking | I needed to pass the place name to the maps.js and map-cluster.js javascript files from the html template.  I did this using the json_script template tag, and then used this to label the map markers.  View [GitHub Issue#49](https://github.com/rkillickdev/plan-it-go/issues/49) |
+| Destination carousel cards displaying incorrect information when opened in modal |. To solve this, I reverted back to only wrapping the img element of the card in the button to trigger the modal. View [GitHub Issue#50](https://github.com/rkillickdev/plan-it-go/issues/50) |
+| I noticed side scrolling was necessary on the profile page when viewing on smaller mobile devices |  I discovered that the issue was being caused by overflow from the image file select field.  I added the "form-select" class to any form with a file input field.  This has prevented overspill and solved the problen of side scrolling.  View [GitHub Issue#54](https://github.com/rkillickdev/plan-it-go/issues/54) | 
+
+
 
 Include Proc File details
 

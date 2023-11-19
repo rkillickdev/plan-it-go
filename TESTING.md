@@ -31,6 +31,55 @@
 ![PlanIt-Go manual test signup](docs/testing/manual-testing/pp4-manual-testing-signup.png)
 ![PlanIt-Go manual test login](docs/testing/manual-testing/pp4-manual-testing-login.png)
 
+#### **Trip List**
+
+![PlanIt-Go manual test trip list](docs/testing/manual-testing/pp4-manual-testing-trip-list.png)
+
+#### **Profile Page**
+
+![PlanIt-Go manual test profile page](docs/testing/manual-testing/pp4-manual-testing-profile-form.png)
+
+#### **Create Trip Page**
+
+![PlanIt-Go manual test create trip page](docs/testing/manual-testing/pp4-manual-testing-create-trip.png)
+
+#### **Trip Detail Page**
+
+![PlanIt-Go manual test trip detail 1 page](docs/testing/manual-testing/pp4-manual-testing-trip-detail-01.png)
+![PlanIt-Go manual test trip detail 2 page](docs/testing/manual-testing/pp4-manual-testing-trip-detail-02.png)
+
+#### **Place Detail Page**
+
+![PlanIt-Go manual test place detail 1](docs/testing/manual-testing/pp4-manual-testing-place-detail-01.png)
+![PlanIt-Go manual test place detail 2](docs/testing/manual-testing/pp4-manual-testing-place-detail-02.png)
+
+#### **Review Page**
+
+![PlanIt-Go manual test review 1](docs/testing/manual-testing/pp4-manual-testing-review-01.png)
+![PlanIt-Go manual test review 2](docs/testing/manual-testing/pp4-manual-testing-review-02.png)
+
+#### **Add Image Page**
+
+![PlanIt-Go manual test image 1](docs/testing/manual-testing/pp4-manual-testing-add-image-01.png)
+![PlanIt-Go manual test image 2](docs/testing/manual-testing/pp4-manual-testing-add-image-02.png)
+
+#### **Place List Page**
+
+![PlanIt-Go manual test place list](docs/testing/manual-testing/pp4-manual-testing-place-list.png)
+
+#### **Browse Detail Page**
+
+![PlanIt-Go manual test browse detail](docs/testing/manual-testing/pp4-manual-testing-browse-detail.png)
+
+#### **Destinations Page (Staff Only)**
+
+![PlanIt-Go man test destinations 1](docs/testing/manual-testing/pp4-manual-testing-destinations-staff-01.png)
+![PlanIt-Go man test destinations 2](docs/testing/manual-testing/pp4-manual-testing-destinations-staff-02.png)
+
+#### **Get Places Page (Staff Only)**
+
+![PlanIt-Go man test get places](docs/testing/manual-testing/pp4-manual-testing-get-places-staff.png)
+
 ### **User Story Testing**
 
 #### **EPIC: User Account [#1](https://github.com/rkillickdev/plan-it-go/issues/1)**

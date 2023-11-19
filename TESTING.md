@@ -412,7 +412,7 @@ Main Directory:
 
 ### **JSHint Javascript Validation**
 
-I passed my JavaScript files through the linter JSHint to validate and check for any syntax errors.  Reports for each file can be viewd below.  Some warnings were returned in the two files relating to Google Maps.  This is not javascript that I have written, but sourced from the Google documentation about implementing Maps, markers and clusters.  I have therefore not addressed these warnings as the functionality of the maps is operating as expected.
+I passed my JavaScript files through the linter [JSHint](https://jshint.com/) to validate and check for any syntax errors.  Reports for each file can be viewd below.  Some warnings were returned in the two files relating to Google Maps.  This is not javascript that I have written, but sourced from the Google documentation about implementing Maps, markers and clusters.  I have therefore not addressed these warnings as the functionality of the maps is operating as expected.
 
 The hero-text-replace.js file notes one undeclared variable and one unused variable.  This is code I sourced from the [ReplaceMe.js](https://adrianklimek.github.io/replaceme/#:~:text=About-,ReplaceMe.,can%20be%20used%20with%20jQuery.) documentation so I have not addressed this warning, as this feature is functioning as expected.
 

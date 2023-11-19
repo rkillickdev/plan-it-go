@@ -59,8 +59,8 @@
             * [Responsive Design](#responsive-design)
 * [Technologies Used](#technologies-used)
     * [Languages Used](#languages-used)
-    * [Programs Used](#programs-used)
-    * [Frameworks and Libraries used](#frameworks-and-libraries-used)
+    * [Programs and Tools Used](#programs-and-tools-used)
+    * [Frameworks and Libraries Used](#frameworks-and-libraries-used)
 * [Deployment and Local Development](#deployment-and-local-development)
 * [Testing](#testing)
     * [Automated Testing](#automated-testing)
@@ -604,6 +604,47 @@ CSRF tokens were used in forms across the site to protect against [Cross Site Re
 ### **Responsive design**
 
 ## **Future Features**
+
+# **Technologies Used**
+
+## **Languages Used**
+
+* [HTML5](https://developer.mozilla.org/en-US/docs/Glossary/HTML5)
+* [CSS3](https://developer.mozilla.org/en-US/docs/Web/CSS)
+* [Javascript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+* [Python](https://www.python.org/)
+
+## **Programs and Tools Used**
+
+<br>
+
+* [Git](https://en.wikipedia.org/wiki/Git) -  Version control.
+* [GitHub](https://github.com/) - All files for the project stored and saved in a repository.
+* [Gitpod](https://www.gitpod.io/) - IDE used to write the code, make git commits and push to GitHub.
+* [Heroku](https://dashboard.heroku.com/apps) - For deployment of the project.
+* [PEP8](https://pep8ci.herokuapp.com/) - CI Python Linter
+* [JSHint](https://jshint.com/) - Javascript linter
+* [W3C](https://validator.w3.org/) - HTML Validator
+* [W3C jigsaw](https://jigsaw.w3.org/css-validator/) - CSS Validator
+* [Black](https://www.freecodecamp.org/news/auto-format-your-python-code-with-black/) - Python Auto Formatter
+* [Google Lighthouse](https://developer.chrome.com/docs/lighthouse/overview/) - Used at testing stage to show statistics for performance, accessibility, best practices and SEO.
+* [Google DevTools](https://developer.chrome.com/docs/devtools/) - Used throughout build of website for debugging, checking responsiveness and trialing new features/ styling.
+* [Google Fonts](https://fonts.google.com/) - Used to import required fonts for the website via the css style page.
+* [Balsamiq](https://balsamiq.com/wireframes/) - Used to create wireframes.
+* [Font Awesome](https://fontawesome.com/) - Used for all icons throughout the website.
+* [TinyPNG](https://tinypng.com/) - For compression of image files to improve website performance.
+* [Birme](https://www.birme.net/?target_width=425&target_height=450&auto_focal=false&image_format=jpeg&quality_jpeg=100&quality_webp=100) - For resizing and re-formatting images to make them suitable for use on the website.
+* [Favicon.ico & App Icon Generator](https://www.favicon-generator.org/) - For creating the 16x16px ico favicon.
+* [Techsini](https://techsini.com/multi-mockup/index.php) - For displaying images of how the website looks across a range of devices.
+* [Meta Tags IO](https://metatags.io/) - For improving site visual appearance on social media.
+
+<br>
+
+## **Frameworks and Libraries Used**
+
+
+
+
 
 
 # **Bugs**

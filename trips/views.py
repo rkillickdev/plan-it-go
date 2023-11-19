@@ -367,7 +367,8 @@ class ImageUploadView(LoginRequiredMixin, CreateView):
     # Add defensive programming to check if trip belongs to the logged in user.
 
     def get(self, request, *args, **kwargs):
-        if not Trip.objects.filter(profile=self.request.user.profile.id).exists():
+        trip = get_object_or_404(Trip, id=self.trip_id)
+        if not trip.profile.id == request.user.profile.id:
             raise PermissionDenied()
         return super().get(request, *args, **kwargs)
 

@@ -4,9 +4,20 @@
 
 ## **CONTENTS**
 
-## **Automated Testing**
-
-### **Unit Testing**
+* [Manual Testing](#manual-testing)
+    * [Full Testing](#full-testing)
+    * [Defensive Testing](#defensive-testing)
+    * [Form Testing](#form-testing)
+    * [User Story Testing](#user-story-testing)
+    * [Javascript Testing](#javascript-testing)
+* [Automated Testing](#automated-testing)
+* [Validator](#validators)
+    * [PEP8 Validation](#pep8-validation)
+    * [W3C Markup HTML Validator](#w3c-html-markup-validator)
+    * [W3C CSS Validator](#w3c-css-validator)
+* [Performance](#performace)
+    * [Lighthouse](#lighthouse)
+    * [Wave Accessibility](#wave-accessibility)
 
 ## **Manual Testing**
 
@@ -113,10 +124,12 @@ I have carried out a range of tests to check that any defensive programming impl
 | https://plan-it-go-5b10d0005b0a.herokuapp.com/trips/manhattan-2023/6/review/19/ | 403 permission denied template displayed | Pass |
 | https://plan-it-go-5b10d0005b0a.herokuapp.com/trips/manhattan-2023/6/review/19/edit_review/5 | 403 permission denied template displayed | Pass |
 | https://plan-it-go-5b10d0005b0a.herokuapp.com/trips/manhattan-2023/6/review/19/delete_review/5 | 403 permission denied template displayed | Pass |
-| https://plan-it-go-5b10d0005b0a.herokuapp.com/trips/manhattan-2023/6/images/19/ | User directed to login page | Pass |
+| https://plan-it-go-5b10d0005b0a.herokuapp.com/trips/manhattan-2023/6/images/19/ | 403 permission denied template displayed | Pass |
 | https://plan-it-go-5b10d0005b0a.herokuapp.com/trips/manhattan-2023/6/images/19/delete_image/3 | 403 permission denied template displayed | Pass |
 | https://plan-it-go-5b10d0005b0a.herokuapp.com/locations/ | User directed to Django Admin Login page | Pass |
 | https://plan-it-go-5b10d0005b0a.herokuapp.com/places/get_places/3/london | User directed to Django Admin Login page | Pass |
+
+### **Form Testing**
 
 ### **User Story Testing**
 
@@ -287,19 +300,26 @@ I have carried out a range of tests to check that any defensive programming impl
 | ---- |
 ||
 
-
-
-
-
-
-
-
-
-### **Form Testing**
-
-### **Defensive Testing**
-
 ### **Javascript Testing**
+
+| File | Action | Expected Outcome | Pass/Fail |
+| ---- | ---- | ---- | ---- |
+| static/js/delete-confirm-modals.js | Click on a trash can icon | Delete confirm modal opens and href for delete button populated with correct url to delete selected trip/ review /image.  Clicking delete confirms and triggers the correct Django view | Pass | 
+| static/js/delete-confirm-modals.js | Click on Remove From Planner icon for a place in an itinerary | Delete confirm modal opens and action for delete button populated with correct url to trigger the remove_place view in Django | Pass |
+| static/js/forms.js | Navigate to a page that displays a form to create a trip / review / location | Submit button on form displayed as "Create" | Pass |
+| static/js/forms.js | Navigate to a page that displays a form to update a trip / review / location | Submit button on form displayed as "Update" | Pass |
+| static/js/hero-text-replace.js | Navigate to Home page | Text overlaying hero image rotates between displaying 'Plans' / "Memories' / 'It Happen' | Pass |
+| static/js/img-src-backups.js | Navigate to a page where the src for an image is served from an external site and an error is returned | Placeholder url injected into src for the image with a broken link | CHECK |
+| static/js/map-cluster.js | Navigate to trip detail page | Google Map for the specified trip location displayed with markers identifying each place that has been added to the trip itinerary | Pass |
+| static/js/maps.js | Navigate to place detail or browse detail page | Google Map for the specified place displayed with a marker to pinpoint the exact location | Pass |
+| static/js/reviews.js | Click pencil icon under a review card to edit review | Text area of form populated with review content. Submit button changed to display 'Update'. Review form action attribute injected with correct url to trigger the review_edit view for the selected review | Pass |
+| static/js/solo-display-modals.js | Click a destination / review / image clickable card | Modal opens displaying full destination description/ full review body text / full image | Pass |
+| static/js/star-rating.js | Navigate to place detail or browse detail page | Rating for selected place displayed using font awesome full, half and empty stars to accurately visualise the correct rating | Pass |
+| static/js/toasts.js | Carry out actions that prompt user feed back (e.g. Create trip, remove place from planner, delete review) | Confirmation message displays in bootstrap toast and dissapears after a few seconds | Pass |
+
+## **Automated Testing**
+
+### **Unit Testing**
 
 ## **Validators**
 
@@ -390,7 +410,7 @@ Main Directory:
 
 
 
-### **W3C Markup Validator**
+### **W3C HTML Markup Validator**
 
 All pages have been run through the [W3C](https://validator.w3.org/).  Initially a couple of recurring errors appeared in various templates.  These are outlined below and have now been resolved:
 
@@ -428,7 +448,9 @@ Warning: The type: attribute is unnecessary for JavaScript resources.
 
 ### **W3C CSS Validator**
 
-### **Lighthouse:**
+## **Performace**
+
+### **Lighthouse**
 
 #### Improvements
 
@@ -584,7 +606,7 @@ The images referred to here are served by the trip advisor cdn, so I have not be
 </details>
 
 
-### **Wave Accessibility Tests:**
+### **Wave Accessibility**
 
 
 

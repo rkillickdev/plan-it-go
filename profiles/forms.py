@@ -25,7 +25,11 @@ class ProfileForm(ModelForm):
         self.helper = FormHelper()
         self.helper.form_id = "profile-form"
         self.helper.form_class = "rounded bg-dark text-light p-4"
-        self.helper.form_show_labels = False
+        self.fields["first_name"].label = False
+        self.fields["surname"].label = False
+        self.fields["screen_name"].label = False
+        self.fields["about"].label = False
+        self.fields["profile_image"].label = "Add your own image"
         self.helper.form_method = "post"
 
         self.helper.layout = Layout(

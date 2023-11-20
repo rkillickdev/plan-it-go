@@ -51,6 +51,17 @@ input[type="file"] {
     position: absolute; /* don't let it take up space */
     }
 
+/* Targets slecttor button */
+
+input[type="file"]::file-selector-button {
+    border: none;
+    padding: 10px 20px;
+    border-radius: 0.375rem;
+    color: var(--bs-light);
+    background-color: var(--bs-dark);
+    transition: .15s;
+}
+
 /* TESTING FOR FILE INPUTS ENDS */
 
 .card-img-top {

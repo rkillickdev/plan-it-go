@@ -104,7 +104,7 @@ class ImageForm(ModelForm):
         self.helper = FormHelper()
         self.helper.form_id = "imageForm"
         self.helper.form_class = "rounded bg-dark text-light p-4"
-        self.fields["path"].label = False
+        self.fields["path"].label = "Select An Image"
         self.helper.form_method = "POST"
 
         self.helper.layout = Layout(

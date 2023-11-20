@@ -31,7 +31,7 @@ class TripForm(ModelForm):
         self.fields["location"].label = "Choose a destination"
         self.fields["title"].label = False
         self.fields["description"].label = False
-        self.fields["trip_image"].label = "Add your own image"
+        self.fields["trip_image"].label = False
 
         self.helper.layout = Layout(
             Field("location", css_class="form-select mt-2 mb-4"),
@@ -46,6 +46,9 @@ class TripForm(ModelForm):
                 css_class="mb-4",
                 aria_label="Enter a trip description",
                 placeholder="Tell us about your trip...",
+            ),
+            Div(
+                HTML("<p>Add your own image</p>")
             ),
             Field("trip_image", css_class="form-select file-upload-input"),
             Div(

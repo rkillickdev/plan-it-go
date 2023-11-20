@@ -32,7 +32,7 @@ class LocationForm(ModelForm):
         self.fields["summary"].label = False
         self.fields["latitude"].label = False
         self.fields["longitude"].label = False
-        self.fields["image"].label = "Add an image"
+        self.fields["image"].label = False
         self.helper.form_method = "POST"
 
         self.helper.layout = Layout(
@@ -59,6 +59,9 @@ class LocationForm(ModelForm):
                 css_class="mb-4",
                 aria_label="Enter a longitude for the selected location",
                 placeholder="Destination longitude",
+            ),
+            Div(
+                HTML("<p>Add an image</p>")
             ),
             Field("image", css_class="form-select file-upload-input px-2 py-3"),
             Div(

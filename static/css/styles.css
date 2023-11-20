@@ -111,7 +111,7 @@ input[type=file] + label:before {
   display: inline-block;
 }
 
-input[type=file]:focus + label,
+input[type=file] + label:hover,
 input[type=file] + label:hover:before {
   color: var(--bs-primary);
 }

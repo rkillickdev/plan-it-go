@@ -4,7 +4,7 @@
 const customFileLabel = document.querySelector(".custom-file-label");
 
 document.addEventListener("DOMContentLoaded", () => {
-    customFileLabel.innerHTML = "";
+    customFileLabel.innerHTML = "Select A File";
 });
 
 // Event listener added to submit button on forms with a file input field.

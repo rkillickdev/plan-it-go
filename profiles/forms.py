@@ -29,7 +29,7 @@ class ProfileForm(ModelForm):
         self.fields["surname"].label = False
         self.fields["screen_name"].label = False
         self.fields["about"].label = False
-        self.fields["profile_image"].label = "Add your own image"
+        self.fields["profile_image"].label = False
         self.helper.form_method = "post"
 
         self.helper.layout = Layout(
@@ -56,6 +56,9 @@ class ProfileForm(ModelForm):
                 css_class="mb-4",
                 aria_label="Enter some information about yourself",
                 placeholder="Tell us about you...",
+            ),
+            Div(
+                HTML("<p>Add your own image</p>")
             ),
             Field(
                 "profile_image",

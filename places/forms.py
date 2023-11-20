@@ -110,14 +110,14 @@ class ImageForm(ModelForm):
         self.helper.layout = Layout(
             Field(
                 "path",
-                css_class="form-select",
+                css_class="form-select file-upload-input",
                 aria_label="Select an image",
                 ),
             Div(
                 Submit(
                     "Submit",
                     "Upload",
-                    css_id="imageUploadButton",
+                    css_id="submit-button",
                     css_class="btn btn-primary text-light",
                 ),
                 css_class="mt-4 text-center",

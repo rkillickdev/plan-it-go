@@ -59,7 +59,7 @@ class ProfileForm(ModelForm):
             ),
             Field(
                 "profile_image",
-                css_class="form-select",
+                css_class="form-select file-upload-input",
                 aria_label="Select a profile image",
             ),
             Div(

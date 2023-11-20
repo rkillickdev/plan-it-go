@@ -124,6 +124,18 @@ input[type=checkbox i] {
   margin-top: 0.5rem;
 }
 
+#div_id_trip_image > div > div.input-group:first-of-type {
+  display: none;
+}
+
+#div_id_trip_image > div > div.input-group > div.input-group-prepend:first-of-type {
+  display: none;
+}
+
+#div_id_profile_image > div > div.input-group:first-of-type {
+  display: none;
+}
+
 .input-group {
   margin-top: 0.5rem;
   gap: 0.5rem;

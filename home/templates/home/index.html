@@ -11,7 +11,7 @@
           <div id="hero-text"
                class="text-container pt-6 pb-4 px-4 d-flex flex-column gap-4 h-100 align-items-center">
             <h2 class="display-3 text-center">
-              Make<br><span class="fw-bold replace-me map-pin">Plans,Memories,It Happen</span>
+              Make<br><span class="fw-bold replace-me map-pin">Plans</span>
             </h2>
             <a href="{% if request.user.is_staff %} {% url 'locations' %} {% elif user.is_authenticated %} {% url 'trip_list' %} {% else %} {% url 'account_signup' %} {% endif %}"
                class="btn btn-primary text-white button-link">{% if request.user.is_staff %}Add Destinations{% elif user.is_authenticated %}Get Started{% else %}Sign Up{% endif %}</a>

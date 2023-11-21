@@ -124,6 +124,18 @@ input[type=checkbox i] {
   margin-top: 0.5rem;
 }
 
+/* Referenced this artice to solve problem of file input label overflow: */
+/* https://www.freecodecamp.org/news/how-to-truncate-text-with-css-javascript/ */
+.text-truncate {
+  white-space: normal;
+}
+
+/* CSS workaround to fix problem of 'current' image link being displayed in file input */
+/* field of a form, if an image already exists.  Clicking on this link was providing bad */
+/* UX as it would take user away from the site.  Also, if 'placeholder' used, the user was */
+/* directed to a broken link.  I decided to hide this element from view entirely.  Because */
+/* this element is generated from django as a crispy form, it was slightly harder to target */
+/* directly by an id. */
 #div_id_trip_image > div > div.input-group:first-of-type {
   display: none;
 }
@@ -133,6 +145,18 @@ input[type=checkbox i] {
 }
 
 #div_id_profile_image > div > div.input-group:first-of-type {
+  display: none;
+}
+
+#div_id_profile_image > div > div.input-group > div.input-group-prepend:first-of-type {
+  display: none;
+}
+
+#div_id_image > div > div.input-group:first-of-type {
+  display: none;
+}
+
+#div_id_image > div > div.input-group > div.input-group-prepend:first-of-type {
   display: none;
 }
 

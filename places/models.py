@@ -99,10 +99,10 @@ class Image(models.Model):
     path = CloudinaryField(
         "image",
         transformation={
-            "width": "900",
-            "height": "600",
-            "crop": "fill",
-            "gravity": "auto",
+            # "width": "900",
+            # "height": "600",
+            # "crop": "fill",
+            # "gravity": "auto",
             "fetch_format": "auto",
             "quality": "auto",
             "dpr": "auto",

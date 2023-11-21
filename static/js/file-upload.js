@@ -15,8 +15,13 @@ document.addEventListener("DOMContentLoaded", () => {
 // https://stackdiary.com/tutorials/how-to-check-file-upload-size-with-javascript
 // https://wesbos.com/javascript/05-events/prevent-default-and-form-events
 
-const fileUploadInput = document.querySelector(".file-upload-input")
+// I referenced the following articles for triggering bootstrap modals from javascript: 
+// https://stackoverflow.com/questions/62827002/bootstrap-v5-manually-call-a-modal-mymodal-show-not-working-vanilla-javascrip
+// https://getbootstrap.com/docs/5.2/components/modal/#via-javascript
+
+const fileUploadInput = document.querySelector(".file-upload-input");
 const uploadSubmit = document.getElementById("submit-button");
+const fileWarningModal = new bootstrap.Modal(document.getElementById("modal-file-warning"), {});
 
 uploadSubmit.addEventListener("click", (e) => {
     const fileSize = fileUploadInput.files[0].size;
@@ -24,9 +29,10 @@ uploadSubmit.addEventListener("click", (e) => {
 
     if (fileSize > maxSizeInBytes) {
         e.preventDefault();
-        alert('File size must be less than 2MB.  Please select another image');   
+        fileWarningModal.show();
     }
 });
+
 
 
 

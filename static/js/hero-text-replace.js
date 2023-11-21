@@ -3,11 +3,7 @@
 // https://www.udemy.com/course/bootstrap-from-scratch/learn/lecture/38477274#search
 
 const checkReplace = document.querySelector('.replace-me');
-console.log(checkReplace.innerText)
-
-checkReplace.append(",Memories,It Happen")
-
-console.log(checkReplace.innerText)
+checkReplace.append(",Memories,It Happen");
 
 if (checkReplace !== null) {
   const replace = new ReplaceMe(checkReplace, {

@@ -573,6 +573,8 @@ Displayed to warn the user when an internal server error occurs.  This lets them
 
 ### **Security**
 
+Mention debug set to false methodology
+
 #### **Defensive Programnming**
 
 To secure certain Django Views and ensure they are only accessible to registered users, the ```
@@ -600,6 +602,18 @@ I have also made my best efforts to protect my Google Maps API key, which needs 
 CSRF tokens were used in forms across the site to protect against [Cross Site Request Forgery](https://docs.djangoproject.com/en/3.2/ref/csrf/).  When rendering forms using the crispy forms helper, these are automatically included.  For any other forms across the site, I have added manually.
 
 ### **Responsive design**
+
+I adopted a mobile first approach when designing and building the site.  Bootstrap's grid system and responsiveness tiers were used to provide different layouts according to default breakpoints and ensure responsiveness across a range of device sizes.  Additional styling tweaks were made using media queries in my [styles.css](static/css/styles.css) sheet.
+
+![PlanIt-Go responsive design 01](docs/features/responsive/pp4-mobile-responsive-01.png)
+
+![PlanIt-Go responsive design 02](docs/features/responsive/pp4-mobile-responsive-02.png)
+
+![PlanIt-Go responsive design 03](docs/features/responsive/pp4-mobile-responsive-03.png)
+
+![PlanIt-Go responsive design 04](docs/features/responsive/pp4-mobile-responsive-04.png)
+
+![PlanIt-Go responsive design 05](docs/features/responsive/pp4-mobile-responsive-05.png)
 
 ## **Future Features**
 

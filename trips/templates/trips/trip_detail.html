@@ -68,7 +68,7 @@
                           </button>
                             <p class="lead align-self-center m-0">Remove From Planner</p>
                           </div>
-                          <div class="d-flex justify-content-between">
+                          <div class="d-flex justify-content-between gap-3">
                             <div class="d-flex flex-column justify-content-center gap-2">
                               <a href="{% url 'review' trip.slug trip.id place.id %}"
                                  class="link-transform align-self-center"
@@ -76,7 +76,7 @@
                               >
                                 <i class="fa-solid fa-pen-to-square fa-3x"></i>
                               </a>
-                              <p class="lead align-self-center m-0">Leave A Review</p>
+                              <p class="lead align-self-center text-center m-0">Leave A Review</p>
                             </div>
                             <div class="d-flex flex-column justify-content-center gap-2">
                               <a href="{% url 'add_image' trip.slug trip.id place.id %}"
@@ -85,7 +85,7 @@
                               >
                                 <i class="fa-solid fa-camera fa-3x"></i>
                               </a>
-                              <p class="lead align-self-center m-0">Upload Image</p>
+                              <p class="lead align-self-center text-center m-0">Upload Image</p>
                             </div>
                           </div>
                         </div>
@@ -107,7 +107,7 @@
 <!-- Place Recommendations Paginated -->
 <section id="trip-recommendations">
   <div class="container">
-    <div class="row">
+    <div class="row action-title">
       <h3><span><i
              class="fa-solid fa-heart text-primary"></i>&ensp;</span>Recommended Places
       </h3>

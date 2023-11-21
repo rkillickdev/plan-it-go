@@ -11,9 +11,9 @@
          class="mt-6 mb-5">
   <div class="container">
     <div class="row mb-2">
-      <div class="action-title d-flex justify-content-between p-2">
-        <h2>
-          <span>
+      <div class="action-title d-flex justify-content-between align-items-center p-2">
+        <h2 class="mb-0">
+          <span class="pb-3 d-block d-lg-inline">
             <i class="fa-solid fa-camera"></i>&ensp;
           </span>Add an image for {{ place.name }}
         </h2>
@@ -49,7 +49,7 @@
   <div class="container">
     <div class="row">
       <h2 class="action-title">
-        <span>
+        <span class="pb-3 d-block d-lg-inline">
           <i class="fa-solid fa-image"></i>&ensp;
         </span>Your Image Gallery
       </h2>
@@ -58,7 +58,7 @@
     {% for place in trip.places.all %}
       {% if place.images.count > 0 %}
         <div class="row mb-4">
-          <div class="col-12 d-flex justify-content-between align-items-center bg-secondary rounded p-2">
+          <div class="col-12 d-flex justify-content-between align-items-center bg-secondary rounded p-2 action-title">
             <h3 class="m-0 fs-4">{{ place.name }}</h3>
             <a href="{% url 'add_image' trip.slug trip.id place.id %}"
               class="fs-4 mb-0">

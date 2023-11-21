@@ -111,11 +111,12 @@ input[type=file] + label:before {
   display: inline-block;
 }
 
-input[type=file] + label:hover,
-input[type=file] + label:hover:before {
-  color: var(--bs-primary);
+@media (hover: hover) {
+  input[type=file] + label:hover,
+  input[type=file] + label:hover:before {
+    color: var(--bs-primary);
+  }
 }
-
 input[type=checkbox i] {
   accent-color: var(--bs-primary);
 }

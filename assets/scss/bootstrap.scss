@@ -1,4 +1,4 @@
-// Font
+// Fonts
 $font-family-sans-serif: 'Raleway', sans-serif;
 
 // Colors
@@ -23,71 +23,60 @@ $spacers: (
   8: $spacer * 12,
 ) !default;
 
-/* Borders */
-
+// Borders
 $border-color: $dark;
 $card-border-color: $border-color;
 
-/* Navbar Toggler */
-
+// Navbar Toggler
 $navbar-light-icon-color: $dark;
 $navbar-toggler-font-size: 1.5rem;
 $navbar-light-toggler-border-color: $dark;
 $navbar-toggler-focus-width: 0;
 
-/* Carousels */
-
+// Carousels
 $carousel-control-color: $dark;
 
-/* Inputs */
+// Inputs
 $input-bg: $light;
 $input-border-color: none;
 
-/* Selects */
+// Selects
 $form-select-indicator-color: $dark;
 
-/* Links */
-
+// Links
 $link-hover-color-dark: $primary;
 
-/* Modals */
-
+// Modals
 $modal-footer-border-color: $primary;
 
-/* Toasts */
-
+// Toasts
 $toast-header-border-color: $primary;
-
 
 // Buttons
 $button-padding-x: 20px;
 $button-padding-y: 10px;
-
 $btn-padding-x: $button-padding-x;
 $btn-padding-x-sm: $button-padding-x;
 $btn-padding-x-lg: $button-padding-x;
 $btn-padding-y: $button-padding-y;
 $btn-padding-y-sm: $button-padding-y;
 $btn-padding-y-lg: $button-padding-y;
-
 $btn-close-color: $dark;
 
-/* Navbar */
+// Navbar
 $navbar-light-color: $dark;
 $navbar-light-active-color: $primary;
 $navbar-light-hover-color: $primary;
 $navbar-light-brand-color: $dark;
 $navbar-light-brand-hover-color: none;
 
-/* Links */
-
+// Links
 $link-color: $dark;
 
-/* Nav Tabs */
-
+// Nav Tabs
 $nav-tabs-link-active-color: $primary;
 
-/* Accordion */
+// Accordion
 $accordion-body-padding-y: 0;
 $accordion-body-padding-x: 0;
 $accordion-bg: $dark;
@@ -100,8 +89,7 @@ $accordion-button-active-color: $dark;
 $accordion-button-focus-border-color: none;
 $accordion-button-focus-box-shadow: none;
 
-/* Pagination Controls */
-
+// Pagination Controls
 $pagination-color: white;
 $pagination-bg: $dark;
 $pagination-border-width: none;

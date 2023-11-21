@@ -626,6 +626,8 @@ I adopted a mobile first approach when designing and building the site.  Bootstr
 * [Javascript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 * [Python](https://www.python.org/)
 
+* I decided not to use jQuery in this project and implemented any functionality that required js with vanilla javascript.  I plan to use jQuery in a future project to enhance my knowledge of this library.
+
 ## **Programs and Tools Used**
 
 <br>
@@ -649,6 +651,8 @@ I adopted a mobile first approach when designing and building the site.  Bootstr
 * [Font Awesome](https://fontawesome.com/) - Used for all icons throughout the website.
 * [TinyPNG](https://tinypng.com/) - For compression of image files to improve website performance.
 * [Birme](https://www.birme.net/?target_width=425&target_height=450&auto_focal=false&image_format=jpeg&quality_jpeg=100&quality_webp=100) - For resizing and re-formatting images to make them suitable for use on the website.
+* [xnipapp](https://www.xnipapp.com/) - For capturing site screenshots
+* [Aspose](https://products.aspose.app/pdf/merger) - Used to merge 3 mobile images to a single png file.
 * [Favicon.ico & App Icon Generator](https://www.favicon-generator.org/) - For creating the 16x16px ico favicon.
 * [Techsini](https://techsini.com/multi-mockup/index.php) - For displaying images of how the website looks across a range of devices.
 * [Meta Tags IO](https://metatags.io/) - For improving site visual appearance on social media.
@@ -687,6 +691,15 @@ Below are bugs that were discovered during development and testing.  I have not 
 | Destination carousel cards displaying incorrect information when opened in modal |. To solve this, I reverted back to only wrapping the img element of the card in the button to trigger the modal. View [GitHub Issue#50](https://github.com/rkillickdev/plan-it-go/issues/50) |
 | I noticed side scrolling was necessary on the profile page when viewing on smaller mobile devices |  I discovered that the issue was being caused by overflow from the image file select field.  I added the "form-select" class to any form with a file input field.  This has prevented overspill and solved the problen of side scrolling.  View [GitHub Issue#54](https://github.com/rkillickdev/plan-it-go/issues/54) | 
 
+
+
+# **Credits**
+
+## **Code Used and Referenced** 
+
+## **Media**
+
+## **Acknowledgements**
 
 
 Include Proc File details

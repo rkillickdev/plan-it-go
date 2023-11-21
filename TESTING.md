@@ -676,6 +676,48 @@ The images referred to here are served by the trip advisor cdn, so I have not be
 
 ### **Wave Accessibility**
 
+All pages of the site have been passed through the [Wave Chrome Extension](https://wave.webaim.org/extension/) to check for accessibility.  No errors are logged on any pages.  The pages displaying Google maps show some warnings, but I have left these as they exist within the code of the generated map itself.  I have checked any other warnings to ensure they are acceptable.
+
+<details><summary>Wave Results</summary>
+
+<br>
+
+![Wave Accessibility Home](docs/testing/accessibility/pp4-wave-accessibility-home.png)
+
+![Wave Accessibility Signup](docs/testing/accessibility/pp4-wave-accessibility-sign-up.png)
+
+![Wave Accessibility login](docs/testing/accessibility/pp4-wave-accessibility-login.png)
+
+![Wave Accessibility logout](docs/testing/accessibility/pp4-wave-accessibility-log-out.png)
+
+![Wave Accessibility trip list](docs/testing/accessibility/pp4-wave-accessibility-trip-list.png)
+
+![Wave Accessibility profile](docs/testing/accessibility/pp4-wave-accessibility-profile.png)
+
+![Wave Accessibility trip form](docs/testing/accessibility/pp4-wave-accessibility-trip-form.png)
+
+![Wave Accessibility trip-detail](docs/testing/accessibility/pp4-wave-accessibility-trip-detail.png)
+
+![Wave Accessibility place-detail](docs/testing/accessibility/pp4-wave-accessibility-place-detail.png)
+
+![Wave Accessibility reviews](docs/testing/accessibility/pp4-wave-accessibility-reviews.png)
+
+![Wave Accessibility add images](docs/testing/accessibility/pp4-wave-accessibility-add-images.png)
+
+![Wave Accessibility place list](docs/testing/accessibility/pp4-wave-accessibility-place-list.png)
+
+![Wave Accessibility browse detail all users](docs/testing/accessibility/pp4-wave-accessibility-browse-detail-all-users.png)
+
+![Wave Accessibility trip list staff](docs/testing/accessibility/pp4-wave-accessibility-trip-list-staff.png)
+
+![Wave Accessibility browse detail staff](docs/testing/accessibility/pp4-wave-accessibility-browse-detail-staff.png)
+
+![Wave Accessibility destinations staff](docs/testing/accessibility/pp4-wave-accessibility-destinations-staff.png)
+
+![Wave Accessibility get places staff](docs/testing/accessibility/pp4-wave-accessibility-get-places-staff.png)
+
+</details>
+
 ## **Responsiveness**
 
 Full testing for responsiveness of all pages across the site has been carried out with the help of Google Dev Tools along side the following physical devices:

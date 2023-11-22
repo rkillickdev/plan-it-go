@@ -752,6 +752,19 @@ INSTALLED_APPS = [
 ]
 ```
 
+For security reasons, it is important to not run with debug turned on in production.  I have implemented the following code to ensure that `DEBUG = True` while in development but defaults to `False` for the deployed site:
+
+```python
+development = os.environ.get('DEVELOPMENT', False)
+# ...
+DEBUG = development
+```
+
+In my env.py file I have `os.environ["DEVELOPMENT"] = "True"`.  This means that when setting the value of the variable `development` in the settings.py file, there will be an attemp to access 'DEVELOPMENT'.  This is only defined in the env.py file, but **not** in the Heroku config vars, therefore because 'DEVELOPMENT' cannot be found by Heroku, the variable `development` defaults to False.  And therefore it follows that: 
+```python
+DEBUG = False
+```
+
 ## **Heroku Deployment**
 
 The following steps were followed to deploy the site to Heroku:
@@ -779,7 +792,7 @@ The following steps were followed to deploy the site to Heroku:
     * PORT : 8000
     * SECRET_KEY : (Enter your Django Secret Key)
 
-6. Prior to deploymnet of the site the following two steps must be implemented in Django:
+6. Prior to deployment of the site, the following two steps must be implemented in Django:
     * Add Heroku host name to ALLOWED_HOSTS in settings.py
     ```python
     if development:
@@ -801,6 +814,11 @@ The following steps were followed to deploy the site to Heroku:
     ```
     pip3 install 'django<4' gunicorn
     ``` 
+
+7.  Next select the 'Deploy' tab, select GitHub as the deployment method, and click the 'Connect to GitHub' button.
+8.  Search for the GitHub repository name in the 'App Connected to GitHub' section and then click the 'connect' button'
+9.  You can now choose to enable automatic deploys or deploy manually.  When the 'automatic deploys' button is clicked and enabled, Heroku will rebuild the app every time a new change is pushed to GitHub.  In the 'Manual deploy' section, the 'Deploy branch' button can be clicked to deploy manually.
+10.  I chose to deploy manually. Once the app is built, a link is provided to the [deployed app](https://plan-it-go-5b10d0005b0a.herokuapp.com/).
 
 
 

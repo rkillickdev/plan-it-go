@@ -2,10 +2,18 @@
 
 <br>
 
+![Deployed Site Responsive Views](docs/features/responsive/pp4-readme-resposive-mock-up.png)
+
+<br>
+
+PlanIt Go has been developed as part of the [Code Institute](https://codeinstitute.net/) Diploma in Full Stack Software Development (Portfolio Project #4).  The aim of the site is to provide inspiration for new and exciting adventures and assist the user in planning their next big trip.
+
+<br>
+
 ## **CONTENTS**
 
 * [User Experience (UX)](#user-experience-ux)
-    * [Strategy](#strategy)
+    * [Strategy Plane](#strategy-plane)
         * [Project Goals](#project-goals)
         * [Target Users](#target-users)
     * [Agile Methodology](#agile-methodology)
@@ -14,6 +22,7 @@
     * [Skeleton Plane](#skeleton-plane)
         * [Wireframes](#wireframes)
         * [Database Schema](#database-schema)
+    * [Scope Plane]()
     * [Structure Plane](#structure-plane)
         * [Features](#features)
             * [Navbar](#navbar)
@@ -57,6 +66,7 @@
                 * [Defensive Programming](#defensive-programnming)
                 * [CRSF Tokens](#crsf-tokens)
             * [Responsive Design](#responsive-design)
+            * [Future Features](#future-features)
 * [Technologies Used](#technologies-used)
     * [Languages Used](#languages-used)
     * [Programs and Tools Used](#programs-and-tools-used)
@@ -81,28 +91,15 @@ ___
 
 <br>
 
-The aim of Plan-It Go is to provide inspiration for new and exciting adventures and assist the user in planning their next trip.
+Born out of a love for travel and exploring new cities, this site hopes to help the user plot out their ideal itinerary, by offering recommendations of places to visit when they arrive at their chosen destination.  Arriving in a new city can be overwhelming if you don’t know where you’re heading.  Sometimes the best kept secrets are not so obvious, so the site aims to steer users towards the best places to visit.
 
-Born out of a love for travel and exploring new cities, this site hopes to help the user plot out their ideal itinerary, by offering recommendations based on the experience of other travellers.  Arriving in a new city can be overwhelming if you don’t know where you’re heading.  If only you had known about a quirky little bar or restaurant round the corner rather than settling for second best. Sometimes the best kept secrets are not so obvious, but with the help of Plan-It Go, you can be in the know about the best places to visit.
+Site users are able to browse destinations for inspiration and view recommendations of places to visit.  The aim is that this should inspire new users to sign up to the site.  Creating a user profile offers additional functionality, where logged in users have the ability to create trips and use the place recommendations to build itineraries.  Once they have visited a place on their trip, they are able to leave a review or upload images for it.  Once approved by a site moderator, these reviews and images are available for other users to view.  As site traffic increases, the database of reviews and images associated with each recommended place will grow and give site users up to date and more detailed insights as to whether a place is worth adding to their itinerary.
 
-Having selected a location for their trip, users will be provided with recommendations of places to visit.  Once logged in to the site, users will have the ability to use these recommendations to build an itinerary for their trip.
-Recommendations will be sourced using the [Amadeus Points Of Interest API](https://developers.amadeus.com/self-service/category/destination-experiences/api-doc/points-of-interest).  This is a summary of the API functionality from their documentation:
+The ‘trip itinerary’ functionality also serves as a great way for users to record and journal their travels, storing their ‘go to’ places for the next time they return to a city and preserving memories with photos of the places they visited.
 
-*`
-"The API provides a ranked list of attractions and the name, coordinates, category (sights, beach/park, historical, nightlife, restaurant or shopping), tags and score for each one. The scores are powered by the AVUXI TopPlace algorithm which analyses millions of online reviews, photos and comments to determine popularity"
-`*
-
-When users add a place to their trip itinerary, data retrieved from the API for this place will be added to the site’s own ‘place’ database.  As site traffic increases and users start building their own trips, reviewing places they have visited and posting photos of their experiences, the data collated from these interactions will be used to start making recommendations to other site users.
-
-The ‘trip planner’ functionality also serves as a great way for users to record and journal their travels, storing their ‘go to’ places for the next time they return to a city and preserving memories with photos of the places they visited.
-
-All users of the site will be able find inspiration for their next getaway, by browsing trips that other users have planned.  The site owner hopes that this will encourage users to create their own account and make use of the trip planner themselves.  The site serves as a stand alone travel planner, but the functionality could also be integrated into larger travel sites.
-
-
+The site serves as a stand alone travel planner, but the functionality could also be integrated into larger travel sites.
 
 [Back to top &uarr;](#contents)
-
-## **Target Users**
 
 <br>
 
@@ -245,7 +242,17 @@ On further investigation, I discovered the [APIFY Tripadvisor Scraper](https://a
 Given the time limitations of the project, I have decided to prepopulate the Places database with places for a certain amount of pre-defined locations for demonstartion purposes. I can run a request from the APIFY dashboard for a specified location and save the response in a json file which is then stored in a [data folder with Static Files](static/data).  The [get_places view](places/views.py) has been modified to iterate over a specified json file and populate the database.  I have created a user login with staff permissions that is able to access and run this view via the site user interface.  You can read more about staff login functionality [here](#staff-login-functionality)
 
 
+## **SCOPE PLANE**
+___
 
+In order to satisfy the goals outlined in the [strategy plane](#strategy-plane), I will implement the following features:
+
+* Allow all site users to browse destinations and view recommended places to visit
+* Allow logged in users to perform CRUD functionality on trips, profiles, reviews and images
+* Allow logged in staff users to perform CRUD functionality on locations
+* Allow logged in staff users to retrieve place data from a json file and populate the Places database with it
+* Allow staff moderator to approve user reviews and images in the Django Admin Panel
+* Make the site responsive across a range of devices
 
 ## **STRUCTURE PLANE**
 ___
@@ -616,6 +623,16 @@ I adopted a mobile first approach when designing and building the site.  Bootstr
 ![PlanIt-Go responsive design 05](docs/features/responsive/pp4-mobile-responsive-05.png)
 
 ## **Future Features**
+
+Functionality that is not within the scope of this project, but that could be implemented in future sprints to enhance the user experience would be:
+
+* The ability to specify dates of travel and display a countdown on the user's trip detail page
+* The ability to refine recommended places by filtering e.g only restaurants.  Instances of the Place database already have 'type' and 'category' attributes so this filtering should be achievable.
+* The ability for users to recommend a place, or better still leave a rating.  This could be useful data to aquire, as eventually recommendations could be displayed in order of popularity amongst site users.
+* The ability to mark a trip or visit to a place as complete
+
+
+
 
 # **Technologies Used**
 

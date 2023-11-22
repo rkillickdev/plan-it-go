@@ -332,47 +332,83 @@ Each place displays stars based on the star rating value retrieved from the Plac
 
 #### **EPIC: Manage Trip [#16](https://github.com/rkillickdev/plan-it-go/issues/16)**
 
-| As a Site User I can view a summary of all upcoming and completed trips so that I can choose one to view or edit [#17](https://github.com/rkillickdev/plan-it-go/issues/17) |
-| ---- |
-||
+| User Story | Satisfies Acceptance Criteria |
+| ---- | :----: |
+| As a Site User I can view a summary of all upcoming and completed trips so that I can choose one to view or edit [#17](https://github.com/rkillickdev/plan-it-go/issues/17) | Pass |
 
-| As a Site User I can select a trip so that I can view or edit details of the itinerary [#18](https://github.com/rkillickdev/plan-it-go/issues/18) |
-| ---- |
-||
+Site users can view this information from their trip list page.  This is where they land after logging in.  It is also always accessible to logged in users by clicking the 'My Trips' link in the nav bar.
 
-| As a Site User I can mark places on a trip itinerary as completed so that I can keep track of places that I have visited while travelling [#19](https://github.com/rkillickdev/plan-it-go/issues/19) |
-| ---- |
-||
+| User Story | Satisfies Acceptance Criteria |
+| ---- | :----: |
+| As a Site User I can select a trip so that I can view or edit details of the itinerary [#18](https://github.com/rkillickdev/plan-it-go/issues/18) | Pass |
 
-| As a Site User I can delete an entire trip so that I have control of the trips that are stored in my user account [#20](https://github.com/rkillickdev/plan-it-go/issues/20) |
-| ---- |
-||
+Clicking on a trip card on the trip list page directs the user to the associated trip detail page, where they can view and edit details.
+
+| User Story | Satisfies Acceptance Criteria |
+| ---- | :----: |
+| As a Site User I can mark places on a trip itinerary as completed so that I can keep track of places that I have visited while travelling [#19](https://github.com/rkillickdev/plan-it-go/issues/19) | N/A |
+
+This user story was not classified as a 'Must Have' for any of the agile sprints, so due to time constraints, it has been placed in a future features column of my [kanban board](https://github.com/users/rkillickdev/projects/4).  This feature can be implemented in a future iteration.
+
+| User Story | Satisfies Acceptance Criteria |
+| ---- | :----: |
+| As a Site User I can delete an entire trip so that I have control of the trips that are stored in my user account [#20](https://github.com/rkillickdev/plan-it-go/issues/20) | Pass |
+
+Clicking on the trash can icon on the trip detail page actions this functionality.
+
+![PlanIt-Go user story test trip delete](docs/testing/userstories/gifs/pp4-user-story-testing-trip-delete.gif)
 
 #### **EPIC: Review [#21](https://github.com/rkillickdev/plan-it-go/issues/21)**
 
-| As a Site User I can write a review of a place on my itinerary so that I can share my experiences of the visit with other site users [#22](https://github.com/rkillickdev/plan-it-go/issues/22) |
-| ---- |
-||
+| User Story | Satisfies Acceptance Criteria |
+| ---- | :----: |
+| As a Site User I can write a review of a place on my itinerary so that I can share my experiences of the visit with other site users [#22](https://github.com/rkillickdev/plan-it-go/issues/22) | Pass |
 
-| As a Site User I can edit my review so that I can update the content or correct grammatical errors [#23](https://github.com/rkillickdev/plan-it-go/issues/23) |
-| ---- |
-||
+Clicking on the 'Leave A Review' icon for a place in the trip itinerary redirects the user to the reviews page.  From here they can leave a review for the associated place.  Once submitted, the review will appear on their reviews page, but will not be available for other site users to read until it has been approved by the site moderator.
 
-| As a Site User I can delete my review so that I can have control of reviews if I decide they are no longer relevant or necessary [#24](https://github.com/rkillickdev/plan-it-go/issues/24) |
-| ---- |
-||
+![PlanIt-Go user story test create review](docs/testing/userstories/gifs/pp4-user-story-testing-create-review.gif)
 
-| As a Site User I can decide whether I would recommend a place so that I can help other site users to make decisions when planning places to visit on their trip [#25](https://github.com/rkillickdev/plan-it-go/issues/25) |
-| ---- |
-||
+| User Story | Satisfies Acceptance Criteria |
+| ---- | :----: |
+| As a Site User I can edit my review so that I can update the content or correct grammatical errors [#23](https://github.com/rkillickdev/plan-it-go/issues/23) | Pass |
 
-| As a Site User I can upload images for a place on my itinerary so that I can store the memories from my trip and share these experiences with other site users [#26](https://github.com/rkillickdev/plan-it-go/issues/26) |
-| ---- |
-||
+Clicking on the pencil icon of a review card populates the review form with the associated review text. Clicking on the form 'update' button updates this instance of review in the database and resets the 'approved' field to False.
 
-| As a Site User I can delete images that I have uploaded for a place so that I can have control over which images are viewable [#27](https://github.com/rkillickdev/plan-it-go/issues/27) |
-| ---- |
-||
+![PlanIt-Go user story test update review](docs/testing/userstories/gifs/pp4-user-story-testing-update-review.gif)
+
+| User Story | Satisfies Acceptance Criteria |
+| ---- | :----: |
+| As a Site User I can delete my review so that I can have control of reviews if I decide they are no longer relevant or necessary [#24](https://github.com/rkillickdev/plan-it-go/issues/24) | Pass |
+
+Clicking on the trash can icon of a review card opens a delete confirm modal to check the user really wants to delete.  Confirming the action deletes this instance of review from the database.
+
+![PlanIt-Go user story test delete review](docs/testing/userstories/gifs/pp4-user-story-testing-delete-review.gif)
+
+| User Story | Satisfies Acceptance Criteria |
+| ---- | :----: |
+| As a Site User I can decide whether I would recommend a place so that I can help other site users to make decisions when planning places to visit on their trip [#25](https://github.com/rkillickdev/plan-it-go/issues/25) | N/A |
+
+This user story was not classified as a 'Must Have' for any of the agile sprints, so due to time constraints, it has been placed in a future features column of my [kanban board](https://github.com/users/rkillickdev/projects/4).  This feature can be implemented in a future iteration.
+
+| User Story | Satisfies Acceptance Criteria |
+| ---- | :----: |
+| As a Site User I can upload images for a place on my itinerary so that I can store the memories from my trip and share these experiences with other site users [#26](https://github.com/rkillickdev/plan-it-go/issues/26) | Pass |
+
+Users can upload an image for a place by selecting a file and clicking 'Upload'.
+
+![PlanIt-Go user story test add image](docs/testing/userstories/gifs/pp4-user-story-testing-add-image.gif)
+
+If the size of the file selected is above 2 MB, the user is warned and asked to select a smaller image.  This is to prevent a long delay in the page loading as the file uploads to Cloudinary.
+
+![PlanIt-Go user story test file size warning](docs/testing/userstories/gifs/pp4-user-story-testing-file-size-warning.gif)
+
+| User Story | Satisfies Acceptance Criteria |
+| ---- | :----: |
+| As a Site User I can delete images that I have uploaded for a place so that I can have control over which images are viewable [#27](https://github.com/rkillickdev/plan-it-go/issues/27) | Pass |
+
+Clicking on the trash can icon underneath an image in the gallery opens a delete confirm modal to check the user really wants to delete.  Confirming the action deletes this instance of image from the database.
+
+![PlanIt-Go user story test file size warning](docs/testing/userstories/gifs/pp4-user-story-testing-delete-image.gif)
 
 #### **EPIC: User Experience [#28](https://github.com/rkillickdev/plan-it-go/issues/28)**
 

@@ -4,12 +4,12 @@
 
 ## **CONTENTS**
 
-* [User Story Testing](#user-story-testing)
 * [Manual Testing](#manual-testing)
+    * [User Story Testing](#user-story-testing)
     * [Full Testing](#full-testing)
     * [Defensive Testing](#defensive-testing)
     * [Form Testing](#form-testing)
-    * [User Story Testing](#user-story-testing)
+    
     * [Javascript Testing](#javascript-testing)
 * [Automated Testing](#automated-testing)
 * [Validator](#validators)
@@ -22,121 +22,11 @@
     * [Wave Accessibility](#wave-accessibility)
 * [Responsiveness](#responsiveness)
 
-## **Manual Testing**
+# **Manual Testing**
 
-### **Full Testing**
+## **User Story Testing**
 
-#### **Homepage**
-
-![PlanIt-Go manual test home 01](docs/testing/manual-testing/pp4-manual-testing-home-01.png)
-![PlanIt-Go manual test home 02](docs/testing/manual-testing/pp4-manual-testing-home-02.png)
-
-#### **Navbar**
-
-![PlanIt-Go manual test nav 01](docs/testing/manual-testing/pp4-manual-testing-nav-01.png)
-![PlanIt-Go manual test nav 02](docs/testing/manual-testing/pp4-manual-testing-nav-02.png)
-
-#### **Footer**
-
-![PlanIt-Go manual test footer](docs/testing/manual-testing/pp4-manual-testing-footer.png)
-
-#### **AllAuth**
-
-![PlanIt-Go manual test signup](docs/testing/manual-testing/pp4-manual-testing-signup.png)
-![PlanIt-Go manual test login](docs/testing/manual-testing/pp4-manual-testing-login.png)
-
-#### **Trip List**
-
-![PlanIt-Go manual test trip list](docs/testing/manual-testing/pp4-manual-testing-trip-list.png)
-
-#### **Profile Page**
-
-![PlanIt-Go manual test profile page](docs/testing/manual-testing/pp4-manual-testing-profile-form.png)
-
-#### **Create Trip Page**
-
-![PlanIt-Go manual test create trip page](docs/testing/manual-testing/pp4-manual-testing-create-trip.png)
-
-#### **Trip Detail Page**
-
-![PlanIt-Go manual test trip detail 1 page](docs/testing/manual-testing/pp4-manual-testing-trip-detail-01.png)
-![PlanIt-Go manual test trip detail 2 page](docs/testing/manual-testing/pp4-manual-testing-trip-detail-02.png)
-
-#### **Place Detail Page**
-
-![PlanIt-Go manual test place detail 1](docs/testing/manual-testing/pp4-manual-testing-place-detail-01.png)
-![PlanIt-Go manual test place detail 2](docs/testing/manual-testing/pp4-manual-testing-place-detail-02.png)
-
-#### **Review Page**
-
-![PlanIt-Go manual test review 1](docs/testing/manual-testing/pp4-manual-testing-review-01.png)
-![PlanIt-Go manual test review 2](docs/testing/manual-testing/pp4-manual-testing-review-02.png)
-
-#### **Add Image Page**
-
-![PlanIt-Go manual test image 1](docs/testing/manual-testing/pp4-manual-testing-add-image-01.png)
-![PlanIt-Go manual test image 2](docs/testing/manual-testing/pp4-manual-testing-add-image-02.png)
-
-#### **Place List Page**
-
-![PlanIt-Go manual test place list](docs/testing/manual-testing/pp4-manual-testing-place-list.png)
-
-#### **Browse Detail Page**
-
-![PlanIt-Go manual test browse detail](docs/testing/manual-testing/pp4-manual-testing-browse-detail.png)
-
-#### **Destinations Page (Staff Only)**
-
-![PlanIt-Go man test destinations 1](docs/testing/manual-testing/pp4-manual-testing-destinations-staff-01.png)
-![PlanIt-Go man test destinations 2](docs/testing/manual-testing/pp4-manual-testing-destinations-staff-02.png)
-
-#### **Get Places Page (Staff Only)**
-
-![PlanIt-Go man test get places](docs/testing/manual-testing/pp4-manual-testing-get-places-staff.png)
-
-### **Defensive Testing**
-
-I have carried out a range of tests to check that any defensive programming implemented in the code is operating as expected.  These tests confirm that site users cannot access pages without the correct permission to do so, even if they enter valid urls.
-
-#### **User Status: Not logged in**
-
-| URL Tested | Expected Outcome | Pass/Fail |
-| ---- | ---- | ---- |
-| https://plan-it-go-5b10d0005b0a.herokuapp.com/profiles/update_profile/6 | User directed to login page | Pass |
-| https://plan-it-go-5b10d0005b0a.herokuapp.com/trips/update_trip/manhattan-2023/6 | User directed to login page | Pass |
-| https://plan-it-go-5b10d0005b0a.herokuapp.com/trips/manhattan-2023/delete_trip/6 | User directed to login page | Pass |
-| https://plan-it-go-5b10d0005b0a.herokuapp.com/trips/manhattan-2023/6 | User directed to login page | Pass |
-| https://plan-it-go-5b10d0005b0a.herokuapp.com/trips/manhattan-2023/6/place/19/ | User directed to login page | Pass |
-| https://plan-it-go-5b10d0005b0a.herokuapp.com/trips/manhattan-2023/6/review/19/ | User directed to login page | Pass |
-| https://plan-it-go-5b10d0005b0a.herokuapp.com/trips/manhattan-2023/6/review/19/edit_review/5 | User directed to login page | Pass |
-| https://plan-it-go-5b10d0005b0a.herokuapp.com/trips/manhattan-2023/6/review/19/delete_review/5 | User directed to login page | Pass |
-| https://plan-it-go-5b10d0005b0a.herokuapp.com/trips/manhattan-2023/6/images/19/ | User directed to login page | Pass |
-| https://plan-it-go-5b10d0005b0a.herokuapp.com/trips/manhattan-2023/6/images/19/delete_image/3 | User directed to login page | Pass |
-| https://plan-it-go-5b10d0005b0a.herokuapp.com/locations/ | User directed to login page | Pass |
-| https://plan-it-go-5b10d0005b0a.herokuapp.com/places/get_places/3/london | User directed to Django Admin Login page | Pass |
-
-#### **User Status: Logged in attempting to access unauthorised urls**
-
-| URL Tested | Expected Outcome | Pass/Fail |
-| ---- | ---- | ---- |
-| https://plan-it-go-5b10d0005b0a.herokuapp.com/profiles/update_profile/6 | 403 permission denied template displayed | Pass |
-| https://plan-it-go-5b10d0005b0a.herokuapp.com/trips/update_trip/manhattan-2023/6 | 403 permission denied template displayed | Pass |
-| https://plan-it-go-5b10d0005b0a.herokuapp.com/trips/manhattan-2023/delete_trip/6 | 403 permission denied template displayed | Pass |
-| https://plan-it-go-5b10d0005b0a.herokuapp.com/trips/manhattan-2023/6 | 403 permission denied template displayed | Pass |
-| https://plan-it-go-5b10d0005b0a.herokuapp.com/trips/manhattan-2023/6/place/19/ | 403 permission denied template displayed | Pass |
-| https://plan-it-go-5b10d0005b0a.herokuapp.com/trips/manhattan-2023/6/review/19/ | 403 permission denied template displayed | Pass |
-| https://plan-it-go-5b10d0005b0a.herokuapp.com/trips/manhattan-2023/6/review/19/edit_review/5 | 403 permission denied template displayed | Pass |
-| https://plan-it-go-5b10d0005b0a.herokuapp.com/trips/manhattan-2023/6/review/19/delete_review/5 | 403 permission denied template displayed | Pass |
-| https://plan-it-go-5b10d0005b0a.herokuapp.com/trips/manhattan-2023/6/images/19/ | 403 permission denied template displayed | Pass |
-| https://plan-it-go-5b10d0005b0a.herokuapp.com/trips/manhattan-2023/6/images/19/delete_image/3 | 403 permission denied template displayed | Pass |
-| https://plan-it-go-5b10d0005b0a.herokuapp.com/locations/ | User directed to Django Admin Login page | Pass |
-| https://plan-it-go-5b10d0005b0a.herokuapp.com/places/get_places/3/london | User directed to Django Admin Login page | Pass |
-
-### **Form Testing**
-
-### **User Story Testing**
-
-#### **EPIC: User Account [#1](https://github.com/rkillickdev/plan-it-go/issues/1)**
+### **EPIC: User Account [#1](https://github.com/rkillickdev/plan-it-go/issues/1)**
 
 | User Story | Satisfies Acceptance Criteria |
 | ---- | :----: |
@@ -233,7 +123,7 @@ I have carried out a range of tests to check that any defensive programming impl
 
 ![PlanIt-Go user story test staff place approval](docs/testing/userstories/gifs/pp4-user-story-testing-staff-place-approval.gif)
 
-#### **EPIC: Plan Trip [#7](https://github.com/rkillickdev/plan-it-go/issues/7)**
+### **EPIC: Plan Trip [#7](https://github.com/rkillickdev/plan-it-go/issues/7)**
 
 | User Story | Satisfies Acceptance Criteria |
 | ---- | :----: |
@@ -329,7 +219,7 @@ I have carried out a range of tests to check that any defensive programming impl
 ![PlanIt-Go user story test place detail star rating](docs/features/pp4-features-place-summary.png)
 
 
-#### **EPIC: Manage Trip [#16](https://github.com/rkillickdev/plan-it-go/issues/16)**
+### **EPIC: Manage Trip [#16](https://github.com/rkillickdev/plan-it-go/issues/16)**
 
 | User Story | Satisfies Acceptance Criteria |
 | ---- | :----: |
@@ -357,7 +247,7 @@ I have carried out a range of tests to check that any defensive programming impl
 
 ![PlanIt-Go user story test trip delete](docs/testing/userstories/gifs/pp4-user-story-testing-trip-delete.gif)
 
-#### **EPIC: Review [#21](https://github.com/rkillickdev/plan-it-go/issues/21)**
+### **EPIC: Review [#21](https://github.com/rkillickdev/plan-it-go/issues/21)**
 
 | User Story | Satisfies Acceptance Criteria |
 | ---- | :----: |
@@ -409,7 +299,7 @@ I have carried out a range of tests to check that any defensive programming impl
 
 ![PlanIt-Go user story test file size warning](docs/testing/userstories/gifs/pp4-user-story-testing-delete-image.gif)
 
-#### **EPIC: User Experience [#28](https://github.com/rkillickdev/plan-it-go/issues/28)**
+### **EPIC: User Experience [#28](https://github.com/rkillickdev/plan-it-go/issues/28)**
 
 | User Story | Satisfies Acceptance Criteria |
 | ---- | :----: |
@@ -449,7 +339,185 @@ I have carried out a range of tests to check that any defensive programming impl
 
 ![PlanIt-Go user story test footer social links](docs/features/pp4-features-footer.png)
 
-### **Javascript Testing**
+## **Full Testing**
+
+### **Homepage**
+
+![PlanIt-Go manual test home 01](docs/testing/manual-testing/pp4-manual-testing-home-01.png)
+![PlanIt-Go manual test home 02](docs/testing/manual-testing/pp4-manual-testing-home-02.png)
+
+### **Navbar**
+
+![PlanIt-Go manual test nav 01](docs/testing/manual-testing/pp4-manual-testing-nav-01.png)
+![PlanIt-Go manual test nav 02](docs/testing/manual-testing/pp4-manual-testing-nav-02.png)
+
+### **Footer**
+
+![PlanIt-Go manual test footer](docs/testing/manual-testing/pp4-manual-testing-footer.png)
+
+### **AllAuth**
+
+![PlanIt-Go manual test signup](docs/testing/manual-testing/pp4-manual-testing-signup.png)
+![PlanIt-Go manual test login](docs/testing/manual-testing/pp4-manual-testing-login.png)
+
+### **Trip List**
+
+![PlanIt-Go manual test trip list](docs/testing/manual-testing/pp4-manual-testing-trip-list.png)
+
+### **Profile Page**
+
+![PlanIt-Go manual test profile page](docs/testing/manual-testing/pp4-manual-testing-profile-form.png)
+
+### **Create Trip Page**
+
+![PlanIt-Go manual test create trip page](docs/testing/manual-testing/pp4-manual-testing-create-trip.png)
+
+### **Trip Detail Page**
+
+![PlanIt-Go manual test trip detail 1 page](docs/testing/manual-testing/pp4-manual-testing-trip-detail-01.png)
+![PlanIt-Go manual test trip detail 2 page](docs/testing/manual-testing/pp4-manual-testing-trip-detail-02.png)
+
+### **Place Detail Page**
+
+![PlanIt-Go manual test place detail 1](docs/testing/manual-testing/pp4-manual-testing-place-detail-01.png)
+![PlanIt-Go manual test place detail 2](docs/testing/manual-testing/pp4-manual-testing-place-detail-02.png)
+
+### **Review Page**
+
+![PlanIt-Go manual test review 1](docs/testing/manual-testing/pp4-manual-testing-review-01.png)
+![PlanIt-Go manual test review 2](docs/testing/manual-testing/pp4-manual-testing-review-02.png)
+
+### **Add Image Page**
+
+![PlanIt-Go manual test image 1](docs/testing/manual-testing/pp4-manual-testing-add-image-01.png)
+![PlanIt-Go manual test image 2](docs/testing/manual-testing/pp4-manual-testing-add-image-02.png)
+
+### **Place List Page**
+
+![PlanIt-Go manual test place list](docs/testing/manual-testing/pp4-manual-testing-place-list.png)
+
+### **Browse Detail Page**
+
+![PlanIt-Go manual test browse detail](docs/testing/manual-testing/pp4-manual-testing-browse-detail.png)
+
+### **Destinations Page (Staff Only)**
+
+![PlanIt-Go man test destinations 1](docs/testing/manual-testing/pp4-manual-testing-destinations-staff-01.png)
+![PlanIt-Go man test destinations 2](docs/testing/manual-testing/pp4-manual-testing-destinations-staff-02.png)
+
+### **Get Places Page (Staff Only)**
+
+![PlanIt-Go man test get places](docs/testing/manual-testing/pp4-manual-testing-get-places-staff.png)
+
+## **Defensive Testing**
+
+I have carried out a range of tests to check that any defensive programming implemented in the code is operating as expected.  These tests confirm that site users cannot access pages without the correct permission to do so, even if they enter valid urls.
+
+### **User Status: Not logged in**
+
+| URL Tested | Expected Outcome | Pass/Fail |
+| ---- | ---- | ---- |
+| https://plan-it-go-5b10d0005b0a.herokuapp.com/profiles/update_profile/6 | User directed to login page | Pass |
+| https://plan-it-go-5b10d0005b0a.herokuapp.com/trips/update_trip/manhattan-2023/6 | User directed to login page | Pass |
+| https://plan-it-go-5b10d0005b0a.herokuapp.com/trips/manhattan-2023/delete_trip/6 | User directed to login page | Pass |
+| https://plan-it-go-5b10d0005b0a.herokuapp.com/trips/manhattan-2023/6 | User directed to login page | Pass |
+| https://plan-it-go-5b10d0005b0a.herokuapp.com/trips/manhattan-2023/6/place/19/ | User directed to login page | Pass |
+| https://plan-it-go-5b10d0005b0a.herokuapp.com/trips/manhattan-2023/6/review/19/ | User directed to login page | Pass |
+| https://plan-it-go-5b10d0005b0a.herokuapp.com/trips/manhattan-2023/6/review/19/edit_review/5 | User directed to login page | Pass |
+| https://plan-it-go-5b10d0005b0a.herokuapp.com/trips/manhattan-2023/6/review/19/delete_review/5 | User directed to login page | Pass |
+| https://plan-it-go-5b10d0005b0a.herokuapp.com/trips/manhattan-2023/6/images/19/ | User directed to login page | Pass |
+| https://plan-it-go-5b10d0005b0a.herokuapp.com/trips/manhattan-2023/6/images/19/delete_image/3 | User directed to login page | Pass |
+| https://plan-it-go-5b10d0005b0a.herokuapp.com/locations/ | User directed to login page | Pass |
+| https://plan-it-go-5b10d0005b0a.herokuapp.com/places/get_places/3/london | User directed to Django Admin Login page | Pass |
+
+### **User Status: Logged in attempting to access unauthorised urls**
+
+| URL Tested | Expected Outcome | Pass/Fail |
+| ---- | ---- | ---- |
+| https://plan-it-go-5b10d0005b0a.herokuapp.com/profiles/update_profile/6 | 403 permission denied template displayed | Pass |
+| https://plan-it-go-5b10d0005b0a.herokuapp.com/trips/update_trip/manhattan-2023/6 | 403 permission denied template displayed | Pass |
+| https://plan-it-go-5b10d0005b0a.herokuapp.com/trips/manhattan-2023/delete_trip/6 | 403 permission denied template displayed | Pass |
+| https://plan-it-go-5b10d0005b0a.herokuapp.com/trips/manhattan-2023/6 | 403 permission denied template displayed | Pass |
+| https://plan-it-go-5b10d0005b0a.herokuapp.com/trips/manhattan-2023/6/place/19/ | 403 permission denied template displayed | Pass |
+| https://plan-it-go-5b10d0005b0a.herokuapp.com/trips/manhattan-2023/6/review/19/ | 403 permission denied template displayed | Pass |
+| https://plan-it-go-5b10d0005b0a.herokuapp.com/trips/manhattan-2023/6/review/19/edit_review/5 | 403 permission denied template displayed | Pass |
+| https://plan-it-go-5b10d0005b0a.herokuapp.com/trips/manhattan-2023/6/review/19/delete_review/5 | 403 permission denied template displayed | Pass |
+| https://plan-it-go-5b10d0005b0a.herokuapp.com/trips/manhattan-2023/6/images/19/ | 403 permission denied template displayed | Pass |
+| https://plan-it-go-5b10d0005b0a.herokuapp.com/trips/manhattan-2023/6/images/19/delete_image/3 | 403 permission denied template displayed | Pass |
+| https://plan-it-go-5b10d0005b0a.herokuapp.com/locations/ | User directed to Django Admin Login page | Pass |
+| https://plan-it-go-5b10d0005b0a.herokuapp.com/places/get_places/3/london | User directed to Django Admin Login page | Pass |
+
+## **Form Testing**
+
+All forms have been checked thoroughly to ensure they cannot be submitted until all fields are valid.
+
+**Location Form**
+
+| Field | Action | Expected Outcome | Pass/Fail |
+| ---- | ---- | ---- | ---- |
+| city | Input > 50 characters | Form prevents input of any additional characters | Pass |
+| city | Input empty | Form displays warning 'Please fill in this field' | Pass |
+| summary | Input empty | Form displays warning 'Please fill in this field' | Pass |
+| latitude | Input empty | Form displays warning 'Please fill in this field' | Pass |
+| latitude | Input digits > 10 | Form displays warning 'Ensure that there are no more than 10 digits in total' | Pass |
+| latitude | Input 10 digits with no decimal place | Form displays warning 'Ensure that there are no more than 2 digits before the decimal point' | Pass |
+| latitude | Input 1.234567891 | Form displays warning 'Ensure that there are no more than 8 decimal places' | Pass |
+| latitude | Input .1234567891 | Form displays warning 'Ensure that there are no more than 8 decimal places' | Pass |
+| latitude | Input letters and characters | Form displays warning 'Enter a number' | Pass |
+| longitude | Input empty | Form displays warning 'Please fill in this field' | Pass |
+| longitude | Input digits > 11 | Form displays warning 'Ensure that there are no more than 11 digits in total' | Pass |
+| longitude | Input 11 digits with no decimal place | Form displays warning 'Ensure that there are no more than 3 digits before the decimal point' | Pass |
+| longitude | Input 1.2345678912 | Form displays warning 'Ensure that there are no more than 8 decimal places' | Pass |
+| longitude | Input 12.345678912 | Form displays warning 'Ensure that there are no more than 8 decimal places' | Pass |
+| longitude | Input .12345678912 | Form displays warning 'Ensure that there are no more than 8 decimal places' | Pass |
+| longitude | Input letters and characters | Form displays warning 'Enter a number' | Pass |
+| image | Select file larger than 2 MB | File size warning modal displayed | Pass |
+
+<br>
+
+**Trip Form**
+
+| Field | Action | Expected Outcome | Pass/Fail |
+| ---- | ---- | ---- | ---- |
+| location | Input empty | Form displays warning 'Please fill in this field' | Pass |
+| title | Input empty | Form displays warning 'Please fill in this field' | Pass |
+| title | Input > 30 characters | Form prevents input of any additional characters | Pass |
+| trip_image | Select file larger than 2 MB | File size warning modal displayed | Pass |
+
+<br>
+
+**Profile Form**
+
+| Field | Action | Expected Outcome | Pass/Fail |
+| ---- | ---- | ---- | ---- |
+| first_name | Input empty | Form displays warning 'Please fill in this field' | Pass |
+| first_name | Input > 50 characters | Form prevents input of any additional characters | Pass |
+| surname | Input empty | Form displays warning 'Please fill in this field' | Pass |
+| surname | Input > 50 characters | Form prevents input of any additional characters | Pass |
+| screen_name | Input empty | Form displays warning 'Please fill in this field' | Pass |
+| screen_name | Input > 25 characters | Form prevents input of any additional characters | Pass |
+| screen_name | Input screen_name that already exists in database | Form displays warning 'Profile with this screen name already exists' | Pass |
+| profile_image | Select file larger than 2 MB | File size warning modal displayed | Pass |
+
+<br>
+
+**Review Form**
+
+| Field | Action | Expected Outcome | Pass/Fail |
+| ---- | ---- | ---- | ---- |
+| body | Input empty | Form displays warning 'Please fill in this field' | Pass |
+
+<br>
+
+**Image Form**
+
+| Field | Action | Expected Outcome | Pass/Fail |
+| ---- | ---- | ---- | ---- |
+| place | Select file larger than 2 MB | File size warning modal displayed | Pass |
+
+<br>
+
+## **Javascript Testing**
 
 | File | Action | Expected Outcome | Pass/Fail |
 | ---- | ---- | ---- | ---- |
@@ -467,9 +535,9 @@ I have carried out a range of tests to check that any defensive programming impl
 | static/js/star-rating.js | Navigate to place detail or browse detail page | Rating for selected place displayed using font awesome full, half and empty stars to accurately visualise the correct rating | Pass |
 | static/js/toasts.js | Carry out actions that prompt user feed back (e.g. Create trip, remove place from planner, delete review) | Confirmation message displays in bootstrap toast and dissapears after a few seconds | Pass |
 
-## **Automated Testing**
+# **Automated Testing**
 
-### **Unit Testing**
+## **Unit Testing**
 
 ## **Validators**
 
@@ -664,11 +732,11 @@ I used the [W3C jigsaw](https://jigsaw.w3.org/css-validator/) CSS Validation Ser
 
 ![styles.css w3c validation](docs/testing/validation/css/pp4-css-validation.png)
 
-## **Performace**
+# **Performace**
 
-### **Lighthouse**
+## **Lighthouse**
 
-#### Improvements
+### Improvements
 
 I used Lighthouse within Google Chrome developer tools as a way of testing performance, accessibility, best practices and SEO of the site.  On initial testing, there were several improvement possibilities flagged which I implemented.  On doing so, accessibility, best practices and SEO scores are now at **100** across the site.  The improvements I made are listed below:
 
@@ -677,7 +745,7 @@ I used Lighthouse within Google Chrome developer tools as a way of testing perfo
 * I added ```aria-hidden="true"``` to carousel button controls and followed the bootstrap documentation to make the carousel accessible.
 * I was initially triggering modals using an anchor link, but ligthouse alerted me to the fact that these links were [not crawlable](https://developers.google.com/search/docs/crawling-indexing/links-crawlable?visit_id=638351626897775578-1280043289&rd=1). I resolved this by using a button elelment to trigger these modal instead.
 
-#### Opportunities
+### Opportunities
 
 Several opportunities were flagged by the lighthouse report to improve performance which was particularly when resting for mobile:
 
@@ -822,7 +890,7 @@ The images referred to here are served by the trip advisor cdn, so I have not be
 </details>
 
 
-### **Wave Accessibility**
+## **Wave Accessibility**
 
 All pages of the site have been passed through the [Wave Chrome Extension](https://wave.webaim.org/extension/) to check for accessibility.  No errors are logged on any pages.  The pages displaying Google maps show some warnings, but I have left these as they exist within the code of the generated map itself.  I have checked any other warnings to ensure they are acceptable.
 
@@ -866,7 +934,7 @@ All pages of the site have been passed through the [Wave Chrome Extension](https
 
 </details>
 
-## **Responsiveness**
+# **Responsiveness**
 
 Full testing for responsiveness of all pages across the site has been carried out with the help of Google Dev Tools along side the following physical devices:
 

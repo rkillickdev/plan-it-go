@@ -411,30 +411,43 @@ I have carried out a range of tests to check that any defensive programming impl
 
 #### **EPIC: User Experience [#28](https://github.com/rkillickdev/plan-it-go/issues/28)**
 
+| User Story | Satisfies Acceptance Criteria |
+| ---- | :----: |
+| As a Site User I can immediately understand the purpose of the site when I arrive at the home page so that I can quickly and intuitively start planning trips [#29](https://github.com/rkillickdev/plan-it-go/issues/29) | Pass |
 
-| As a Site User I can immediately understand the purpose of the site when I arrive at the home page so that I can quickly and intuitively start planning trips [#29](https://github.com/rkillickdev/plan-it-go/issues/29) |
-| ---- |
-||
+`The hero image used on the home page instantly conveys the idea of plotting out places on a map, which ties into the core goal of the site which is to assist users in planning trips to destinations around the world.  The call to action button makes it quicky and easy for the user to sign up and login, so they can start using the advanced functionality of the site`
 
-| As a Site User I can intuitively navigate the site so that I can view the content I require with minimal steps [#30](https://github.com/rkillickdev/plan-it-go/issues/30) |
-| ---- |
-||
+| User Story | Satisfies Acceptance Criteria |
+| ---- | :----: |
+| As a Site User I can intuitively navigate the site so that I can view the content I require with minimal steps [#30](https://github.com/rkillickdev/plan-it-go/issues/30) | Pass |
 
-| As a Site User I can view site content simply and intuitively so that I can easily gather the information I need [#31](https://github.com/rkillickdev/plan-it-go/issues/31) |
-| ---- |
-||
+`Navigation has been made intuitive by the use of a nav bar that users will find familiar.  The hover effect applied to links indicate that clicking will take them to a new page.  Navigation is similarly intuitive on smaller devices with the immediately recognisable hamburger toggler indicating how users can expand the nav links`
 
-| As a Site User I **feel a positive emotional response while interacting with the site ** so I am engaged and continue to use and return [#32](https://github.com/rkillickdev/plan-it-go/issues/32) |
-| ---- |
-||
+| User Story | Satisfies Acceptance Criteria |
+| ---- | :----: |
+| As a Site User I can view site content simply and intuitively so that I can easily gather the information I need [#31](https://github.com/rkillickdev/plan-it-go/issues/31) | Pass |
 
-| As a Site User I can view the site on a range of screen sizes so that I can enjoy good user experience on my device of choice [#33](https://github.com/rkillickdev/plan-it-go/issues/33) |
-| ---- |
-||
+`Use of components such as the Bootstrap accordion, tabbed pages and carousels have provided solutions for storing and displaying content, without the need for the user to navigate between too many pages.  They can normally access the information they are looking for in a couple of clicks`
 
-| As a user I can access links to social media accounts related to the site so that I can find out more about the site and its developer [#46](https://github.com/rkillickdev/plan-it-go/issues/46) |
-| ---- |
-||
+| User Story | Satisfies Acceptance Criteria |
+| ---- | :----: |
+| As a Site User I feel a positive emotional response while interacting with the site so I am engaged and continue to use and return [#32](https://github.com/rkillickdev/plan-it-go/issues/32) | Pass |
+
+`Continuity of styling, imagery and functionality across the site means that each page has a familar feel when the user lands on it.  Static images used on the site have been selected to invoke a curiosity about travel and the desire to find out more about destinations around the world.  Even if errors occur, they are handled gracefully in keeping with the site aesthetics, so users are not taken away from this positive experience.  User Interactions with the functionality of the site are designed to be simple and intuitive and provide a pleasing user experience`
+
+| User Story | Satisfies Acceptance Criteria |
+| ---- | :----: |
+| As a Site User I can view the site on a range of screen sizes so that I can enjoy good user experience on my device of choice [#33](https://github.com/rkillickdev/plan-it-go/issues/33) | Pass |
+
+`Information and site content remains easy to access and uncluttered, even on smaller mobile devices.  Use of Bootstrap breakpoints and media queries has ensured the site is responsive across a range of screen sizes`
+
+| User Story | Satisfies Acceptance Criteria |
+| ---- | :----: |
+| As a user I can access links to social media accounts related to the site so that I can find out more about the site and its developer [#46](https://github.com/rkillickdev/plan-it-go/issues/46) | Pass |
+
+`The site footer which is displayed on every page provides access to all social media links`
+
+![PlanIt-Go user story test footer social links](docs/features/pp4-features-footer.png)
 
 ### **Javascript Testing**
 
@@ -442,6 +455,7 @@ I have carried out a range of tests to check that any defensive programming impl
 | ---- | ---- | ---- | ---- |
 | static/js/delete-confirm-modals.js | Click on a trash can icon | Delete confirm modal opens and href for delete button populated with correct url to delete selected trip/ review /image.  Clicking delete confirms and triggers the correct Django view | Pass | 
 | static/js/delete-confirm-modals.js | Click on Remove From Planner icon for a place in an itinerary | Delete confirm modal opens and action for delete button populated with correct url to trigger the remove_place view in Django | Pass |
+| static/file-upload.js | Attempt to upload an image that is larger than 2 MB in size | Warning modal displayed asking the user to select a smaller file | Pass |
 | static/js/forms.js | Navigate to a page that displays a form to create a trip / review / location | Submit button on form displayed as "Create" | Pass |
 | static/js/forms.js | Navigate to a page that displays a form to update a trip / review / location | Submit button on form displayed as "Update" | Pass |
 | static/js/hero-text-replace.js | Navigate to Home page | Text overlaying hero image rotates between displaying 'Plans' / "Memories' / 'It Happen' | Pass |

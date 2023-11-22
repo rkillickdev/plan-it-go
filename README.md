@@ -560,6 +560,14 @@ Displayed to warn the user when an internal server error occurs.  This lets them
 
 ### **Favicon and Meta Tags**
 
+A favicon link has been included in the head of the base.html template and displays in each browser tab. The image is the same icon that is used in the navbar brand heading, to ensure consistency of styling.  It is a 16px X 16px ico file generated on the [Favicon.ico & App Icon Generator](https://www.favicon-generator.org/)
+
+![Favicon Image](docs/features/pp4-features-favicon.png)
+
+Open Graph and Twitter meta tags have been placed in the head of the base.html template to control how the URL is displayed when shared on social media.  It appears as displayed below:
+
+![Meta Tags social media display](docs/features/pp4-features-meta-tags-socials-display.png)
+
 ### **Security**
 
 Mention debug set to false methodology

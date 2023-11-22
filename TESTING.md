@@ -196,15 +196,15 @@ I have created a superuser who has access to the entirety of the Django Admin pa
 
 I have created a user called 'moderator' and as a superuser, allocated them 'staff' status.  This mean that on successful login, they can access a 'destinations' page where they can create new destinations or update existing.  Once a new destination has been created, it will not be displayed to regular site users until it has been approved by a super user via the Django Admin Panel.  This prevents a situation where a destination might be available to browse but it has no places to display yet.
 
-![PlanIt-Go user story test user staff login](docs/testing/userstories/gifs/pp4-user-story-testing-staff-login.gif)
+![PlanIt-Go user story test staff login](docs/testing/userstories/gifs/pp4-user-story-testing-staff-login.gif)
 
 <br>
 
-![PlanIt-Go user story test user staff new destination](docs/testing/userstories/gifs/pp4-user-story-testing-staff-create-destination.gif)
+![PlanIt-Go user story test staff new destination](docs/testing/userstories/gifs/pp4-user-story-testing-staff-create-destination.gif)
 
 <br>
 
-![PlanIt-Go user story test user staff update destination](docs/testing/userstories/gifs/pp4-user-story-testing-staff-destinations.gif)
+![PlanIt-Go user story test staff update destination](docs/testing/userstories/gifs/pp4-user-story-testing-staff-destinations.gif)
 
 | User Story | Satisfies Acceptance Criteria |
 | ---- | :----: |
@@ -212,11 +212,11 @@ I have created a user called 'moderator' and as a superuser, allocated them 'sta
 
 If no places exist fof the selected destination, clicking on the magnifying glass takes the staff user to a 'get places' page where they can attempt to retrieve places.  If a json file has been prepared in advance using the APIFY Trip Advisor web scraper tool, this is accessed and the database is populated with places for the specified destination.  The staff user is then redirected to the newly populated place list page.
 
-![PlanIt-Go user story test user staff get places](docs/testing/userstories/gifs/pp4-user-story-testing-staff-get-places.gif)
+![PlanIt-Go user story test staff get places](docs/testing/userstories/gifs/pp4-user-story-testing-staff-get-places.gif)
 
 If a json file is not yet available to the staff user, this scenario is handled gracefully by providing them feedback in the form of a toast message.
 
-![PlanIt-Go user story test user staff get places](docs/testing/userstories/gifs/pp4-user-story-testing-staff-get-places-no-json.gif)
+![PlanIt-Go user story test staff get places](docs/testing/userstories/gifs/pp4-user-story-testing-staff-get-places-no-json.gif)
 
 
 | User Story | Satisfies Acceptance Criteria |
@@ -231,57 +231,104 @@ This has been achieved by specifying the display and search fields in the admin.
 
 Once places have been retrieved for a location, the moderator with staff user permissions can naviagte to the detail page for each place and decide whether it is suitable to display to regualr site users.  By default, places are approved but clicking on the thumbs down icon 'unapproves' and this place will then not be displayed to regualr site users.
 
-![PlanIt-Go user story test user staff place approval](docs/testing/userstories/gifs/pp4-user-story-testing-staff-place-approval.gif)
+![PlanIt-Go user story test staff place approval](docs/testing/userstories/gifs/pp4-user-story-testing-staff-place-approval.gif)
 
 #### **EPIC: Plan Trip [#7](https://github.com/rkillickdev/plan-it-go/issues/7)**
 
-| As a Site User I can create a personalised trip planner for a chosen destination so that I can start planning places to visit on my trip [#8](https://github.com/rkillickdev/plan-it-go/issues/8) |
-| ---- |
-||
+| User Story | Satisfies Acceptance Criteria |
+| ---- | :----: |
+| As a Site User I can create a personalised trip planner for a chosen destination so that I can start planning places to visit on my trip [#8](https://github.com/rkillickdev/plan-it-go/issues/8) | Pass |
 
-| As a Site User I can view recommended activities for the chosen location so that I can plan a bespoke itinerary for the trip that appeals to my tastes and interests [#9](https://github.com/rkillickdev/plan-it-go/issues/9) |
-| ---- |
-||
+Clicking on the 'Create a trip' + icon takes the user to a trip creation page, where they can submit their information in a form.  On success, the user is redirected to their trip detail page.
 
-| As a Site User I can view details of a specific place so that I can decide whether I should add it to my itinerary [#10](https://github.com/rkillickdev/plan-it-go/issues/10) |
-| ---- |
-||
+![PlanIt-Go user story test create trip](docs/features/pp4-features-create-trip.png)
 
-| As a Site User I can add a recommendation to my trip planner so that I can build an itinerary to use and refer to when travelling to the location [#11](https://github.com/rkillickdev/plan-it-go/issues/11) |
-| ---- |
-||
+| User Story | Satisfies Acceptance Criteria |
+| ---- | :----: |
+| As a Site User I can view recommended activities for the chosen location so that I can plan a bespoke itinerary for the trip that appeals to my tastes and interests [#9](https://github.com/rkillickdev/plan-it-go/issues/9) | Pass |
 
-| As a Site User I can remove places from my trip planner so that I can have control over building an itinerary and change my mind about places that were previously added [#12](https://github.com/rkillickdev/plan-it-go/issues/12) |
-| ---- |
-||
+On the trip details page, a recommendations section is displayed to users, based on the selected destination of their trip.
 
-| As a Site User I can choose to view my current trip itinerary at any point during planning so that I can keep track of places I have added [#13](https://github.com/rkillickdev/plan-it-go/issues/13) |
-| ---- |
-||
+![PlanIt-Go user story test recommendations](docs/features/pp4-features-trip-details-recommendations.png)
 
-| As a Site User I can edit my trip itinerary by removing a place or adding more so that I can continue modifying my plans [#14](https://github.com/rkillickdev/plan-it-go/issues/14) |
-| ---- |
-||
+| User Story | Satisfies Acceptance Criteria |
+| ---- | :----: |
+| As a Site User I can view details of a specific place so that I can decide whether I should add it to my itinerary [#10](https://github.com/rkillickdev/plan-it-go/issues/10) | Pass |
 
-| As a Site User I can save all the places in my trip itinerary so that I can return to my planning at any time [#15](https://github.com/rkillickdev/plan-it-go/issues/15) |
-| ---- |
-||
+Clicking on a recommended place or a place in the trip itinerary redirects the user to a details page for the selected place.
 
-| As a user I can see a countdown to my trip so that I know how many days until I travel [#36](https://github.com/rkillickdev/plan-it-go/issues/36) |
-| ---- |
-||
+![PlanIt-Go user story test place detail](docs/testing/userstories/gifs/pp4-user-story-testing-place-detail.gif)
 
-| As a user I can filter recommended places so that I can build an itinerary tailored to my interests [#37](https://github.com/rkillickdev/plan-it-go/issues/37) |
-| ---- |
-||
+| User Story | Satisfies Acceptance Criteria |
+| ---- | :----: |
+| As a Site User I can add a recommendation to my trip planner so that I can build an itinerary to use and refer to when travelling to the location [#11](https://github.com/rkillickdev/plan-it-go/issues/11) | Pass |
 
+
+When navigating to the details page of a place, site users can click on the 'Add To Your Trip' + icon.  This place then appears in the trip itinerary accordion on their trip detail page.
+
+![PlanIt-Go user story test tinerary](docs/testing/userstories/gifs/pp4-user-story-testing-itinerary.gif)
+
+| User Story | Satisfies Acceptance Criteria |
+| ---- | :----: |
+| As a Site User I can remove places from my trip planner so that I can have control over building an itinerary and change my mind about places that were previously added [#12](https://github.com/rkillickdev/plan-it-go/issues/12) | Pass |
+
+When navigating to the details page of a place, site users can click on the 'Remove From Your Trip' - icon.  This place is then removed from the trip itinerary accordion on their trip detail page.  This functionality is more for users to be able to toggle between adding and removing while they remain on the place detail page.
+
+| User Story | Satisfies Acceptance Criteria |
+| ---- | :----: |
+| As a Site User I can choose to view my current trip itinerary at any point during planning so that I can keep track of places I have added [#13](https://github.com/rkillickdev/plan-it-go/issues/13) | Pass |
+
+Clicking on the 'More Places' button returns the user to their trip detail page at any time.
+
+![PlanIt-Go user story test more places](docs/features/pp4-features-place-summary.png)
+
+
+| User Story | Satisfies Acceptance Criteria |
+| ---- | :----: |
+| As a Site User I can edit my trip itinerary by removing a place or adding more so that I can continue modifying my plans [#14](https://github.com/rkillickdev/plan-it-go/issues/14) | Pass |
+
+Users are presented with an option for each place in their itinerary to 'Remove from planner'.  This action requires approval by confirming in a modal.  The place is then removed from the itinerary.
+
+![PlanIt-Go user story test user staff itinerary remove item](docs/testing/userstories/gifs/pp4-user-story-testing-remove-itinerary-item.gif)
+
+| User Story | Satisfies Acceptance Criteria |
+| ---- | :----: |
+| As a Site User I can save all the places in my trip itinerary so that I can return to my planning at any time [#15](https://github.com/rkillickdev/plan-it-go/issues/15) | Pass |
+
+It was not necessary to implement functionality for this user story, as trip instances are continually updated and saved to the database and can be accessed at any time by the user.
+
+| User Story | Satisfies Acceptance Criteria |
+| ---- | :----: |
+| As a user I can see a countdown to my trip so that I know how many days until I travel [#36](https://github.com/rkillickdev/plan-it-go/issues/36) | N/A |
+
+This user story was not classified as a 'Must Have' for any of the agile sprints, so due to time constraints, it has been placed in a future features column of my [kanban board](https://github.com/users/rkillickdev/projects/4).  This feature can be implemented in a future iteration.
+
+| User Story | Satisfies Acceptance Criteria |
+| ---- | :----: |
+| As a user I can filter recommended places so that I can build an itinerary tailored to my interests [#37](https://github.com/rkillickdev/plan-it-go/issues/37) | N/A |
+
+This user story was not classified as a 'Must Have' for any of the agile sprints, so due to time constraints, it has been placed in a future features column of my [kanban board](https://github.com/users/rkillickdev/projects/4).  This feature can be implemented in a future iteration.
+
+| User Story | Satisfies Acceptance Criteria |
+| ---- | :----: |
 | As a user I can see places visually on a map so that I can see where they are and plan a route [#38](https://github.com/rkillickdev/plan-it-go/issues/38) |
-| ---- |
-||
 
-| As a user I can view place ratings displayed as stars so that I can immediately understand the popularity of a place [#41](https://github.com/rkillickdev/plan-it-go/issues/41) |
-| ---- |
-||
+The location of each place is displayed on a map on the details page.
+
+![PlanIt-Go user story test place detail map](docs/features/pp4-features-place-location-details.png)
+
+On the trip detail page, as places are added to the itinerary, they are dynamically plotted on the map with markers.  When clicked, the marker displays the name of the place.
+
+![PlanIt-Go user story test trip detail map clusters](docs/testing/userstories/gifs/pp4-user-story-testing-map-clusters.gif)
+
+| User Story | Satisfies Acceptance Criteria |
+| ---- | :----: |
+| As a user I can view place ratings displayed as stars so that I can immediately understand the popularity of a place [#41](https://github.com/rkillickdev/plan-it-go/issues/41) | Pass |
+
+Each place displays stars based on the star rating value retrieved from the Place instance field 'rating'.
+
+![PlanIt-Go user story test place detail star rating](docs/features/pp4-features-place-summary.png)
+
 
 #### **EPIC: Manage Trip [#16](https://github.com/rkillickdev/plan-it-go/issues/16)**
 

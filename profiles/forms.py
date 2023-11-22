@@ -47,13 +47,12 @@ class ProfileForm(ModelForm):
             ),
             Field(
                 "screen_name",
-                css_class="mb-4",
                 aria_label="Enter a screen name for yourself",
                 placeholder="Give yourself a screen name...",
             ),
             Field(
                 "about",
-                css_class="mb-4",
+                css_class="my-4",
                 aria_label="Enter some information about yourself",
                 placeholder="Tell us about you...",
             ),

@@ -131,6 +131,11 @@ input[type=checkbox i] {
   white-space: normal;
 }
 
+.invalid-feedback {
+  color: var(--bs-light);
+  font-size: 1rem;
+}
+
 /* CSS workaround to fix problem of 'current' image link being displayed in file input */
 /* field of a form, if an image already exists.  Clicking on this link was providing bad */
 /* UX as it would take user away from the site.  Also, if 'placeholder' used, the user was */

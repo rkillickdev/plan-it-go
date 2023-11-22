@@ -50,18 +50,19 @@ class LocationForm(ModelForm):
             ),
             Field(
                 "latitude",
-                css_class="mb-4",
+                css_class="",
                 aria_label="Enter a latitude for the selected location",
                 placeholder="Destination latitude",
             ),
             Field(
                 "longitude",
-                css_class="mb-4",
+                css_class="mt-4",
                 aria_label="Enter a longitude for the selected location",
                 placeholder="Destination longitude",
             ),
             Div(
-                HTML("<p>Add an image</p>")
+                HTML("<p>Add an image</p>"),
+                css_class="mt-4"
             ),
             Field("image", css_class="form-select file-upload-input px-2 py-3"),
             Div(

@@ -47,6 +47,7 @@ PlanIt Go has been developed as part of the [Code Institute](https://codeinstitu
             * [Favicon and Meta Tags](#favicon-and-meta-tags)
             * [Security](#security)
             * [Responsive Design](#responsive-design)
+            * [Accessibility](#accessibility)
             * [Future Features](#future-features)
 * [Technologies Used](#technologies-used)
     * [Languages Used](#languages-used)
@@ -602,6 +603,19 @@ I adopted a mobile first approach when designing and building the site.  Bootstr
 ![PlanIt-Go responsive design 04](docs/features/responsive/pp4-mobile-responsive-04.png)
 
 ![PlanIt-Go responsive design 05](docs/features/responsive/pp4-mobile-responsive-05.png)
+
+### **Accessibility**
+
+To ensure that the site is as accessible as possible for all users and compatible with screen readers, I have implemented the following:
+
+* Semantic markup used to structure the HTML code.
+* Checked that the colour contrast ratio across the website meets acceptable standards.
+* Descriptive alt attributes have been given to all images.
+* Aria labels have been used for interactive elements where no accessible name is provided.
+
+I used the [Wave Chrome Extension](https://wave.webaim.org/extension/) to check the accessibility of each page,  Results for this can be viewd in the[TESTING.md file](https://github.com/rkillickdev/plan-it-go/blob/main/TESTING.md)
+
+<br>
 
 ## **Future Features**
 

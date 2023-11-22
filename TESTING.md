@@ -11,7 +11,7 @@
     * [Form Testing](#form-testing)
     * [Javascript Testing](#javascript-testing)
 * [Automated Testing](#automated-testing)
-    * [Unit Tetsing](#unit-testing)
+    * [Unit Testing](#unit-testing)
 * [Validators](#validators)
     * [PEP8 Validation](#pep8-validation)
     * [JSHint Javascript Validation](#jshint-javascript-validation)

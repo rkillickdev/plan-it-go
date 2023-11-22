@@ -219,14 +219,19 @@ If a json file is not yet available to the staff user, this scenario is handled 
 ![PlanIt-Go user story test user staff get places](docs/testing/userstories/gifs/pp4-user-story-testing-staff-get-places-no-json.gif)
 
 
+| User Story | Satisfies Acceptance Criteria |
+| ---- | :----: |
+| As an admin superuser I can customise the django admin panel so that I can order and filter instances of models [#42](https://github.com/rkillickdev/plan-it-go/issues/42) | Pass |
 
-| As an admin superuser I can customise the django admin panel so that I can order and filter instances of models [#42](https://github.com/rkillickdev/plan-it-go/issues/42) |
-| ---- |
-||
+This has been achieved by specifying the display and search fields in the admin.py file for required apps.  This provides an enhanced experiece in the Django Admin Panel, especially when there are a large number of instances for a model.
 
-| As a staff user I can moderate places through the site interface so that I can ensure places with sufficient quality info are displayed to site users [#61](https://github.com/rkillickdev/plan-it-go/issues/61) |
-| ---- |
-||
+| User Story | Satisfies Acceptance Criteria |
+| ---- | :----: |
+| As a staff user I can moderate places through the site interface so that I can ensure places with sufficient quality info are displayed to site users [#61](https://github.com/rkillickdev/plan-it-go/issues/61) | Pass |
+
+Once places have been retrieved for a location, the moderator with staff user permissions can naviagte to the detail page for each place and decide whether it is suitable to display to regualr site users.  By default, places are approved but clicking on the thumbs down icon 'unapproves' and this place will then not be displayed to regualr site users.
+
+![PlanIt-Go user story test user staff place approval](docs/testing/userstories/gifs/pp4-user-story-testing-staff-place-approval.gif)
 
 #### **EPIC: Plan Trip [#7](https://github.com/rkillickdev/plan-it-go/issues/7)**
 

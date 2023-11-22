@@ -670,6 +670,141 @@ Please follow this link to the [TESTING.md file](https://github.com/rkillickdev/
 
 # **Deployment and Local Development**
 
+I made sure to keep my requirements.txt file up to date throughout, running the command `pip3 freeze > requirements.txt` from the terminal whenever any new libraries were installed.  It is important that all requirements are added to this before deployment so Heroku installs the necessary dependencies.
+
+In development mode, the sqlite3 database provided by Django was used but this was not suitable for use in a production environment.  The deployed site uses a PostreSQL database hosted by [elephantSQL](https://www.elephantsql.com/) that Heroku can access.  It was therefore necessary to create an account with [elephantSQL](https://www.elephantsql.com/), and create a new database instance selecting the Tiny Turtle(free) plan.  My database instance is also named 'plan-it-go'.  From the ElephantSQL dashboard, clicking on the database reveals a 'details' page where you can access the database URL, which is necessary for use in both the production and development environments.
+
+To implement functionality of the PostgreSQL database with Django, the following libraries were intalled using the terminal command:
+
+```
+pip3 install dj_database_url==0.5.0 psycopg2
+```
+
+The database URL contains information that should not be exposed publicly and therefore must not be pushed to the GitHub repository.  For development purposes I stored the database URL in the env.py file which had been added to the gitignore file.  I did not connect to the production Postgres database from my development environment until I was sure that the models were functioning and included all the fields I required.  I used the following code in my settings.py file to enable switching between development and production databases.
+
+```python
+if development:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
+else:
+    DATABASES = {
+        'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
+    }
+```
+
+Once happy with the functionality of my models, I set the development variable to ```False ``` and migrated changes using the following command in the terminal:
+
+```
+python3 manage.py migrate
+```
+
+Any time I made an amendment to a model, once I had thoroughly tested in development mode I then switched and migrated these changes to the production database.
+
+## **Cloudinary Media Files**
+
+I am using [Cloudinary](https://cloudinary.com/) to host media files which I installed using the terminal command:
+
+```
+pip3 install dj3-cloudinary-storage
+```
+
+The following steps were taken to set Cloudinary functionality up in Django:
+
+* `'cloudinary_storage',` and `'cloudinary',` added to INSTALLED_APPS in settings.py
+
+```python
+MEDIA_URL = '/media/'
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+```
+
+## **WhiteNoise Static Files**
+
+I am using [WhiteNoise](https://whitenoise.readthedocs.io/en/latest/index.html) to host my static files which I installed using the terminal command:
+
+```
+pip3 install whitenoise
+```
+
+Add WhiteNoise to the MIDDLEWARE list in settings.py, above all other middleware apart from Django’s SecurityMiddleware:
+
+```python
+MIDDLEWARE = [
+    # ...
+    "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
+    # ...
+]
+```
+
+It is also important to have installed apps listed in the correct order, to prevent an issue I encountered where collection of static files failed on deployment to Heroku.  See details of this in my [solved bugs](#solved-bugs) section and read this [slack post](https://code-institute-room.slack.com/archives/C026PTF46F5/p1683039292374329) that helped me identify the problem. The `'django.contrib.staticfiles'` must be above the installed cloudinary apps:
+
+```python
+INSTALLED_APPS = [
+    # ...
+    'django.contrib.staticfiles',
+    'cloudinary_storage',
+    'cloudinary',
+    # ...
+]
+```
+
+## **Heroku Deployment**
+
+The following steps were followed to deploy the site to Heroku:
+
+1.  Create an account and login to [Heroku](https://id.heroku.com/login)
+2.  In the Heroku dashboard, click the 'New' button at the top right of the screen and then select "Create new app".
+3.  I selected the name 'plan-it-go' ,set my region to Europe and clicked on the 'Create app' button.
+
+<br>
+
+![Heroku deployment create app](docs/deployment/pp4-heroku-create-app.png)
+
+4.  Click on the settings tab and then click the 'Reveal Config Vars' button.
+
+<br>
+
+![Heroku deployment config vars](docs/deployment/pp4-heroku-add-config-var.png)
+
+5. I entered the following Key : Value pairs to config vars:
+
+    * CLOUDINARY_URL : (Enter your [Cloudinary](https://cloudinary.com/) API Credentials)
+    * DATABASE_URL: (Enter your ElephantSQL database URL)
+    * GOOGLE_MAPS_API_KEY : (Enter your [Google Maps](https://developers.google.com/maps/) API Key)
+    * MY-APIFY-TOKEN: (Enter your Apify Token - access at [Apify](https://apify.com/))  
+    * PORT : 8000
+    * SECRET_KEY : (Enter your Django Secret Key)
+
+6. Prior to deploymnet of the site the following two steps must be implemented in Django:
+    * Add Heroku host name to ALLOWED_HOSTS in settings.py
+    ```python
+    if development:
+        ALLOWED_HOSTS = [
+            '8000-rkillickdev-planitgo-u9uuwhusilu.ws-eu106.gitpod.io'
+            ]
+    else:
+        ALLOWED_HOSTS = ['plan-it-go-5b10d0005b0a.herokuapp.com']
+    ```
+    * Create a Procfile with the following code,  which tells Heroku how to run the project:
+    ```python
+    web: gunicorn planitgo.wsgi
+    ```
+
+    `web` here tells Heroku `this is a process that should accept http traffic`
+
+    `gunicorn` here is a web services gateway interface server (wsgi), which is a `standard that allows Python services to integrate with web servers`.  As the version of Django being used for this project is `3.2.21`, the Gunicorn server must be installled using the terminal command:
+
+    ```
+    pip3 install 'django<4' gunicorn
+    ``` 
+
+
+
+
 # **Bugs**
 
 ## **Known Bugs**

@@ -142,41 +142,83 @@ I have carried out a range of tests to check that any defensive programming impl
 | ---- | :----: |
 | As a Site User I can register an account so that I can access features only available to registered users such as creating and planning trips [#2](https://github.com/rkillickdev/plan-it-go/issues/2) | Pass |
  
-When clicking on the Sign Up link, users are directed to the Sign Up page and if they complete a valid form, an account is created and they are successfully logged in.
+When clicking on the 'Sign Up' link or call to action hero button, users are directed to the Sign Up page and if they complete a valid form, an account is created and they are successfully logged in.  They are redirected to their trp list page where they are prompted to create a profile.
 
 ![PlanIt-Go user story test signup](docs/testing/userstories/gifs/pp4-user-story-testing-signup.gif)
 
-| As a Site User I can log in to my account so that I can create, view, update and delete my trips [#3](https://github.com/rkillickdev/plan-it-go/issues/3) |
-| ---- |
-|.     |
+| User Story | Satisfies Acceptance Criteria |
+| ---- | :----: |
+| As a Site User I can log in to my account so that I can create, view, update and delete my trips [#3](https://github.com/rkillickdev/plan-it-go/issues/3) | Pass |
 
-| As a Site User I can log out of my account for security so that no one else can access or modify my trips [#4](https://github.com/rkillickdev/plan-it-go/issues/4) |
-| ---- |
-||
+When clicking on the "Login' link, users are directed to the Login page and if they complete a valid form, their account is retrieved and they are successfully logged in.  They are redirected to their trip list page.
 
-| As a Site User I am aware of my login status so I know whether I can carry out actions available only to logged in users [#5](https://github.com/rkillickdev/plan-it-go/issues/5) |
-| ---- |
-||
+![PlanIt-Go user story test login](docs/testing/userstories/gifs/pp4-user-story-testing-login.gif)
 
-| As a Site User I can create and update a user profile for my account so that I can personalise my details with a screen name, image and bio [#6](https://github.com/rkillickdev/plan-it-go/issues/6) |
-| ---- |
-||
+| User Story | Satisfies Acceptance Criteria |
+| ---- | :----: |
+| As a Site User I can log out of my account for security so that no one else can access or modify my trips [#4](https://github.com/rkillickdev/plan-it-go/issues/4) | Pass |
 
-| As a Site Administrator I can moderate user reviews so that I can decide whether the content and images are appropriate for other site users to view [#34](https://github.com/rkillickdev/plan-it-go/issues/34) |
-| ---- |
-||
+When clicking on the "Logout' link, users are directed to the Logout confirmation page.  If they click on the 'Logout' button, they are sucessfully logged out and redirected to the home page.
 
-| As a Site Administrator I can access models from the Django admin panel so that I can interact directly with the database [#35](https://github.com/rkillickdev/plan-it-go/issues/35) |
-| ---- |
-||
+![PlanIt-Go user story test logout](docs/testing/userstories/gifs/pp4-user-story-testing-logout.gif)
 
-| As a user with staff status I can add and amend details for destinations so that the content on the site can continually be expanded and updated [#39](https://github.com/rkillickdev/plan-it-go/issues/39) |
-| ---- |
-||
+| User Story | Satisfies Acceptance Criteria |
+| ---- | :----: |
+| As a Site User I am aware of my login status so I know whether I can carry out actions available only to logged in users [#5](https://github.com/rkillickdev/plan-it-go/issues/5) | Pass |
 
+Only authenticated users are able to see 'Profile' and 'My Trips' links in the navbar.  Also the toast messages that appear on successful sign up, login and logout provide feedback to the user about their status throughout their site experience.
+
+![PlanIt-Go user story test user status](docs/testing/userstories/pp4-user-story-testing-login-status.png)
+
+| User Story | Satisfies Acceptance Criteria |
+| ---- | :----: |
+| As a Site User I can create and update a user profile for my account so that I can personalise my details with a screen name, image and bio [#6](https://github.com/rkillickdev/plan-it-go/issues/6) | Pass |
+
+Clicking on the 'Profile' link in the navbar directs the user to their profile, where they can modify details.  They are notified of successful updates with a toast message and redirected to their trip list page.
+
+![PlanIt-Go user story test user profile](docs/testing/userstories/gifs/pp4-user-story-testing-profile.gif)
+
+| User Story | Satisfies Acceptance Criteria |
+| ---- | :----: |
+| As a Site Administrator I can moderate user reviews so that I can decide whether the content and images are appropriate for other site users to view [#34](https://github.com/rkillickdev/plan-it-go/issues/34) | Pass |
+
+I have created a user called 'moderator' and given them permissions to access the Django Admin panel and update the boolean field 'approved' from `False` to `True` for instances of the Review and Image model.
+
+| User Story | Satisfies Acceptance Criteria |
+| ---- | :----: |
+| As a Site Administrator I can access models from the Django admin panel so that I can interact directly with the database [#35](https://github.com/rkillickdev/plan-it-go/issues/35) | Pass |
+
+I have created a superuser who has access to the entirety of the Django Admin panel and a 'moderator' login, who has limited access to the Django Admin panel, based on the tasks they need to carry out.  Currently, only the superuser can approve a destination, to ensure these are only available to regular site users once they have been checked thoroughly.
+
+| User Story | Satisfies Acceptance Criteria |
+| ---- | :----: |
+| As a user with staff status I can add and amend details for destinations so that the content on the site can continually be expanded and updated [#39](https://github.com/rkillickdev/plan-it-go/issues/39) | Pass |
+
+I have created a user called 'moderator' and as a superuser, allocated them 'staff' status.  This mean that on successful login, they can access a 'destinations' page where they can create new destinations or update existing.  Once a new destination has been created, it will not be displayed to regular site users until it has been approved by a super user via the Django Admin Panel.  This prevents a situation where a destination might be available to browse but it has no places to display yet.
+
+![PlanIt-Go user story test user staff login](docs/testing/userstories/gifs/pp4-user-story-testing-staff-login.gif)
+
+<br>
+
+![PlanIt-Go user story test user staff new destination](docs/testing/userstories/gifs/pp4-user-story-testing-staff-create-destination.gif)
+
+<br>
+
+![PlanIt-Go user story test user staff update destination](docs/testing/userstories/gifs/pp4-user-story-testing-staff-destinations.gif)
+
+| User Story | Satisfies Acceptance Criteria |
+| ---- | :----: |
 | As a user with staff status I can add places for a destination to the database so that site users can browse these recommended places and add to their trips [#40](https://github.com/rkillickdev/plan-it-go/issues/40) |
-| ---- |
-||
+
+If no places exist fof the selected destination, clicking on the magnifying glass takes the staff user to a 'get places' page where they can attempt to retrieve places.  If a json file has been prepared in advance using the APIFY Trip Advisor web scraper tool, this is accessed and the database is populated with places for the specified destination.  The staff user is then redirected to the newly populated place list page.
+
+![PlanIt-Go user story test user staff get places](docs/testing/userstories/gifs/pp4-user-story-testing-staff-get-places.gif)
+
+If a json file is not yet available to the staff user, this scenario is handled gracefully by providing them feedback in the form of a toast message.
+
+![PlanIt-Go user story test user staff get places](docs/testing/userstories/gifs/pp4-user-story-testing-staff-get-places-no-json.gif)
+
+
 
 | As an admin superuser I can customise the django admin panel so that I can order and filter instances of models [#42](https://github.com/rkillickdev/plan-it-go/issues/42) |
 | ---- |

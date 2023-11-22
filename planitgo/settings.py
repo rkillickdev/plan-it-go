@@ -34,6 +34,8 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 
 DEBUG = development
 
+X_FRAME_OPTIONS = 'SAMEORIGIN'
+
 if development:
     ALLOWED_HOSTS = [
         '8000-rkillickdev-planitgo-u9uuwhusilu.ws-eu106.gitpod.io'

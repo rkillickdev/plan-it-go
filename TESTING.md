@@ -4,6 +4,7 @@
 
 ## **CONTENTS**
 
+* [User Story Testing](#user-story-testing)
 * [Manual Testing](#manual-testing)
     * [Full Testing](#full-testing)
     * [Defensive Testing](#defensive-testing)
@@ -137,9 +138,13 @@ I have carried out a range of tests to check that any defensive programming impl
 
 #### **EPIC: User Account [#1](https://github.com/rkillickdev/plan-it-go/issues/1)**
 
-| As a Site User I can register an account so that I can access features only available to registered users such as creating and planning trips [#2](https://github.com/rkillickdev/plan-it-go/issues/2) |
-| ---- | 
-| Ho is it achieved |
+| User Story | Satisfies Acceptance Criteria |
+| ---- | :----: |
+| As a Site User I can register an account so that I can access features only available to registered users such as creating and planning trips [#2](https://github.com/rkillickdev/plan-it-go/issues/2) | Pass |
+ 
+When clicking on the Sign Up link, users are directed to the Sign Up page and if they complete a valid form, an account is created and they are successfully logged in.
+
+![PlanIt-Go user story test signup](docs/testing/userstories/gifs/pp4-user-story-testing-signup.gif)
 
 | As a Site User I can log in to my account so that I can create, view, update and delete my trips [#3](https://github.com/rkillickdev/plan-it-go/issues/3) |
 | ---- |

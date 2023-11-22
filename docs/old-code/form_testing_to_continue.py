@@ -11,5 +11,5 @@ class TestTripForm(TestCase):
         """
         Tests if trip form is valid.
         """
-        form = TripForm({"title": "Berlin 2023", "slug": "berlin-2023"})
+        form = TripForm({"location": "Berlin", "title": "Berlin 2023", "slug": "berlin-2023"})
         self.assertTrue(form.is_valid())

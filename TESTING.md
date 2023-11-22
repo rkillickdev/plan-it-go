@@ -9,10 +9,10 @@
     * [Full Testing](#full-testing)
     * [Defensive Testing](#defensive-testing)
     * [Form Testing](#form-testing)
-    
     * [Javascript Testing](#javascript-testing)
 * [Automated Testing](#automated-testing)
-* [Validator](#validators)
+    * [Unit Tetsing](#unit-testing)
+* [Validators](#validators)
     * [PEP8 Validation](#pep8-validation)
     * [JSHint Javascript Validation](#jshint-javascript-validation)
     * [W3C Markup HTML Validator](#w3c-html-markup-validator)
@@ -538,6 +538,56 @@ All forms have been checked thoroughly to ensure they cannot be submitted until 
 # **Automated Testing**
 
 ## **Unit Testing**
+
+Alongside comprehensive manual testing, I have started the process of automated testing across the site using Python's unittest unit testing framework.  All tests written so far are passing and the aim will be to continue writing tests to eventually achieve 100% coverage across the site.
+
+<details><summary>Test Runs</summary>
+
+<br>
+
+home/test_views.py
+
+![PlanIt-Go unitttest home views](docs/testing/unittest/pp4-unittest-home-test-views.png)
+
+locations/test_views.py
+
+![PlanIt-Go unitttest locations views](docs/testing/unittest/pp4-unittest-locations-test-views.png)
+
+places/test_views.py
+
+![PlanIt-Go unitttest places views](docs/testing/unittest/pp4-unittest-places-test-views.png)
+
+profiles/test_forms.py
+
+![PlanIt-Go unitttest profiles forms](docs/testing/unittest/pp4-unittest-profiles-test-forms.png)
+
+profiles/test_models.py
+
+![PlanIt-Go unitttest profiles models](docs/testing/unittest/pp4-unittest-profiles-test-models.png)
+
+trips/test_models.py
+
+![PlanIt-Go unitttest trips models](docs/testing/unittest/pp4-unittest-trips-test-models.png)
+
+trips/test_views.py
+
+![PlanIt-Go unitttest trips views](docs/testing/unittest/pp4-unittest-trips-test-views.png)
+
+</details>
+
+<br>
+
+<details><summary>Test Coverage</summary>
+
+<br>
+
+![PlanIt-Go unitttest coverage home](docs/testing/unittest/pp4-unittest-coverage-home.png)
+![PlanIt-Go unitttest coverage locations](docs/testing/unittest/pp4-unittest-coverage-locations.png)
+![PlanIt-Go unitttest coverage places](docs/testing/unittest/pp4-unittest-coverage-places.png)
+![PlanIt-Go unitttest coverage profiles](docs/testing/unittest/pp4-unittest-coverage-profiles.png)
+![PlanIt-Go unitttest coverage trips](docs/testing/unittest/pp4-unittest-coverage-trips.png)
+
+</details>
 
 ## **Validators**
 

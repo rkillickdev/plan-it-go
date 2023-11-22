@@ -28,18 +28,20 @@ class TestHomeViews(TestCase):
             summary="The Big Smoke",
             latitude=51.509865,
             longitude=-0.118092,
+            approved=True
         )
 
     def test_home_view(self):
         """
         Tests to see that index.html is returned
-        as home page.
+        as home page and only approved locations
+        are returned in the "destinations" context.
         """
         response = self.client.get(reverse("home"))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "home/index.html")
 
-        self.expected_context = Location.objects.all().order_by("city")
+        self.expected_context = Location.objects.filter(approved=True)
         self.assertQuerysetEqual(
             response.context["destinations"], self.expected_context
         )

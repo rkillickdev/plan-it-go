@@ -1,8 +1,12 @@
-# **Plan-It Go Travel Planner**
+# **PlanIt Go**
 
 <br>
 
 ![Deployed Site Responsive Views](docs/features/responsive/pp4-readme-resposive-mock-up.png)
+
+<br>
+
+[View the deployed app on Heroku](https://plan-it-go-5b10d0005b0a.herokuapp.com/)
 
 <br>
 
@@ -15,7 +19,6 @@ PlanIt Go has been developed as part of the [Code Institute](https://codeinstitu
 * [User Experience (UX)](#user-experience-ux)
     * [Strategy Plane](#strategy-plane)
         * [Project Goals](#project-goals)
-        * [Target Users](#target-users)
     * [Agile Methodology](#agile-methodology)
         * [Epics](#epics)
         * [User Stories](#user-stories)
@@ -28,43 +31,21 @@ PlanIt Go has been developed as part of the [Code Institute](https://codeinstitu
             * [Navbar](#navbar)
             * [Footer](#footer)
             * [Home Page](#home-page)
-                * [Header Hero Image](#header-hero-image)
-                * [Site Goals](#site-goals)
-                * [Destination Carousel](#destinations-carousel)
             * [Browse Places](#browse-places)
             * [Browse Details](#browse-details)
             * [Authorisation](#authorisation)
-                * [Sign Up](#sign-up)
-                * [Login](#login)
-                * [Logout](#logout)
             * [Trip List](#trip-list)
-                * [New Users](#new-users)
-                * [Returning Users](#returning-users)
             * [Profile Creation](#profile-creation)
             * [Trip Creation](#trip-creation)
             * [Trip Details](#trip-details)
-                * [Trip Summary](#trip-summary)
-                * [Recommendations](#recommendations)
-                * [Trip Itinerary](#trip-itinerary)
             * [Place Details](#place-details)
-                * [Place Summary](#place-summary)
-                * [Details Tab](#details-tab)
-                * [Reviews Tab](#reviews-tab)
-                * [Gallery Tab](#gallery-tab)
             * [User Reviews](#user-reviews)
             * [User Images](#user-images)
             * [Toasts](#toasts)
             * [Role Based Login](#role-based-login)
-                * [Staff User Functionality](#staff-user-functionality)
-                * [Django Admin Panel](#django-admin-panel)
             * [Error Pages](#error-pages)
-                * [404 Error Page](#404-error-page)
-                * [403 Error Page](#403-error-page)
-                * [500 Error Page](#500-error-page)
             * [Favicon and Meta Tags](#favicon-and-meta-tags)
             * [Security](#security)
-                * [Defensive Programming](#defensive-programnming)
-                * [CRSF Tokens](#crsf-tokens)
             * [Responsive Design](#responsive-design)
             * [Future Features](#future-features)
 * [Technologies Used](#technologies-used)

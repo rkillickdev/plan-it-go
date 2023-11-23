@@ -204,6 +204,12 @@ input[type=checkbox i] {
   object-fit: cover;
 }
 
+/* Media query for mobile devices from 1400px and up decreases height to value 15% of viewport width */
+@media only screen and (min-width: 1300px) {
+  .img-size-consistent {
+    height: 15vw;
+  }
+}
 /* Media query for mobile devices from 991px and down decreases height to value 20% of viewport width */
 @media only screen and (max-width: 991px) {
   .img-size-consistent {

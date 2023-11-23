@@ -42,13 +42,11 @@
                       <div class="card border-0 bg-light">
                         <div class="card-body p-0">
                         {% if trip.description %}
-                          <div class="card-text p-4">
+                          <div class="card-text text-center p-4">
                             <p class="fst-italic m-0">{{ trip.description }}</p>
                           </div>
                         {% else %}
                           <img src="{{ trip.location.image.url }}" alt="" class="img-fluid rounded">
-                          <!-- <p class="lead fst-italic">"We shall not cease from exploration, and the end of all our exploring will be to arrive where we started and know the place for the first time."</p>
-                          <p class="lead fw-semibold m-0">~ T. S. Eliot</p> -->
                         {% endif %}
                         </div>
                       </div>

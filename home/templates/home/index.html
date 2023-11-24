@@ -10,9 +10,7 @@
         <div class="col-lg-6 text-white">
           <div id="hero-text"
                class="text-container pt-6 pb-4 px-4 d-flex flex-column gap-4 h-100 align-items-center">
-            <h2 class="display-3 text-center">
-              Make<br><span class="fw-bold replace-me map-pin">Plans</span>
-            </h2>
+            <h2 class="display-3 text-center">Make<br><span class="fw-bold replace-me map-pin">Plans</span></h2>
             <a href="{% if request.user.is_staff %} {% url 'locations' %} {% elif user.is_authenticated %} {% url 'trip_list' %} {% else %} {% url 'account_signup' %} {% endif %}"
                class="btn btn-primary text-white button-link">{% if request.user.is_staff %}Add Destinations{% elif user.is_authenticated %}Get Started{% else %}Sign Up{% endif %}</a>
           </div>
@@ -62,8 +60,7 @@
             <p class="card-text text-center">One of the best ways to keep the memories
               alive is by storing your trips, images, and reviews as a reminder
               of your travels.  If you return to a destination, you will have all of this 
-              information to hand.
-            </p>
+              information to hand.</p>
           </div>
         </div>
       </div>

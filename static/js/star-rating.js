@@ -1,5 +1,6 @@
-let ratingNumber = document.getElementById("stars").getAttribute("data-place_rating");
+// Uses place rating to display appropiate font awesome star icons
 
+let ratingNumber = document.getElementById("stars").getAttribute("data-place_rating");
 document.getElementById("stars").innerHTML = generateStars(ratingNumber);
 
 // Referenced the following article when finding a star rating display solution:
@@ -16,7 +17,7 @@ function generateStars(rating) {
     // Append any half stars if necessary
     if (number == 0.5) starList.push('<i class="fa-solid fa-star-half-stroke text-primary" aria-hidden="true"></i>&nbsp;');
 
-    // // Append empty stars to starList
+    // Append empty stars to starList
     for (let i =(5 - rating); i>=1; i--)
         starList.push('<i class="fa-regular fa-star text-primary" aria-hidden="true"></i>&nbsp;');
 

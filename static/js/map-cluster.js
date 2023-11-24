@@ -1,3 +1,5 @@
+// Get Google Maps API Key from html template
+
 const mapkey = JSON.parse(document.getElementById('maps-api-key').textContent);
 
 // Load Google Maps API using Dynamic Library Import

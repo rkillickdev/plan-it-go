@@ -1,4 +1,4 @@
-//Solo Image Modal
+//Populates Solo Image Modal
 
 let soloImages = document.getElementsByClassName("image-solo");
 
@@ -12,7 +12,7 @@ for (let image of soloImages) {
     });
 }
 
-// Solo Destination Info Modal
+// Populates Solo Destination Info Modal
 
 let destinationCities = document.getElementsByClassName("destination-city-mini");
 
@@ -34,7 +34,7 @@ for(let city of destinationCities) {
     });
 }
 
-// Review Modal
+// Populates Review Modal
 
 let userReviews = document.getElementsByClassName("user-review");
 

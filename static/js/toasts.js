@@ -1,3 +1,5 @@
+// Initialise Toast
+
 const toast = document.querySelector('#my-toast');
 
 document.addEventListener("DOMContentLoaded", () => {

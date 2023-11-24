@@ -1,7 +1,7 @@
-let editButtons = document.getElementsByClassName("btn-edit");
-
 // Clicking on review edit button populates form text area with review content.
 // Title of form submit button changed to 'Update Review'
+
+let editButtons = document.getElementsByClassName("btn-edit");
 
 for (let button of editButtons) {
     button.addEventListener("click", (e) => {

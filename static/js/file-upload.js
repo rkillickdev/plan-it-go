@@ -25,7 +25,7 @@ const fileWarningModal = new bootstrap.Modal(document.getElementById("modal-file
 
 uploadSubmit.addEventListener("click", (e) => {
     const fileSize = fileUploadInput.files[0].size;
-    const maxSizeInBytes = 2097152
+    const maxSizeInBytes = 2097152;
 
     if (fileSize > maxSizeInBytes) {
         e.preventDefault();

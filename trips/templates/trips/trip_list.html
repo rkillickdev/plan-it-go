@@ -27,14 +27,14 @@
       <div class="col-lg-5 d-flex flex-column justify-content-center">
         <div class="text-container rounded p-4 d-flex flex-column justify-content-center bg-secondary text-center gap-3">
           {% if request.user.is_staff %}
-            <h2>Work to do? </h2>
+            <h2>Work to do?</h2>
             <div class="d-flex flex-column gap-3">
               <a href="{% url 'locations'%}" class="link-transform" aria-label="Click to navigate to admin page"><i class="fa-solid fa-circle-plus fa-4x"></i></a>
               <p class="lead">Add A Destination</p>
             </div>
           {% else %}
             {% if trip_list.count == 0 and not request.user.profile.screen_name %}
-            <i class="text-primary fa-solid fa-earth-americas fa-4x"></i>
+              <i class="text-primary fa-solid fa-earth-americas fa-4x"></i>
               <h2>Adventure Awaits...</h2>
               <p>Congratulations for signing up. You're almost ready to start
                 planning your adventures. We would love to know a bit more about you
@@ -49,7 +49,7 @@
                 </a>
                 <p class="lead fw-semibold">Create A Profile</p>
               </div>
-            {% else  %}
+            {% else %}
               {% if trip_list.count == 0 %}
                 <h2>Start Planning</h2>
               {% else %}
@@ -59,8 +59,9 @@
                 <a href="{% url 'create_trip' %}"
                   class="link-transform button-link m-auto">
                   <i class="fa-solid fa-circle-plus fa-4x"
-                    role="img"
-                    aria-label="Click to create a trip"></i></a>
+                     role="img"
+                     aria-label="Click to create a trip"></i>
+                </a>
                 <p class="lead fw-light">Create A Trip</p>
               </div>
             {% endif %}

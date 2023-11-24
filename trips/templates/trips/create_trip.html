@@ -17,9 +17,9 @@
     </div>
     <div class="row mb-5">
       <!-- Trip Form -->
-        <div id="form-container" class="medium-w-75" data-form_purpose="{% if request.resolver_match.url_name == 'update_trip' %}update{% else %}create{% endif %}">
-          {% crispy form %}
-        </div>
+      <div id="form-container" class="medium-w-75" data-form_purpose="{% if request.resolver_match.url_name == 'update_trip' %}update{% else %}create{% endif %}">
+        {% crispy form %}
+      </div>
     </div>
   </div>
 </section>
@@ -30,6 +30,5 @@
 
 <script src="{% static 'js/forms.js' %}"></script>
 <script src="{% static 'js/file-upload.js' %}"></script>
-
 
 {% endblock extras %}

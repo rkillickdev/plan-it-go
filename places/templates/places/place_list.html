@@ -23,8 +23,8 @@
             <div class="col-md-4 mb-4">
               <div class="card border-0 bg-secondary text-center h-100 image-clickable">
                 <img class="card-img-top img-fluid img-size-consistent"
-                    src="{{ place.image }}"
-                    alt="{{ place.name }}">
+                     src="{{ place.image }}"
+                     alt="{{ place.name }}">
                 <div class="card-body">
                   <h3 class="fs-4">{{ place.name }}</h3>
                 </div>
@@ -48,13 +48,13 @@
           {% if page_obj.has_previous %}
             <li>
               <a href="?page={{ page_obj.previous_page_number }}"
-                class="page-link me-1"><span><i class="fa-solid fa-arrow-left"></i>&ensp;</span>PREV</a>
+                 class="page-link me-1"><span><i class="fa-solid fa-arrow-left"></i>&ensp;</span>PREV</a>
             </li>
           {% endif %}
           {% if page_obj.has_next %}
             <li>
               <a href="?page={{ page_obj.next_page_number }}"
-                class="page-link ms-1">NEXT<span>&ensp;<i class="fa-solid fa-arrow-right"></i></span></a>
+                 class="page-link ms-1">NEXT<span>&ensp;<i class="fa-solid fa-arrow-right"></i></span></a>
             </li>
           {% endif %}
         </ul>

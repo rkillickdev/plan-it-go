@@ -690,11 +690,13 @@ The hero-text-replace.js file notes one undeclared variable and one unused varia
 
 The toasts.js file notes one undefined variable but this is needed to implement this feature, so I have not addressed the warning.
 
-The only other warnings raised for my own javascript in solo-display-modals.js, delete-confirm-modals.js and reviews.js are:
+The only other warnings raised for my own javascript were in solo-display-modals.js, delete-confirm-modals.js and reviews.js.  The warning was as follows:
 
 ```
 Functions declared within loops referencing an outer scoped variable may lead to confusing semantics.
 ```
+
+I fixed these by moving theouter scoped variables inside the function.  These js files are now clear of warnings.
 
 <details><summary>JSHint Reports</summary>
 
@@ -702,7 +704,11 @@ Functions declared within loops referencing an outer scoped variable may lead to
 
 **delete-confirm-modal**
 
-![JSHint delete-confirm-modal](docs/testing/validation/js/pp4-jshint-delete-confirm-modal.png)
+![JSHint delete-confirm-modal](docs/testing/validation/js/pp4-jshint-delete-confirm-modal-warnings-fixed.jpg)
+
+**file-upload**
+
+![JSHint file-upload](docs/testing/validation/js/pp4-jshint-file-upload.jpg)
 
 **forms**
 
@@ -726,11 +732,11 @@ Functions declared within loops referencing an outer scoped variable may lead to
 
 **reviews**
 
-![JSHint reviews](docs/testing/validation/js/pp4-jshint-reviews.png)
+![JSHint reviews](docs/testing/validation/js/pp4-jshint-reviews-warnings-fixed.jpg)
 
 **solo-display-modal**
 
-![JSHint solo-display-modal](docs/testing/validation/js/pp4-jshint-solo-display-modal.png)
+![JSHint solo-display-modal](docs/testing/validation/js/pp4-jshint-solo-display-modal-warnings-fixed.jpg)
 
 **star-rating**
 
@@ -772,7 +778,7 @@ It was not possible to copy and paste the html templates into the validator, due
 | [destinations.html](docs/testing/validation/html/destinations_html.png) | 0 | 1 | Passed |
 | [get_places.html](docs/testing/validation/html/get_places_html.png) | 0 | 0 | Passed |
 
-• There was a warning that appeared on any page that contains a form with an upload image field:
+• There was a warning that appeared on any page that contains a form with an upload image field.  I confirmed with my mentor that no action was required for this:
 
 ```
 Warning: The type: attribute is unnecessary for JavaScript resources.
@@ -782,11 +788,15 @@ Warning: The type: attribute is unnecessary for JavaScript resources.
 
 I used the [W3C jigsaw](https://jigsaw.w3.org/css-validator/) CSS Validation Service to validate my CSS stylesheet.
 
-| File | Errors | Warnings| Result |
-| ---- | :------: | :-------: | :------: |
-| static/css/styles.css | 0 | 0 | Pass |
+| File | Errors | Result |
+| ---- | :------: | :------: |
+| static/css/styles.css | 0 | Pass |
 
-![styles.css w3c validation](docs/testing/validation/css/pp4-css-validation.png)
+![styles.css w3c validation](docs/testing/validation/css/pp4-w3c-css-styles-validation-no-errors.jpg)
+
+The only warnings that occur are related to the use of bootstrap variables and vendor extensions.  I am satisfied that these are not causing any issues with the functionality of the site.
+
+![styles.css warnings](docs/testing/validation/css/pp4-w3c-css-styles-validation-warnings.png)
 
 # **Performace**
 

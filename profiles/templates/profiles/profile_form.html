@@ -37,18 +37,18 @@
         </div>
       </div>
       <div class="col-md-6 d-flex flex-column justify-content-center">
-          <div class="profile-bio card border-0 bg-secondary h-100">
-            <div class="card-body d-flex flex-column text-center justify-content-center">
-              {% if request.user.profile.about %}
-                <p class="lead fst-italic">
-                  {{profile.about}}
-                </p> 
-              {% else %}
-                  <p class="lead fst-italic">"We shall not cease from exploration, and the end of all our exploring will be to arrive where we started and know the place for the first time."</p>
-                  <p class="lead fw-semibold m-0">T.S. Eliot</p>
-              {% endif %}
-            </div>
+        <div class="profile-bio card border-0 bg-secondary h-100">
+          <div class="card-body d-flex flex-column text-center justify-content-center">
+            {% if request.user.profile.about %}
+              <p class="lead fst-italic">
+                {{profile.about}}
+              </p> 
+            {% else %}
+              <p class="lead fst-italic">"We shall not cease from exploration, and the end of all our exploring will be to arrive where we started and know the place for the first time."</p>
+              <p class="lead fw-semibold m-0">T.S. Eliot</p>
+            {% endif %}
           </div>
+        </div>
       </div>
     </div>
     <!-- Enter or Update Profile Details -->

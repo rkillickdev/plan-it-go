@@ -204,7 +204,7 @@ input[type=checkbox i] {
   object-fit: cover;
 }
 
-/* Media query for mobile devices from 1400px and up decreases height to value 15% of viewport width */
+/* Media query for mobile devices from 2000px and up decreases height to value 15% of viewport width */
 @media only screen and (min-width: 2000px) {
   .img-size-consistent {
     height: 15vw;
@@ -281,7 +281,7 @@ input[type=checkbox i] {
   }
 }
 /* Utility Media Queries */
-/* Media query for mobile devices from 991px and down switches to flex column */
+/* Media query for mobile devices from 1199px and down switches to flex column */
 @media only screen and (max-width: 1199px) {
   .action-title {
     flex-direction: column;

@@ -33,21 +33,21 @@ h2, h3, h4 {
 
 /* Buttons and Links */
 
-.btn-icon{
+.btn-icon {
     color: var(--bs-dark);
     border: none;
     background: transparent;
 }
 
-.btn-dark{
+.btn-dark {
     --bs-btn-hover-color:var(--bs-light);
 }
 
-.button-link{
+.button-link {
     width: fit-content;
 }
 
-.anchor-icon{
+.anchor-icon {
     padding: 10px 20px;
 }
 
@@ -218,7 +218,7 @@ input[type="checkbox" i] {
     object-fit: cover;
 }
 
-/* Media query for mobile devices from 1400px and up decreases height to value 15% of viewport width */
+/* Media query for mobile devices from 2000px and up decreases height to value 15% of viewport width */
 
 @media only screen and (min-width: 2000px) {
     .img-size-consistent {
@@ -269,16 +269,16 @@ input[type="checkbox" i] {
     opacity: 0.5;
 }
 
-.planner-image-link .image-clickable:hover{
+.planner-image-link .image-clickable:hover {
     cursor: pointer;
     opacity: 0.8;
 }
 
-.accordion-body{
+.accordion-body {
     background-color: var(--bs-secondary);
 }
 
-.planner-heading{
+.planner-heading {
     letter-spacing: 2px;
 }
 
@@ -311,10 +311,10 @@ input[type="checkbox" i] {
 
 /* Utility Media Queries */
 
-/* Media query for mobile devices from 991px and down switches to flex column */
+/* Media query for mobile devices from 1199px and down switches to flex column */
 
 @media only screen and (max-width: 1199px) {
-    .action-title{
+    .action-title {
         flex-direction: column;
         text-align: center;
         margin-bottom: 1rem;

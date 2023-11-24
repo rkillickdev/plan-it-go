@@ -35,7 +35,7 @@ class CreateDestination(LoginRequiredMixin, SuccessMessageMixin, CreateView):
 class UpdateDestination(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     """
     View to update a destination.  A success message has been added on
-    successful creation.  Destinations ordered by the city field are
+    successful update.  Destinations ordered by the city field are
     returned as the view context.
     """
 

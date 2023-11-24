@@ -38,15 +38,18 @@ class Place(models.Model):
         ordering = ["-ranking_position"]
 
     def __str__(self):
+        """
+        Returns the name as a string representation
+        of the object.
+        """
         return self.name
 
-    """
-     Populates the slug field with a slugified version
-     of the title field.
-     https://stackoverflow.com/questions/141487/is-there-an-easy-way-to-populate-slugfield-from-charfield
-    """
-
     def save(self, *args, **kwargs):
+        """
+        Populates the slug field with a slugified version
+        of the title field. Referenced this article:
+        https://stackoverflow.com/questions/141487/is-there-an-easy-way-to-populate-slugfield-from-charfield
+        """
         self.slug = slugify(self.name)
         super().save(*args, **kwargs)
 
@@ -114,4 +117,8 @@ class Image(models.Model):
         ordering = ["created_on"]
 
     def __str__(self):
+        """
+        Returns the place name as a string representation
+        of the object.
+        """
         return f"Image For {self.place.name}"

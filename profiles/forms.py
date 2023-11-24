@@ -56,9 +56,7 @@ class ProfileForm(ModelForm):
                 aria_label="Enter some information about yourself",
                 placeholder="Tell us about you...",
             ),
-            Div(
-                HTML("<p>Add your own image</p>")
-            ),
+            Div(HTML("<p>Add your own image</p>")),
             Field(
                 "profile_image",
                 css_class="form-select file-upload-input",

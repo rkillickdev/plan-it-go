@@ -10,6 +10,10 @@ class PlaceAdmin(admin.ModelAdmin):
     search_fields = ["location__city", "rating"]
 
     def approve_places(self, request, queryset):
+        """
+        Method for admin to approve places
+        in the Django admin panel.
+        """
         queryset.update(approved=False)
 
 
@@ -19,6 +23,10 @@ class ReviewAdmin(admin.ModelAdmin):
     search_fields = ["place__name", "profile__screen_name", "approved"]
 
     def approve_reviews(self, request, queryset):
+        """
+        Method for admin to approve reviews
+        in the Django admin panel.
+        """
         queryset.update(approved=True)
 
 
@@ -28,4 +36,8 @@ class ImageAdmin(admin.ModelAdmin):
     search_fields = ["place__name", "profile__screen_name", "approved"]
 
     def approve_images(self, request, queryset):
+        """
+        Method for admin to approve images
+        in the Django admin panel.
+        """
         queryset.update(approved=True)

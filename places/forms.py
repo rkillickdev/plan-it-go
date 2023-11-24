@@ -21,7 +21,7 @@ class PlaceForm(ModelForm):
     """
     Form for Place Model.  Crispy forms helper used for
     layout and styling.
-    I referenced the following article to ensure that the 
+    I referenced the following article to ensure that the
     only location options available in the 'locations' field
     of the form are those without any places associated with
     them:
@@ -108,14 +108,12 @@ class ImageForm(ModelForm):
         self.helper.form_method = "POST"
 
         self.helper.layout = Layout(
-            Div(
-                HTML("<p>Add an image</p>")
-            ),
+            Div(HTML("<p>Add an image</p>")),
             Field(
                 "path",
                 css_class="form-select file-upload-input",
                 aria_label="Select an image",
-                ),
+            ),
             Div(
                 Submit(
                     "Submit",

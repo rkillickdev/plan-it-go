@@ -46,14 +46,16 @@ class Profile(models.Model):
 
     def __str__(self):
         """
-        Returns the username as a string representation for each instance
+        Returns the screen name as a string representation for each instance
         of the Profile model.
         """
         return f"{self.user.profile.screen_name}"
 
 
-# Create a Profile when new user signs up
 def create_profile(sender, instance, created, **kwargs):
+    """
+    Creates a Profile when new user signs up
+    """
     if created:
         user_profile = Profile(user=instance)
         user_profile.save()

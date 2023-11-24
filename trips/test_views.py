@@ -81,7 +81,11 @@ class TestTripsViews(TestCase):
         self.assertEqual(response.status_code, 403)
 
     def test_trip_detail(self):
-        """ """
+        """
+        Tests whether a logged in user can access trip detail page belonging
+        to another user.  It is expected that they should be redirected to the
+        403 error template.
+        """
         # Login alt user that does not own trip
         self.client.login(username="testuseralt", password="alttestpassword")
         response = self.client.get(
@@ -98,7 +102,11 @@ class TestTripsViews(TestCase):
         )
 
     def test_place_detail_defensive_programming(self):
-        """ """
+        """
+        Tests whether a logged in user can access place detail page associated
+        with a trip belonging to another user.  It is expected that they should
+        be redirected to the 403 error template.
+        """
         # Login alt user that does not own trip
         self.client.login(username="testuseralt", password="alttestpassword")
         response = self.client.get(
@@ -219,7 +227,7 @@ class TestTripsViews(TestCase):
 
     def test_review_edit_defensive_programming(self):
         """
-        Tests whether a logged in user can access review page belonging
+        Tests whether a logged in user can access review edit page belonging
         to another user.  It is expected that they should be redirected to the
         403 error template.
         """
@@ -485,7 +493,9 @@ class TestTripsViews(TestCase):
         self.assertEqual(response.status_code, 403)
 
     def test_successful_trip_delete_redirect(self):
-        """ """
+        """
+        Tests successful trip delete redirection.
+        """
         self.client.login(username="testuser", password="testpassword")
         response = self.client.get(
             reverse(
@@ -494,10 +504,10 @@ class TestTripsViews(TestCase):
             )
         )
         self.assertRedirects(response, reverse("trip_list"))
-        
+
     def test_toggle_add_place_to_trip(self):
         """
-        Clears places for trip and tests adding place to a trip
+        Clears places for trip and tests adding place to a trip.
         """
         self.trip.places.clear()
         self.client.login(username="testuser", password="testpassword")
@@ -512,7 +522,7 @@ class TestTripsViews(TestCase):
 
     def test_toggle_remove_place_from_trip(self):
         """
-        Tests removing place from trip
+        Tests removing place from trip.
         """
         self.client.login(username="testuser", password="testpassword")
         response = self.client.post(

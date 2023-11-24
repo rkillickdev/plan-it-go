@@ -48,7 +48,7 @@ class PlaceListView(ListView):
 
 class PlaceBrowseDetail(DetailView):
     """
-    View to used to render details of a place for staff and users
+    View used to render details of a place for staff and users
     that have not signed in.
     """
 
@@ -163,7 +163,7 @@ def get_places(request, destination_id, slug):
                     continue
 
                 # Creates an instance of Place for each place in the json file.
-                # Populates Place fields with data from API response.
+                # Populates Place fields with data from the json file.
                 place_data = Place(
                     location=requested_location,
                     venue_id=place["id"],
@@ -184,8 +184,8 @@ def get_places(request, destination_id, slug):
                     ranking_string=place["rankingString"],
                 )
 
-                # Query database to see if the venue_id used in the API
-                # response already exists. Return to top of loop if it does.
+                # Query database to see if the venue_id already exists.
+                # Return to top of loop if it does.
                 venue = Place.objects.filter(venue_id=place_data.venue_id)
 
                 # Calculate number of words in description field using numpy
@@ -195,7 +195,6 @@ def get_places(request, destination_id, slug):
                 if venue.exists() or word_count < 30:
                     continue
                 else:
-                    # Save to database
                     place_data.save()
 
             messages.add_message(

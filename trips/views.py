@@ -24,9 +24,9 @@ from places.forms import ReviewForm, ImageForm
 
 class TripCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     """
-    View to render the profile update form.
+    View to render the trip form and create a trip.
     Assigns slug field and primary key id to kwargs.
-    The get_success_url() method is used to redirect to 'get_detail.html'.
+    The get_success_url() method is used to redirect to 'trip_detail.html'.
     The following stack overflow helped with understanding self.object:
     https://stackoverflow.com/questions/52063861/django-access-form-argument-in-createview-to-pass-to-get-success-url
     Also learnt about sending messages in class based views here:
@@ -38,7 +38,7 @@ class TripCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     template_name = "trips/create_trip.html"
     success_message = "Congratulations, you created a new trip!"
 
-    # Populate profile field of model Trip with profile linked tologged in user
+    # Populate profile field of Trip with profile linked to logged in user:
     # https://stackoverflow.com/questions/18246326/how-do-i-set-user-field-in-form-to-the-currently-logged-in-user
 
     def form_valid(self, form):
@@ -116,7 +116,7 @@ class TripListView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         return Trip.objects.filter(profile=self.request.user.profile).order_by(
-            "-start_date"
+            "-created_on"
         )
 
 
@@ -191,7 +191,7 @@ class PlaceDetail(LoginRequiredMixin, View):
     """
     A function based view to render specific details of a recommended place
     to the place_detail.html template.  The specific place is passed
-    as an object to the template as part of the context, along the with a
+    as an object to the template as part of the context, along with a
     queryset of all reviews and images relating to the place.
     The trip object is included so places can be added or removed from the
     trip itinerary.
@@ -343,8 +343,8 @@ class ImageUploadView(LoginRequiredMixin, CreateView):
     """
     View where a logged in user can upload an image to the gallery page.
     Once successfully uploaded, the user is redirected back to the same page
-    where the newly uploaded image is displayed along side all other images
-    for the specified place.
+    where the newly uploaded image is displayed along side  a gallery of all
+    their other images.
     The URL parameters passed into the view are accessed from the kwargs.
     A queryset of images and the specific places object is made available
     as part of the context when rendering  the template, by defining the
@@ -372,7 +372,7 @@ class ImageUploadView(LoginRequiredMixin, CreateView):
             raise PermissionDenied()
         return super().get(request, *args, **kwargs)
 
-    # Referenced this article to automatically populate filed forms:
+    # Referenced this article to automatically populate form fields:
     # https://stackoverflow.com/questions/18246326/how-do-i-set-user-field-in-form-to-the-currently-logged-in-user
 
     def form_valid(self, form):

@@ -28,7 +28,7 @@ class TestHomeViews(TestCase):
             summary="The Big Smoke",
             latitude=51.509865,
             longitude=-0.118092,
-            approved=True
+            approved=True,
         )
 
     def test_home_view(self):

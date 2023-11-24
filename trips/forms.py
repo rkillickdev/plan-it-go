@@ -47,9 +47,7 @@ class TripForm(ModelForm):
                 aria_label="Enter a trip description",
                 placeholder="Tell us about your trip...",
             ),
-            Div(
-                HTML("<p>Add your own image</p>")
-            ),
+            Div(HTML("<p>Add your own image</p>")),
             Field("trip_image", css_class="form-select file-upload-input"),
             Div(
                 Submit(

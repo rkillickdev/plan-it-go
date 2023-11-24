@@ -35,8 +35,8 @@
             {% endif %}
           </div>
           <p id="review-profile-name{{ review.id }}"
-              class="review-card-text fs-5 fst-italic p-2">{% if request.resolver_match.url_name == 'review' %}{{ trip.title }}{% else %}{{ review.profile.screen_name}}{% endif %}
-        </p>
+             class="review-card-text fs-5 fst-italic p-2">{% if request.resolver_match.url_name == 'review' %}{{ trip.title }}{% else %}{{ review.profile.screen_name}}{% endif %}
+          </p>
         </div>
         <div class="row {% if request.resolver_match.url_name == 'place_browse_detail' %} d-none {% endif %}">
           <h3 id="review-location{{ review.id }}"
@@ -46,7 +46,7 @@
     </div>
     <div class="card-body bg-dark">
       <p class="review-card-text lead text-light">
-        <span><i class="fa-solid fa-magnifying-glass"></i>&ensp;</span> Read Review
+        <span><i class="fa-solid fa-magnifying-glass"></i>&ensp;</span>Read Review
       </p>
       <p id="review-body{{ review.id }}"
          class=" review-card-text card-title d-none {% if not review.approved and review.profile == request.user.profile %} faded {% elif not.review.approved %} d-none{% endif %}">{{review.body}}

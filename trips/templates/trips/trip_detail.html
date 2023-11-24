@@ -64,8 +64,8 @@
                               data-bs-target="#modal-item-delete-confirm"
                               aria-label="Delete this place from your trip"
                             >
-                                <i class="fa-solid fa-circle-xmark fa-4x"></i>
-                          </button>
+                              <i class="fa-solid fa-circle-xmark fa-4x"></i>
+                            </button>
                             <p class="lead align-self-center m-0">Remove From Planner</p>
                           </div>
                           <div class="d-flex justify-content-between gap-3">
@@ -108,8 +108,8 @@
 <section id="trip-recommendations">
   <div class="container">
     <div class="row action-title">
-      <h3><span><i
-             class="fa-solid fa-heart text-primary"></i>&ensp;</span>Recommended Places
+      <h3>
+        <span><i class="fa-solid fa-heart text-primary"></i>&ensp;</span>Recommended Places
       </h3>
       <hr>
     </div>
@@ -118,8 +118,7 @@
         <div class="row">
           {% for place in places %}
             <div class="col-md-4 mb-4">
-              <div
-                  class="card border-0 bg-secondary text-center h-100 image-clickable">
+              <div class="card border-0 bg-secondary text-center h-100 image-clickable">
                 <img class="card-img-top img-fluid img-size-consistent"
                     src="{{ place.image }}"
                     alt="{{ place.name }}">
@@ -141,20 +140,20 @@
     </div>
     <div class="row mb-5">
       <!-- Pagination Controls -->
-    <nav aria-label=" place list page navigation">
-      <ul class="pagination justify-content-center m-0">
-        {% if places.has_previous %}
-          <li class="page-item">
-            <a href="?page={{ places.previous_page_number }}" class="page-link me-1"><span><i class="fa-solid fa-arrow-left"></i>&ensp;</span>PREV</a>
-          </li>
-        {% endif %}
-        {% if places.has_next %}
-          <li class="page-item">
-            <a href="?page={{ places.next_page_number }}" class="page-link ms-1">NEXT<span>&ensp;<i class="fa-solid fa-arrow-right"></i></span></a>
-          </li>
-        {% endif %}
-      </ul>
-    </nav>
+      <nav aria-label=" place list page navigation">
+        <ul class="pagination justify-content-center m-0">
+          {% if places.has_previous %}
+            <li class="page-item">
+              <a href="?page={{ places.previous_page_number }}" class="page-link me-1"><span><i class="fa-solid fa-arrow-left"></i>&ensp;</span>PREV</a>
+            </li>
+          {% endif %}
+          {% if places.has_next %}
+            <li class="page-item">
+              <a href="?page={{ places.next_page_number }}" class="page-link ms-1">NEXT<span>&ensp;<i class="fa-solid fa-arrow-right"></i></span></a>
+            </li>
+          {% endif %}
+        </ul>
+      </nav>
     </div>
   </div>
 </section>

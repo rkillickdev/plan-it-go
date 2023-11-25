@@ -199,6 +199,16 @@ ___
 
 <br>
 
+<details><summary>Mobile</summary>
+
+<br>
+
+**Home Page**
+
+![PlanIt-Go wireframe mobile home](docs/wireframes/mobile/pp4-wireframe-mobile-home.png)
+
+</details>
+
 ## **Database Schema**
 
 <br>

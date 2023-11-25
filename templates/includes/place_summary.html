@@ -38,9 +38,7 @@
             <div class="justify-content-center">
               <a href="{% if request.resolver_match.url_name == 'place_detail' %} {% url 'trip_detail' trip.slug trip.id %}#trip-recommendations {% else %} {% url 'place_list' place.location.id place.location.slug %} {% endif %}"
                  class="btn btn-dark button-link">
-                <span><i class="fa-solid fa-left-long"></i>&ensp;</span>
-                {% if request.resolver_match.url_name == 'place_detail' %}
-                More Places {% else %} More Places {% endif %}
+                <span><i class="fa-solid fa-left-long"></i>&ensp;</span>{% if request.resolver_match.url_name == 'place_detail' %}Your Trip{% else %}More Places{% endif %}
               </a>
             </div>
           </div>

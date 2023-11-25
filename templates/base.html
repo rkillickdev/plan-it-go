@@ -36,8 +36,7 @@
   <link rel="stylesheet"
         href="{% static 'css/min/bootstrap-min.css' %}">
   
-  <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous"> -->
-        
+  <!-- Animate css library used for hero text replace effect-->    
   <link rel="stylesheet"
         type="text/css"
         href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
@@ -53,7 +52,6 @@
 <body class="d-flex flex-column min-vh-100 main-bg">
   <!-- Navbar -->
   {% include 'includes/nav.html' %}
-
 
   <!-- Include Messages Template -->
   {% include 'includes/messages.html' %}
@@ -72,8 +70,8 @@
 
   <!-- Javascript files -->
 
-  <!-- ReplaceMe.js v1.1.0-->
-  <script src="{% static 'js/replaceme.min.js' %}"></script>
+  <!-- ReplaceMe.js v1.1.0 -->
+  <script src="{% static 'js/libraries/replaceme.min.js' %}"></script>
 
   <!-- Bootstrap v5.3.2 JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
@@ -84,10 +82,10 @@
   <script src="https://kit.fontawesome.com/9e2a74b83d.js"
           crossorigin="anonymous"></script>
 
-  <!-- Google Maps Marker Clusterer-->
+  <!-- Google Maps Marker Clusterer -->
   <script src="https://unpkg.com/@googlemaps/markerclusterer/dist/index.min.js"></script>
 
-  <!-- Runs JS script to initiliase and show toasts if messages from Django are avaialble -->
+  <!-- Runs JS script to initialise and show toasts if messages from Django are available -->
   {% if messages %}
   <script src="{% static 'js/toasts.js' %}"></script>
   {% endif %}

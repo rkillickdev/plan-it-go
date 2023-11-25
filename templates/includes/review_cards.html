@@ -9,7 +9,7 @@
   <div class="user-review card border-0 text-center image-clickable h-100"
        data-review_id="{{ review.id }}">
     <div class="card-header border-0 bg-secondary h-100 d-flex flex-column justify-content-center">
-        <div class="row {% if request.resolver_match.url_name == 'place_browse_detail' %} m-auto {% endif %}">
+        <div class="row">
           <div class="image-container p-2">
             {% if 'placeholder' in review.profile.profile_image.url %}
               <img src="{% static 'images/placeholders/globe-profile-face-compress-square.webp' %}"
@@ -18,13 +18,6 @@
                   class="img-fluid rounded-circle"
                   width="120"
                   height="120">
-            {% elif 'placeholder' in trip.trip_image.url %}
-              <img src="{% static 'images/placeholders/trip-placeholder-globe-in-hand.webp' %}"
-              alt="Inflatable globe with two eyes stuck on"
-              id="review-image{{ review.id }}"
-              class="img-fluid rounded-circle"
-              width="120"
-              height="120">
             {% else %}
               <img src="{{ review.profile.profile_image.url }}"
                   alt="picture of {{ profile.screen_name }}"
@@ -35,7 +28,7 @@
             {% endif %}
           </div>
           <p id="review-profile-name{{ review.id }}"
-             class="review-card-text fs-5 fst-italic p-2">{% if request.resolver_match.url_name == 'review' %}{{ trip.title }}{% else %}{{ review.profile.screen_name}}{% endif %}
+             class="review-card-text fs-6 fst-italic p-2">{% if request.resolver_match.url_name == 'review' %}{{ trip.title }}{% else %}{{ review.profile.screen_name}}{% endif %}
           </p>
         </div>
         <div class="row {% if request.resolver_match.url_name == 'place_browse_detail' %} d-none {% endif %}">

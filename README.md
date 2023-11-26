@@ -706,8 +706,7 @@ Functionality that is not within the scope of this project, but that could be im
 * The ability for users to recommend a place, or better still leave a rating.  This could be useful data to aquire, as eventually recommendations could be displayed in order of popularity amongst site users.
 * The ability to mark a trip or visit to a place as complete
 
-
-
+<br>
 
 # **Technologies Used**
 
@@ -715,14 +714,13 @@ Functionality that is not within the scope of this project, but that could be im
 
 * [HTML5](https://developer.mozilla.org/en-US/docs/Glossary/HTML5)
 * [CSS3](https://developer.mozilla.org/en-US/docs/Web/CSS)
+* [Sass](https://sass-lang.com/) - Preprocessor scripting language used to modify default Bootstrap styles
 * [Javascript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 * [Python](https://www.python.org/)
 
-* I decided not to use jQuery in this project and implemented any functionality that required js with vanilla javascript.  I plan to use jQuery in a future project to enhance my knowledge of this library.
+* I decided not to use jQuery in this project and implemented any functionality that required js with vanilla javascript.  I plan to use jQuery in a future project to enhance my knowledge of this library
 
 ## **Programs and Tools Used**
-
-<br>
 
 * [Git](https://en.wikipedia.org/wiki/Git) -  Version control.
 * [GitHub](https://github.com/) - All files for the project stored and saved in a repository.
@@ -744,19 +742,41 @@ Functionality that is not within the scope of this project, but that could be im
 * [TinyPNG](https://tinypng.com/) - For compression of image files to improve website performance.
 * [Birme](https://www.birme.net/?target_width=425&target_height=450&auto_focal=false&image_format=jpeg&quality_jpeg=100&quality_webp=100) - For resizing and re-formatting images to make them suitable for use on the website.
 * [xnipapp](https://www.xnipapp.com/) - For capturing site screenshots
+* [jpg2png](https://jpg2png.com/) - For conversion of JPG images to PNG format.
+* [gyazo](https://gyazo.com/captures) - For mp4 screen captures of site functionality
+* [ezgif](https://ezgif.com/video-to-gif) - For conversion of mp4 video files to GIFs
+* [freeconvert](https://www.freeconvert.com/gif-compressor) - For compression of GIFs
 * [Aspose](https://products.aspose.app/pdf/merger) - Used to merge 3 mobile images to a single png file.
 * [Favicon.ico & App Icon Generator](https://www.favicon-generator.org/) - For creating the 16x16px ico favicon.
 * [Techsini](https://techsini.com/multi-mockup/index.php) - For displaying images of how the website looks across a range of devices.
 * [Meta Tags IO](https://metatags.io/) - For improving site visual appearance on social media.
 * [Stackoverflow](https://stackoverflow.com/) - Used for researching solutions/ fixing bugs
 
-<br>
-
 ## **Frameworks and Libraries Used**
 
-* cloudinary - Python library to facilitate integration of cloudinary with Django
+* [Django](https://www.djangoproject.com/) - High level Python web framework used to develop the project
+* [Bootstrap v5.3.2](https://getbootstrap.com/) - Frontend framework used to create a responsive site
+
+The [requirements.txt](requirements.txt) file provides information on required installations for this project.  Below are libraries that I installed to implement site functionality:
+
+* [amadeus](https://developers.amadeus.com/self-service/category/destination-experiences/api-doc/points-of-interest) - Installed in the testing phase when researching how to retrieve data for places that could be used on the site.
+* [apify](https://apify.com/) - Installed when testing the use of the Apify Trip Advisor web scraper.  This made it possible to retrieve a response via their api rather than through their own interface.
+* [cloudinary](https://cloudinary.com/) - Python library to facilitate integration of cloudinary with Django
+* [dj-databse-url](https://pypi.org/project/dj-database-url/) - A utility that allows use of the DATABASE_URL environment variable to configure a Django application.  This was used for connection to the PostgreSQL database.
+* [dj3-cloudinary-storage](https://pypi.org/project/dj3-cloudinary-storage/) - A Django package that facilitates Cloudinary storage for media files used in the project.
+* [django-allauth](https://docs.allauth.org/en/latest/) - An integrated set of Django applications addressing authentication, registration and account management.  Used to implement role based login functionality across the site.
+* [django-autoslug](https://pypi.org/project/django-autoslug/) - Used for automating population of the slug field in several models across the project.
+* [django-crispy-forms](https://django-crispy-forms.readthedocs.io/en/latest/) - A Django package that provides control over the rendering behaviour of Django forms.  This was used extensively in the forms.py files for each app, to ensure styling of forms remained consistent with the rest of the site aesthetic.
+* [gunicorn](https://gunicorn.org/) - A Python WSGI HTTP Server for UNIX.
+* [numpy](https://numpy.org/) - A Python library used for working with numerical data. I used it to retrieve a word count for each place description, before saving as an instance to the database.
+* [psycopg2](https://pypi.org/project/psycopg2/) - A Python PostgreSQL Database Adapter.
+* [whitenoise](https://pypi.org/project/whitenoise/) - Simplified static file serving for WSGI applications.  I used this to serve static images, css files and JavaScript files.
+
+<br>
 
 # **Testing**
+
+<br>
 
 Please follow this link to the [TESTING.md file](https://github.com/rkillickdev/plan-it-go/blob/main/TESTING.md), for documentation about the testing procedure I followed for this project.
 

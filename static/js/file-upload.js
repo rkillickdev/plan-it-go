@@ -19,15 +19,14 @@ document.addEventListener("DOMContentLoaded", () => {
 // https://stackoverflow.com/questions/62827002/bootstrap-v5-manually-call-a-modal-mymodal-show-not-working-vanilla-javascrip
 // https://getbootstrap.com/docs/5.2/components/modal/#via-javascript
 
-const fileUploadInput = document.querySelector(".file-upload-input");
+const fileInput = document.querySelector(".file-upload-input");
 const uploadSubmit = document.getElementById("submit-button");
 const fileWarningModal = new bootstrap.Modal(document.getElementById("modal-file-warning"), {});
 
 uploadSubmit.addEventListener("click", (e) => {
-    const fileSize = fileUploadInput.files[0].size;
     const maxSizeInBytes = 2097152;
 
-    if (fileSize > maxSizeInBytes) {
+    if (fileInput.files && fileInput.files.length == 1 && fileInput.files[0].size > maxSizeInBytes) {
         e.preventDefault();
         fileWarningModal.show();
     }

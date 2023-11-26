@@ -16,3 +16,15 @@ for(let review of soloReviews) {
         soloReviewBody.innerText = reviewBody;
     })
 }
+
+// OLD CODE FOR FILE UPLOAD FILE SIZE CHECKER
+
+uploadSubmit.addEventListener("click", (e) => {
+    const fileSize = fileUploadInput.files[0].size;
+    const maxSizeInBytes = 2097152;
+
+    if (fileSize > maxSizeInBytes) {
+        e.preventDefault();
+        fileWarningModal.show();
+    }
+});

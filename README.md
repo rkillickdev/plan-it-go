@@ -217,17 +217,9 @@ ___
 
 <br>
 
-**Home Page**
-
 ![PlanIt-Go wireframe mobile home](docs/wireframes/mobile/pp4-wireframe-mobile-home.png)
 
-**Place List Page**
-
-![PlanIt-Go wireframe mobile place list](docs/wireframes/mobile/pp4-wireframe-mobile-place-list.png)
-
-**Trip List Page**
-
-![PlanIt-Go wireframe mobile trip list](docs/wireframes/mobile/pp4-wireframe-mobile-trip-list.png)
+![PlanIt-Go wireframe multi](docs/wireframes/mobile/pp4-wireframe-mobile-multi-01.png)
 
 ![PlanIt-Go wireframe mobile trip detail](docs/wireframes/mobile/pp4-wireframe-mobile-trip-detail.png)
 
@@ -241,17 +233,7 @@ ___
 
 <br>
 
-**Home Page**
-
-![PlanIt-Go wireframe tablet home](docs/wireframes/tablet/pp4-wireframe-tablet-home.png)
-
-**Place List Page**
-
-![PlanIt-Go wireframe tablet place list](docs/wireframes/tablet/pp4-wireframe-tablet-place-list.png)
-
-**Trip List Page**
-
-![PlanIt-Go wireframe tablet trip list](docs/wireframes/tablet/pp4-wireframe-tablet-trip-list.png)
+![PlanIt-Go wireframe tablet multi](docs/wireframes/tablet/pp4-wireframe-desktop-multi-01.png)
 
 ![PlanIt-Go wireframe tablet trip detail](docs/wireframes/tablet/pp4-wireframe-tablet-trip-detail.png)
 
@@ -265,17 +247,7 @@ ___
 
 <br>
 
-**Home Page**
-
-![PlanIt-Go wireframe desktop home](docs/wireframes/desktop/pp4-wireframe-desktop-home.png)
-
-**Place List Page**
-
-![PlanIt-Go wireframe desktop place list](docs/wireframes/desktop/pp4-wireframe-desktop-place-list.png)
-
-**Trip List Page**
-
-![PlanIt-Go wireframe desktop trip list](docs/wireframes/desktop/pp4-wireframe-desktop-trip-list.png)
+![PlanIt-Go wireframe desktop multi](docs/wireframes/desktop/pp4-wireframe-desktop-multi-01.png)
 
 ![PlanIt-Go wireframe desktop trip detail](docs/wireframes/desktop/pp4-wireframe-desktop-trip-detail.png)
 

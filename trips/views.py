@@ -52,7 +52,7 @@ class TripCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
         )
 
 
-class TripUpdateView(LoginRequiredMixin, UpdateView):
+class TripUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     """
     View to update trip info.  Redirects to trip detail
     template once updated.
@@ -61,6 +61,7 @@ class TripUpdateView(LoginRequiredMixin, UpdateView):
     model = Trip
     form_class = TripForm
     template_name = "trips/create_trip.html"
+    success_message = "Your trip details have been updated"
 
     # Referenced the following article to modify get_object method:
     # https://stackoverflow.com/questions/25324948/django-generic-updateview-how-to-check-credential

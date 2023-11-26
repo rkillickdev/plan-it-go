@@ -1,4 +1,5 @@
 from django.urls import path
+from django.contrib.admin.views.decorators import staff_member_required
 from .views import (
     get_places,
     PlaceListView,
@@ -25,7 +26,7 @@ urlpatterns = [
     ),
     path(
         "<slug:slug>/<int:place_id>/toggle_approval",
-        PlaceApproveToggle.as_view(),
+        staff_member_required(PlaceApproveToggle.as_view()),
         name="place_toggle_approval",
     ),
 ]

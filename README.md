@@ -289,9 +289,22 @@ ___
 
 <br>
 
-[A PDF for Database Schema v01 Can be viewd here](docs/database-schema/planit-go-database-highlight-schema-v01.pdf)
+![PlanIt-Go final database schema](docs/database-schema/pp4-database-schema-final.png)
 
-[The database schema created using dbdiagram.io can be found here](https://dbdiagram.io/d/64f2f6f902bd1c4a5ed78564)
+The database diagram above demonstrates that the Profile model has a one to one relationship with the User model.  A new profile is created whenever a new user registers.  Users can update their own Profile instance.  The following relationships also exist between models:
+
+*  **One to many relationship:**  Profile model and Trip model - one profile can have many trips
+*  **One to many relationship:**  Location model and Trip model - one location can have many trips
+*  **One to many relationship:**  Location model and Place model - one location can have many places
+*  **Many to many relationship:**  Place model and Trip model - one trip can have many places and one place can be part of many trips
+*  **One to many relationship:**  Place model and Image model - one place can have many images
+*  **One to many relationship:**  Profile model and Image model - one profile can have many images
+*  **One to many relationship:**  Place model and Review model - one place can have many reviews
+*  **One to many relationship:**  Profile model and Review model - one profile can have many reviews
+
+From the original planning phase to the final site, tweaks were made to the database schema to suit the functionality of the site.  In particular, the Places database was modified to store any fields required from the Apify web scraper json response.  Some fields remain in models that are not yet used, but will provide future functionality.  For example the Trip start and end DateFields.  A PDF for the original database schema v01 Can be viewd [here](docs/database-schema/planit-go-database-highlight-schema-v01.pdf)
+
+The database schema was created using [dbdiagram.io](https://dbdiagram.io/home) and can be found [here](https://dbdiagram.io/d/PlanIt-Go-Database-Schema-Final-656329493be1495787bf2ddf)
 
 ### **Population of the Places Database**
 

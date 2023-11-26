@@ -19,7 +19,7 @@ class Trip(models.Model):
         Location, on_delete=models.CASCADE, related_name="trips"
     )
     title = models.CharField(max_length=30, unique=True)
-    slug = models.SlugField(max_length=30, unique=True)
+    slug = models.SlugField(max_length=30)
     description = models.TextField(blank=True)
     trip_image = CloudinaryField(
         "image",

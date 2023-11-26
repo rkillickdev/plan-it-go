@@ -22,10 +22,10 @@ PlanIt Go has been developed as part of the [Code Institute](https://codeinstitu
     * [Agile Methodology](#agile-methodology)
         * [Epics](#epics)
         * [User Stories](#user-stories)
+    * [Scope Plane](#scope-plane)
     * [Skeleton Plane](#skeleton-plane)
         * [Wireframes](#wireframes)
         * [Database Schema](#database-schema)
-    * [Scope Plane]()
     * [Structure Plane](#structure-plane)
         * [Features](#features)
             * [Navbar](#navbar)
@@ -49,6 +49,7 @@ PlanIt Go has been developed as part of the [Code Institute](https://codeinstitu
             * [Responsive Design](#responsive-design)
             * [Accessibility](#accessibility)
             * [Future Features](#future-features)
+    * [Surface Plane](#surface-plane)
 * [Technologies Used](#technologies-used)
     * [Languages Used](#languages-used)
     * [Programs and Tools Used](#programs-and-tools-used)
@@ -189,8 +190,21 @@ Implement functionality and design within the site to ensure a positive user exp
 * As a Site User I can view the site on a range of screen sizes so that I can enjoy good user experience on my device of choice [#33](https://github.com/rkillickdev/plan-it-go/issues/33)
 * As a user I can access links to social media accounts related to the site so that I can find out more about the site and its developer [#46](https://github.com/rkillickdev/plan-it-go/issues/46)
 
+<br>
 
+## **SCOPE PLANE**
+___
 
+In order to satisfy the goals outlined in the [strategy plane](#strategy-plane), I will implement the following features:
+
+* Allow all site users to browse destinations and view recommended places to visit
+* Allow logged in users to perform CRUD functionality on trips, profiles, reviews and images
+* Allow logged in staff users to perform CRUD functionality on locations
+* Allow logged in staff users to retrieve place data from a json file and populate the Places database with it
+* Allow staff moderator to approve user reviews and images in the Django Admin Panel
+* Make the site responsive across a range of devices
+
+<br>
 
 ## **SKELETON PLANE**
 ___
@@ -295,18 +309,7 @@ On further investigation, I discovered the [APIFY Tripadvisor Scraper](https://a
 
 Given the time limitations of the project, I have decided to prepopulate the Places database with places for a certain amount of pre-defined locations for demonstartion purposes. I can run a request from the APIFY dashboard for a specified location and save the response in a json file which is then stored in a [data folder with Static Files](static/data).  The [get_places view](places/views.py) has been modified to iterate over a specified json file and populate the database.  I have created a user login with staff permissions that is able to access and run this view via the site user interface.  You can read more about staff login functionality [here](#staff-login-functionality)
 
-
-## **SCOPE PLANE**
-___
-
-In order to satisfy the goals outlined in the [strategy plane](#strategy-plane), I will implement the following features:
-
-* Allow all site users to browse destinations and view recommended places to visit
-* Allow logged in users to perform CRUD functionality on trips, profiles, reviews and images
-* Allow logged in staff users to perform CRUD functionality on locations
-* Allow logged in staff users to retrieve place data from a json file and populate the Places database with it
-* Allow staff moderator to approve user reviews and images in the Django Admin Panel
-* Make the site responsive across a range of devices
+<br>
 
 ## **STRUCTURE PLANE**
 ___
@@ -705,6 +708,43 @@ Functionality that is not within the scope of this project, but that could be im
 * The ability to refine recommended places by filtering e.g only restaurants.  Instances of the Place database already have 'type' and 'category' attributes so this filtering should be achievable.
 * The ability for users to recommend a place, or better still leave a rating.  This could be useful data to aquire, as eventually recommendations could be displayed in order of popularity amongst site users.
 * The ability to mark a trip or visit to a place as complete
+
+<br>
+
+## **SURFACE PLANE**
+
+## **Colour Palette**
+
+I initially used the palette generator tool on the [coolors](https://coolors.co/) website, to extract colours from the hero image used on the home page that could be used consistently throughout the site.  From this starting point, I found I needed to tweak colours to ensure contrast ratios met acceptable standards.
+
+![PlanIt-Go hero image colour palette generator](docs/surface/pp4-map-pins-hero-colours.png)
+
+![PlanIt-Go colour palette](docs/surface/pp4-colour-palette.png)
+
+I used the [WebAim](https://webaim.org/resources/contrastchecker/) tool to check acceptability of contrasts.
+
+<details><summary>Contrast Results</summary>
+
+<br>
+
+![PlanIt-Go contrast checker primary](docs/surface/pp4-contrast-checker-primary.png)
+![PlanIt-Go contrast checker dark](docs/surface/pp4-contrast-checker-dark.png)
+
+</details>
+
+## **Typography**
+
+Spacing and typography is consistent throughout the site to provide the user with a sense of familiarity as they navigate between pages. Font awesome icons are used alongside informational headings to hint at content. The following font has been selected from Google Fonts and imported to the css styles sheet.
+
+* Raleway - a sans-serif font
+
+## **Imagery**
+
+Static images used throughout the site have been chosen to tie in with the core goals of the site and inspire users to plan their own trips to destinations far and wide.  These images are royalty free and have been sourced from [pexels](https://www.pexels.com/).
+
+The brand logo used in the navbar has been designed to be minimalistic and instantly convey the site goals to the user.  'Planet' appears as 'PlanIt' to communicate that trip planning is at the heart of the site. The 'O' in 'Go' has been substituted with a globe to suggest the theme of global destinations.  The colour scheme used is consistent with the rest of the site. 
+
+![PlanIt-Go brand logo](docs/surface/pp4-brand-logo.png)
 
 <br>
 

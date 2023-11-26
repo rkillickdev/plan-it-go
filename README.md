@@ -1022,7 +1022,17 @@ Below are bugs that were discovered during development and testing.  I have not 
 
 ## **Code Used and Referenced**
 
+* In the initial planning stages of the project, I found the Code Insititute Peer review channel on Slack a helpful tool to see what was required for the PP4 project.  In particular, I found this [Cinema Go Project](https://github.com/seanf316/P4-Cinema-Go) was a source of inspiration and a good indicator for covering all the asessment criteria.
+
+### **Video tutorials and classes**
+
+* I referenced this [Udemy Django 4 and Python Full-Stack Developer Masterclass](https://www.udemy.com/course/django-and-python-full-stack-developer-masterclass) which I had purchased before I started the Ci diploma, to help consolidate some of the Django concepts.
+
+* I used this [Udemy Bootstrap 5 From Scratch | Build 5 Modern Websites Course](https://www.udemy.com/course/bootstrap-from-scratch) to consolidate and expand my understanding of Bootstrap and Sass.
+
 * [Django Wednesdays YouTube Tutorial - creating users ans profiles](https://www.youtube.com/watch?v=KNvSWubOaQY)
+
+### **Threads and Articles**
 
 * [Populating a database with data from an API response](https://dev.to/yahaya_hk/how-to-populate-your-database-with-data-from-an-external-api-in-django-398i)
 
@@ -1123,6 +1133,12 @@ Below are bugs that were discovered during development and testing.  I have not 
 <br>
 
 ## **Media**
+
+* The Places database was populated with data retrieved from the [APIFY Trip Advisor Web Scraper](https://console.apify.com/actors/dbEyMBriog95Fv8CW/console)
+
+* [chatGPT](https://chat.openai.com/) was used to generate text content for the destination descriptions, a few test user reviews and some user 'travel themed' profile screen names.  I also used it to generate some content for the 3 site goals on the home page, but actually ended up editing it quite heavily to fit the site purpose.
+
+* The following [T.S. Eliot quote](https://www.goodreads.com/quotes/9840-we-shall-not-cease-from-exploration-and-the-end-of) which acts as as placeholder for user bios, was sourced online
 
 ## **Acknowledgements**
 

@@ -207,6 +207,68 @@ ___
 
 ![PlanIt-Go wireframe mobile home](docs/wireframes/mobile/pp4-wireframe-mobile-home.png)
 
+**Place List Page**
+
+![PlanIt-Go wireframe mobile place list](docs/wireframes/mobile/pp4-wireframe-mobile-place-list.png)
+
+**Trip List Page**
+
+![PlanIt-Go wireframe mobile trip list](docs/wireframes/mobile/pp4-wireframe-mobile-trip-list.png)
+
+![PlanIt-Go wireframe mobile trip detail](docs/wireframes/mobile/pp4-wireframe-mobile-trip-detail.png)
+
+![PlanIt-Go wireframe mobile place detail](docs/wireframes/mobile/pp4-wireframe-mobile-place-detail.png)
+
+![PlanIt-Go wireframe mobile reviews and images](docs/wireframes/mobile/pp4-wireframe-mobile-reviews-images.png)
+
+</details>
+
+<details><summary>Tablet</summary>
+
+<br>
+
+**Home Page**
+
+![PlanIt-Go wireframe tablet home](docs/wireframes/tablet/pp4-wireframe-tablet-home.png)
+
+**Place List Page**
+
+![PlanIt-Go wireframe tablet place list](docs/wireframes/tablet/pp4-wireframe-tablet-place-list.png)
+
+**Trip List Page**
+
+![PlanIt-Go wireframe tablet trip list](docs/wireframes/tablet/pp4-wireframe-tablet-trip-list.png)
+
+![PlanIt-Go wireframe tablet trip detail](docs/wireframes/tablet/pp4-wireframe-tablet-trip-detail.png)
+
+![PlanIt-Go wireframe tablet place detail](docs/wireframes/tablet/pp4-wireframe-tablet-place-detail.png)
+
+![PlanIt-Go wireframe tablet reviews and images](docs/wireframes/tablet/pp4-wireframe-tablet-reviews-images.png)
+
+</details>
+
+<details><summary>Desktop</summary>
+
+<br>
+
+**Home Page**
+
+![PlanIt-Go wireframe desktop home](docs/wireframes/desktop/pp4-wireframe-desktop-home.png)
+
+**Place List Page**
+
+![PlanIt-Go wireframe desktop place list](docs/wireframes/desktop/pp4-wireframe-desktop-place-list.png)
+
+**Trip List Page**
+
+![PlanIt-Go wireframe desktop trip list](docs/wireframes/desktop/pp4-wireframe-desktop-trip-list.png)
+
+![PlanIt-Go wireframe desktop trip detail](docs/wireframes/desktop/pp4-wireframe-desktop-trip-detail.png)
+
+![PlanIt-Go wireframe desktop place detail](docs/wireframes/desktop/pp4-wireframe-desktop-place-detail.png)
+
+![PlanIt-Go wireframe desktop reviews and images](docs/wireframes/desktop/pp4-wireframe-desktop-reviews-images.png)
+
 </details>
 
 ## **Database Schema**

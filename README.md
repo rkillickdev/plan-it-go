@@ -1020,14 +1020,119 @@ Below are bugs that were discovered during development and testing.  I have not 
 
 # **Credits**
 
-## **Code Used and Referenced** 
+## **Code Used and Referenced**
+
+* [Django Wednesdays YouTube Tutorial - creating users ans profiles](https://www.youtube.com/watch?v=KNvSWubOaQY)
+
+* [Populating a database with data from an API response](https://dev.to/yahaya_hk/how-to-populate-your-database-with-data-from-an-external-api-in-django-398i)
+
+* [Referenced this thread when choosing the best format for storing Geo data](https://dba.stackexchange.com/questions/107089/decimal-or-point-data-type-for-storing-geo-location-data-in-mysql#:~:text=precision%20you%20should%20use%20DECIMAL,number%20after%20the%20decimal%20point.)
+
+* [Referenced thread when understanding how to filter list views down to only objects owned by the logged in user](https://stackoverflow.com/questions/59408167/list-of-current-user-objects-in-django-listview)
+
+* [Referenced thread when writing the get_place view to populate the Places database, to prevent duplicate entries](https://stackoverflow.com/questions/67104304/how-do-i-check-for-duplicates-in-django-sqlite-database)
+
+* [Referenced thread to understand how to pass url arguments to a generic class based List View](https://stackoverflow.com/questions/52871149/how-to-pass-variable-in-url-to-django-list-view)
+
+* [Referenced when setting css_class and css_id on crispy forms](https://github.com/django-crispy-forms/django-crispy-forms/issues/849)
+
+* [Referenced when setting only first slide of carousel to active](https://stackoverflow.com/questions/15867692/how-to-put-an-class-on-specific-first-element-inside-loop)
+
+* [Referenced when attempting to only set one carousel item as active at any time](https://stackoverflow.com/questions/46976268/django-multiple-active-item-carousel)
+
+* [Referenced when understanding how to filter by many to many fields](https://stackoverflow.com/questions/36024677/many-to-many-exclude-on-multiple-objects)
+
+* [Referenced the following when trying to access environment variables in Django templates](https://stackoverflow.com/questions/62797296/how-to-access-environment-variable-from-html-or-js-in-django)
+
+* [Referenced this article about using json script template tag to pass variables from Django template to JavaScript file](https://adamj.eu/tech/2020/02/18/safely-including-data-for-javascript-in-a-django-template/)
+
+* [Referenced Google Docs about Maps API](https://adamj.eu/tech/2020/02/18/safely-including-data-for-javascript-in-a-django-template/)
+
+* [Referenced this Code Institute thread when investigating the topic of keeping Google API keys secure](https://code-institute-room.slack.com/archives/C7HS3U3AP/p1599498777037500)
+
+* [Referenced thread when understanding how to check current URL](https://stackoverflow.com/questions/2491605/how-to-get-the-current-url-namespace-using-django)
+
+* [Referenced thread when attempting to make Bootstrap cards all the same size](https://stackoverflow.com/questions/37287153/how-to-get-images-in-bootstraps-card-to-be-the-same-height-width)
+
+* [Used this tutorial when learning how to implement pagination with function based views](https://www.youtube.com/watch?v=N-PB-HMFmdo&list=PLCC34OHNcOtqW9BJmgQPPzUpJ8hl49AGy&index=19)
+
+* [Referenced this when finding out how to access allauth forms and style with Django crispy forms](https://gist.github.com/ambivalentno/9d6828fe8b5d894a6f2d)
+
+* [Referenced this article when attempting to target carousel items with JavaScript](https://developer.mozilla.org/en-US/docs/Web/API/Event/currentTarget)
+
+* [Using set.all() to iterate over instances of a foreign key](https://stackoverflow.com/questions/60180014/django-display-foreign-key-reference-in-template)
+
+* [Using .first() when filtering objects](https://stackoverflow.com/questions/39094974/objectdoesnotexist-vs-filter-first-and-check-for-none#:~:text=first()%20will%20return%20the,one%20item%20matches%20the%20query%2C%20.)
+
+* [Referenced when researching a solution to listening for onerror events from images](https://stackoverflow.com/questions/8124866/how-does-one-use-the-onerror-attribute-of-an-img-element)
+
+* [Cloudinary image transformations](https://cloudinary.com/documentation/django_image_manipulation#apply_common_image_transformations)
+
+* [Optimising images with Cloudinary](https://cloudinary.com/documentation/image_optimization)
+
+* [Python image uploads with Cloudinary](https://cloudinary.com/documentation/django_image_and_video_upload)
+
+* [Sending messages from Django views and accessing in templates](https://docs.djangoproject.com/en/4.2/ref/contrib/messages/)
+
+* [Solution for counting words in a sentence with numpy](https://www.geeksforgeeks.org/python-program-to-count-words-in-a-sentence/)
+
+* [Implementation of font awesome stars to represent place ratings](https://codereview.stackexchange.com/questions/177945/convert-rating-value-to-visible-stars-using-fontawesome-icons)
+
+* [Displaying Django messages in Bootstrap toasts](https://stackoverflow.com/questions/58863057/displaying-a-message-as-a-popup-alert-in-django)
+
+* [Targeting Bootstrap navbar toggler icon for hover effect](https://stackoverflow.com/questions/63695329/how-can-i-change-bootstrap-4-navbar-toggler-color-on-hover)
+
+* [Filtering form field queryset to limit drop down menu choices](https://stackoverflow.com/questions/291945/how-do-i-filter-foreignkey-choices-in-a-django-modelform)
+
+* [Referenced when understanding how to add staff_required to class based views](https://gist.github.com/tauzen/8752582)
+
+* [Fix for allauth middleware bug 'ModuleNotFoundError'](https://stackoverflow.com/questions/77012106/django-allauth-modulenotfounderror-no-module-named-allauth-account-middlewar)
+
+* [Referenced this thread when finding solutions for defensive programming across the site](https://stackoverflow.com/questions/72980454/defensive-programming-for-delete-function-in-views-django)
+
+* [Testing of Django forms with unittest](https://stackoverflow.com/questions/25937042/how-to-test-custom-django-forms-clean-save-methods)
+
+* [Django best practices](https://learndjango.com/tutorials/django-best-practices-projects-vs-apps)
+
+* [unittest and Crispy Forms](https://stackoverflow.com/questions/24898912/django-crispy-form-unit-test-fails-because-of-typeerror-of-helper-object)
+
+* [unittesting with Django Update Views](https://stackoverflow.com/questions/38859266/django-how-to-unit-test-update-views-forms)
+
+* [Using slugify to auto poulate slug fields](https://stackoverflow.com/questions/141487/is-there-an-easy-way-to-populate-slugfield-from-charfield)
+
+* [*args & **kwards in Python](https://realpython.com/python-kwargs-and-args/)
+
+* The following threads and articles were referenced while I was researching and implementing Django Crispy Forms:
+
+    * [Article One](https://simpleisbetterthancomplex.com/tutorial/2018/11/28/advanced-form-rendering-with-django-crispy-forms.html)
+
+    * [Article Two](https://stackoverflow.com/questions/58857859/django-crispy-tag-vs-formcrispy-filter-whats-the-difference)
+
+    * [Article Three](https://stackoverflow.com/questions/75603468/overriding-the-default-class-attribute-using-django-crispy-forms)
+
+    * [Article Four](https://www.scaler.com/topics/django/django-crispy-forms/)
+
+    * [Article Five](https://github.com/django-crispy-forms/django-crispy-forms/issues/97)
+
+    * [Article Six](https://ana-balica.github.io/2014/11/04/the-tale-of-dry-with-django-crispy-forms/)
+
+    * [Article Seven](https://django-crispy-forms.readthedocs.io/en/latest/form_helper.html)
+
+    * [Article Eight](https://django-crispy-forms.readthedocs.io/en/latest/crispy_tag_forms.html)
+
+<br>
 
 ## **Media**
 
 ## **Acknowledgements**
 
+<br>
 
-Include Proc File details
+* To my family for supporting me through this journey!
+* To my Code Institute Mentor Can Sucullu for his help, advice and feedback during our mentoring sessions.
+
+
+
 
 
 

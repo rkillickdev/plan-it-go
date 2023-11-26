@@ -953,16 +953,48 @@ The following steps were followed to deploy the site to Heroku:
     ``` 
 
 7.  Next select the 'Deploy' tab, select GitHub as the deployment method, and click the 'Connect to GitHub' button.
-8.  Search for the GitHub repository name in the 'App Connected to GitHub' section and then click the 'connect' button'
+8.  Search for the GitHub repository name (plan-it-go) in the 'App Connected to GitHub' section and then click the 'connect' button'
 9.  You can now choose to enable automatic deploys or deploy manually.  When the 'automatic deploys' button is clicked and enabled, Heroku will rebuild the app every time a new change is pushed to GitHub.  In the 'Manual deploy' section, the 'Deploy branch' button can be clicked to deploy manually.
 10.  I chose to deploy manually. Once the app is built, a link is provided to the [deployed app](https://plan-it-go-5b10d0005b0a.herokuapp.com/).
 
+<br>
 
+## **Local Development**
+
+<br>
+
+### **How to fork:**
+
+<br>
+
+1. Log in (or sign up) to GitHub.
+2. Find the required repository, in this case: rkillickdev/plan-it-go
+3. Click on the "fork" button at the top right of the page.
+
+<br>
+
+### **How to clone:**
+
+<br>
+
+1. Log in (or sign up) to GitHub.
+2. Find the required repository, in this case: rkillickdev/plan-it-go
+3. Click on the green code button.  This will give you the choice of cloning the repository using HTTPS, an SSH key or GitHub CLI.  Make your selection and copy the provided URL link.
+4. Open the Terminal in your IDE of choice.
+5. Change the current working directory to the location where you want the cloned directory.
+6. Type 'git clone' and then paste the URL you copied earlier.
+7. Press enter.
+
+<br>
 
 
 # **Bugs**
 
 ## **Known Bugs**
+
+| Bug Description | Solutions Tried |
+| ------------ | --------------- |
+| 
 
 ## **Solved Bugs**
 

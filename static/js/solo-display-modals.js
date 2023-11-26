@@ -14,7 +14,7 @@ for (let image of soloImages) {
 
 // Populates Solo Destination Info Modal
 
-let destinationCities = document.getElementsByClassName("destination-city-mini");
+let destinationCities = document.getElementsByClassName("destination-modal");
 
 for(let city of destinationCities) {
     city.addEventListener("click", (e) => {

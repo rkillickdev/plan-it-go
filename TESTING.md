@@ -32,7 +32,7 @@
 | ---- | :----: |
 | As a Site User I can register an account so that I can access features only available to registered users such as creating and planning trips [#2](https://github.com/rkillickdev/plan-it-go/issues/2) | Pass |
  
-`When clicking on the 'Sign Up' link or call to action hero button, users are directed to the Sign Up page and if they complete a valid form, an account is created and they are successfully logged in.  They are redirected to their trp list page where they are prompted to create a profile.`
+`When clicking on the 'Sign Up' link or call to action hero button, users are directed to the Sign Up page and if they complete a valid form, an account is created and they are successfully logged in.  They are redirected to their trip list page where they are prompted to create a profile.`
 
 ![PlanIt-Go user story test signup](docs/testing/userstories/gifs/pp4-user-story-testing-signup.gif)
 
@@ -48,7 +48,7 @@
 | ---- | :----: |
 | As a Site User I can log out of my account for security so that no one else can access or modify my trips [#4](https://github.com/rkillickdev/plan-it-go/issues/4) | Pass |
 
-`When clicking on the "Logout' link, users are directed to the Logout confirmation page.  If they click on the 'Logout' button, they are sucessfully logged out and redirected to the home page.`
+`When clicking on the "Logout' link, users are directed to the Logout confirmation page.  If they click on the 'Logout' button, they are successfully logged out and redirected to the home page.`
 
 ![PlanIt-Go user story test logout](docs/testing/userstories/gifs/pp4-user-story-testing-logout.gif)
 
@@ -78,13 +78,13 @@
 | ---- | :----: |
 | As a Site Administrator I can access models from the Django admin panel so that I can interact directly with the database [#35](https://github.com/rkillickdev/plan-it-go/issues/35) | Pass |
 
-`I have created a superuser who has access to the entirety of the Django Admin panel and a 'moderator' login, who has limited access to the Django Admin panel, based on the tasks they need to carry out.  Currently, only the superuser can approve a destination, to ensure these are only available to regular site users once they have been checked thoroughly.`
+`I have created a superuser who has access to the entirety of the Django Admin panel and a 'moderator' login, who has limited access to the Django Admin panel, based on the tasks they need to carry out.`
 
 | User Story | Satisfies Acceptance Criteria |
 | ---- | :----: |
 | As a user with staff status I can add and amend details for destinations so that the content on the site can continually be expanded and updated [#39](https://github.com/rkillickdev/plan-it-go/issues/39) | Pass |
 
-`I have created a user called 'moderator' and as a superuser, allocated them 'staff' status.  This mean that on successful login, they can access a 'destinations' page where they can create new destinations or update existing.  Once a new destination has been created, it will not be displayed to regular site users until it has been approved by a super user via the Django Admin Panel.  This prevents a situation where a destination might be available to browse but it has no places to display yet.`
+`I have created a user called 'moderator' and as a superuser, allocated them 'staff' status.  This mean that on successful login, they can access a 'destinations' page where they can create new destinations or update existing.  Once a new destination has been created, it will not be displayed to regular site users until it has been approved via the Django Admin Panel.  This prevents a situation where a destination might be available to browse but it has no places to display yet.`
 
 ![PlanIt-Go user story test staff login](docs/testing/userstories/gifs/pp4-user-story-testing-staff-login.gif)
 
@@ -98,9 +98,9 @@
 
 | User Story | Satisfies Acceptance Criteria |
 | ---- | :----: |
-| As a user with staff status I can add places for a destination to the database so that site users can browse these recommended places and add to their trips [#40](https://github.com/rkillickdev/plan-it-go/issues/40) |
+| As a user with staff status I can add places for a destination to the database so that site users can browse these recommended places and add to their trips [#40](https://github.com/rkillickdev/plan-it-go/issues/40) | Pass |
 
-`If no places exist fof the selected destination, clicking on the magnifying glass takes the staff user to a 'get places' page where they can attempt to retrieve places.  If a json file has been prepared in advance using the APIFY Trip Advisor web scraper tool, this is accessed and the database is populated with places for the specified destination.  The staff user is then redirected to the newly populated place list page.`
+`If no places exist for the selected destination, clicking on the magnifying glass takes the staff user to a 'get places' page where they can attempt to retrieve places.  If a json file has been prepared in advance using the APIFY Trip Advisor web scraper tool, this is accessed and the database is populated with places for the specified destination.  The staff user is then redirected to the newly populated place list page.`
 
 ![PlanIt-Go user story test staff get places](docs/testing/userstories/gifs/pp4-user-story-testing-staff-get-places.gif)
 
@@ -113,13 +113,13 @@
 | ---- | :----: |
 | As an admin superuser I can customise the django admin panel so that I can order and filter instances of models [#42](https://github.com/rkillickdev/plan-it-go/issues/42) | Pass |
 
-`This has been achieved by specifying the display and search fields in the admin.py file for required apps.  This provides an enhanced experiece in the Django Admin Panel, especially when there are a large number of instances for a model.`
+`This has been achieved by specifying the display and search fields in the admin.py file for required apps.  This provides an enhanced experience in the Django Admin Panel, especially when there are a large number of instances for a model.`
 
 | User Story | Satisfies Acceptance Criteria |
 | ---- | :----: |
 | As a staff user I can moderate places through the site interface so that I can ensure places with sufficient quality info are displayed to site users [#61](https://github.com/rkillickdev/plan-it-go/issues/61) | Pass |
 
-`Once places have been retrieved for a location, the moderator with staff user permissions can naviagte to the detail page for each place and decide whether it is suitable to display to regualr site users.  By default, places are approved but clicking on the thumbs down icon 'unapproves' and this place will then not be displayed to regualr site users.`
+`Once places have been retrieved for a location, the moderator with staff user permissions can navigate to the detail page for each place and decide whether it is suitable to display to regular site users.  By default, places are approved but clicking on the thumbs down icon removes approval and this place will then not be displayed to regular site users.`
 
 ![PlanIt-Go user story test staff place approval](docs/testing/userstories/gifs/pp4-user-story-testing-staff-place-approval.gif)
 
@@ -190,7 +190,7 @@
 | ---- | :----: |
 | As a user I can see a countdown to my trip so that I know how many days until I travel [#36](https://github.com/rkillickdev/plan-it-go/issues/36) | N/A |
 
-`This user story was not classified as a 'Must Have' for any of the agile sprints, so due to time constraints, it has been placed in a future features column of my `[kanban board](https://github.com/users/rkillickdev/projects/4)``.  This feature can be implemented in a future iteration.`
+`This user story was not classified as a 'Must Have' for any of the agile sprints, so due to time constraints, it has been placed in a future features column of my` [kanban board](https://github.com/users/rkillickdev/projects/4)`.  This feature can be implemented in a future iteration.`
 
 | User Story | Satisfies Acceptance Criteria |
 | ---- | :----: |
@@ -305,7 +305,7 @@
 | ---- | :----: |
 | As a Site User I can immediately understand the purpose of the site when I arrive at the home page so that I can quickly and intuitively start planning trips [#29](https://github.com/rkillickdev/plan-it-go/issues/29) | Pass |
 
-`The hero image used on the home page instantly conveys the idea of plotting out places on a map, which ties into the core goal of the site which is to assist users in planning trips to destinations around the world.  The call to action button makes it quicky and easy for the user to sign up and login, so they can start using the advanced functionality of the site`
+`The hero image used on the home page instantly conveys the idea of plotting out places on a map, which ties into the core goal of the site which is to assist users in planning trips to destinations around the world.  The call to action button makes it quick and easy for the user to sign up and login, so they can start using the advanced functionality of the site`
 
 | User Story | Satisfies Acceptance Criteria |
 | ---- | :----: |
@@ -323,7 +323,7 @@
 | ---- | :----: |
 | As a Site User I feel a positive emotional response while interacting with the site so I am engaged and continue to use and return [#32](https://github.com/rkillickdev/plan-it-go/issues/32) | Pass |
 
-`Continuity of styling, imagery and functionality across the site means that each page has a familar feel when the user lands on it.  Static images used on the site have been selected to invoke a curiosity about travel and the desire to find out more about destinations around the world.  Even if errors occur, they are handled gracefully in keeping with the site aesthetics, so users are not taken away from this positive experience.  User Interactions with the functionality of the site are designed to be simple and intuitive and provide a pleasing user experience`
+`Continuity of styling, imagery and functionality across the site means that each page has a familiar feel when the user lands on it.  Static images used on the site have been selected to invoke a curiosity about travel and the desire to find out more about destinations around the world.  Even if errors occur, they are handled gracefully in keeping with the site aesthetics, so users are not taken away from this positive experience.  User Interactions with the functionality of the site are designed to be simple and intuitive and provide a pleasing user experience`
 
 | User Story | Satisfies Acceptance Criteria |
 | ---- | :----: |

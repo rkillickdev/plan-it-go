@@ -614,6 +614,8 @@ Models for the site can be accessed and manipulated from the Django Admin panel.
 
 ![PlanIt-Go Django admin moderator](docs/features/pp4-features-django-admin-moderator.png)
 
+[Back to top &uarr;](#contents)
+
 ### **Error Pages**
 
 I have included custom 403, 404 and 500 error pages as a form of defensive design. This improves the user experience by keeping the user informed about the problem and engaged with the site.  The styling imagery and branding used on these pages is consistent with the rest of the user experience.  To ensure the user does not decide to navigate away from the site, a 'Back To Home Page' button is displayed.  This also ensures they do not have to use the back button in their browser for navigation.
@@ -636,6 +638,8 @@ Displayed to warn the user when an internal server error occurs.  This lets them
 
 ![PlanIt-Go 500 error](docs/features/pp4-features-500-error.png)
 
+[Back to top &uarr;](#contents)
+
 ### **Favicon and Meta Tags**
 
 A favicon link has been included in the head of the base.html template and displays in each browser tab. The image is the same icon that is used in the navbar brand heading, to ensure consistency of styling.  It is a 16px X 16px ico file generated on the [Favicon.ico & App Icon Generator](https://www.favicon-generator.org/)
@@ -645,6 +649,8 @@ A favicon link has been included in the head of the base.html template and displ
 Open Graph and Twitter meta tags have been placed in the head of the base.html template to control how the URL is displayed when shared on social media.  It appears as displayed below:
 
 ![Meta Tags social media display](docs/features/pp4-features-meta-tags-socials-display.png)
+
+[Back to top &uarr;](#contents)
 
 ### **Security**
 
@@ -678,6 +684,8 @@ In the settings file, for production purposes I have declared ```DEBUG = False``
 
 CSRF tokens were used in forms across the site to protect against [Cross Site Request Forgery](https://docs.djangoproject.com/en/3.2/ref/csrf/).  When rendering forms using the crispy forms helper, these are automatically included.  For any other forms across the site, I have added manually.
 
+[Back to top &uarr;](#contents)
+
 ### **Responsive design**
 
 I adopted a mobile first approach when designing and building the site.  Bootstrap's grid system and responsiveness tiers were used to provide different layouts according to default breakpoints and ensure responsiveness across a range of device sizes.  Additional styling tweaks were made using media queries in my [styles.css](static/css/styles.css) sheet.
@@ -692,6 +700,8 @@ I adopted a mobile first approach when designing and building the site.  Bootstr
 
 ![PlanIt-Go responsive design 05](docs/features/responsive/pp4-mobile-responsive-05.png)
 
+[Back to top &uarr;](#contents)
+
 ### **Accessibility**
 
 To ensure that the site is as accessible as possible for all users and compatible with screen readers, I have implemented the following:
@@ -701,9 +711,7 @@ To ensure that the site is as accessible as possible for all users and compatibl
 * Descriptive alt attributes have been given to all images.
 * Aria labels have been used for interactive elements where no accessible name is provided.
 
-I used the [Wave Chrome Extension](https://wave.webaim.org/extension/) to check the accessibility of each page,  Results for this can be viewd in the[TESTING.md file](https://github.com/rkillickdev/plan-it-go/blob/main/TESTING.md)
-
-<br>
+I used the [Wave Chrome Extension](https://wave.webaim.org/extension/) to check the accessibility of each page,  Results for this can be viewed in the[TESTING.md file](https://github.com/rkillickdev/plan-it-go/blob/main/TESTING.md)
 
 ## **Future Features**
 
@@ -711,10 +719,10 @@ Functionality that is not within the scope of this project, but that could be im
 
 * The ability to specify dates of travel and display a countdown on the user's trip detail page
 * The ability to refine recommended places by filtering e.g only restaurants.  Instances of the Place database already have 'type' and 'category' attributes so this filtering should be achievable.
-* The ability for users to recommend a place, or better still leave a rating.  This could be useful data to aquire, as eventually recommendations could be displayed in order of popularity amongst site users.
+* The ability for users to recommend a place, or better still leave a rating.  This could be useful data to acquire, as eventually recommendations could be displayed in order of popularity amongst site users.
 * The ability to mark a trip or visit to a place as complete
 
-<br>
+[Back to top &uarr;](#contents)
 
 ## **SURFACE PLANE**
 
@@ -763,7 +771,7 @@ The brand logo used in the navbar has been designed to be minimalistic and insta
 * [Javascript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 * [Python](https://www.python.org/)
 
-* I decided not to use jQuery in this project and implemented any functionality that required js with vanilla javascript.  I plan to use jQuery in a future project to enhance my knowledge of this library
+* I decided not to use jQuery in this project and implemented any functionality that required JavaScript with vanilla JavaScript.  I plan to use jQuery in a future project to enhance my knowledge of this library
 
 ## **Programs and Tools Used**
 
@@ -805,7 +813,7 @@ The brand logo used in the navbar has been designed to be minimalistic and insta
 The [requirements.txt](requirements.txt) file provides information on required installations for this project.  Below are libraries that I installed to implement site functionality:
 
 * [amadeus](https://developers.amadeus.com/self-service/category/destination-experiences/api-doc/points-of-interest) - Installed in the testing phase when researching how to retrieve data for places that could be used on the site.
-* [apify](https://apify.com/) - Installed when testing the use of the Apify Trip Advisor web scraper.  This made it possible to retrieve a response via their api rather than through their own interface.
+* [apify](https://apify.com/) - Installed when testing the use of the APIFY Trip Advisor web scraper.  This made it possible to retrieve a response via their API rather than through their own interface.
 * [cloudinary](https://cloudinary.com/) - Python library to facilitate integration of cloudinary with Django
 * [dj-databse-url](https://pypi.org/project/dj-database-url/) - A utility that allows use of the DATABASE_URL environment variable to configure a Django application.  This was used for connection to the PostgreSQL database.
 * [dj3-cloudinary-storage](https://pypi.org/project/dj3-cloudinary-storage/) - A Django package that facilitates Cloudinary storage for media files used in the project.
@@ -817,11 +825,9 @@ The [requirements.txt](requirements.txt) file provides information on required i
 * [psycopg2](https://pypi.org/project/psycopg2/) - A Python PostgreSQL Database Adapter.
 * [whitenoise](https://pypi.org/project/whitenoise/) - Simplified static file serving for WSGI applications.  I used this to serve static images, css files and JavaScript files.
 
-<br>
+[Back to top &uarr;](#contents)
 
 # **Testing**
-
-<br>
 
 Please follow this link to the [TESTING.md file](https://github.com/rkillickdev/plan-it-go/blob/main/TESTING.md), for documentation about the testing procedure I followed for this project.
 
@@ -831,7 +837,7 @@ I made sure to keep my requirements.txt file up to date throughout, running the 
 
 In development mode, the sqlite3 database provided by Django was used but this was not suitable for use in a production environment.  The deployed site uses a PostreSQL database hosted by [elephantSQL](https://www.elephantsql.com/) that Heroku can access.  It was therefore necessary to create an account with [elephantSQL](https://www.elephantsql.com/), and create a new database instance selecting the Tiny Turtle(free) plan.  My database instance is also named 'plan-it-go'.  From the ElephantSQL dashboard, clicking on the database reveals a 'details' page where you can access the database URL, which is necessary for use in both the production and development environments.
 
-To implement functionality of the PostgreSQL database with Django, the following libraries were intalled using the terminal command:
+To implement functionality of the PostgreSQL database with Django, the following libraries were installed using the terminal command:
 
 ```
 pip3 install dj_database_url==0.5.0 psycopg2
@@ -917,7 +923,7 @@ development = os.environ.get('DEVELOPMENT', False)
 DEBUG = development
 ```
 
-In my env.py file I have `os.environ["DEVELOPMENT"] = "True"`.  This means that when setting the value of the variable `development` in the settings.py file, there will be an attemp to access 'DEVELOPMENT'.  This is only defined in the env.py file, but **not** in the Heroku config vars, therefore because 'DEVELOPMENT' cannot be found by Heroku, the variable `development` defaults to False.  And therefore it follows that: 
+In my env.py file I have `os.environ["DEVELOPMENT"] = "True"`.  This means that when setting the value of the variable `development` in the settings.py file, there will be an attempt to access 'DEVELOPMENT'.  This is only defined in the env.py file, but **not** in the Heroku config vars, therefore because 'DEVELOPMENT' cannot be found by Heroku, the variable `development` defaults to False.  And therefore it follows that: 
 ```python
 DEBUG = False
 ```
@@ -966,7 +972,7 @@ The following steps were followed to deploy the site to Heroku:
 
     `web` here tells Heroku `this is a process that should accept http traffic`
 
-    `gunicorn` here is a web services gateway interface server (wsgi), which is a `standard that allows Python services to integrate with web servers`.  As the version of Django being used for this project is `3.2.21`, the Gunicorn server must be installled using the terminal command:
+    `gunicorn` here is a web services gateway interface server (wsgi), which is a `standard that allows Python services to integrate with web servers`.  As the version of Django being used for this project is `3.2.21`, the Gunicorn server must be installed using the terminal command:
 
     ```
     pip3 install 'django<4' gunicorn
@@ -977,25 +983,15 @@ The following steps were followed to deploy the site to Heroku:
 9.  You can now choose to enable automatic deploys or deploy manually.  When the 'automatic deploys' button is clicked and enabled, Heroku will rebuild the app every time a new change is pushed to GitHub.  In the 'Manual deploy' section, the 'Deploy branch' button can be clicked to deploy manually.
 10.  I chose to deploy manually. Once the app is built, a link is provided to the [deployed app](https://plan-it-go-5b10d0005b0a.herokuapp.com/).
 
-<br>
-
 ## **Local Development**
 
-<br>
-
 ### **How to fork:**
-
-<br>
 
 1. Log in (or sign up) to GitHub.
 2. Find the required repository, in this case: rkillickdev/plan-it-go
 3. Click on the "fork" button at the top right of the page.
 
-<br>
-
 ### **How to clone:**
-
-<br>
 
 1. Log in (or sign up) to GitHub.
 2. Find the required repository, in this case: rkillickdev/plan-it-go
@@ -1005,8 +1001,7 @@ The following steps were followed to deploy the site to Heroku:
 6. Type 'git clone' and then paste the URL you copied earlier.
 7. Press enter.
 
-<br>
-
+[Back to top &uarr;](#contents)
 
 # **Bugs**
 
@@ -1015,7 +1010,7 @@ The following steps were followed to deploy the site to Heroku:
 | Bug Description | Solutions Tried |
 | ------------ | --------------- |
 | A small styling issue that would be nice to fix in future iterations, is to replace the standard browser blue highlight effect that appears when using drop down menus on desktop devices with one of the core site highlight colours. | I have tried targeting this with various css classes with no success yet.  With more time, I hope to find a work around or fix |
-| Unreliable Image SRC backup placeholder script | I have tested the [img-src-backup](static/js/img-src-backups.js) JavaScript file that should catch any occassion an image link served externally were to throw an error, and replace with a placeholder image.  Although this has been working when tested, it does not seem to provide 100% reliability and this is functionality that I would like to look into further with the benefit of more time.  My next approach will be to look at a way to add event listeners **after** the page has loaded so it can read the correct image tags, but **before** the url is retrieved |
+| Unreliable Image SRC backup placeholder script | I have tested the [img-src-backup](static/js/img-src-backups.js) JavaScript file that should catch any occasion an image link served externally were to throw an error, and replace with a placeholder image.  Although this has been working when tested, it does not seem to provide 100% reliability and this is functionality that I would like to look into further with the benefit of more time.  My next approach will be to look at a way to add event listeners **after** the page has loaded so it can read the correct image tags, but **before** the url is retrieved |
 
 <br>
 
@@ -1029,20 +1024,20 @@ Below are bugs that were discovered during development and testing.  I have not 
 | I deployed the site to Heroku early and encountered an issue where no static files were being collected.  I am using whitenoise to host my static files | The solution was that under `INSTALLED APPS` in the settings.py file, `django.contrib.staticfiles` must be listed **BEFORE** `cloudinary_storage`, otherwise `collectstatic` does not work.  I found this [great post](https://code-institute-room.slack.com/archives/C026PTF46F5/p1683039292374329) in the Code Institute Slack channels that helped me solve the issue fairly quickly |
 | I discovered that once a review had been submitted on the reviews page, refreshing the browser would result in another identical review being created | For the review_create view (trips/view.py),I added an ```HttpResponseRedirect``` for any requests with the 'POST' method.  Prior to this, both POST and GET requests were using render, and this was causing the problem when posting a review. |
 | Addresses displaying ```None``` as a value on the place detail / browse detail pages | I discovered that within the address object of place json data returned by the web scraper, some empty address lines would be represented as an empty string and some as Null which then showed as None when the json data was parsed by python.  I added an additional conditional statement to the single_place_info.html template on line 74, which now reads as ```{% if value and not value == "" %}```.  This checks if there is any value at all, and then goes on to check whether this value is an empty string.  It must satisfy these two conditions to then render the value to the template. |
-| Defensive programming missing on trip and profile views | Add defensive programming where necessay using ```raise PermissionDenied()```.  View [GitHub Issue#44](https://github.com/rkillickdev/plan-it-go/issues/44) to see the full steps taken to resolve |
-| If Image links that are loaded from external sources such as the https://media-cdn.tripadvisor.com/ or Cloudinary are broken/ return an error, there was no defensive programming in place to ensure a replacement image is displayed | I wrote a javascript file to listen for errors on any image tags on the page.  If an error is detected, a placeholder image is loaded from the static/images folder is loaded.  View [GitHub Issue#45](https://github.com/rkillickdev/plan-it-go/issues/45) to see the full steps taken to resolve |
-| Profile form submit button displaying 'Create Profile' if user is updating their profile | Wrote the forms.js javascript file determine form status and change the submit button value to 'Update' if required. View [GitHub Issue#47](https://github.com/rkillickdev/plan-it-go/issues/47) |
+| Defensive programming missing on trip and profile views | Add defensive programming where necessary using ```raise PermissionDenied()```.  View [GitHub Issue#44](https://github.com/rkillickdev/plan-it-go/issues/44) to see the full steps taken to resolve |
+| If Image links that are loaded from external sources such as the https://media-cdn.tripadvisor.com/ or Cloudinary are broken/ return an error, there was no defensive programming in place to ensure a replacement image is displayed | I wrote a javascript file to listen for errors on any image tags on the page.  If an error is detected, a placeholder image is loaded from the static/images folder.  View [GitHub Issue#45](https://github.com/rkillickdev/plan-it-go/issues/45) to see the full steps taken to resolve |
+| Profile form submit button displaying 'Create Profile' if user is updating their profile | I wrote the forms.js javascript file to determine form status and change the submit button value to 'Update' if required. View [GitHub Issue#47](https://github.com/rkillickdev/plan-it-go/issues/47) |
 | Google maps markers not displaying the correct place names on hover/ clicking | I needed to pass the place name to the maps.js and map-cluster.js javascript files from the html template.  I did this using the json_script template tag, and then used this to label the map markers.  View [GitHub Issue#49](https://github.com/rkillickdev/plan-it-go/issues/49) |
-| Destination carousel cards displaying incorrect information when opened in modal |. To solve this, I reverted back to only wrapping the img element of the card in the button to trigger the modal. View [GitHub Issue#50](https://github.com/rkillickdev/plan-it-go/issues/50) |
-| I noticed side scrolling was necessary on the profile page when viewing on smaller mobile devices |  I discovered that the issue was being caused by overflow from the image file select field.  I added the "form-select" class to any form with a file input field.  This has prevented overspill and solved the problen of side scrolling.  View [GitHub Issue#54](https://github.com/rkillickdev/plan-it-go/issues/54) | 
+| Destination carousel cards displaying incorrect information when opened in modal | To solve this, I reverted back to only wrapping the img element of the card in the button to trigger the modal. View [GitHub Issue#50](https://github.com/rkillickdev/plan-it-go/issues/50) |
+| I noticed side scrolling was necessary on the profile page when viewing on smaller mobile devices |  I discovered that the issue was being caused by overflow from the image file select field.  I added the "form-select" class to any form with a file input field.  This has prevented overspill and solved the problem of side scrolling.  View [GitHub Issue#54](https://github.com/rkillickdev/plan-it-go/issues/54) | 
 
-
+[Back to top &uarr;](#contents)
 
 # **Credits**
 
 ## **Code Used and Referenced**
 
-* In the initial planning stages of the project, I found the Code Insititute Peer review channel on Slack a helpful tool to see what was required for the PP4 project.  In particular, I found this [Cinema Go Project](https://github.com/seanf316/P4-Cinema-Go) was a source of inspiration and a good indicator for covering all the asessment criteria.
+* In the initial planning stages of the project, I found the Code Institute Peer Review channel on Slack a helpful tool to see what was required for the PP4 project.  In particular, I found this [Cinema Go Project](https://github.com/seanf316/P4-Cinema-Go) was a source of inspiration and a good indicator for covering all the assessment criteria.
 
 ### **Video tutorials and classes**
 
@@ -1050,7 +1045,7 @@ Below are bugs that were discovered during development and testing.  I have not 
 
 * I used this [Udemy Bootstrap 5 From Scratch | Build 5 Modern Websites Course](https://www.udemy.com/course/bootstrap-from-scratch) to consolidate and expand my understanding of Bootstrap and Sass.
 
-* [Django Wednesdays YouTube Tutorial - creating users ans profiles](https://www.youtube.com/watch?v=KNvSWubOaQY)
+* [Django Wednesdays YouTube Tutorial - creating users and profiles](https://www.youtube.com/watch?v=KNvSWubOaQY)
 
 ### **Threads and Articles**
 
@@ -1128,9 +1123,9 @@ Below are bugs that were discovered during development and testing.  I have not 
 
 * [unittesting with Django Update Views](https://stackoverflow.com/questions/38859266/django-how-to-unit-test-update-views-forms)
 
-* [Using slugify to auto poulate slug fields](https://stackoverflow.com/questions/141487/is-there-an-easy-way-to-populate-slugfield-from-charfield)
+* [Using slugify to auto populate slug fields](https://stackoverflow.com/questions/141487/is-there-an-easy-way-to-populate-slugfield-from-charfield)
 
-* [*args & **kwards in Python](https://realpython.com/python-kwargs-and-args/)
+* [*args & **kwargs in Python](https://realpython.com/python-kwargs-and-args/)
 
 * The following threads and articles were referenced while I was researching and implementing Django Crispy Forms:
 
@@ -1150,7 +1145,7 @@ Below are bugs that were discovered during development and testing.  I have not 
 
     * [Article Eight](https://django-crispy-forms.readthedocs.io/en/latest/crispy_tag_forms.html)
 
-<br>
+[Back to top &uarr;](#contents)
 
 ## **Media**
 

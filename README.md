@@ -1032,6 +1032,9 @@ Below are bugs that were discovered during development and testing.  I have not 
 | Google maps markers not displaying the correct place names on hover/ clicking | I needed to pass the place name to the maps.js and map-cluster.js javascript files from the html template.  I did this using the json_script template tag, and then used this to label the map markers.  View [GitHub Issue#49](https://github.com/rkillickdev/plan-it-go/issues/49) |
 | Destination carousel cards displaying incorrect information when opened in modal | To solve this, I reverted back to only wrapping the img element of the card in the button to trigger the modal. View [GitHub Issue#50](https://github.com/rkillickdev/plan-it-go/issues/50) |
 | I noticed side scrolling was necessary on the profile page when viewing on smaller mobile devices |  I discovered that the issue was being caused by overflow from the image file select field.  I added the "form-select" class to any form with a file input field.  This has prevented overspill and solved the problem of side scrolling.  View [GitHub Issue#54](https://github.com/rkillickdev/plan-it-go/issues/54) | 
+| During testing, I discovered that users might create a trip name that was unique, but when 'slugified' it would not be unique.  For example there could be two trip names 'LA LA Land' and 'la la land'.  When an instance of Trip is created and saved to the database, the slug field is auto populated and both would be 'slugified' as 'la-la-land'.  This throws an error and directs the user to the error 500 template. | I removed `unique=True` from the slug field in Trip model and Location model. This does not cause any further issues, as I am only using the slug field as an informational element in URLs therefore it is not a problem if two slugs are identical. The slug is always accompanied by the primary key, and this is the field that is used to look up records from the database. View [GitHub Issue#49](https://github.com/rkillickdev/plan-it-go/issues/68) to see the full steps taken to resolve |
+
+<br>
 
 [Back to top &uarr;](#contents)
 
@@ -1147,19 +1150,23 @@ Below are bugs that were discovered during development and testing.  I have not 
 
     * [Article Eight](https://django-crispy-forms.readthedocs.io/en/latest/crispy_tag_forms.html)
 
+<br>
+
 [Back to top &uarr;](#contents)
 
 ## **Media**
 
-* The Places database was populated with data retrieved from the [APIFY Trip Advisor Web Scraper](https://console.apify.com/actors/dbEyMBriog95Fv8CW/console)
+* The Places database was populated with data retrieved from the [APIFY Trip Advisor Web Scraper](https://console.apify.com/actors/dbEyMBriog95Fv8CW/console).  Information and images that appear as part of the place detail pages comess from the scraped APIFY data.
 
-* [chatGPT](https://chat.openai.com/) was used to generate text content for the destination descriptions, a few test user reviews and some user 'travel themed' profile screen names.  I also used it to generate some content for the 3 site goals on the home page, but actually ended up editing it quite heavily to fit the site purpose.
+* [chatGPT](https://chat.openai.com/) was used to generate some text content for the destination descriptions, a few test user reviews and some user 'travel themed' profile screen names.  I also used it to generate some content for the 3 site goals on the home page, but actually ended up editing it quite heavily to fit the site purpose.  Other content for the site was written by myself.
+
+* [Royalty free images used throughout the site from Pexels](https://www.pexels.com/)
 
 * The following [T.S. Eliot quote](https://www.goodreads.com/quotes/9840-we-shall-not-cease-from-exploration-and-the-end-of) which acts as as placeholder for user bios, was sourced online
 
-## **Acknowledgements**
-
 <br>
+
+## **Acknowledgements**
 
 * To my family for supporting me through this journey!
 * To my Code Institute Mentor Can Sucullu for his help, advice and feedback during our mentoring sessions.

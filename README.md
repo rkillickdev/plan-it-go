@@ -355,8 +355,6 @@ The footer displays social media links to the PlanIt Go Facebook, Twitter and In
 ### **Home Page**
 ___
 
-<br>
-
 #### **Header Hero Image**
 ___
 
@@ -498,8 +496,6 @@ The form used to create a new trip has been generated using django-crispy-forms.
 ### **Trip Details**
 ___
 
-<br>
-
 #### **Trip Summary**
 ___
 
@@ -546,8 +542,6 @@ Expanding each accordion item presents the user with the following clickable opt
 
 ### **Place Details**
 ___
-
-<br>
 
 #### **Place Summary**
 ___
@@ -646,8 +640,6 @@ To avoid the repetition of code and to ensure that the appearance of messages is
 
 ### **Role Based Login**
 ___
-
-<br>
 
 #### **Staff User Functionality**
 ___

@@ -36,6 +36,8 @@
 
 * When clicking on the 'Sign Up' link or call to action hero button, users are directed to the Sign Up page and if they complete a valid form, an account is created and they are successfully logged in.  They are redirected to their trip list page where they are prompted to create a profile.
 
+<br>
+
 | User Story | Satisfies Acceptance Criteria |
 | ---- | :----: |
 | As a Site User I can log in to my account so that I can create, view, update and delete my trips [#3](https://github.com/rkillickdev/plan-it-go/issues/3) | Pass |
@@ -44,13 +46,17 @@
 
 * When clicking on the "Login' link, users are directed to the Login page and if they complete a valid form, their account is retrieved and they are successfully logged in.  They are redirected to their trip list page.
 
+<br>
+
 | User Story | Satisfies Acceptance Criteria |
 | ---- | :----: |
 | As a Site User I can log out of my account for security so that no one else can access or modify my trips [#4](https://github.com/rkillickdev/plan-it-go/issues/4) | Pass |
 
-`When clicking on the "Logout' link, users are directed to the Logout confirmation page.  If they click on the 'Logout' button, they are successfully logged out and redirected to the home page.`
-
 ![PlanIt-Go user story test logout](docs/testing/userstories/gifs/pp4-user-story-testing-logout.gif)
+
+* When clicking on the "Logout' link, users are directed to the Logout confirmation page.  If they click on the 'Logout' button, they are successfully logged out and redirected to the home page.
+
+<br>
 
 | User Story | Satisfies Acceptance Criteria |
 | ---- | :----: |

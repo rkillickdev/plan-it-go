@@ -32,17 +32,17 @@
 | ---- | :----: |
 | As a Site User I can register an account so that I can access features only available to registered users such as creating and planning trips [#2](https://github.com/rkillickdev/plan-it-go/issues/2) | Pass |
  
-`When clicking on the 'Sign Up' link or call to action hero button, users are directed to the Sign Up page and if they complete a valid form, an account is created and they are successfully logged in.  They are redirected to their trip list page where they are prompted to create a profile.`
-
 ![PlanIt-Go user story test signup](docs/testing/userstories/gifs/pp4-user-story-testing-signup.gif)
+
+* When clicking on the 'Sign Up' link or call to action hero button, users are directed to the Sign Up page and if they complete a valid form, an account is created and they are successfully logged in.  They are redirected to their trip list page where they are prompted to create a profile.
 
 | User Story | Satisfies Acceptance Criteria |
 | ---- | :----: |
 | As a Site User I can log in to my account so that I can create, view, update and delete my trips [#3](https://github.com/rkillickdev/plan-it-go/issues/3) | Pass |
 
-`When clicking on the "Login' link, users are directed to the Login page and if they complete a valid form, their account is retrieved and they are successfully logged in.  They are redirected to their trip list page.`
-
 ![PlanIt-Go user story test login](docs/testing/userstories/gifs/pp4-user-story-testing-login.gif)
+
+* When clicking on the "Login' link, users are directed to the Login page and if they complete a valid form, their account is retrieved and they are successfully logged in.  They are redirected to their trip list page.
 
 | User Story | Satisfies Acceptance Criteria |
 | ---- | :----: |

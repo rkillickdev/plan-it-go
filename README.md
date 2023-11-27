@@ -301,8 +301,6 @@ Given the time limitations of the project, I have decided to pre-populate the Pl
 ### **Navbar**
 ___
 
-<br>
-
 ![PlanIt-Go navbar above 991px. Logged Out User](docs/features/pp4-features-navbar-full-logged-out.png)
 
 The navbar is common to all pages.  The HTML structure for this feature lives in the nav.html file with the following file path:
@@ -338,8 +336,6 @@ Clicking on the hamburger icon expands the nav links which are stacked verticall
 ### **Footer**
 ___
 
-<br>
-
 ![PlanIt-Go footer](docs/features/pp4-features-footer.png)
 
 The footer is common to all pages.  The HTML structure for this feature lives in the footer.html file with the following file path:
@@ -358,8 +354,6 @@ ___
 #### **Header Hero Image**
 ___
 
-<br>
-
 ![PlanIt-Go footer](docs/features/pp4-features-hero-image.png)
 
 The aim of the owner is that the purpose of the site should be immediately evident to the user when they land on the home page.  The hero image chosen to convey this message communicates both the themes of travel and planning, with the coloured pins placed in the map reminiscent of an age before the possibility of online trip planning.  A younger site user is more likely to associate these pins with the recognisable Google Maps interface, where digital pins are used to communicate location.
@@ -371,16 +365,12 @@ A call to action is then used, to draw the user into the 'trip planning' functio
 #### **Site Goals**
 ___
 
-<br>
-
 ![PlanIt-Go home page site goals](docs/features/pp4-features-site-goals.png)
 
 Three cards on the home page layout the ways in which the site can be used.  The inclusion of icons above each statement helps communicate these goals before the user has even read the text.
 
 #### **Destinations Carousel**
 ___
-
-<br>
 
 ![PlanIt-Go home page destinations carousel](docs/features/pp4-features-destinations-carousel.png)
 
@@ -393,16 +383,12 @@ The aim of this section is to allow users to browse and draw inspiration.  Click
 ### **Browse Places**
 ___
 
-<br>
-
 Users that are not logged in can still browse place recommendations for each featured destination.  Results are paginated to 12 places per page and displayed as clickable cards.  Users are always provided with the option to discover 'More Destinations'.  Clicking on this button directs them back to the home page destinations carousel.
 
 ![PlanIt-Go browse places](docs/features/pp4-features-browse-places.png)
 
 ### **Browse Details**
 ___
-
-<br>
 
 Users that are not logged in can view details of a place.  The appearance and styling of this page replicates what a logged in user would see.  The main difference is that clicking on the 'Plan A Trip' button directs the user to the 'sign up' page.  Clicking on the 'More Places' button navigates back to the browse places page.
 
@@ -415,9 +401,7 @@ Users that are not logged in can view details of a place.  The appearance and st
 ### **Authorisation**
 ___
 
-<br>
-
-The default Django allauth templates used for signing up, logging in and logging out have been styled to match the rest of the site and ensure a consistent user experience.
+Django allauth has been used to implement user registration and authentication. Certain functionality for the site can only be accessed once a user is authenticated.  The default Django allauth templates used for signing up, logging in and logging out have been styled to match the rest of the site and ensure a consistent user experience.
 
 ![PlanIt-Go sign up page](docs/features/pp4-features-signup.png)
 
@@ -437,14 +421,10 @@ LOGIN_REDIRECT_URL = '/trips/trip_list'
 ### **Trip List** 
 ___
 
-<br>
-
 Dependent on the status of the logged in user account, one of three pages are displayed.  Conditional 'If/ Else' statements are used in the html template to achieve these different displays:
 
 #### **New Users**
 ___
-
-<br>
 
 Upon successful login, a user profile is automatically created with a unique id.  The aim of the site however is to offer personalised profiles, so new users are encouraged to click the 'Create Profile' link where they can enter a unique screen name, upload a profile image and write a bio.  Only the screen name is a compulsory field in the form, as this is how they will be identified on the site moving forwards.
 
@@ -452,8 +432,6 @@ Upon successful login, a user profile is automatically created with a unique id.
 
 #### **Returning Users**
 ___
-
-<br>
 
 If a logged in user has already provided a screen name, but as yet have not created any trips, they are encouraged to get started and click the + button 'Create A Trip'.  There is also the option to seek some inspiration, which lets the user browse destinations and places.
 
@@ -470,8 +448,6 @@ If a logged in user already has one or more trips created, these are listed in d
 ### **Profile Creation**
 ___
 
-<br>
-
 If the user has not already entered profile information, placeholders are used for the image and bio.  If the user enters these fields, their own image and bio is then displayed on their profile page.
 
 ![PlanIt-Go create profile](docs/features/pp4-features-create-profile-header.png)
@@ -487,8 +463,6 @@ Once the user has entered required profile details, clicking on the profile link
 ### **Trip Creation**
 ___
 
-<br>
-
 The form used to create a new trip has been generated using django-crispy-forms.  Styling to keep it consistent with the rest of the site has been done in the forms.py file in the trips app.
 
 ![PlanIt-Go trip creation page](docs/features/pp4-features-create-trip.png)
@@ -498,8 +472,6 @@ ___
 
 #### **Trip Summary**
 ___
-
-<br>
 
 The bootstrap accordion component is used to store a map displaying the trip destination, trip title, trip image and clickable icons for users to instigate actions.  The accordion is displayed open by default but clicking the arrow icon collapses it.  As places are added to the trip itinerary, markers are added to pinpoint that place on the map.  If there are several places in a small radius, a cluster icon is displayed.  This functionality has been implemented using Google Maps [Marker Clustering](https://developers.google.com/maps/documentation/javascript/marker-clustering#cdn).
 
@@ -512,16 +484,12 @@ Clicking on view recommendations locates the user to the 'Recommendations' secti
 #### **Recommendations**
 ___
 
-<br>
-
 ![PlanIt-Go trip details recommendations](docs/features/pp4-features-trip-details-recommendations.png)
 
 Users are presented with recommended places to add to their itinerary based on the trip destination.  The results returned from the Place model are paginated 12 places at a time with 3 places displayed per row. The card for each place has a hover effect applied to indicate to the user that this is a clickable link.  Clicking on a place directs the user to the relevant [Place Details Page](#place-details).  Places that have already been added to the trip itinerary do not appear as part of this list of recommendations.
 
 #### **Trip Itinerary**
 ___
-
-<br>
 
 An accordion component is used to display information relating to the trip itinerary, but only appears on screen once the trip has at least one place added. By default, each place in the itinerary is collapsed:
 
@@ -546,8 +514,6 @@ ___
 #### **Place Summary**
 ___
 
-<br>
-
 On navigating to a 'place details' page, the user is presented with a summary section containing the following:
 
 * Place Image
@@ -560,8 +526,6 @@ On navigating to a 'place details' page, the user is presented with a summary se
 
 #### **Details Tab**
 ___
-
-<br>
 
 A full description of the place is displayed in the details navigation tab:
 
@@ -578,16 +542,12 @@ Below the description, the following details are available:
 #### **Reviews Tab**
 ___
 
-<br>
-
 The reviews tab is only visible to users if a review exists for the selected place.  Reviews are displayed using the Bootstrap Carousel component and appear as clickable cards with hover effect consistent with the rest of the site.  Clicking on a card opens the full review in a modal.  Only reviews that have been approved by a site administrator will be displayed.
 
 ![PlanIt-Go place detail reviews](docs/features/pp4-features-place-detail-reviews.png)
 
 #### **Gallery Tab**
 ___
-
-<br>
 
 The gallery tab is only visible to users if images relating to the selected place have been uploaded to the site. Images are displayed as thumbnails in rows of 3.  Clicking on any of the images opens a full size version in a modal. Only images that have been approved by a site administrator will be displayed.
 
@@ -597,8 +557,6 @@ The gallery tab is only visible to users if images relating to the selected plac
 
 ### **User Reviews**
 ___
-
-<br>
 
 From their trip itinerary, users can navigate to their 'reviews page' to leave a review for a place once they have visited.  The form is generated using django crispy forms.  Styling is done in the forms.py file for the places app.
 
@@ -612,8 +570,6 @@ Users can also view, edit or delete any other reviews they have already left.  A
 
 ### **User Images**
 ___
-
-<br>
 
 Users are presented with the option to 'upload image' for each place in their trip itinerary.  Once directed to this page, they can select an image to upload.  To prevent a situation where file upload causes the page to hang for an unacceptable amout of time, for now I have implemented code that only allows users to upload files under 2MB in size.  If the chosen file exceeds this size, users are presented with a warning modal and asked to choose a smaller file.
 
@@ -630,8 +586,6 @@ If a user has already uploaded images for other places, a gallery is displayed. 
 ### **Toasts**
 ___
 
-<br>
-
 Toasts are available as a Bootstrap component, and have been used in conjunction with [Django Messages](https://docs.djangoproject.com/en/4.2/ref/contrib/messages/) to provide the user with feedback as they navigate the site. This helps to communicate when an interaction has been successful or unsuccessful, therefore always keeping the user informed and providing an enhanced user experience.  
 
 ![PlanIt-Go toast success message ](docs/features/pp4-features-toast-success-trip-add.png)
@@ -643,8 +597,6 @@ ___
 
 #### **Staff User Functionality**
 ___
-
-<br>
 
 Functionality is included on the site that is only available to users with 'staff' status.  These user logins can be created and provided with relevant permissions by a superuser in the [Django Admin Panel](#django-admin-panel). Clicking on the 'Add A Destination' directs the staff user to a page where they can create and edit destinations.
 
@@ -671,8 +623,6 @@ At this stage,  a newly created destination will have no recommended places asso
 #### **Place Moderation**
 ___
 
-<br>
-
 I realised that an element of moderation is required on the data returned in the json response from the APIFY web scraper.  Sometimes descriptions are not worded very well or might not appear in english.  I therefore decided to build in functionality that gives staff users the ability to moderate a place when they are checking these details.  When logged in as staff and accessing the place detail page, there is an option to toggle approval.  By default, all places are approved but if the staff moderator is not satisfied with the quality of the data, they can remove approval for it.  These places will subsequently not be displayed to regualar site users.  Once the staff user has 'un-approved' a place and left the page, it can only be re-approved via the Django admin panel as it no longer appears on the place list page.
 
 ![PlanIt-Go staff unapprove place](docs/features/pp4-features-remove-place-approval.png)
@@ -682,16 +632,12 @@ I realised that an element of moderation is required on the data returned in the
 #### **Destination Moderation**
 ___
 
-<br>
-
 There might be an occasion, where a staff user creates a new destination but does not immediately populate with place data.  I do not want destinations displayed to regular site users until the associated content and data has been throughly checked and approved.  I therefore added an 'approved' field to the Location Model which defaults to the value False.  While this boolean field is set to false on an instance of a Location, it will not be available to regular site users whether they are browsing or creating trips.  This field can only be set to true by a moderator in the Django Admin Panel.
 
 ![PlanIt-Go staff approve place](docs/features/pp4-features-django-admin-superuser.png)
 
 #### **Django Admin Panel**
 ___
-
-<br>
 
 Models for the site can be accessed and manipulated from the Django Admin panel.  The designated superuser has total control over this.  I have set up a 'moderator' login for a staff user with limited permissions in the admin panel.  They are able to view and approve reviews and images created by users.  They also have access to Trips, Locations, Places and Profiles.  I have customised the layout and selected display fields to be shown for each model, to make navigation of the  Django admin panel more intuitive.  Code for this has been implemented in the related admin.py files.
 
@@ -702,14 +648,10 @@ Models for the site can be accessed and manipulated from the Django Admin panel.
 ### **Error Pages**
 ___
 
-<br>
-
 I have included custom 403, 404 and 500 error pages as a form of defensive design. This improves the user experience by keeping the user informed about the problem and engaged with the site.  The styling imagery and branding used on these pages is consistent with the rest of the user experience.  To ensure the user does not decide to navigate away from the site, a 'Back To Home Page' button is displayed.  This also ensures they do not have to use the back button in their browser for navigation.
 
 #### **404 Error Page**
 ___
-
-<br>
 
 Displayed if the user tries to access a broken link or page on the site that does not exist/ has been moved.
 
@@ -718,16 +660,12 @@ Displayed if the user tries to access a broken link or page on the site that doe
 #### **403 Error Page**
 ___
 
-<br>
-
 Displayed if the user tries to access unauthorised content.  Read [here](#defensive-programnming) about the defensive programming that was implemented to stop unauthorised users accessing, editing and deleting content that does not belong to them.
 
 ![PlanIt-Go 403 error](docs/features/pp4-features-403-error.png)
 
 #### **500 Error Page**
 ___
-
-<br>
 
 Displayed to warn the user when an internal server error occurs.  This lets them know that there is a problem with the site and not at their end. They are also informed that a solution to the problem is being worked on in the hope that they will not navigate away from the site.
 
@@ -737,8 +675,6 @@ Displayed to warn the user when an internal server error occurs.  This lets them
 
 ### **Favicon and Meta Tags**
 ___
-
-<br>
 
 A favicon link has been included in the head of the base.html template and displays in each browser tab. The image is the same icon that is used in the navbar brand heading, to ensure consistency of styling.  It is a 16px X 16px ico file generated on the [Favicon.ico & App Icon Generator](https://www.favicon-generator.org/)
 
@@ -753,20 +689,12 @@ Open Graph and Twitter meta tags have been placed in the head of the base.html t
 ### **Security**
 ___
 
-<br>
-
-Mention debug set to false methodology
-
 #### **Defensive Programming**
 ___
 
-<br>
+To secure certain Django Views and ensure they are only accessible to registered users, the ```@login_required()``` decorator is used for function based views.  The ```LoginRequiredMixin``` is used on any class based views where restrictions are required.  A site user that tries to access any of these restricted pages while not logged in, will be directed to the login page.
 
-To secure certain Django Views and ensure they are only accessible to registered users, the ```
-@login_required()``` decorator is used for function based views. 
-The ```LoginRequiredMixin``` is used on any class based views where restrictions are required.  A site user that tries to access any of these restricted pages while not logged in, will be directed to the login page.
-
-When navigating the site, logged in users are only presented with the option to edit or delete trips, reviews or images if they own them.  However simply removing this functionality from the user interface does not alone provide adequate security.  An additional layer of defensive programming has therefore been added in certain views to prevent specific URLs being targeted and modified. This code below is an example of how the profile ID linked to an image is checked against the profile ID of the currently logged in user.  Only if they match is the delete() method allowed to run on the image instance.  Otherwise a message is displayed to the user which informs them that they can only delete their own images.
+When navigating the site, logged in users are only presented with the option to edit or delete trips, reviews or images if they own them.  However simply removing this functionality from the user interface does not alone provide adequate security.  An additional layer of defensive programming has therefore been added in certain views to prevent specific URLs being targeted and database instances being modified without permission. The code below is an example of how the profile ID linked to an image is checked against the profile ID of the currently logged in user.  Only if they match is the delete() method allowed to run on the image instance.  Otherwise a message is displayed to the user which informs them that they can only delete their own images.
 
 ```python
 if image.profile.id == request.user.profile.id:
@@ -776,10 +704,10 @@ if image.profile.id == request.user.profile.id:
         messages.add_message(request, messages.ERROR, 'You can only delete your own images!')
 ```
 
+On some views, if statements have been used along side `raise PermissionDenied()` to ensure the 403 error template is displayed when permissions of the logged in user are not valid for the request.
+
 #### **Protection Of Sensitive Details**
 ___
-
-<br>
 
 Any keys containing sensitive data were stored in and retrieved from the env.py file during development. This was added to the gitignore file to ensure this data was never pushed to the GitHub repo.  For the deployed production version of the site hosted on Heroku, these sensitive keys are stored securely in the config vars.
 
@@ -790,16 +718,12 @@ In the settings file, for production purposes I have declared ```DEBUG = False``
 #### **CRSF Tokens**
 ___
 
-<br>
-
 CSRF tokens were used in forms across the site to protect against [Cross Site Request Forgery](https://docs.djangoproject.com/en/3.2/ref/csrf/).  When rendering forms using the crispy forms helper, these are automatically included.  For any other forms across the site, I have added manually.
 
 [Back to top &uarr;](#contents)
 
 ### **Responsive design**
 ___
-
-<br>
 
 I adopted a mobile first approach when designing and building the site.  Bootstrap's grid system and responsiveness tiers were used to provide different layouts according to default breakpoints and ensure responsiveness across a range of device sizes.  Additional styling tweaks were made using media queries in my [styles.css](static/css/styles.css) sheet.
 
@@ -818,8 +742,6 @@ I adopted a mobile first approach when designing and building the site.  Bootstr
 ### **Accessibility**
 ___
 
-<br>
-
 To ensure that the site is as accessible as possible for all users and compatible with screen readers, I have implemented the following:
 
 * Semantic markup used to structure the HTML code.
@@ -831,8 +753,6 @@ I used the [Wave Chrome Extension](https://wave.webaim.org/extension/) to check 
 
 ## **Future Features**
 ___
-
-<br>
 
 Functionality that is not within the scope of this project, but that could be implemented in future sprints to enhance the user experience would be:
 

@@ -62,35 +62,41 @@
 | ---- | :----: |
 | As a Site User I am aware of my login status so I know whether I can carry out actions available only to logged in users [#5](https://github.com/rkillickdev/plan-it-go/issues/5) | Pass |
 
-`Only authenticated users are able to see 'Profile' and 'My Trips' links in the navbar.  Also the toast messages that appear on successful sign up, login and logout provide feedback to the user about their status throughout their site experience.`
-
 ![PlanIt-Go user story test user status](docs/testing/userstories/pp4-user-story-testing-login-status.png)
+
+* Only authenticated users are able to see 'Profile' and 'My Trips' links in the navbar.  Also the toast messages that appear on successful sign up, login and logout provide feedback to the user about their status throughout their site experience.
+
+<br>
 
 | User Story | Satisfies Acceptance Criteria |
 | ---- | :----: |
 | As a Site User I can create and update a user profile for my account so that I can personalise my details with a screen name, image and bio [#6](https://github.com/rkillickdev/plan-it-go/issues/6) | Pass |
 
-`Clicking on the 'Profile' link in the navbar directs the user to their profile, where they can modify details.  They are notified of successful updates with a toast message and redirected to their trip list page.`
-
 ![PlanIt-Go user story test user profile](docs/testing/userstories/gifs/pp4-user-story-testing-profile.gif)
+
+* Clicking on the 'Profile' link in the navbar directs the user to their profile, where they can modify details.  They are notified of successful updates with a toast message and redirected to their trip list page.
+
+<br>
 
 | User Story | Satisfies Acceptance Criteria |
 | ---- | :----: |
 | As a Site Administrator I can moderate user reviews so that I can decide whether the content and images are appropriate for other site users to view [#34](https://github.com/rkillickdev/plan-it-go/issues/34) | Pass |
 
-`I have created a user called 'moderator' and given them permissions to access the Django Admin panel and update the boolean field 'approved' from False to True for instances of the Review and Image model.`
+* I have created a user called 'moderator' and given them permissions to access the Django Admin panel and update the boolean field 'approved' from False to True for instances of the Review and Image model.
+
+<br>
 
 | User Story | Satisfies Acceptance Criteria |
 | ---- | :----: |
 | As a Site Administrator I can access models from the Django admin panel so that I can interact directly with the database [#35](https://github.com/rkillickdev/plan-it-go/issues/35) | Pass |
 
-`I have created a superuser who has access to the entirety of the Django Admin panel and a 'moderator' login, who has limited access to the Django Admin panel, based on the tasks they need to carry out.`
+* I have created a superuser who has access to the entirety of the Django Admin panel and a 'moderator' login, who has limited access to the Django Admin panel, based on the tasks they need to carry out.
+
+<br>
 
 | User Story | Satisfies Acceptance Criteria |
 | ---- | :----: |
 | As a user with staff status I can add and amend details for destinations so that the content on the site can continually be expanded and updated [#39](https://github.com/rkillickdev/plan-it-go/issues/39) | Pass |
-
-`I have created a user called 'moderator' and as a superuser, allocated them 'staff' status.  This mean that on successful login, they can access a 'destinations' page where they can create new destinations or update existing.  Once a new destination has been created, it will not be displayed to regular site users until it has been approved via the Django Admin Panel.  This prevents a situation where a destination might be available to browse but it has no places to display yet.`
 
 ![PlanIt-Go user story test staff login](docs/testing/userstories/gifs/pp4-user-story-testing-staff-login.gif)
 
@@ -102,32 +108,43 @@
 
 ![PlanIt-Go user story test staff update destination](docs/testing/userstories/gifs/pp4-user-story-testing-staff-destinations.gif)
 
+* I have created a user called 'moderator' and as a superuser, allocated them 'staff' status.  This mean that on successful login, they can access a 'destinations' page where they can create new destinations or update existing.  Once a new destination has been created, it will not be displayed to regular site users until it has been approved via the Django Admin Panel.  This prevents a situation where a destination might be available to browse but it has no places to display yet.
+
+<br>
+
 | User Story | Satisfies Acceptance Criteria |
 | ---- | :----: |
 | As a user with staff status I can add places for a destination to the database so that site users can browse these recommended places and add to their trips [#40](https://github.com/rkillickdev/plan-it-go/issues/40) | Pass |
 
-`If no places exist for the selected destination, clicking on the magnifying glass takes the staff user to a 'get places' page where they can attempt to retrieve places.  If a json file has been prepared in advance using the APIFY Trip Advisor web scraper tool, this is accessed and the database is populated with places for the specified destination.  The staff user is then redirected to the newly populated place list page.`
-
 ![PlanIt-Go user story test staff get places](docs/testing/userstories/gifs/pp4-user-story-testing-staff-get-places.gif)
 
-`If a json file is not yet available to the staff user, this scenario is handled gracefully by providing them feedback in the form of a toast message.`
+* If no places exist for the selected destination, clicking on the magnifying glass takes the staff user to a 'get places' page where they can attempt to retrieve places.  If a json file has been prepared in advance using the APIFY Trip Advisor web scraper tool, this is accessed and the database is populated with places for the specified destination.  The staff user is then redirected to the newly populated place list page.
+
+<br>
 
 ![PlanIt-Go user story test staff get places](docs/testing/userstories/gifs/pp4-user-story-testing-staff-get-places-no-json.gif)
 
+* If a json file is not yet available to the staff user, this scenario is handled gracefully by providing them feedback in the form of a toast message.
+
+<br>
 
 | User Story | Satisfies Acceptance Criteria |
 | ---- | :----: |
 | As an admin superuser I can customise the django admin panel so that I can order and filter instances of models [#42](https://github.com/rkillickdev/plan-it-go/issues/42) | Pass |
 
-`This has been achieved by specifying the display and search fields in the admin.py file for required apps.  This provides an enhanced experience in the Django Admin Panel, especially when there are a large number of instances for a model.`
+* This has been achieved by specifying the display and search fields in the admin.py file for required apps.  This provides an enhanced experience in the Django Admin Panel, especially when there are a large number of instances for a model.
+
+<br>
 
 | User Story | Satisfies Acceptance Criteria |
 | ---- | :----: |
 | As a staff user I can moderate places through the site interface so that I can ensure places with sufficient quality info are displayed to site users [#61](https://github.com/rkillickdev/plan-it-go/issues/61) | Pass |
 
-`Once places have been retrieved for a location, the moderator with staff user permissions can navigate to the detail page for each place and decide whether it is suitable to display to regular site users.  By default, places are approved but clicking on the thumbs down icon removes approval and this place will then not be displayed to regular site users.`
-
 ![PlanIt-Go user story test staff place approval](docs/testing/userstories/gifs/pp4-user-story-testing-staff-place-approval.gif)
+
+* Once places have been retrieved for a location, the moderator with staff user permissions can navigate to the detail page for each place and decide whether it is suitable to display to regular site users.  By default, places are approved but clicking on the thumbs down icon removes approval and this place will then not be displayed to regular site users.
+
+<br>
 
 ### **EPIC: Plan Trip [#7](https://github.com/rkillickdev/plan-it-go/issues/7)**
 
@@ -135,95 +152,119 @@
 | ---- | :----: |
 | As a Site User I can create a personalised trip planner for a chosen destination so that I can start planning places to visit on my trip [#8](https://github.com/rkillickdev/plan-it-go/issues/8) | Pass |
 
-`Clicking on the 'Create a trip' + icon takes the user to a trip creation page, where they can submit their information in a form.  On success, the user is redirected to their trip detail page.`
-
 ![PlanIt-Go user story test create trip](docs/features/pp4-features-create-trip.png)
+
+* Clicking on the 'Create a trip' + icon takes the user to a trip creation page, where they can submit their information in a form.  On success, the user is redirected to their trip detail page.
+
+<br>
 
 | User Story | Satisfies Acceptance Criteria |
 | ---- | :----: |
 | As a Site User I can view recommended activities for the chosen location so that I can plan a bespoke itinerary for the trip that appeals to my tastes and interests [#9](https://github.com/rkillickdev/plan-it-go/issues/9) | Pass |
 
-`On the trip details page, a recommendations section is displayed to users, based on the selected destination of their trip.`
-
 ![PlanIt-Go user story test recommendations](docs/features/pp4-features-trip-details-recommendations.png)
+
+* On the trip details page, a recommendations section is displayed to users, based on the selected destination of their trip.
+
+<br>
 
 | User Story | Satisfies Acceptance Criteria |
 | ---- | :----: |
 | As a Site User I can view details of a specific place so that I can decide whether I should add it to my itinerary [#10](https://github.com/rkillickdev/plan-it-go/issues/10) | Pass |
 
-`Clicking on a recommended place or a place in the trip itinerary redirects the user to a details page for the selected place.`
-
 ![PlanIt-Go user story test place detail](docs/testing/userstories/gifs/pp4-user-story-testing-place-detail.gif)
+
+* Clicking on a recommended place or a place in the trip itinerary redirects the user to a details page for the selected place.
+
+<br>
 
 | User Story | Satisfies Acceptance Criteria |
 | ---- | :----: |
 | As a Site User I can add a recommendation to my trip planner so that I can build an itinerary to use and refer to when travelling to the location [#11](https://github.com/rkillickdev/plan-it-go/issues/11) | Pass |
 
-`When navigating to the details page of a place, site users can click on the 'Add To Your Trip' + icon.  This place then appears in the trip itinerary accordion on their trip detail page.`
-
 ![PlanIt-Go user story test tinerary](docs/testing/userstories/gifs/pp4-user-story-testing-itinerary.gif)
+
+* When navigating to the details page of a place, site users can click on the 'Add To Your Trip' + icon.  This place then appears in the trip itinerary accordion on their trip detail page.
+
+<br>
 
 | User Story | Satisfies Acceptance Criteria |
 | ---- | :----: |
 | As a Site User I can remove places from my trip planner so that I can have control over building an itinerary and change my mind about places that were previously added [#12](https://github.com/rkillickdev/plan-it-go/issues/12) | Pass |
 
-`When navigating to the details page of a place, site users can click on the 'Remove From Your Trip' - icon.  This place is then removed from the trip itinerary accordion on their trip detail page.  This functionality is more for users to be able to toggle between adding and removing while they remain on the place detail page.`
+* When navigating to the details page of a place, site users can click on the 'Remove From Your Trip' - icon.  This place is then removed from the trip itinerary accordion on their trip detail page.  This functionality is more for users to be able to toggle between adding and removing while they remain on the place detail page.
+
+<br>
 
 | User Story | Satisfies Acceptance Criteria |
 | ---- | :----: |
 | As a Site User I can choose to view my current trip itinerary at any point during planning so that I can keep track of places I have added [#13](https://github.com/rkillickdev/plan-it-go/issues/13) | Pass |
 
-`Clicking on the 'More Places' button returns the user to their trip detail page at any time.`
-
 ![PlanIt-Go user story test more places](docs/features/pp4-features-place-summary.png)
 
+* Clicking on the 'More Places' button returns the user to their trip detail page at any time.
+
+<br>
 
 | User Story | Satisfies Acceptance Criteria |
 | ---- | :----: |
 | As a Site User I can edit my trip itinerary by removing a place or adding more so that I can continue modifying my plans [#14](https://github.com/rkillickdev/plan-it-go/issues/14) | Pass |
 
-`Users are presented with an option for each place in their itinerary to 'Remove from planner'.  This action requires approval by confirming in a modal.  The place is then removed from the itinerary.`
-
 ![PlanIt-Go user story test user staff itinerary remove item](docs/testing/userstories/gifs/pp4-user-story-testing-remove-itinerary-item.gif)
+
+* Users are presented with an option for each place in their itinerary to 'Remove from planner'.  This action requires approval by confirming in a modal.  The place is then removed from the itinerary.
+
+<br>
 
 | User Story | Satisfies Acceptance Criteria |
 | ---- | :----: |
 | As a Site User I can save all the places in my trip itinerary so that I can return to my planning at any time [#15](https://github.com/rkillickdev/plan-it-go/issues/15) | Pass |
 
-`It was not necessary to implement functionality for this user story, as trip instances are continually updated and saved to the database and can be accessed at any time by the user.`
+* It was not necessary to implement functionality for this user story, as trip instances are continually updated and saved to the database and can be accessed at any time by the user.
+
+<br>
 
 | User Story | Satisfies Acceptance Criteria |
 | ---- | :----: |
 | As a user I can see a countdown to my trip so that I know how many days until I travel [#36](https://github.com/rkillickdev/plan-it-go/issues/36) | N/A |
 
-`This user story was not classified as a 'Must Have' for any of the agile sprints, so due to time constraints, it has been placed in a future features column of my` [kanban board](https://github.com/users/rkillickdev/projects/4)`.  This feature can be implemented in a future iteration.`
+* This user story was not classified as a 'Must Have' for any of the agile sprints, so due to time constraints, it has been placed in a future features column of my [kanban board](https://github.com/users/rkillickdev/projects/4).  This feature can be implemented in a future iteration.
+
+<br>
 
 | User Story | Satisfies Acceptance Criteria |
 | ---- | :----: |
 | As a user I can filter recommended places so that I can build an itinerary tailored to my interests [#37](https://github.com/rkillickdev/plan-it-go/issues/37) | N/A |
 
-`This user story was not classified as a 'Must Have' for any of the agile sprints, so due to time constraints, it has been placed in a future features column of my `[kanban board](https://github.com/users/rkillickdev/projects/4)`.  This feature can be implemented in a future iteration.`
+* This user story was not classified as a 'Must Have' for any of the agile sprints, so due to time constraints, it has been placed in a future features column of my [kanban board](https://github.com/users/rkillickdev/projects/4).  This feature can be implemented in a future iteration.
+
+<br>
 
 | User Story | Satisfies Acceptance Criteria |
 | ---- | :----: |
 | As a user I can see places visually on a map so that I can see where they are and plan a route [#38](https://github.com/rkillickdev/plan-it-go/issues/38) | Pass |
 
-`The location of each place is displayed on a map on the details page.`
-
 ![PlanIt-Go user story test place detail map](docs/features/pp4-features-place-location-details.png)
 
-`On the trip detail page, as places are added to the itinerary, they are dynamically plotted on the map with markers.  When clicked, the marker displays the name of the place.`
+* The location of each place is displayed on a map on the details page.
+
+<br>
 
 ![PlanIt-Go user story test trip detail map clusters](docs/testing/userstories/gifs/pp4-user-story-testing-map-clusters.gif)
+
+* On the trip detail page, as places are added to the itinerary, they are dynamically plotted on the map with markers.  When clicked, the marker displays the name of the place.
+
+<br>
 
 | User Story | Satisfies Acceptance Criteria |
 | ---- | :----: |
 | As a user I can view place ratings displayed as stars so that I can immediately understand the popularity of a place [#41](https://github.com/rkillickdev/plan-it-go/issues/41) | Pass |
 
-`Each place displays stars based on the star rating value retrieved from the Place instance field 'rating'.`
-
 ![PlanIt-Go user story test place detail star rating](docs/features/pp4-features-place-summary.png)
 
+* Each place displays stars based on the star rating value retrieved from the Place instance field 'rating'.
+
+<br>
 
 ### **EPIC: Manage Trip [#16](https://github.com/rkillickdev/plan-it-go/issues/16)**
 
@@ -231,27 +272,35 @@
 | ---- | :----: |
 | As a Site User I can view a summary of all upcoming and completed trips so that I can choose one to view or edit [#17](https://github.com/rkillickdev/plan-it-go/issues/17) | Pass |
 
-`Site users can view this information from their trip list page.  This is where they land after logging in.  It is also always accessible to logged in users by clicking the 'My Trips' link in the nav bar.`
+* Site users can view this information from their trip list page.  This is where they land after logging in.  It is also always accessible to logged in users by clicking the 'My Trips' link in the nav bar.
+
+<br>
 
 | User Story | Satisfies Acceptance Criteria |
 | ---- | :----: |
 | As a Site User I can select a trip so that I can view or edit details of the itinerary [#18](https://github.com/rkillickdev/plan-it-go/issues/18) | Pass |
 
-`Clicking on a trip card on the trip list page directs the user to the associated trip detail page, where they can view and edit details.`
+* Clicking on a trip card on the trip list page directs the user to the associated trip detail page, where they can view and edit details.
+
+<br>
 
 | User Story | Satisfies Acceptance Criteria |
 | ---- | :----: |
 | As a Site User I can mark places on a trip itinerary as completed so that I can keep track of places that I have visited while travelling [#19](https://github.com/rkillickdev/plan-it-go/issues/19) | N/A |
 
-`This user story was not classified as a 'Must Have' for any of the agile sprints, so due to time constraints, it has been placed in a future features column of my `[kanban board](https://github.com/users/rkillickdev/projects/4)`.  This feature can be implemented in a future iteration.`
+* This user story was not classified as a 'Must Have' for any of the agile sprints, so due to time constraints, it has been placed in a future features column of my [kanban board](https://github.com/users/rkillickdev/projects/4).  This feature can be implemented in a future iteration.
+
+<br>
 
 | User Story | Satisfies Acceptance Criteria |
 | ---- | :----: |
 | As a Site User I can delete an entire trip so that I have control of the trips that are stored in my user account [#20](https://github.com/rkillickdev/plan-it-go/issues/20) | Pass |
 
-`Clicking on the trash can icon on the trip detail page actions this functionality.`
-
 ![PlanIt-Go user story test trip delete](docs/testing/userstories/gifs/pp4-user-story-testing-trip-delete.gif)
+
+* Clicking on the trash can icon on the trip detail page actions this functionality.
+
+<br>
 
 ### **EPIC: Review [#21](https://github.com/rkillickdev/plan-it-go/issues/21)**
 
@@ -259,51 +308,65 @@
 | ---- | :----: |
 | As a Site User I can write a review of a place on my itinerary so that I can share my experiences of the visit with other site users [#22](https://github.com/rkillickdev/plan-it-go/issues/22) | Pass |
 
-`Clicking on the 'Leave A Review' icon for a place in the trip itinerary redirects the user to the reviews page.  From here they can leave a review for the associated place.  Once submitted, the review will appear on their reviews page, but will not be available for other site users to read until it has been approved by the site moderator.`
-
 ![PlanIt-Go user story test create review](docs/testing/userstories/gifs/pp4-user-story-testing-create-review.gif)
+
+* Clicking on the 'Leave A Review' icon for a place in the trip itinerary redirects the user to the reviews page.  From here they can leave a review for the associated place.  Once submitted, the review will appear on their reviews page, but will not be available for other site users to read until it has been approved by the site moderator.
+
+<br>
 
 | User Story | Satisfies Acceptance Criteria |
 | ---- | :----: |
 | As a Site User I can edit my review so that I can update the content or correct grammatical errors [#23](https://github.com/rkillickdev/plan-it-go/issues/23) | Pass |
 
-`Clicking on the pencil icon of a review card populates the review form with the associated review text. Clicking on the form 'update' button updates this instance of review in the database and resets the 'approved' field to False.`
-
 ![PlanIt-Go user story test update review](docs/testing/userstories/gifs/pp4-user-story-testing-update-review.gif)
+
+* Clicking on the pencil icon of a review card populates the review form with the associated review text. Clicking on the form 'update' button updates this instance of review in the database and resets the 'approved' field to False.
+
+<br>
 
 | User Story | Satisfies Acceptance Criteria |
 | ---- | :----: |
 | As a Site User I can delete my review so that I can have control of reviews if I decide they are no longer relevant or necessary [#24](https://github.com/rkillickdev/plan-it-go/issues/24) | Pass |
 
-`Clicking on the trash can icon of a review card opens a delete confirm modal to check the user really wants to delete.  Confirming the action deletes this instance of review from the database.`
-
 ![PlanIt-Go user story test delete review](docs/testing/userstories/gifs/pp4-user-story-testing-delete-review.gif)
+
+* Clicking on the trash can icon of a review card opens a delete confirm modal to check the user really wants to delete.  Confirming the action deletes this instance of review from the database.
+
+<br>
 
 | User Story | Satisfies Acceptance Criteria |
 | ---- | :----: |
 | As a Site User I can decide whether I would recommend a place so that I can help other site users to make decisions when planning places to visit on their trip [#25](https://github.com/rkillickdev/plan-it-go/issues/25) | N/A |
 
-`This user story was not classified as a 'Must Have' for any of the agile sprints, so due to time constraints, it has been placed in a future features column of my `[kanban board](https://github.com/users/rkillickdev/projects/4)`.  This feature can be implemented in a future iteration.`
+* This user story was not classified as a 'Must Have' for any of the agile sprints, so due to time constraints, it has been placed in a future features column of my [kanban board](https://github.com/users/rkillickdev/projects/4).  This feature can be implemented in a future iteration.
+
+<br>
 
 | User Story | Satisfies Acceptance Criteria |
 | ---- | :----: |
 | As a Site User I can upload images for a place on my itinerary so that I can store the memories from my trip and share these experiences with other site users [#26](https://github.com/rkillickdev/plan-it-go/issues/26) | Pass |
 
-`Users can upload an image for a place by selecting a file and clicking 'Upload'.`
-
 ![PlanIt-Go user story test add image](docs/testing/userstories/gifs/pp4-user-story-testing-add-image.gif)
 
-`If the size of the file selected is above 2 MB, the user is warned and asked to select a smaller image.  This is to prevent a long delay in the page loading as the file uploads to Cloudinary.`
+* Users can upload an image for a place by selecting a file and clicking 'Upload'.
+
+<br>
 
 ![PlanIt-Go user story test file size warning](docs/testing/userstories/gifs/pp4-user-story-testing-file-size-warning.gif)
+
+* If the size of the file selected is above 2 MB, the user is warned and asked to select a smaller image.  This is to prevent a long delay in the page loading as the file uploads to Cloudinary.
+
+<br>
 
 | User Story | Satisfies Acceptance Criteria |
 | ---- | :----: |
 | As a Site User I can delete images that I have uploaded for a place so that I can have control over which images are viewable [#27](https://github.com/rkillickdev/plan-it-go/issues/27) | Pass |
 
-`Clicking on the trash can icon underneath an image in the gallery opens a delete confirm modal to check the user really wants to delete.  Confirming the action deletes this instance of image from the database.`
-
 ![PlanIt-Go user story test file size warning](docs/testing/userstories/gifs/pp4-user-story-testing-delete-image.gif)
+
+* Clicking on the trash can icon underneath an image in the gallery opens a delete confirm modal to check the user really wants to delete.  Confirming the action deletes this instance of image from the database.
+
+<br>
 
 ### **EPIC: User Experience [#28](https://github.com/rkillickdev/plan-it-go/issues/28)**
 
@@ -311,39 +374,53 @@
 | ---- | :----: |
 | As a Site User I can immediately understand the purpose of the site when I arrive at the home page so that I can quickly and intuitively start planning trips [#29](https://github.com/rkillickdev/plan-it-go/issues/29) | Pass |
 
-`The hero image used on the home page instantly conveys the idea of plotting out places on a map, which ties into the core goal of the site which is to assist users in planning trips to destinations around the world.  The call to action button makes it quick and easy for the user to sign up and login, so they can start using the advanced functionality of the site`
+* The hero image used on the home page instantly conveys the idea of plotting out places on a map, which ties into the core goal of the site which is to assist users in planning trips to destinations around the world.  The call to action button makes it quick and easy for the user to sign up and login, so they can start using the advanced functionality of the site
+
+<br>
 
 | User Story | Satisfies Acceptance Criteria |
 | ---- | :----: |
 | As a Site User I can intuitively navigate the site so that I can view the content I require with minimal steps [#30](https://github.com/rkillickdev/plan-it-go/issues/30) | Pass |
 
-`Navigation has been made intuitive by the use of a nav bar that users will find familiar.  The hover effect applied to links indicate that clicking will take them to a new page.  Navigation is similarly intuitive on smaller devices with the immediately recognisable hamburger toggler indicating how users can expand the nav links`
+* Navigation has been made intuitive by the use of a nav bar that users will find familiar.  The hover effect applied to links indicate that clicking will take them to a new page.  Navigation is similarly intuitive on smaller devices with the immediately recognisable hamburger toggler indicating how users can expand the nav links.
+
+<br>
 
 | User Story | Satisfies Acceptance Criteria |
 | ---- | :----: |
 | As a Site User I can view site content simply and intuitively so that I can easily gather the information I need [#31](https://github.com/rkillickdev/plan-it-go/issues/31) | Pass |
 
-`Use of components such as the Bootstrap accordion, tabbed pages and carousels have provided solutions for storing and displaying content, without the need for the user to navigate between too many pages.  They can normally access the information they are looking for in a couple of clicks`
+* Use of components such as the Bootstrap accordion, tabbed pages and carousels have provided solutions for storing and displaying content, without the need for the user to navigate between too many pages.  They can normally access the information they are looking for in a couple of clicks.
+
+<br>
 
 | User Story | Satisfies Acceptance Criteria |
 | ---- | :----: |
 | As a Site User I feel a positive emotional response while interacting with the site so I am engaged and continue to use and return [#32](https://github.com/rkillickdev/plan-it-go/issues/32) | Pass |
 
-`Continuity of styling, imagery and functionality across the site means that each page has a familiar feel when the user lands on it.  Static images used on the site have been selected to invoke a curiosity about travel and the desire to find out more about destinations around the world.  Even if errors occur, they are handled gracefully in keeping with the site aesthetics, so users are not taken away from this positive experience.  User Interactions with the functionality of the site are designed to be simple and intuitive and provide a pleasing user experience`
+* Continuity of styling, imagery and functionality across the site means that each page has a familiar feel when the user lands on it.  Static images used on the site have been selected to invoke a curiosity about travel and the desire to find out more about destinations around the world.  Even if errors occur, they are handled gracefully in keeping with the site aesthetics, so users are not taken away from this positive experience.  User Interactions with the functionality of the site are designed to be simple and intuitive and provide a pleasing user experience.
+
+<br>
 
 | User Story | Satisfies Acceptance Criteria |
 | ---- | :----: |
 | As a Site User I can view the site on a range of screen sizes so that I can enjoy good user experience on my device of choice [#33](https://github.com/rkillickdev/plan-it-go/issues/33) | Pass |
 
-`Information and site content remains easy to access and uncluttered, even on smaller mobile devices.  Use of Bootstrap breakpoints and media queries has ensured the site is responsive across a range of screen sizes`
+* Information and site content remains easy to access and uncluttered, even on smaller mobile devices.  Use of Bootstrap breakpoints and media queries has ensured the site is responsive across a range of screen sizes.
+
+<br>
 
 | User Story | Satisfies Acceptance Criteria |
 | ---- | :----: |
 | As a user I can access links to social media accounts related to the site so that I can find out more about the site and its developer [#46](https://github.com/rkillickdev/plan-it-go/issues/46) | Pass |
 
-`The site footer which is displayed on every page provides access to all social media links`
-
 ![PlanIt-Go user story test footer social links](docs/features/pp4-features-footer.png)
+
+* The site footer which is displayed on every page provides access to all social media links.
+
+<br>
+
+[Back to top &uarr;](#contents)
 
 ## **Full Testing**
 

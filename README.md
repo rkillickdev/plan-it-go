@@ -1088,6 +1088,8 @@ Below are bugs that were discovered during development and testing.  I have not 
 
 * I used this [Udemy Bootstrap 5 From Scratch | Build 5 Modern Websites Course](https://www.udemy.com/course/bootstrap-from-scratch) to consolidate and expand my understanding of Bootstrap and Sass.
 
+* [Code Institute Django Blog Webinar](https://www.youtube.com/watch?v=YH--VobIA8c&t=852s)
+
 * [Django Wednesdays YouTube Tutorial - creating users and profiles](https://www.youtube.com/watch?v=KNvSWubOaQY)
 
 ### **Threads and Articles**
@@ -1170,6 +1172,18 @@ Below are bugs that were discovered during development and testing.  I have not 
 
 * [*args & **kwargs in Python](https://realpython.com/python-kwargs-and-args/)
 
+* [Used when researching how to style form file input fields](https://tympanus.net/codrops/2015/09/15/styling-customizing-file-inputs-smart-way/)
+
+* [Setting up a Sass workflow](https://sprucecss.com/blog/the-simplest-sass-compile-setup/)
+
+* [Reading JSON from a file in Python](https://pythonbasics.org/read-json-file/)
+
+* [unittest with get_context_data](https://stackoverflow.com/questions/61580104/how-can-i-unittest-get-context-data-of-a-listview-in-django)
+
+* [unittest with Django messages](https://stackoverflow.com/questions/2897609/how-can-i-unit-test-django-messages)
+
+* [unnittest with querysets](https://stackoverflow.com/questions/60325052/how-to-test-a-queryset-in-django)
+
 * The following threads and articles were referenced while I was researching and implementing Django Crispy Forms:
 
     * [Article One](https://simpleisbetterthancomplex.com/tutorial/2018/11/28/advanced-form-rendering-with-django-crispy-forms.html)
@@ -1201,6 +1215,8 @@ Below are bugs that were discovered during development and testing.  I have not 
 * [Royalty free images used throughout the site from Pexels](https://www.pexels.com/)
 
 * The following [T.S. Eliot quote](https://www.goodreads.com/quotes/9840-we-shall-not-cease-from-exploration-and-the-end-of) which acts as as placeholder for user bios, was sourced online
+
+* [Website for retrieving latitude and longitude of destinations](https://www.latlong.net/)
 
 <br>
 

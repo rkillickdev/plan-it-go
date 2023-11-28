@@ -800,6 +800,8 @@ The brand logo used in the navbar has been designed to be minimalistic and insta
 
 <br>
 
+[Back to top &uarr;](#contents)
+
 # **Technologies Used**
 
 ## **Languages Used**
@@ -1208,7 +1210,7 @@ Below are bugs that were discovered during development and testing.  I have not 
 
 ## **Media**
 
-* The Places database was populated with data retrieved from the [APIFY Trip Advisor Web Scraper](https://console.apify.com/actors/dbEyMBriog95Fv8CW/console).  Information and images that appear as part of the place detail pages comess from the scraped APIFY data.
+* The Places database was populated with data retrieved from the [APIFY Trip Advisor Web Scraper](https://console.apify.com/actors/dbEyMBriog95Fv8CW/console).  Information and images that appear as part of the place detail pages comes from the scraped APIFY data.
 
 * [chatGPT](https://chat.openai.com/) was used to generate some text content for the destination descriptions, a few test user reviews and some user 'travel themed' profile screen names.  I also used it to generate some content for the 3 site goals on the home page, but actually ended up editing it quite heavily to fit the site purpose.  Other content for the site was written by myself.
 

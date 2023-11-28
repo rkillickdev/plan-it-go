@@ -340,7 +340,7 @@ def review_delete(request, trip_id, place_id, review_id, *args, **kwargs):
     )
 
 
-class ImageUploadView(LoginRequiredMixin, CreateView):
+class ImageUploadView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     """
     View where a logged in user can upload an image to the gallery page.
     Once successfully uploaded, the user is redirected back to the same page
@@ -355,6 +355,7 @@ class ImageUploadView(LoginRequiredMixin, CreateView):
     form_class = ImageForm
     model = Image
     template_name = "trips/add_image.html"
+    success_message = "You have added a new image to your gallery"
 
     # Referenced this article to find out about accessing url kwargs:
     # https://stackoverflow.com/questions/72599545/get-url-kwargs-in-class-based-views

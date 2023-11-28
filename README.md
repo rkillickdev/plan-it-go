@@ -520,7 +520,7 @@ On navigating to a 'place details' page, the user is presented with a summary se
 * Place Name
 * Place Star Rating -> visually communicated using Font Awesome icons
 * Add/ Remove From Trip -> This button allows the user to toggle between adding or removing the place
-* More Recommendations -> This button directs the user back to the [Trip Details Page](#trip-details).  This button has susequently been renamed 'Your Trip' since the screenshot was taken.
+* More Recommendations -> This button directs the user back to the [Trip Details Page](#trip-details).  This button has subsequently been renamed 'Your Trip' since the screenshot was taken.
 
 ![PlanIt-Go planner place summary](docs/features/pp4-features-place-summary.png)
 
@@ -571,7 +571,7 @@ Users can also view, edit or delete any other reviews they have already left.  A
 ### **User Images**
 ___
 
-Users are presented with the option to 'upload image' for each place in their trip itinerary.  Once directed to this page, they can select an image to upload.  To prevent a situation where file upload causes the page to hang for an unacceptable amout of time, for now I have implemented code that only allows users to upload files under 2MB in size.  If the chosen file exceeds this size, users are presented with a warning modal and asked to choose a smaller file.
+Users are presented with the option to 'upload image' for each place in their trip itinerary.  Once directed to this page, they can select an image to upload.  To prevent a situation where file upload causes the page to hang for an unacceptable amount of time, for now I have implemented code that only allows users to upload files under 2MB in size.  If the chosen file exceeds this size, users are presented with a warning modal and asked to choose a smaller file.
 
 ![PlanIt-Go add image](docs/features/pp4-features-add-image-updated-style.png)
 
@@ -598,7 +598,7 @@ ___
 #### **Staff User Functionality**
 ___
 
-Functionality is included on the site that is only available to users with 'staff' status.  These user logins can be created and provided with relevant permissions by a superuser in the [Django Admin Panel](#django-admin-panel). Clicking on the 'Add A Destination' directs the staff user to a page where they can create and edit destinations.
+Functionality is included on the site that is only available to users with 'staff' status.  These user logins can be created and provided with relevant permissions by a superuser in the [Django Admin Panel](#django-admin-panel). Clicking on the 'Add A Destination' button directs the staff user to a page where they can create and edit destinations.
 
 ![PlanIt-Go staff user login redirect page ](docs/features/pp4-features-trip-list-staff-user.png)
 
@@ -623,7 +623,7 @@ At this stage,  a newly created destination will have no recommended places asso
 #### **Place Moderation**
 ___
 
-I realised that an element of moderation is required on the data returned in the json response from the APIFY web scraper.  Sometimes descriptions are not worded very well or might not appear in english.  I therefore decided to build in functionality that gives staff users the ability to moderate a place when they are checking these details.  When logged in as staff and accessing the place detail page, there is an option to toggle approval.  By default, all places are approved but if the staff moderator is not satisfied with the quality of the data, they can remove approval for it.  These places will subsequently not be displayed to regualar site users.  Once the staff user has 'un-approved' a place and left the page, it can only be re-approved via the Django admin panel as it no longer appears on the place list page.
+I realised that an element of moderation is required on the data returned in the json response from the APIFY web scraper.  Sometimes descriptions are not worded very well or might not appear in english.  I therefore decided to build in functionality that gives staff users the ability to moderate a place when they are checking these details.  When logged in as staff and accessing the place detail page, there is an option to toggle approval.  By default, all places are approved but if the staff moderator is not satisfied with the quality of the data, they can remove approval for it.  These places will subsequently not be displayed to regular site users.  Once the staff user has 'un-approved' a place and left the page, it can only be re-approved via the Django admin panel as it no longer appears on the place list page.
 
 ![PlanIt-Go staff unapprove place](docs/features/pp4-features-remove-place-approval.png)
 
@@ -639,7 +639,7 @@ There might be an occasion, where a staff user creates a new destination but doe
 #### **Django Admin Panel**
 ___
 
-Models for the site can be accessed and manipulated from the Django Admin panel.  The designated superuser has total control over this.  I have set up a 'moderator' login for a staff user with limited permissions in the admin panel.  They are able to view and approve reviews and images created by users.  They also have access to Trips, Locations, Places and Profiles.  I have customised the layout and selected display fields to be shown for each model, to make navigation of the  Django admin panel more intuitive.  Code for this has been implemented in the related admin.py files.
+Models for the site can be accessed and manipulated from the Django Admin panel.  The designated superuser has total control over this.  I have set up a 'moderator' login for a staff user with limited permissions in the admin panel.  They are able to view and approve reviews and images created by users.  They also have access to Locations and Places.  I have customised the layout and selected display fields to be shown for each model, to make navigation of the  Django admin panel more intuitive.  Code for this has been implemented in the related admin.py files.
 
 ![PlanIt-Go Django admin moderator](docs/features/pp4-features-django-admin-moderator.png)
 
@@ -749,7 +749,7 @@ To ensure that the site is as accessible as possible for all users and compatibl
 * Descriptive alt attributes have been given to all images.
 * Aria labels have been used for interactive elements where no accessible name is provided.
 
-I used the [Wave Chrome Extension](https://wave.webaim.org/extension/) to check the accessibility of each page,  Results for this can be viewed in the[TESTING.md file](https://github.com/rkillickdev/plan-it-go/blob/main/TESTING.md)
+I used the [Wave Chrome Extension](https://wave.webaim.org/extension/) to check the accessibility of each page,  Results for this can be viewed in the [TESTING.md file](https://github.com/rkillickdev/plan-it-go/blob/main/TESTING.md)
 
 ## **Future Features**
 ___
@@ -820,7 +820,7 @@ The brand logo used in the navbar has been designed to be minimalistic and insta
 * [GitHub](https://github.com/) - All files for the project stored and saved in a repository.
 * [Gitpod](https://www.gitpod.io/) - IDE used to write the code, make git commits and push to GitHub.
 * [Heroku](https://dashboard.heroku.com/apps) - For deployment of the project.
-* [ElephantSQL](https://www.elephantsql.com/) - a PostgresQL database used for the deployed production site
+* [ElephantSQL](https://www.elephantsql.com/) - a PostgreSQL database used for the deployed production site
 * [Cloudinary](https://www.cloudimage.io/) - Used to store user uploaded images
 * [PEP8](https://pep8ci.herokuapp.com/) - CI Python Linter
 * [JSHint](https://jshint.com/) - Javascript linter
@@ -829,7 +829,7 @@ The brand logo used in the navbar has been designed to be minimalistic and insta
 * [Black](https://www.freecodecamp.org/news/auto-format-your-python-code-with-black/) - Python Auto Formatter
 * [Google Lighthouse](https://developer.chrome.com/docs/lighthouse/overview/) - Used at testing stage to show statistics for performance, accessibility, best practices and SEO.
 * [Google DevTools](https://developer.chrome.com/docs/devtools/) - Used throughout build of website for debugging, checking responsiveness and trialing new features/ styling.
-* [Google Fonts](https://fonts.google.com/) - Used to import required fonts for the website via the css style page.
+* [Google Fonts](https://fonts.google.com/) - Used to import required fonts for the website via the css styles sheet.
 * [dbdiagram](https://dbdiagram.io/home) - Database Relationship Diagrams Design Tool
 * [Balsamiq](https://balsamiq.com/wireframes/) - Used to create wireframes.
 * [Font Awesome](https://fontawesome.com/) - Used for all icons throughout the website.

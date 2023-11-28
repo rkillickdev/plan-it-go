@@ -1050,6 +1050,7 @@ The following steps were followed to deploy the site to Heroku:
 | ------------ | --------------- |
 | A small styling issue that would be nice to fix in future iterations, is to replace the standard browser blue highlight effect that appears when using drop down menus on desktop devices with one of the core site highlight colours. | I have tried targeting this with various css classes with no success yet.  With more time, I hope to find a work around or fix |
 | Unreliable Image SRC backup placeholder script | I have tested the [img-src-backup](static/js/img-src-backups.js) JavaScript file that should catch any occasion an image link served externally were to throw an error, and replace with a placeholder image.  Although this has been working when tested, it does not seem to provide 100% reliability and this is functionality that I would like to look into further with the benefit of more time.  My next approach will be to look at a way to add event listeners **after** the page has loaded so it can read the correct image tags, but **before** the url is retrieved |
+| I tried to add a success message on the image upload page using the SuccessMessageMixin but the message was not displaying | I will find a solution for this in future sprints, but for now I do not believe it to be of great importance as feedback is already provided to the user that their image has been uploaded successfully as it displays on the page as soon as upload is complete |
 
 <br>
 

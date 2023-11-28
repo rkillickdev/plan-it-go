@@ -1,7 +1,5 @@
 # **PlanitGo Testing**
 
-## **Testing Overview**
-
 ## **CONTENTS**
 
 * [Manual Testing](#manual-testing)
@@ -108,7 +106,7 @@
 
 ![PlanIt-Go user story test staff update destination](docs/testing/userstories/gifs/pp4-user-story-testing-staff-destinations.gif)
 
-* I have created a user called 'moderator' and as a superuser, allocated them 'staff' status.  This mean that on successful login, they can access a 'destinations' page where they can create new destinations or update existing.  Once a new destination has been created, it will not be displayed to regular site users until it has been approved via the Django Admin Panel.  This prevents a situation where a destination might be available to browse but it has no places to display yet.
+* I have created a user called 'moderator' and allocated them 'staff' status.  This mean that on successful login, they can access a 'destinations' page where they can create new destinations or update existing.  Once a new destination has been created, it will not be displayed to regular site users until it has been approved via the Django Admin Panel.  This prevents a situation where a destination might be available to browse but it has no places to display yet.
 
 <br>
 
@@ -909,7 +907,7 @@ It was not possible to copy and paste the html templates into the validator, due
 
 <br>
 
-• There is a warning that appears on pages that contain a form with an upload image field.  I confirmed with my mentor that no action was required for this, as it was not an atttribute I had added.  It is automatically included as part of the crispy form rendering:
+• There is a warning that appears on pages that contain a form with an upload image field.  I confirmed with my mentor that no action was required for this, as it was not an attribute I had added.  It is automatically included as part of the crispy form rendering:
 
 ```
 Warning: The type: attribute is unnecessary for JavaScript resources.

@@ -6,7 +6,7 @@
 
 <br>
 
-[View the deployed app on Heroku](https://plan-it-go-5b10d0005b0a.herokuapp.com/)
+[View the deployed site on Heroku](https://plan-it-go-5b10d0005b0a.herokuapp.com/)
 
 <br>
 
